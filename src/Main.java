@@ -11,6 +11,7 @@ import java.util.logging.SimpleFormatter;
  * A simple example program for reading from the serial Port and writing to a log file.
  *
  * Also a test if i can use git ...
+ * lalala
  */
 public class Main {
 
