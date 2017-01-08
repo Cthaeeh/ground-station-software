@@ -1,0 +1,122 @@
+Jan 08, 2017 4:34:30 PM Main setupLogger
+INFORMATION: Logger initialized
+Jan 08, 2017 4:34:30 PM Main setupSerialPort
+INFORMATION: trying to initialize Serial Port
+Jan 08, 2017 4:34:31 PM Main setupSerialPort
+INFORMATION: Connected toCOM7
+Jan 08, 2017 4:34:32 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:32 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:33 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:33 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:34 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:34 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:35 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:35 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:36 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:36 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:38 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:38 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:39 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:39 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:40 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:40 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:41 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:41 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:42 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:42 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:43 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:43 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:44 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:44 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:45 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:45 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:46 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:46 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:47 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:47 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:48 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:48 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:49 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:49 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:50 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:50 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:51 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:51 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:52 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:52 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:53 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:53 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:54 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:54 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:55 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:55 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:56 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:56 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:57 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:57 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:58 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:58 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:34:59 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:34:59 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:35:00 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:35:00 PM Main$1 run
+INFORMATION: Humidity = 38.00
+Jan 08, 2017 4:35:01 PM Main$1 run
+INFORMATION: Temperature = 24.00
+Jan 08, 2017 4:35:01 PM Main$1 run
+INFORMATION: Humidity = 38.00
