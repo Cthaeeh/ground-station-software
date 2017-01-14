@@ -1,0 +1,15 @@
+Style-Guide         14.01.2017
+
+1.  use tabs not spaces
+
+2.  if(condition){
+        doShit();
+    }
+
+    not
+
+    if(condition){
+        doShit();
+    }
+
+3.  
