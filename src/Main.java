@@ -9,7 +9,7 @@ import java.util.logging.SimpleFormatter;
  * Created by Kai on 08.01.2017.
  * A simple example program for reading from the serial Port and writing to a log file.
  *
- * Also a test if i can use git ...
+ * Also a test if i can use git ....
  */
 public class Main {
 
