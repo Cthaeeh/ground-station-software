@@ -1,5 +1,6 @@
 import com.fazecast.jSerialComm.SerialPort;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;

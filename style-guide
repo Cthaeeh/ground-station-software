@@ -1,4 +1,4 @@
-Style-Guide         14.01.2017
+Style-Guide         24.01.2017
 
 1.  use tabs not spaces
 
@@ -8,8 +8,10 @@ Style-Guide         14.01.2017
 
     not
 
-    if(condition){
+    if(condition)
+    {
         doShit();
     }
 
-3.  
+3.  use JavaDoc
+
