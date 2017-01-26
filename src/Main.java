@@ -46,8 +46,10 @@ public class Main extends Application {
     @Override
     public  void  start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("connection_window.fxml"));
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("darkTheme.css");
         primaryStage.setTitle("groundstation");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
