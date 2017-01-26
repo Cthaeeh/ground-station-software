@@ -13,5 +13,5 @@ Style-Guide         24.01.2017
         doShit();
     }
 
-3.  use JavaDoc
+3.  use JavaDoc /**
 
