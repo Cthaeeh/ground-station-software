@@ -8,23 +8,23 @@
 }
 
 .choice-box .context-menu {
-    -fx-background-color: #7cafc2 ;
+    -fx-background-color: #1e3272 ;
     -fx-mark-color: green ;
 }
 
 .choice-box {
-   -fx-background-color: #7cafc2
+   -fx-background-color: #1e3272
    ;
 }
 
 .button{
-    -fx-background-color: #7cafc2 ;
+    -fx-background-color: #1e3272 ;
     -fx-text-fill: #e8e8e8;
     -fx-font-family: "Arial";
 
 }
 
 .text-field{
-    -fx-background-color: #7cafc2 ;
+    -fx-background-color: #1e3272 ;
     -fx-text-fill: #e8e8e8;
 }
