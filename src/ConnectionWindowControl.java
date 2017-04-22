@@ -1,10 +1,15 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.util.function.UnaryOperator;
+import java.util.logging.Level;
 
 /**
  * Created by Kai on 26.01.2017.
@@ -19,6 +24,8 @@ public class ConnectionWindowControl
     private Label connectionStatusLabel;
 
     private SerialPortComm serialPortComm = new SerialPortComm();
+
+    private static final String DATA_VISUALIZATION_FXML = "gui/data_visualization_window.fxml";
 
     /**
      * This method is called after the standard constructor from JavaFX (We do not need to call it our self, java does it for us)
@@ -83,6 +90,25 @@ public class ConnectionWindowControl
 
     @FXML
     private void btnShowDataClick(){
-        //TODO open new Window here when connection is established
+        //TODO only do this when we got a valid connection.
+        try{
+            Stage dataStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource(DATA_VISUALIZATION_FXML));
+            Scene scene = new Scene(root, 600, 600);
+            scene.getStylesheets().add("darkTheme.css");
+            dataStage.setTitle("groundstation-software 0.1");
+            dataStage.setScene(scene);
+            dataStage.setMinWidth(1000);
+            dataStage.setMinHeight(800);
+            dataStage.setMaximized(true);
+            dataStage.show();
+
+
+            //CLOSE this one.
+            Stage connectionWindowStage = (Stage) baudRateInput.getScene().getWindow();
+            connectionWindowStage.close();
+        }catch (Exception ex){
+            Main.logger.log(Level.WARNING, "Failed to load : " + DATA_VISUALIZATION_FXML);
+        }
     }
 }

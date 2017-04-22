@@ -44,16 +44,16 @@ public class Main extends Application {
     }
 
     /**
-     * Well be called by Java it self.
+     * Will be called by Java it self.
      * @param primaryStage
      * @throws Exception
      */
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("connection_window.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/connection_window.fxml"));
         Scene scene = new Scene(root, 600, 600);
         scene.getStylesheets().add("darkTheme.css");
-        primaryStage.setTitle("groundstation-software");
+        primaryStage.setTitle("COM-Port Selection");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(600);

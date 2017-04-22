@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 /**
  * Created by Kai on 26.01.2017.
+ * Handles connection to the serial port
  */
 public class SerialPortComm {
 
