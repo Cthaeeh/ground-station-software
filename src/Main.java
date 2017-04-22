@@ -53,7 +53,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("connection_window.fxml"));
         Scene scene = new Scene(root, 600, 600);
         scene.getStylesheets().add("darkTheme.css");
-        primaryStage.setTitle("groundstation");
+        primaryStage.setTitle("groundstation-software");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(600);
