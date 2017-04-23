@@ -1,6 +1,7 @@
 .root{
     -fx-background-color:#282828;
     -fx-font-size: 15px;
+
 }
 
 .label{
@@ -27,4 +28,9 @@
 .text-field{
     -fx-background-color: #1e3272 ;
     -fx-text-fill: #e8e8e8;
+}
+
+.context-menu {
+  -fx-background-color: #282828;
+  -fx-text-fill: #e8e8e8;
 }
