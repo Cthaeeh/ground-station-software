@@ -1,14 +1,14 @@
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,7 +24,13 @@ public class DataVisualizationControl implements Initializable{
     @FXML
     private GridPane ChartsGridPane;
 
+    private int numOfColumns = 1;
+    private int numOfRows = 1;
+    private final int maxNumberOfColumns = 5;
+    private final int maxNumberOfRows = 4;
+
     private static final String CONNECTION_FXML = "gui/connection_window.fxml";
+    private static final String VISUALIZATION_ELEMENT_FXML = "gui/visualization_element.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,24 +38,73 @@ public class DataVisualizationControl implements Initializable{
     }
 
     private void initializeChartGrid() {
-        ContextMenu contextMenu = new ContextMenu();
+        ContextMenu contextMenu = new ContextMenu();        //Create a ContextMenu for the ChartGrid, so that you can add and remove columns.
+
         MenuItem addRow = new MenuItem("Add row");
         MenuItem addCol = new MenuItem("Add column");
         MenuItem removeRow = new MenuItem("Remove row");
         MenuItem removeCol = new MenuItem("Remove column");
+
+        addRow.setOnAction(e -> addRow());
+        addCol.setOnAction(e -> addCol());
+        removeRow.setOnAction(e -> removeRow());
+        removeCol.setOnAction(e -> removeCol());
+
         contextMenu.getItems().addAll(addRow, addCol, removeRow, removeCol);
 
-        //TODO implement
-        addRow.setOnAction(event -> System.out.println(" cut "));
-        addCol.setOnAction(event -> System.out.println(" cut "));
-        removeRow.setOnAction(event -> System.out.println(" cut "));
-        removeCol.setOnAction(event -> System.out.println(" cut "));
+        ChartsGridPane.add(createVisualizationElement(),0,0);
 
         ChartsGridPane.setOnMousePressed(event -> {
             if (event.isSecondaryButtonDown()) {
                 contextMenu.show(ChartsGridPane, event.getScreenX(), event.getScreenY());
             }
         });
+    }
+
+    /**
+     * Adds a Row to the ChartsGridPane
+     */
+    private void addRow() {
+        if(numOfRows >= maxNumberOfRows) return;
+        Node[] newElements = new Node[numOfColumns];
+        for (int i = 0; i < numOfColumns; i++) {
+            newElements[i] = createVisualizationElement();
+        }
+        ChartsGridPane.addRow(numOfRows++,newElements);
+    }
+
+    /**
+     * Adds a Column to the ChartsGridPane
+     */
+    private void addCol() {
+        if(numOfColumns >= maxNumberOfColumns) return;
+        Node[] newElements = new Node[numOfRows];
+        for (int i = 0; i < numOfRows; i++) {
+            newElements[i] = createVisualizationElement();         //TODO replace dummy elements by real elements.
+        }
+        ChartsGridPane.addColumn(numOfColumns++,newElements);
+    }
+
+    private void removeRow() {
+        //TODO implement
+    }
+
+    private void removeCol() {
+        //TODO implement
+    }
+
+    /**
+     * Creates a visualization element, a gui element that lets you choose a data source and then the according data
+     * as a graph or in another form.
+     * @return
+     */
+    private Node createVisualizationElement() {
+        try {
+            return FXMLLoader.load(getClass().getResource(VISUALIZATION_ELEMENT_FXML));
+        } catch (IOException e) {
+            Main.logger.log(Level.WARNING,"Failed to load visualization element");
+            return new Label("Failed to load : " + VISUALIZATION_ELEMENT_FXML);
+        }
     }
 
     /**
@@ -76,6 +131,5 @@ public class DataVisualizationControl implements Initializable{
             Main.logger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
         }
     }
-
 
 }

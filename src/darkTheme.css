@@ -22,7 +22,7 @@
     -fx-background-color: #1e3272 ;
     -fx-text-fill: #e8e8e8;
     -fx-font-family: "Arial";
-
+    -fx-background-radius: 1;
 }
 
 .text-field{
