@@ -13,6 +13,7 @@ Style-Guide         24.01.2017
         doShit();
     }
 
-3.  use JavaDoc /**
+3. use JavaDoc /**
 
 4. Classes should not be longer than 200 LOC
+

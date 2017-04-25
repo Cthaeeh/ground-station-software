@@ -10,7 +10,9 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -85,12 +87,46 @@ public class DataVisualizationControl implements Initializable{
         ChartsGridPane.addColumn(numOfColumns++,newElements);
     }
 
+    /**
+     * Removes a row from the ChartsGridPane.
+     * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
+     * This answer could be interesting if you want to remove not the row with the biggest index
+     * but instead a specific one.
+     */
     private void removeRow() {
-        //TODO implement
+        if(numOfRows <= 1) return;                              //Minimum 1 element.
+        Set<Node> deleteNodes = new HashSet<>();
+        for (Node child : ChartsGridPane.getChildren()) {
+            // get index from child
+            int rowIndex = GridPane.getRowIndex(child) == null ? 0 : GridPane.getRowIndex(child);
+
+            if(rowIndex ==  (numOfRows-1)){
+                deleteNodes.add(child);
+            }
+        }
+        numOfRows--;
+        ChartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
+    /**
+     * Removes a column from the ChartsGridPane.
+     * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
+     * This answer could be interesting if you want to remove not the column with the biggest index
+     * but instead a specific one.
+     */
     private void removeCol() {
-        //TODO implement
+        if(numOfColumns <= 1) return;                              //Minimum 1 element.
+        Set<Node> deleteNodes = new HashSet<>();
+        for (Node child : ChartsGridPane.getChildren()) {
+            // get index from child
+            int columnIndex = GridPane.getColumnIndex(child) == null ? 0 : GridPane.getColumnIndex(child);
+
+            if(columnIndex ==  (numOfColumns-1)){
+                deleteNodes.add(child);
+            }
+        }
+        numOfColumns--;
+        ChartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
     /**

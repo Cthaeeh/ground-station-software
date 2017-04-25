@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
  */
 public class statusAreaControl implements Initializable {
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
