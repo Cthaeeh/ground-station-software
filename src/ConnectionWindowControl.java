@@ -95,7 +95,7 @@ public class ConnectionWindowControl
             Stage dataStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(DATA_VISUALIZATION_FXML));
             Scene scene = new Scene(root, 600, 600);
-            scene.getStylesheets().add("darkTheme.css");
+            scene.getStylesheets().add("gui/darkTheme.css");
             dataStage.setTitle("groundstation-software 0.1");
             dataStage.setScene(scene);
             dataStage.setMinWidth(1000);

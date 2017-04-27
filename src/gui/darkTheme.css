@@ -34,3 +34,32 @@
   -fx-background-color: #282828;
   -fx-text-fill: #e8e8e8;
 }
+
+.table-view{
+   -fx-background-color: #323232;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #e8e8e8;
+}
+
+.table-view .column-header {
+    -fx-background-color: #323232;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: #e8e8e8;
+}
+
+.table-view .filler{
+    -fx-background-color: #323232;
+}

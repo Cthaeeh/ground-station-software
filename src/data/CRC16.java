@@ -1,3 +1,5 @@
+package data;
+
 /**
  * This class is for calculating CRC-16 (X^16 + X^12 + X^5 + 1 CCITT)values for byte arrays.
  * It was copied completely from some ESA software that has to do with the Herschel Space Observatory

@@ -28,8 +28,8 @@ public class DataVisualizationControl implements Initializable{
 
     private int numOfColumns = 1;
     private int numOfRows = 1;
-    private final int maxNumberOfColumns = 5;
-    private final int maxNumberOfRows = 4;
+    private final int maxNumberOfColumns = 3;
+    private final int maxNumberOfRows = 3;
 
     private static final String CONNECTION_FXML = "gui/connection_window.fxml";
     private static final String VISUALIZATION_ELEMENT_FXML = "gui/visualization_element.fxml";
@@ -153,7 +153,7 @@ public class DataVisualizationControl implements Initializable{
             Stage connectionStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(CONNECTION_FXML));
             Scene scene = new Scene(root, 600, 600);
-            scene.getStylesheets().add("darkTheme.css");
+            scene.getStylesheets().add("gui/darkTheme.css");
             connectionStage.setTitle("COM-Port Selection");
             connectionStage.setScene(scene);
             connectionStage.setMinWidth(600);

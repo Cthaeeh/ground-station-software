@@ -52,7 +52,7 @@ public class Main extends Application {
     public  void  start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("gui/connection_window.fxml"));
         Scene scene = new Scene(root, 600, 600);
-        scene.getStylesheets().add("darkTheme.css");
+        scene.getStylesheets().add("gui/darkTheme.css");
         primaryStage.setTitle("COM-Port Selection");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(600);
