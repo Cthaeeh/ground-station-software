@@ -36,10 +36,10 @@ public class DataVisualizationControl implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initializeChartGrid();
+        initializeContextMenu();
     }
 
-    private void initializeChartGrid() {
+    private void initializeContextMenu() {
         ContextMenu contextMenu = new ContextMenu();        //Create a ContextMenu for the ChartGrid, so that you can add and remove columns.
 
         MenuItem addRow = new MenuItem("Add row");

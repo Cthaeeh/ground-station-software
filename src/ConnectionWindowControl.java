@@ -103,7 +103,6 @@ public class ConnectionWindowControl
             dataStage.setMaximized(true);
             dataStage.show();
 
-
             //CLOSE this one.
             Stage connectionWindowStage = (Stage) baudRateInput.getScene().getWindow();
             connectionWindowStage.close();
