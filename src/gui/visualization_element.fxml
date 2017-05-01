@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="250.0" prefHeight="1000.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200" minWidth="250" prefHeight="400.0" prefWidth="600.0" spacing="3.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VisualizationElementControl">
    <children>
-      <StackPane prefHeight="150.0" prefWidth="200.0">
-         <children>
-            <Button mnemonicParsing="false" text="Button" StackPane.alignment="TOP_RIGHT" />
-         </children>
-      </StackPane>
+      <Button fx:id="selectDataSourceButton" mnemonicParsing="false" onMouseClicked="#btnSelectDataSourceClick" text="Select data-source" />
    </children>
+   <padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+   </padding>
 </VBox>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="371.0" prefWidth="600" fx:controller="DataSourceSelectionControl" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#btnOkayClick" text="Okay" StackPane.alignment="BOTTOM_RIGHT" />
+        <Label alignment="TOP_LEFT" text="Choose data source to display:" StackPane.alignment="TOP_LEFT" />
+        <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="1494.0" StackPane.alignment="CENTER_LEFT">
+            <columns>
+                <TableColumn prefWidth="103.00003051757812" text="data source" />
+                <TableColumn prefWidth="101.0" text="select" />
+            </columns>
+               <StackPane.margin>
+                  <Insets bottom="35.0" top="35.0" />
+               </StackPane.margin>
+        </TableView>
+        <ChoiceBox prefWidth="150.0" StackPane.alignment="BOTTOM_LEFT" fx:id="presentationMode">
+            <StackPane.margin>
+                <Insets left="100.0" />
+            </StackPane.margin>
+        </ChoiceBox>
+        <Label text="As:" StackPane.alignment="BOTTOM_LEFT" />
+    </children>
+    <VBox.margin>
+        <Insets />
+    </VBox.margin>
+    <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+    </padding>
+</StackPane>
