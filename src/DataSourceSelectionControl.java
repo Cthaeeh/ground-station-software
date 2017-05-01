@@ -1,3 +1,4 @@
+import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -10,6 +11,8 @@ import java.util.ResourceBundle;
  * Created by Kai on 27.04.2017.
  */
 public class DataSourceSelectionControl implements Initializable{
+
+    private DataModel model ;
 
     public enum PresentationMode {
         LINE_CHART("Line-chart");
@@ -40,6 +43,13 @@ public class DataSourceSelectionControl implements Initializable{
         initializeChoiceBox();
     }
 
+    public void initModel(DataModel model) {
+        if (this.model != null) {
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.model = model ;
+    }
+
     /**
      * Initializes the ChoiceBox where one can select how data is presented.
      */
@@ -48,11 +58,12 @@ public class DataSourceSelectionControl implements Initializable{
     }
 
     private void initializeSelectionTable() {
-        //TODO load available data sources
+        //TODO load available data sources from model that we no have access if initModel was called.
+        //dataSourceSelectionTable.setItems(model.getDataSources());
     }
 
     @FXML
     private void btnOkayClick(){
-        //TODO implement
+        //TODO implement close this window and communicate somehow back to the visualizationElement.
     }
 }

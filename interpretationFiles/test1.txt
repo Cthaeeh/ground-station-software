@@ -1,0 +1,1 @@
+[{"name":"Temp sensor 1","packageId":1,"startOfValue":0,"lengthOfValue":8},{"name":"humidity sensor 1","packageId":1,"startOfValue":8,"lengthOfValue":8},{"name":"gyro x value","packageId":1,"startOfValue":16,"lengthOfValue":16}]

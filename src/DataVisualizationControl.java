@@ -1,3 +1,4 @@
+import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -5,9 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
@@ -20,11 +23,13 @@ import java.util.logging.Level;
  */
 public class DataVisualizationControl implements Initializable{
 
-    @FXML
-    private Button ShowConnectionWindowButton;
+    private DataModel model ;
 
     @FXML
-    private GridPane ChartsGridPane;
+    private Button showConnectionWindowBtn;
+
+    @FXML
+    private GridPane chartsGridPane;
 
     private int numOfColumns = 1;
     private int numOfRows = 1;
@@ -37,6 +42,13 @@ public class DataVisualizationControl implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeContextMenu();
+    }
+
+    public void initModel(DataModel model) {
+        if (this.model != null) {
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.model = model ;
     }
 
     private void initializeContextMenu() {
@@ -54,41 +66,35 @@ public class DataVisualizationControl implements Initializable{
 
         contextMenu.getItems().addAll(addRow, addCol, removeRow, removeCol);
 
-        ChartsGridPane.add(createVisualizationElement(),0,0);
+        chartsGridPane.add(createVisualizationElement(),0,0);
 
-        ChartsGridPane.setOnMousePressed(event -> {
+        chartsGridPane.setOnMousePressed(event -> {
             if (event.isSecondaryButtonDown()) {
-                contextMenu.show(ChartsGridPane, event.getScreenX(), event.getScreenY());
+                contextMenu.show(chartsGridPane, event.getScreenX(), event.getScreenY());
             }
         });
     }
 
-    /**
-     * Adds a Row to the ChartsGridPane
-     */
     private void addRow() {
         if(numOfRows >= maxNumberOfRows) return;
         Node[] newElements = new Node[numOfColumns];
         for (int i = 0; i < numOfColumns; i++) {
             newElements[i] = createVisualizationElement();
         }
-        ChartsGridPane.addRow(numOfRows++,newElements);
+        chartsGridPane.addRow(numOfRows++,newElements);
     }
 
-    /**
-     * Adds a Column to the ChartsGridPane
-     */
     private void addCol() {
         if(numOfColumns >= maxNumberOfColumns) return;
         Node[] newElements = new Node[numOfRows];
         for (int i = 0; i < numOfRows; i++) {
-            newElements[i] = createVisualizationElement();         //TODO replace dummy elements by real elements.
+            newElements[i] = createVisualizationElement();
         }
-        ChartsGridPane.addColumn(numOfColumns++,newElements);
+        chartsGridPane.addColumn(numOfColumns++,newElements);
     }
 
     /**
-     * Removes a row from the ChartsGridPane.
+     * Removes a row from the chartsGridPane.
      * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
      * This answer could be interesting if you want to remove not the row with the biggest index
      * but instead a specific one.
@@ -96,7 +102,7 @@ public class DataVisualizationControl implements Initializable{
     private void removeRow() {
         if(numOfRows <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
-        for (Node child : ChartsGridPane.getChildren()) {
+        for (Node child : chartsGridPane.getChildren()) {
             // get index from child
             int rowIndex = GridPane.getRowIndex(child) == null ? 0 : GridPane.getRowIndex(child);
 
@@ -105,11 +111,11 @@ public class DataVisualizationControl implements Initializable{
             }
         }
         numOfRows--;
-        ChartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
+        chartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
     /**
-     * Removes a column from the ChartsGridPane.
+     * Removes a column from the chartsGridPane.
      * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
      * This answer could be interesting if you want to remove not the column with the biggest index
      * but instead a specific one.
@@ -117,7 +123,7 @@ public class DataVisualizationControl implements Initializable{
     private void removeCol() {
         if(numOfColumns <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
-        for (Node child : ChartsGridPane.getChildren()) {
+        for (Node child : chartsGridPane.getChildren()) {
             // get index from child
             int columnIndex = GridPane.getColumnIndex(child) == null ? 0 : GridPane.getColumnIndex(child);
 
@@ -126,7 +132,7 @@ public class DataVisualizationControl implements Initializable{
             }
         }
         numOfColumns--;
-        ChartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
+        chartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
     /**
@@ -136,7 +142,11 @@ public class DataVisualizationControl implements Initializable{
      */
     private Node createVisualizationElement() {
         try {
-            return FXMLLoader.load(getClass().getResource(VISUALIZATION_ELEMENT_FXML));
+            FXMLLoader elementLoader = new FXMLLoader(getClass().getResource(VISUALIZATION_ELEMENT_FXML));
+            Node newNode = elementLoader.load();
+            VisualizationElementControl visualizationElementControl = elementLoader.getController();
+            visualizationElementControl.initModel(model);
+            return newNode;
         } catch (IOException e) {
             Main.logger.log(Level.WARNING,"Failed to load visualization element");
             return new Label("Failed to load : " + VISUALIZATION_ELEMENT_FXML);
@@ -148,7 +158,7 @@ public class DataVisualizationControl implements Initializable{
      * Closes this one.
      */
     @FXML
-    private void onShowConnectionWindow(){
+    private void btnShowConnectionWindow(){
         try{
             Stage connectionStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(CONNECTION_FXML));
@@ -161,11 +171,23 @@ public class DataVisualizationControl implements Initializable{
             connectionStage.show();
 
             //CLOSE this one.
-            Stage thisStage = (Stage) ShowConnectionWindowButton.getScene().getWindow();
+            Stage thisStage = (Stage) showConnectionWindowBtn.getScene().getWindow();
             thisStage.close();
         }catch (Exception ex){
             Main.logger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
         }
     }
 
+    @FXML
+    private void btnDataInterpretationClick(){
+        FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(chartsGridPane.getScene().getWindow());
+        if (file != null) {
+            try {
+                model.loadData(file);
+            } catch (IOException exc) {
+                //TODO handle exception...
+            }
+        }
+    }
 }

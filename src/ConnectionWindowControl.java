@@ -1,3 +1,4 @@
+import data.DataModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import java.util.logging.Level;
  */
 public class ConnectionWindowControl
 {
+    private DataModel model;
+
     @FXML
     private TextField baudRateInput;
     @FXML
@@ -34,6 +37,13 @@ public class ConnectionWindowControl
     public void initialize() {
         initializeBaudRateInput();
         initializeCOM_PortChoiceBox();
+    }
+
+    public void initModel(DataModel model) {
+        if (this.model != null) {
+            throw new IllegalStateException("Model can only be initialized once");
+        }
+        this.model = model ;
     }
 
     private void initializeCOM_PortChoiceBox() {
@@ -93,8 +103,12 @@ public class ConnectionWindowControl
         //TODO only do this when we got a valid connection.
         try{
             Stage dataStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource(DATA_VISUALIZATION_FXML));
-            Scene scene = new Scene(root, 600, 600);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(DATA_VISUALIZATION_FXML));
+            Scene scene = new Scene(loader.load(), 600, 600);
+            DataVisualizationControl dataVisualizationControl = loader.getController();
+            dataVisualizationControl.initModel(model);
+
+
             scene.getStylesheets().add("gui/darkTheme.css");
             dataStage.setTitle("groundstation-software 0.1");
             dataStage.setScene(scene);
@@ -108,6 +122,7 @@ public class ConnectionWindowControl
             connectionWindowStage.close();
         }catch (Exception ex){
             Main.logger.log(Level.WARNING, "Failed to load : " + DATA_VISUALIZATION_FXML);
+            System.out.println(ex);
         }
     }
 }

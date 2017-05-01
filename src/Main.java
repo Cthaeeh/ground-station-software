@@ -1,9 +1,11 @@
+import data.DataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -16,6 +18,9 @@ public class Main extends Application {
 
     public static Logger logger;
     private static FileHandler fileHandler;     //Needed for logging to file.
+
+    private static final String CONNECTION_WINDOW_FXML = "gui/connection_window.fxml";
+    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test1.txt";
 
     public static  void main(String[] args){
         setupLogger();
@@ -50,8 +55,16 @@ public class Main extends Application {
      */
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("gui/connection_window.fxml"));
-        Scene scene = new Scene(root, 600, 600);
+        DataModel model = new DataModel();
+
+        model.loadData(new File(DEFAULT_INTERPRETATION_FILE));
+
+        FXMLLoader connectionWindowLoader = new FXMLLoader(getClass().getResource(CONNECTION_WINDOW_FXML));
+        Scene scene = new Scene(connectionWindowLoader.load(), 600, 600);
+
+        ConnectionWindowControl connectionWindowControl = connectionWindowLoader.getController();
+        connectionWindowControl.initModel(model);
+
         scene.getStylesheets().add("gui/darkTheme.css");
         primaryStage.setTitle("COM-Port Selection");
         primaryStage.setScene(scene);
