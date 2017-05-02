@@ -21,7 +21,7 @@ import java.util.logging.Level;
 /**
  * Created by Kai on 22.04.2017.
  */
-public class DataVisualizationControl implements Initializable{
+public class MainWindowControl implements Initializable{
 
     private DataModel model ;
 
@@ -49,6 +49,9 @@ public class DataVisualizationControl implements Initializable{
             throw new IllegalStateException("Model can only be initialized once");
         }
         this.model = model ;
+
+        //Add one visualization Element
+        chartsGridPane.add(createVisualizationElement(),0,0);
     }
 
     private void initializeContextMenu() {
@@ -65,8 +68,6 @@ public class DataVisualizationControl implements Initializable{
         removeCol.setOnAction(e -> removeCol());
 
         contextMenu.getItems().addAll(addRow, addCol, removeRow, removeCol);
-
-        chartsGridPane.add(createVisualizationElement(),0,0);
 
         chartsGridPane.setOnMousePressed(event -> {
             if (event.isSecondaryButtonDown()) {
@@ -159,6 +160,8 @@ public class DataVisualizationControl implements Initializable{
      */
     @FXML
     private void btnShowConnectionWindow(){
+        //TODO make this modal (so that main window can´t be clicked while connection window is open) instead of closing main window, which is stupid.
+
         try{
             Stage connectionStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(CONNECTION_FXML));

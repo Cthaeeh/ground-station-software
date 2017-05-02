@@ -58,6 +58,12 @@
 
 .table-view .table-cell{
     -fx-text-fill: #e8e8e8;
+    -fx-background-color: #323232;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #e8e8e8;
+    -fx-background-color: #282828;
 }
 
 .table-view .filler{

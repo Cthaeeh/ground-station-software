@@ -1,9 +1,9 @@
 import data.DataModel;
+import data.SerialPortComm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -28,7 +28,7 @@ public class ConnectionWindowControl
 
     private SerialPortComm serialPortComm = new SerialPortComm();
 
-    private static final String DATA_VISUALIZATION_FXML = "gui/data_visualization_window.fxml";
+    private static final String DATA_VISUALIZATION_FXML = "gui/main_window.fxml";
 
     /**
      * This method is called after the standard constructor from JavaFX (We do not need to call it our self, java does it for us)
@@ -105,7 +105,7 @@ public class ConnectionWindowControl
             Stage dataStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(DATA_VISUALIZATION_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
-            DataVisualizationControl dataVisualizationControl = loader.getController();
+            MainWindowControl dataVisualizationControl = loader.getController();
             dataVisualizationControl.initModel(model);
 
 

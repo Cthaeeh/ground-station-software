@@ -33,6 +33,9 @@ public class VisualizationElementControl {
         this.model = model ;
     }
 
+    /**
+     *
+     */
     @FXML
     private void btnSelectDataSourceClick(){
         try {
@@ -43,12 +46,12 @@ public class VisualizationElementControl {
             DataSourceSelectionControl dataSourceSelectionControl = dialogLoader.getController();
             dataSourceSelectionControl.initModel(model);
 
-
             scene.getStylesheets().add("gui/darkTheme.css");
 
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(selectDataSourceButton.getScene().getWindow());
-
+            dialog.setMinWidth(400);
+            dialog.setMinHeight(400);
             dialog.setScene(scene);
             dialog.show();
         } catch (IOException e) {

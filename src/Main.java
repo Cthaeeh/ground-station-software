@@ -1,7 +1,6 @@
 import data.DataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -10,17 +9,26 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 /**
  * Created by Kai on 08.01.2017.
- *
+ * The Entry Point of this program.
+ * Sets up a logger and a Main Window.
  */
 public class Main extends Application {
 
     public static Logger logger;
     private static FileHandler fileHandler;     //Needed for logging to file.
 
-    private static final String CONNECTION_WINDOW_FXML = "gui/connection_window.fxml";
-    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test1.txt";
+    /**
+     * The location of the fxml that defines the look of the main window.
+     */
+    private static final String MAIN_WINDOW_FXML = "gui/main_window.fxml";
+
+    /**
+     * The default interpretation file that is used, which defines available dataSources etc.
+     */
+    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test2.txt";
 
     public static  void main(String[] args){
         setupLogger();
@@ -48,23 +56,22 @@ public class Main extends Application {
         }
     }
 
-    /**
-     * Will be called by Java it self.
-     * @param primaryStage
-     * @throws Exception
-     */
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-        DataModel model = new DataModel();
 
+        //Create Model
+        DataModel model = new DataModel();
         model.loadData(new File(DEFAULT_INTERPRETATION_FILE));
 
-        FXMLLoader connectionWindowLoader = new FXMLLoader(getClass().getResource(CONNECTION_WINDOW_FXML));
-        Scene scene = new Scene(connectionWindowLoader.load(), 600, 600);
+        //Load fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_WINDOW_FXML));
+        Scene scene = new Scene(loader.load(), 800, 600);
 
-        ConnectionWindowControl connectionWindowControl = connectionWindowLoader.getController();
-        connectionWindowControl.initModel(model);
+        //Inject model
+        MainWindowControl mainWindowControl = loader.getController();
+        mainWindowControl.initModel(model);
 
+        //GUI-stuff
         scene.getStylesheets().add("gui/darkTheme.css");
         primaryStage.setTitle("COM-Port Selection");
         primaryStage.setScene(scene);

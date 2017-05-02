@@ -1,12 +1,15 @@
 package data;
 
+import javafx.beans.property.StringProperty;
+
 /**
  * Created by Kai on 27.04.2017.
  * A data-source represents for example a temperature sensor or gyroscope etc.
  */
 public class DataSource {
 
-    private String name = "";
+    private StringProperty  name;
+    private StringProperty description;
 
     private int currentValue = 0;
 
@@ -17,13 +20,18 @@ public class DataSource {
     private int lengthOfValue = 0;
 
     public DataSource(){
-
     }
 
-    //TODO implement
+    public StringProperty  getNameProperty(){
+        return name;
+    }
+
+    public StringProperty  getDescriptionProperty() {
+        return description;
+    }
 
     @Override
     public String toString(){
-        return name + " current val: " + currentValue + " package id:" + packageId;
+        return name.getValue() + " current val: " + currentValue + " package id:" + packageId;
     }
 }
