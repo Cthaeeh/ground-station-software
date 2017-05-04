@@ -12,12 +12,11 @@
 <StackPane prefHeight="400" prefWidth="600" minWidth="300" minHeight="200" fx:controller="DataSourceSelectionControl" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#btnOkayClick" text="Okay" StackPane.alignment="BOTTOM_RIGHT" />
-        <Label alignment="TOP_LEFT" text="Choose data source to display:" StackPane.alignment="TOP_LEFT" />
+        <Label alignment="TOP_LEFT" text="Choose data source to display, use STRG to select multiple data sources:" StackPane.alignment="TOP_LEFT" />
         <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="1494.0" StackPane.alignment="CENTER_LEFT">
             <columns>
                 <TableColumn prefWidth="150" minWidth="150" text="Data source" fx:id="nameColumn"/>
                 <TableColumn prefWidth="200" minWidth="50" text="Description" fx:id="descriptionColumn"/>
-                <TableColumn prefWidth="101.0" text="select ?" />
             </columns>
                <StackPane.margin>
                   <Insets bottom="35.0" top="35.0" />

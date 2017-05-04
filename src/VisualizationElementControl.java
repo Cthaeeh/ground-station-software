@@ -1,4 +1,6 @@
 import data.DataModel;
+import data.DataSource;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +18,20 @@ import java.io.IOException;
 public class VisualizationElementControl {
 
     private DataModel model ;
+
+    public enum PresentationMode {
+        LINE_CHART("Line-chart");
+
+        private String name;
+
+        PresentationMode(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return name;
+        }
+    }
 
     @FXML
     Button selectDataSourceButton;
@@ -45,7 +61,7 @@ public class VisualizationElementControl {
 
             DataSourceSelectionControl dataSourceSelectionControl = dialogLoader.getController();
             dataSourceSelectionControl.initModel(model);
-
+            dataSourceSelectionControl.register((mode,dataSources) -> displayData(mode,dataSources));
             scene.getStylesheets().add("gui/darkTheme.css");
 
             dialog.initModality(Modality.APPLICATION_MODAL);
@@ -59,4 +75,12 @@ public class VisualizationElementControl {
         }
     }
 
+    private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
+        System.out.println("Display :");
+        for(DataSource dataSource : dataSources){
+            System.out.println(dataSource.toString());
+        }
+        System.out.println(" as " + mode.toString());
+        //TODO implement
+    }
 }

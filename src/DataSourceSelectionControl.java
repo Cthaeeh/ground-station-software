@@ -7,32 +7,22 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 /**
  * Created by Kai on 27.04.2017.
+ * Handles the Selection of one or more DataSources and the corresponding way how to display them.
  */
 public class DataSourceSelectionControl implements Initializable{
 
+    //Member
     private DataModel model ;
+    private DataVisualization dataVisualization;
 
-    public enum PresentationMode {
-        LINE_CHART("Line-chart");
-
-        private String name;
-
-        PresentationMode(String name) {
-            this.name = name;
-        }
-
-        public String toString() {
-            return name;
-        }
-    }
-
+    //FXML elements
     @FXML
     private TableColumn<DataSource, String> nameColumn;
     @FXML
@@ -50,6 +40,7 @@ public class DataSourceSelectionControl implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeChoiceBox();
+        presentationMode.getSelectionModel().selectedItemProperty().addListener(e -> System.out.println(e.toString()));
     }
 
     public void initModel(DataModel model) {
@@ -61,10 +52,19 @@ public class DataSourceSelectionControl implements Initializable{
     }
 
     /**
+     * If you want to get informed about the dataVisualization the user has chosen, pass a lambda with this method.
+     * @param dataVisualization
+     */
+    public void register(DataVisualization dataVisualization){
+        this.dataVisualization = dataVisualization;
+    }
+
+    /**
      * Initializes the ChoiceBox where one can select how data is presented.
      */
     private void initializeChoiceBox() {
-        presentationMode.getItems().setAll(PresentationMode.values());
+        presentationMode.getItems().setAll(VisualizationElementControl.PresentationMode.values());
+        presentationMode.getSelectionModel().selectFirst(); //Select first item by default.
     }
 
     /**
@@ -81,8 +81,17 @@ public class DataSourceSelectionControl implements Initializable{
 
     @FXML
     private void btnOkayClick(){
-        //TODO implement close this window and communicate somehow back to the visualizationElement.
-        ObservableList<DataSource> selectedItems = dataSourceSelectionTable.getSelectionModel().getSelectedItems();
-        selectedItems.forEach(item -> System.out.println(item.toString()));
+        dataVisualization.display((VisualizationElementControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),dataSourceSelectionTable.getSelectionModel().getSelectedItems());
+        Stage stage = (Stage) presentationMode.getScene().getWindow();
+        stage.close();
     }
+}
+
+//TODO think about moving this interface to its own file or to VisualizationElementControl
+/**
+ * To communicate which data is displayed how.
+ * Example: Humidity Sensor 1 as Line Graph
+ */
+interface DataVisualization {
+    void display(VisualizationElementControl.PresentationMode presentationMode, ObservableList<DataSource> selectedDataSources);
 }
