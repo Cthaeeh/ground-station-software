@@ -47,6 +47,7 @@ public class SerialPortComm {
                     Main.logger.log(Level.INFO,"Stopped transmitting");
                 }
             };
+            thread.setDaemon(true);
             thread.start();
         }
     }

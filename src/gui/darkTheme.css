@@ -35,6 +35,10 @@
   -fx-text-fill: #e8e8e8;
 }
 
+/*
+        Table-View
+*/
+
 .table-view{
    -fx-background-color: #323232;
 }
@@ -69,3 +73,13 @@
 .table-view .filler{
     -fx-background-color: #323232;
 }
+
+
+/*
+        Charts
+*/
+.chart-plot-background {
+    -fx-background-color: #323232;
+}
+
+

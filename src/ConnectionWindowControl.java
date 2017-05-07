@@ -16,8 +16,6 @@ import java.util.logging.Level;
  */
 public class ConnectionWindowControl
 {
-    private DataModel model;
-
     @FXML
     private TextField baudRateInput;
     @FXML
