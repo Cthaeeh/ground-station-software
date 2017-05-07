@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,6 +35,12 @@ public class VisualizationElementControl {
             return name;
         }
     }
+
+    /**
+     * Some empty pane to add stuff to
+     */
+    @FXML
+    Pane pane;
 
     @FXML
     Button selectDataSourceButton;
@@ -82,5 +91,16 @@ public class VisualizationElementControl {
         }
         System.out.println(" as " + mode.toString());
         //TODO implement
+
+        switch (mode){
+            case LINE_CHART:
+                NumberAxis xAxis = new NumberAxis();        //TODO DEMO CODE !!!
+                xAxis.setLabel("No of employees");
+
+                NumberAxis yAxis = new NumberAxis();
+                yAxis.setLabel("Revenue per employee");
+                pane.getChildren().add(new LineChart(xAxis, yAxis));
+                break;
+        }
     }
 }

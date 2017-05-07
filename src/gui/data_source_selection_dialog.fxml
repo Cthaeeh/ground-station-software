@@ -29,9 +29,6 @@
         </ChoiceBox>
         <Label text="As:" StackPane.alignment="BOTTOM_LEFT" />
     </children>
-    <VBox.margin>
-        <Insets />
-    </VBox.margin>
     <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
     </padding>

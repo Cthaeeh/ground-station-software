@@ -3,10 +3,7 @@ import data.DataSource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -81,7 +78,14 @@ public class DataSourceSelectionControl implements Initializable{
 
     @FXML
     private void btnOkayClick(){
-        dataVisualization.display((VisualizationElementControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),dataSourceSelectionTable.getSelectionModel().getSelectedItems());
+        ObservableList<DataSource> selectedDataSources = dataSourceSelectionTable.getSelectionModel().getSelectedItems();
+        if(selectedDataSources.size()==0){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "No data source selected");
+            alert.showAndWait();
+            //TODO style Alert.
+            return;
+        }
+        dataVisualization.display((VisualizationElementControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),selectedDataSources);
         Stage stage = (Stage) presentationMode.getScene().getWindow();
         stage.close();
     }
