@@ -27,8 +27,6 @@ public class ConnectionWindowControl
 
     private SerialPortComm serialPortComm = new SerialPortComm();
 
-    private static final String DATA_VISUALIZATION_FXML = "gui/main_window.fxml";
-
     /**
      * This method is called after the standard constructor from JavaFX (We do not need to call it our self, java does it for us)
      */
@@ -38,15 +36,8 @@ public class ConnectionWindowControl
         initializeCOM_PortChoiceBox();
     }
 
-    public void initModel(DataModel model) {
-        if (this.model != null) {
-            throw new IllegalStateException("Model can only be initialized once");
-        }
-        this.model = model ;
-    }
-
     private void initializeCOM_PortChoiceBox() {
-        ObservableList obList = FXCollections.observableList(serialPortComm.getAvailablePorts());
+        ObservableList<String> obList = FXCollections.observableList(serialPortComm.getAvailablePorts());
         COM_PortChoiceBox.getItems().clear();
         COM_PortChoiceBox.setItems(obList);
         COM_PortChoiceBox.setTooltip(new Tooltip("Choose a port here!"));
@@ -100,28 +91,7 @@ public class ConnectionWindowControl
     @FXML
     private void btnShowDataClick(){
         //TODO only do this when we got a valid connection.
-        try{
-            Stage dataStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(DATA_VISUALIZATION_FXML));
-            Scene scene = new Scene(loader.load(), 600, 600);
-            MainWindowControl dataVisualizationControl = loader.getController();
-            dataVisualizationControl.initModel(model);
-
-
-            scene.getStylesheets().add("gui/darkTheme.css");
-            dataStage.setTitle("groundstation-software 0.1");
-            dataStage.setScene(scene);
-            dataStage.setMinWidth(1000);
-            dataStage.setMinHeight(800);
-            dataStage.setMaximized(true);
-            dataStage.show();
-
-            //CLOSE this one.
-            Stage connectionWindowStage = (Stage) baudRateInput.getScene().getWindow();
-            connectionWindowStage.close();
-        }catch (Exception ex){
-            Main.logger.log(Level.WARNING, "Failed to load : " + DATA_VISUALIZATION_FXML);
-            System.out.println(ex);
-        }
+        Stage stage = (Stage) COM_PortChoiceBox.getScene().getWindow();
+        stage.close();
     }
 }

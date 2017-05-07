@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -160,22 +161,21 @@ public class MainWindowControl implements Initializable{
      */
     @FXML
     private void btnShowConnectionWindow(){
-        //TODO make this modal (so that main window can´t be clicked while connection window is open) instead of closing main window, which is stupid.
-
         try{
-            Stage connectionStage = new Stage();
+            final Stage connectionStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource(CONNECTION_FXML));
             Scene scene = new Scene(root, 600, 600);
+
             scene.getStylesheets().add("gui/darkTheme.css");
+
+            connectionStage.initModality(Modality.APPLICATION_MODAL);
+            connectionStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
             connectionStage.setTitle("COM-Port Selection");
             connectionStage.setScene(scene);
             connectionStage.setMinWidth(600);
             connectionStage.setMinHeight(600);
             connectionStage.show();
 
-            //CLOSE this one.
-            Stage thisStage = (Stage) showConnectionWindowBtn.getScene().getWindow();
-            thisStage.close();
         }catch (Exception ex){
             Main.logger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
         }
