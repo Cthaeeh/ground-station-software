@@ -22,6 +22,7 @@ public class VisualizationElementControl {
 
     private DataModel model ;
 
+    //TODO add more.
     public enum PresentationMode {
         LINE_CHART("Line-chart");
 
@@ -85,21 +86,12 @@ public class VisualizationElementControl {
     }
 
     private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
-        System.out.println("Display :");
-        for(DataSource dataSource : dataSources){
-            System.out.println(dataSource.toString());
-        }
         System.out.println(" as " + mode.toString());
-        //TODO implement
-
         switch (mode){
             case LINE_CHART:
-                NumberAxis xAxis = new NumberAxis();        //TODO DEMO CODE !!!
-                xAxis.setLabel("No of employees");
-
+                NumberAxis xAxis = new NumberAxis();
                 NumberAxis yAxis = new NumberAxis();
-                yAxis.setLabel("Revenue per employee");
-                pane.getChildren().add(new LineChart(xAxis, yAxis));
+                pane.getChildren().add(new LiveLineChart(xAxis, yAxis,dataSources));
                 break;
         }
     }

@@ -58,7 +58,6 @@ public class Main extends Application {
 
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-
         //Create Model
         DataModel model = new DataModel();
         model.loadData(new File(DEFAULT_INTERPRETATION_FILE));

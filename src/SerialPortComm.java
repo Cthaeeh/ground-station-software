@@ -1,4 +1,5 @@
 import com.fazecast.jSerialComm.SerialPort;
+import data.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class SerialPortComm {
 
     private SerialPort serialPort;
     public boolean isConnected = false;
+
 
     public SerialPortComm(){
 
@@ -79,6 +81,7 @@ public class SerialPortComm {
         int temp2 = ((readBuffer[2] & 0xff) << 8) | (readBuffer[3] & 0xff);
         int humid1 = ((readBuffer[4] & 0xff) << 8) | (readBuffer[5] & 0xff);
         int humid2 = ((readBuffer[6] & 0xff) << 8) | (readBuffer[7] & 0xff);
+
         return "T1: " + temp1 +"°C   T2: " + temp2 + "°C   H1: " + humid1 + "%   H2: " + humid2+"%";
     }
 }

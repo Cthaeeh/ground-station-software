@@ -40,7 +40,6 @@ public class DataModel {
     }
 
     public void saveData(File file) throws IOException {
-
         // save contents of personList to file ...
     }
 

@@ -82,4 +82,7 @@
     -fx-background-color: #323232;
 }
 
-
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 20px;
+}
