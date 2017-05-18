@@ -85,8 +85,8 @@ public class VisualizationElementControl {
         }
     }
 
+
     private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
-        System.out.println(" as " + mode.toString());
         switch (mode){
             case LINE_CHART:
                 NumberAxis xAxis = new NumberAxis();

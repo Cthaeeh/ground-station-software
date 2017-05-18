@@ -1,7 +1,10 @@
 package data;
 
+import javafx.animation.AnimationTimer;
 import javafx.beans.property.StringProperty;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -10,7 +13,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class DataSource {
 
-    private ConcurrentLinkedQueue<Number> dataQueque = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Number> dataQueue = new ConcurrentLinkedQueue<>();
+    private List<UpdateDataListener> listeners = new ArrayList<>();
     private StringProperty  name;
     private StringProperty description;
 
@@ -19,7 +23,10 @@ public class DataSource {
     private int startOfValue = 0;
     private int lengthOfValue = 0;
 
+    private int fakeTime = 0;       //TODO replace with real time.
+
     public DataSource(){
+        informListeners();
     }
 
     public StringProperty  getNameProperty(){
@@ -39,12 +46,29 @@ public class DataSource {
         return name.getValue() + " package id:" + packageId;
     }
 
-    //TODO make this so that multiple graphs can access the datasource.
-    public Number getAndRemoveLastVal(){
-        return dataQueque.remove();
+    public void addListener (UpdateDataListener listener) {
+        listeners.add(listener);
     }
 
-    public boolean isEmpty() {
-        return dataQueque.isEmpty();
+    //TODO make this so that multiple graphs can access the datasource.
+    public Number getAndRemoveLastVal(){
+        return dataQueue.remove();
+    }
+
+    /**
+     * gets called in the JavaFX Main thread
+     */
+    private void informListeners() {    //TODO FIND A BETTER NAME:
+        DataSource dataSource = this;   //TODO remove this ugliness.
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                for(UpdateDataListener listener : listeners){
+                    while (!dataQueue.isEmpty()) {
+                        listener.onUpdateData(dataSource,dataQueue.remove(),fakeTime++);
+                    }
+                }
+            }
+        }.start();
     }
 }

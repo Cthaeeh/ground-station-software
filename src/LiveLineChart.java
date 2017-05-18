@@ -1,4 +1,5 @@
 import data.DataSource;
+import data.UpdateDataListener;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
@@ -13,14 +14,20 @@ import java.util.HashMap;
  * I got the inspiration from : http://stackoverflow.com/questions/22089022/line-chart-live-update
  *
  */
-public class LiveLineChart extends LineChart<Number, Number> {
+public class LiveLineChart extends LineChart<Number, Number> implements UpdateDataListener {
 
     private final int MAX_DATA_POINTS = 20;
-    HashMap<Series<Number, Number>, DataSource> seriesDataSourceMap = new HashMap<>();
+    HashMap<DataSource,Series<Number, Number>> seriesDataSourceMap = new HashMap<>();
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private int xSeriesData = 0;    //TODO later replace this with some accurate time measurement.
 
+    /**
+     *
+     * @param xAxis
+     * @param yAxis
+     * @param dataSources the dataSources this LiveLineChart should display.
+     */
     public LiveLineChart(final NumberAxis xAxis, final NumberAxis yAxis, ObservableList<DataSource> dataSources) {
         super(xAxis, yAxis);
         this.xAxis = xAxis;
@@ -31,11 +38,9 @@ public class LiveLineChart extends LineChart<Number, Number> {
         xAxis.setTickMarkVisible(false);
         xAxis.setMinorTickVisible(false);
         this.setAnimated(false);
-        this.setTitle("Animated Line Chart");
         this.setHorizontalGridLinesVisible(true);
         createSeries(dataSources);
-        this.getData().addAll(seriesDataSourceMap.keySet());
-        createAnimationTimer();
+        this.getData().addAll(seriesDataSourceMap.values());
     }
 
     /**
@@ -49,20 +54,12 @@ public class LiveLineChart extends LineChart<Number, Number> {
         for(DataSource dataSource:dataSources){
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
             series.setName(dataSource.getName());
-            seriesDataSourceMap.put(series,dataSource);
+            seriesDataSourceMap.put(dataSource,series);
+            dataSource.addListener(this);       //TODO update metod name or move this elsewhere.
         }
     }
 
-    private void createAnimationTimer() {
-        // Every frame to take any data from queue and add to chart
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                updateSeries();
-            }
-        }.start();
-    }
-
+    /*
     private void updateSeries() {
         for(Series<Number, Number> series : seriesDataSourceMap.keySet()){
             DataSource source = seriesDataSourceMap.get(series);
@@ -77,5 +74,18 @@ public class LiveLineChart extends LineChart<Number, Number> {
         }
         xAxis.setLowerBound(xSeriesData - MAX_DATA_POINTS);
         xAxis.setUpperBound(xSeriesData - 1);
+    }
+    */
+
+    @Override
+    public void onUpdateData(DataSource dataSource, Number x, Number y) {
+        Series<Number,Number> series = seriesDataSourceMap.get(dataSource);
+        series.getData().add(new XYChart.Data<>(x, y));
+
+        // remove points to keep us at no more than MAX_DATA_POINTS
+        if (series.getData().size() > MAX_DATA_POINTS) {
+            series.getData().remove(0, series.getData().size() - MAX_DATA_POINTS);
+        }
+        //TODO set bounds.
     }
 }
