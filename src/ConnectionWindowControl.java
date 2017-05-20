@@ -1,15 +1,11 @@
-import data.DataModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.function.UnaryOperator;
-import java.util.logging.Level;
 
 /**
  * Created by Kai on 26.01.2017.
@@ -23,7 +19,7 @@ public class ConnectionWindowControl
     @FXML
     private Label connectionStatusLabel;
 
-    private SerialPortComm serialPortComm = new SerialPortComm();
+    private SerialPortComm serialPortComm;
 
     /**
      * This method is called after the standard constructor from JavaFX (We do not need to call it our self, java does it for us)
@@ -31,7 +27,6 @@ public class ConnectionWindowControl
     @FXML
     public void initialize() {
         initializeBaudRateInput();
-        initializeCOM_PortChoiceBox();
     }
 
     private void initializeCOM_PortChoiceBox() {
@@ -91,5 +86,10 @@ public class ConnectionWindowControl
         //TODO only do this when we got a valid connection.
         Stage stage = (Stage) COM_PortChoiceBox.getScene().getWindow();
         stage.close();
+    }
+
+    public void initCommPortConnection(SerialPortComm serialPortComm) {
+        this.serialPortComm = serialPortComm;
+        initializeCOM_PortChoiceBox();
     }
 }

@@ -3,12 +3,10 @@ import data.DataSource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -41,10 +39,10 @@ public class VisualizationElementControl {
      * Some empty pane to add stuff to
      */
     @FXML
-    Pane pane;
+    private StackPane pane;
 
     @FXML
-    Button selectDataSourceButton;
+    private Button selectDataSourceButton;
 
     private final String DATA_SOURCE_SELECTION_FXML = "gui/data_source_selection_dialog.fxml";
 
@@ -87,6 +85,7 @@ public class VisualizationElementControl {
 
 
     private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
+        pane.getChildren().clear();
         switch (mode){
             case LINE_CHART:
                 NumberAxis xAxis = new NumberAxis();

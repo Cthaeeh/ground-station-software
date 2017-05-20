@@ -2,6 +2,7 @@ package data;
 
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.StringProperty;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class DataSource {
 
-    private ConcurrentLinkedQueue<Number> dataQueue = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Pair<Number,Number>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<UpdateDataListener> listeners = new ArrayList<>();
     private StringProperty  name;
     private StringProperty description;
@@ -50,11 +51,6 @@ public class DataSource {
         listeners.add(listener);
     }
 
-    //TODO make this so that multiple graphs can access the datasource.
-    public Number getAndRemoveLastVal(){
-        return dataQueue.remove();
-    }
-
     /**
      * gets called in the JavaFX Main thread
      */
@@ -63,12 +59,18 @@ public class DataSource {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for(UpdateDataListener listener : listeners){
-                    while (!dataQueue.isEmpty()) {
-                        listener.onUpdateData(dataSource,dataQueue.remove(),fakeTime++);
+                while (!dataQueue.isEmpty()) {
+                    Pair<Number,Number> pt = dataQueue.remove();
+                    for(UpdateDataListener listener : listeners){
+                        listener.onUpdateData(dataSource,pt);
                     }
                 }
             }
         }.start();
     }
+
+    public void addDataPoint(Number x, Number y){
+        dataQueue.add(new Pair(x,y));
+    }
+
 }

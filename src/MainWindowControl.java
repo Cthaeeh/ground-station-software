@@ -3,7 +3,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -25,6 +24,7 @@ import java.util.logging.Level;
 public class MainWindowControl implements Initializable{
 
     private DataModel model ;
+    private SerialPortComm serialPortComm = new SerialPortComm();
 
     @FXML
     private Button showConnectionWindowBtn;
@@ -95,6 +95,8 @@ public class MainWindowControl implements Initializable{
         chartsGridPane.addColumn(numOfColumns++,newElements);
     }
 
+    //TODO HUGE PROBLEM, GBC WILL NOT DELETE NODES BECAUSE RIGHT NOW THE DATASOURCES STILL HAVE A REFERENCE TO THE LIVELINECHARTS IN THE VISUALIZATIION ELEMENTS...
+
     /**
      * Removes a row from the chartsGridPane.
      * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
@@ -163,8 +165,11 @@ public class MainWindowControl implements Initializable{
     private void btnShowConnectionWindow(){
         try{
             final Stage connectionStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource(CONNECTION_FXML));
-            Scene scene = new Scene(root, 600, 600);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(CONNECTION_FXML));
+            Scene scene = new Scene(loader.load(), 600, 600);
+
+            ConnectionWindowControl connectionWindowControl = loader.getController();
+            connectionWindowControl.initCommPortConnection(serialPortComm);
 
             scene.getStylesheets().add("gui/darkTheme.css");
 

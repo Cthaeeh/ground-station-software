@@ -1,4 +1,5 @@
 import data.DataModel;
+import data.DataSource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -77,5 +78,30 @@ public class Main extends Application {
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(600);
         primaryStage.show();
+
+        startDemoDataThread(model);
+    }
+
+    private void startDemoDataThread(DataModel model1) {
+        Thread thread = new Thread(){
+            @Override public void run() {
+                double fakeTime = 0;
+                boolean isRunning = true;
+                while(isRunning) {
+                    double val = 0;
+                    for(DataSource dataSource: model1.getDataSources()){
+                        dataSource.addDataPoint(fakeTime,(val++)+Math.sin(fakeTime));
+                    }
+                    fakeTime += 0.1;
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        thread.setDaemon(true);
+        thread.start();
     }
 }
