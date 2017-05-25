@@ -24,7 +24,7 @@ import java.util.logging.Level;
 public class MainWindowControl implements Initializable{
 
     private DataModel model ;
-    private SerialPortComm serialPortComm = new SerialPortComm();
+    private SerialPortComm serialPortComm;
 
     @FXML
     private Button showConnectionWindowBtn;
@@ -50,7 +50,7 @@ public class MainWindowControl implements Initializable{
             throw new IllegalStateException("Model can only be initialized once");
         }
         this.model = model ;
-
+        serialPortComm = new SerialPortComm(model);
         //Add one visualization Element
         chartsGridPane.add(createVisualizationElement(),0,0);
     }
@@ -192,7 +192,7 @@ public class MainWindowControl implements Initializable{
         File file = chooser.showOpenDialog(chartsGridPane.getScene().getWindow());
         if (file != null) {
             try {
-                model.loadData(file);
+                model.loadConfigData(file);
             } catch (IOException exc) {
                 //TODO handle exception...
             }

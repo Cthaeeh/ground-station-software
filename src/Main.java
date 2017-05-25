@@ -29,7 +29,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available dataSources etc.
      */
-    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test2.txt";
+    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test3.txt";
 
     public static  void main(String[] args){
         setupLogger();
@@ -59,9 +59,8 @@ public class Main extends Application {
 
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-        //Create Model
         DataModel model = new DataModel();
-        model.loadData(new File(DEFAULT_INTERPRETATION_FILE));
+        model.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
 
         //Load fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_WINDOW_FXML));

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -19,28 +20,33 @@ import java.util.Collection;
  */
 public class DataModel {
 
-    /**
-     * Contains all available Data Sources like a Temperature-Sensor etc.
-     */
-    private ObservableList<DataSource> dataSourceObservableList = FXCollections.observableArrayList();
+    private JsonSerializableConfig config;
 
     public ObservableList<DataSource> getDataSources() {
-        return dataSourceObservableList ;
+        if(config == null || config.getDataSources() == null){
+            return FXCollections.observableArrayList(new ArrayList<DataSource>());  //return empty list.
+        }
+        ObservableList<DataSource> dataSources = FXCollections.observableArrayList(config.getDataSources());
+        return dataSources;
     }
 
-    //TODO implement saving of DataModel
-    public void loadData(File file) throws IOException {
+    //TODO is this really the right way ?
+    public JsonSerializableConfig getConfig(){
+        return config;
+    }
+
+    public void loadConfigData(File file) throws IOException {
         //http://www.java-forum.org/thema/gson-propleme-bei-stringproperty.174049/
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(StringProperty.class, new StringPropertyAdapter());
         Gson gson = gsonBuilder.create();
 
-        Type collectionType = new TypeToken<Collection<DataSource>>(){}.getType();
-        dataSourceObservableList = FXCollections.observableArrayList((Collection<? extends DataSource>) gson.fromJson(readFile(file), collectionType));
+        config =  gson.fromJson(readFile(file),JsonSerializableConfig.class);
     }
 
-    public void saveData(File file) throws IOException {
-        // save contents of personList to file ...
+    //TODO implement saving of DataModel
+    public void saveConfigData(File file) throws IOException {
+        // save contents of model to file ...
     }
 
     //TODO move this into some helper class.

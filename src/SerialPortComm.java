@@ -7,16 +7,16 @@ import java.util.logging.Level;
 
 /**
  * Created by Kai on 26.01.2017.
- * Handles connection to the serial port
+ * Handles connection to the serial port.
  */
 public class SerialPortComm {
 
     private SerialPort serialPort;
     public boolean isConnected = false;
+    private DataModel datamodel;
 
-
-    public SerialPortComm(){
-
+    public SerialPortComm(DataModel datamodel){
+        this.datamodel = datamodel;
     }
 
     /**
@@ -36,19 +36,7 @@ public class SerialPortComm {
         setupSerialPort(portName,baud_rate);
         if(isConnected) {
             //Reading from COM-Port in other Thread so other code doesn´t lag.
-            //Actually not needed here but important for later use.
-            Thread thread = new Thread(){
-                @Override public void run() {
-                    boolean isRunning = true;
-                    while(isRunning) {
-                        byte[] readBuffer = new byte[10];
-                        int numRead = serialPort.readBytes(readBuffer,readBuffer.length);
-                        Main.logger.log(Level.INFO, "Read " + numRead + " bytes!");
-                        Main.logger.log(Level.INFO, "Decoded msg:" + decodeMsg(readBuffer));
-                    }
-                    Main.logger.log(Level.INFO,"Stopped transmitting");
-                }
-            };
+            SerialCommunicationThread thread = new SerialCommunicationThread(datamodel,serialPort);
             thread.setDaemon(true);
             thread.start();
         }
@@ -60,7 +48,7 @@ public class SerialPortComm {
         serialPort.setBaudRate(baud_rate);
         //The newReadTimeout parameter affects (in TIMEOUT_READ_BLOCKING-Mode) how long we will wait for a certain amount of bytes to arrive before we say "Fuck it"
         //Credits: https://github.com/Fazecast/jSerialComm/wiki/Blocking-and-Semiblocking-Reading-Usage-Example
-        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 1100,0);
+        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);   //TODO make it a least a final static variable or move it to the config.
         if (serialPort.openPort()) {
             Main.logger.log(Level.INFO,"Connected to"+portName);
             isConnected = true;
@@ -69,19 +57,4 @@ public class SerialPortComm {
         }
     }
 
-    private String decodeMsg(byte[] readBuffer) {
-        if(readBuffer.length<10){
-            return "Unreadable";
-        }
-        //Temp 1 byte 0-1
-        //Temp 2 byte 2-3
-        //Humidity 1 byte 4-5
-        //Humidity 2 byte 6-7
-        int temp1 = ((readBuffer[0] & 0xff) << 8) | (readBuffer[1] & 0xff);
-        int temp2 = ((readBuffer[2] & 0xff) << 8) | (readBuffer[3] & 0xff);
-        int humid1 = ((readBuffer[4] & 0xff) << 8) | (readBuffer[5] & 0xff);
-        int humid2 = ((readBuffer[6] & 0xff) << 8) | (readBuffer[7] & 0xff);
-
-        return "T1: " + temp1 +"°C   T2: " + temp2 + "°C   H1: " + humid1 + "%   H2: " + humid2+"%";
-    }
 }

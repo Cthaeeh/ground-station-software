@@ -1,0 +1,1 @@
+{"dataSources":[{"name":"humidity","description":"h","packageId":1,"startOfValue":2,"lengthOfValue":2},{"name":"temp","description":"t","packageId":1,"startOfValue":4,"lengthOfValue":2}],"startBytes":[5],"idPosition":1,"messageLenth":20,"isUsingCRC16":false,"timePosition":-1,"timeLenth":0}
