@@ -107,11 +107,9 @@ public class SerialCommunicationThread extends Thread {
         if(messageMap.get(messageId)!= null){
             for(DataSource dataSource : messageMap.get(messageId)){
                 System.out.println("got here");
-                dataSource.insert(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getStartOfValue()));
+                dataSource.insert(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getLengthOfValue()));
             }
         }
-
         //TODO add time information.
-
     }
 }

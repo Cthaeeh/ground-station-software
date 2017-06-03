@@ -9,17 +9,19 @@ import javafx.util.Pair;
 import java.util.HashMap;
 
 /**
- * Created by Kai on 16.05.2017.
  * A live line chart that displays the data from the dataSources it got in the constructor.
  * I got the inspiration from : http://stackoverflow.com/questions/22089022/line-chart-live-update
- *
+ * Created by Kai on 16.05.2017.
  */
 public class LiveLineChart extends LineChart<Number, Number> implements UpdateDataListener {
 
-    private final int MAX_DATA_POINTS = 100;
+    private final int MAX_DATA_POINTS = 200;
     HashMap<DataSource,Series<Number, Number>> seriesDataSourceMap = new HashMap<>();
     final NumberAxis xAxis;
     final NumberAxis yAxis;
+    private double maxXVal;
+    private double minXVal;
+    private final double xIntervalInSec = 10.0;
 
     /**
      *
@@ -37,7 +39,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
         this.setMinSize(10,10);
         this.setPrefSize(600,400);
 
-
+        this.setCreateSymbols(false);
         this.setAnimated(false);
         this.setHorizontalGridLinesVisible(false);
         this.setVerticalGridLinesVisible(false);
@@ -54,11 +56,11 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
     }
 
     private void initializeY_Axis() {
-        xAxis.setForceZeroInRange(false);
-        xAxis.setAutoRanging(true);
-        xAxis.setTickLabelsVisible(false);
-        xAxis.setTickMarkVisible(false);
-        xAxis.setMinorTickVisible(false);
+        yAxis.setForceZeroInRange(false);
+        yAxis.setAutoRanging(true);
+        yAxis.setTickLabelsVisible(true);
+        yAxis.setTickMarkVisible(true);
+        yAxis.setMinorTickVisible(false);
     }
 
     /**
@@ -87,6 +89,11 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
             series.getData().remove(0, series.getData().size() - MAX_DATA_POINTS);
         }
 
-        //TODO ranging
+        if(point.getKey().doubleValue()>maxXVal){
+            maxXVal = point.getKey().doubleValue();
+            xAxis.setUpperBound(maxXVal + (xIntervalInSec)/20);
+        }
+
+        xAxis.setLowerBound(maxXVal - xIntervalInSec);
     }
 }

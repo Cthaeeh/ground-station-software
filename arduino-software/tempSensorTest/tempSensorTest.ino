@@ -31,10 +31,12 @@ void getMeasurements(byte packet[])
   packet[9] = 0;
 }
 
+double counter = 0.0;
 
 void getMeasurements2(byte packet[]) {
   int chk  = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int temp = 33; //DHT.temperature;   
+  int temp = 200*sin(counter); //DHT.temperature;   
+  counter += 0.05;
   int humd = 10; //DHT.humidity;
   
   packet[0] = 5; //start byte
