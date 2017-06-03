@@ -50,10 +50,10 @@ public class SerialPortComm {
         //Credits: https://github.com/Fazecast/jSerialComm/wiki/Blocking-and-Semiblocking-Reading-Usage-Example
         serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);   //TODO make it a least a final static variable or move it to the config.
         if (serialPort.openPort()) {
-            Main.logger.log(Level.INFO,"Connected to"+portName);
+            Main.logger.log(Level.INFO,"Connected to: "+portName);
             isConnected = true;
         }else {
-            Main.logger.log(Level.INFO,"Failed to connect to "+portName);
+            Main.logger.log(Level.INFO,"Failed to connect to: "+portName);
         }
     }
 

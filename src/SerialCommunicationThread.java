@@ -1,7 +1,8 @@
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
+import data.DataSource;
 
-import java.util.logging.Level;
+import java.util.*;
 
 /**
  * Created by Kai on 25.05.2017.
@@ -14,9 +15,17 @@ public class SerialCommunicationThread extends Thread {
     //Message configuration
     private byte startBytes[];
     private int messageLenth;
+    private int idPosition;
+    /**
+     * maps message ids to corresponding lists dataSources, which can be found in this message.
+     */
+    private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
 
     private boolean isRunning = true;
 
+    /**
+     * State-machine for decoding the incoming stream of bytes.
+     */
     private enum MsgState {
         SEARCHING_START, READING_MSG;
     }
@@ -28,7 +37,7 @@ public class SerialCommunicationThread extends Thread {
     }
 
     @Override public void run() {
-        int messagePointer = 0;
+        int messagePointer = startBytes.length; // it is unnecessary to read the startBytes AND msgLength is still lentgh of the message including the startBytes.
         int startByteCounter = 0;
         byte[] msgBuffer = new byte[messageLenth];
 
@@ -38,8 +47,9 @@ public class SerialCommunicationThread extends Thread {
             serialPort.readBytes(readBuffer,1); //Read semi blocking 1 byte.
             switch (state){
                 case SEARCHING_START:
-                    if(readBuffer[0]==startBytes[startByteCounter++]){
-                        if(startByteCounter>=messageLenth){
+                    if(readBuffer[0]==startBytes[startByteCounter]){
+                        startByteCounter++;
+                        if(startByteCounter>=startBytes.length){
                             state = MsgState.READING_MSG;
                             startByteCounter = 0;
                         }
@@ -48,9 +58,9 @@ public class SerialCommunicationThread extends Thread {
                 case READING_MSG:
                     msgBuffer[messagePointer]=readBuffer[0];
                     messagePointer++;
-                    if(messagePointer>messageLenth){
+                    if(messagePointer>=messageLenth){
                         state  = MsgState.SEARCHING_START;
-                        messagePointer = 0;
+                        messagePointer = startBytes.length;
                         decodeMessage(msgBuffer);
                     }
                     break;
@@ -65,28 +75,43 @@ public class SerialCommunicationThread extends Thread {
     private void initialize(){
         startBytes = dataModel.getConfig().getStartBytes();
         messageLenth = dataModel.getConfig().getMessageLenth();
+        idPosition = dataModel.getConfig().getIdPosition();
+        initMessageMap();
     }
 
-    private String decodeMsg(byte[] readBuffer) {
-        if(readBuffer.length<10){
-            return "Unreadable";
+    /**
+     * Initializes the MessageMap with all messageId's as keys and lists of corresponding dataSources as lists.
+     */
+    private void initMessageMap() {
+        for (DataSource datasource:dataModel.getDataSources()) {
+            if(messageMap.containsKey(datasource.getMessageId())){
+                messageMap.get(datasource.getMessageId()).add(datasource);
+            }else {     // if the map does not contain the key yet create a new List of datasources, and add it to the map.
+                List<DataSource> dataSourceList = new ArrayList<>();
+                dataSourceList.add(datasource);
+                messageMap.put(datasource.getMessageId(),dataSourceList);
+                System.out.println("got here");
+            }
         }
-        //Temp 1 byte 0-1
-        //Temp 2 byte 2-3
-        //Humidity 1 byte 4-5
-        //Humidity 2 byte 6-7
-        int temp1 = ((readBuffer[0] & 0xff) << 8) | (readBuffer[1] & 0xff);
-        int temp2 = ((readBuffer[2] & 0xff) << 8) | (readBuffer[3] & 0xff);
-        int humid1 = ((readBuffer[4] & 0xff) << 8) | (readBuffer[5] & 0xff);
-        int humid2 = ((readBuffer[6] & 0xff) << 8) | (readBuffer[7] & 0xff);
-
-        return "T1: " + temp1 +"°C   T2: " + temp2 + "°C   H1: " + humid1 + "%   H2: " + humid2+"%";
+        System.out.println("Message Map :" + messageMap);
     }
 
-
+    /**
+     * Decodes the message, without start Byte.
+     * @param msgBuffer
+     */
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         //TODO depending on id check for new data for the data sources.
-    }
+        Integer messageId = Integer.valueOf(msgBuffer[idPosition]);
+        if(messageMap.get(messageId)!= null){
+            for(DataSource dataSource : messageMap.get(messageId)){
+                System.out.println("got here");
+                dataSource.insert(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getStartOfValue()));
+            }
+        }
 
+        //TODO add time information.
+
+    }
 }

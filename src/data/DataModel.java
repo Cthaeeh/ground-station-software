@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by Kai on 01.05.2017.
+ * Holds all data needed for the application. The configuration, etc.
  * My Approach to the MVC-Pattern. Maybe this could be implemented as a Singleton ...
  */
 public class DataModel {
@@ -41,7 +41,7 @@ public class DataModel {
         gsonBuilder.registerTypeAdapter(StringProperty.class, new StringPropertyAdapter());
         Gson gson = gsonBuilder.create();
 
-        config =  gson.fromJson(readFile(file),JsonSerializableConfig.class);
+        config =  gson.fromJson(IOUtility.readFile(file),JsonSerializableConfig.class);
     }
 
     //TODO implement saving of DataModel
@@ -49,28 +49,12 @@ public class DataModel {
         // save contents of model to file ...
     }
 
-    //TODO move this into some helper class.
-    public String readFile(File file) throws IOException {
-        String content = null;
-        FileReader reader = null;
-        try {
-            reader = new FileReader(file);
-            char[] chars = new char[(int) file.length()];
-            reader.read(chars);
-            content = new String(chars);
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-        }
-        return content;
-    }
 }
 
-//TODO move this to some IO-Helper class
+
+/**
+ * Allows to serialize/deserialize strings to string-properties and back.
+ */
 final class StringPropertyAdapter implements JsonSerializer<StringProperty>, JsonDeserializer<StringProperty> {
 
     @Override

@@ -20,7 +20,7 @@ public class JsonSerializableConfig {
      */
     private int idPosition;
     /**
-     * The length of a single message, in bytes.
+     * The length of a single complete message, in bytes.
      */
     private int messageLenth;
     /**

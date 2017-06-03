@@ -78,7 +78,7 @@ public class Main extends Application {
         primaryStage.setMinHeight(600);
         primaryStage.show();
 
-        startDemoDataThread(model);
+        //startDemoDataThread(model);
     }
 
     private void startDemoDataThread(DataModel model1) {
