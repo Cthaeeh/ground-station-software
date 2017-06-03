@@ -1,4 +1,7 @@
+package visualization;
+
 import data.DataSource;
+import data.Point;
 import data.UpdateDataListener;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
@@ -20,14 +23,13 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private double maxXVal;
-    private double minXVal;
     private final double xIntervalInSec = 10.0;
 
     /**
      *
      * @param xAxis
      * @param yAxis
-     * @param dataSources the dataSources this LiveLineChart should display.
+     * @param dataSources the dataSources this visualization.LiveLineChart should display.
      */
     public LiveLineChart(final NumberAxis xAxis, final NumberAxis yAxis, ObservableList<DataSource> dataSources) {
         super(xAxis, yAxis);
@@ -79,18 +81,19 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
         }
     }
 
+
     @Override
-    public void onUpdateData(DataSource dataSource, Pair<Number,Number> point) {
+    public void onUpdateData(DataSource dataSource, Point point) {
         Series<Number,Number> series = seriesDataSourceMap.get(dataSource);
-        series.getData().add(new XYChart.Data<>(point.getKey(),point.getValue()));
+        series.getData().add(new XYChart.Data<>(point.x,point.y));
 
         // remove points to keep us at no more than MAX_DATA_POINTS
         if (series.getData().size() > MAX_DATA_POINTS) {
             series.getData().remove(0, series.getData().size() - MAX_DATA_POINTS);
         }
 
-        if(point.getKey().doubleValue()>maxXVal){
-            maxXVal = point.getKey().doubleValue();
+        if(point.x.doubleValue()>maxXVal){
+            maxXVal = point.x.doubleValue();
             xAxis.setUpperBound(maxXVal + (xIntervalInSec)/20);
         }
 

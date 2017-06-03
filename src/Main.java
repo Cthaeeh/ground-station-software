@@ -17,6 +17,23 @@ import java.util.logging.SimpleFormatter;
  * Sets up a logger and a Main Window.
  */
 public class Main extends Application {
+    // Big things that need to be done:
+    // TODO logging of data / raw data.
+    // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
+    // TODO add units to dataSources.
+    // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
+    // TODO find a convinient way to edit a config file.
+    // TODO fix the memory leak that occurs if someone removes a column or row or replaces a node inside a visualization element ( the thing is that gbc will not delete shit because they are still subscribed to a dataSource.
+    // TODO style everything consistently .
+    // TODO use vim.
+    // TODO add telecommando functionality.
+    // TODO add a way of visualizing flags. (Maybe add a new kind of dataSource)
+    // TODO somewhere make sure 2's complement is mentioned.
+    // TODO implement the status area ( at least basic functionality).
+    // TODO add CRC 16 functionality.
+    // TODO add time functionality.
+    // TODO add a way of exchanging. a config file while program is running.
+
 
     public static Logger logger;
     private static FileHandler fileHandler;     //Needed for logging to file.

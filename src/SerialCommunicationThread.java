@@ -27,7 +27,7 @@ public class SerialCommunicationThread extends Thread {
      * State-machine for decoding the incoming stream of bytes.
      */
     private enum MsgState {
-        SEARCHING_START, READING_MSG;
+        SEARCHING_START, READING_MSG
     }
 
     public SerialCommunicationThread(DataModel datamodel, SerialPort serialPort){

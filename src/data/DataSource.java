@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class DataSource {
 
-    private ConcurrentLinkedQueue<Pair<Number,Number>> dataQueue = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<Point> dataQueue = new ConcurrentLinkedQueue<>();
     private List<UpdateDataListener> listeners = new ArrayList<>();
     private StringProperty  name;
     private StringProperty description;
@@ -68,13 +68,13 @@ public class DataSource {
     /**
      * gets called in the JavaFX Main thread
      */
-    private void informListeners() {    //TODO FIND A BETTER NAME:
+    private void informListeners() {
         DataSource dataSource = this;   //TODO remove this ugliness.
         new AnimationTimer() {
             @Override
             public void handle(long now) {
                 while (!dataQueue.isEmpty()) {
-                    Pair<Number,Number> pt = dataQueue.remove();
+                    Point pt = dataQueue.remove();
                     for(UpdateDataListener listener : listeners){
                         listener.onUpdateData(dataSource,pt);
                     }
@@ -84,7 +84,7 @@ public class DataSource {
     }
 
     public void addDataPoint(Number x, Number y){
-        dataQueue.add(new Pair<Number,Number>(x,y));
+        dataQueue.add(new Point(x,y));
     }
 
     /**

@@ -12,7 +12,7 @@ public class JsonSerializableConfig {
      */
     private ArrayList<DataSource> dataSources;
     /**
-     * The start byte of a message send through Serial Communication.
+     * The start bytes of a message send through Serial Communication.
      */
     private byte[] startBytes;
     /**
@@ -38,20 +38,29 @@ public class JsonSerializableConfig {
      */
     private int timeLenth = 0;
 
-    //TODO comment this.
 
     public ArrayList<DataSource> getDataSources() {
         return dataSources;
     }
 
+    /**
+     * @return the start Bytes of the Messages we want to receive.
+     */
     public byte[] getStartBytes() {
         return startBytes;
     }
 
+    /**
+     * All msg must have the same length.
+     * @return
+     */
     public int getMessageLenth() {
         return messageLenth;
     }
 
+    /**
+     * @return Is CRC16 used for the messages. This allows for error correction and detection.
+     */
     public boolean isUsingCRC16() {
         return isUsingCRC16;
     }

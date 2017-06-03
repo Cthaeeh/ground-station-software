@@ -9,6 +9,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import visualization.VisualizationElementControl;
 
 import java.io.File;
 import java.io.IOException;

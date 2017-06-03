@@ -1,3 +1,5 @@
+package visualization;
+
 import data.DataModel;
 import data.DataSource;
 import javafx.collections.ObservableList;
@@ -91,7 +93,7 @@ public class DataSourceSelectionControl implements Initializable{
     }
 }
 
-//TODO think about moving this interface to its own file or to VisualizationElementControl
+//TODO think about moving this interface to its own file or to visualization.VisualizationElementControl
 /**
  * To communicate which data is displayed how.
  * Example: Humidity Sensor 1 as Line Graph

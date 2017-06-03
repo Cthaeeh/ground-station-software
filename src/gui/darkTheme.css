@@ -99,3 +99,15 @@
 .default-color0.chart-line-symbol { -fx-background-color: #cf6a4c, white; }
 .default-color1.chart-line-symbol { -fx-background-color: #7587a6, white; }
 .default-color2.chart-line-symbol { -fx-background-color: #f9ee98, white; }
+
+/*
+        ListView
+*/
+
+.list-view .list-cell:even {
+-fx-background-color: #323232;
+}
+.list-view .list-cell:odd {
+-fx-background-color: #323232;
+
+}

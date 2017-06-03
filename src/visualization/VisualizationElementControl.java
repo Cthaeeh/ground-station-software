@@ -1,3 +1,5 @@
+package visualization;
+
 import data.DataModel;
 import data.DataSource;
 import javafx.collections.ObservableList;
@@ -22,14 +24,14 @@ public class VisualizationElementControl {
 
     //TODO add more.
     public enum PresentationMode {
-        LINE_CHART("Line-chart");
+        LINE_CHART("Line-chart"),
+        TEXTUAL_MODE("Textual");
+
 
         private String name;
-
         PresentationMode(String name) {
             this.name = name;
         }
-
         public String toString() {
             return name;
         }
@@ -44,7 +46,7 @@ public class VisualizationElementControl {
     @FXML
     private Button selectDataSourceButton;
 
-    private final String DATA_SOURCE_SELECTION_FXML = "gui/data_source_selection_dialog.fxml";
+    private final String DATA_SOURCE_SELECTION_FXML = "../gui/data_source_selection_dialog.fxml";
 
     /**
      * Injects the global data Model into this controller.
@@ -91,6 +93,9 @@ public class VisualizationElementControl {
                 NumberAxis xAxis = new NumberAxis();
                 NumberAxis yAxis = new NumberAxis();
                 pane.getChildren().add(new LiveLineChart(xAxis, yAxis,dataSources));
+                break;
+            case TEXTUAL_MODE:
+                pane.getChildren().add(new TextualRepräsentation(dataSources));
                 break;
         }
     }
