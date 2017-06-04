@@ -1,6 +1,6 @@
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
-import data.DataSource;
+import data.dataSources.DataSource;
 
 import java.util.*;
 
@@ -8,6 +8,8 @@ import java.util.*;
  * Created by Kai on 25.05.2017.
  */
 public class SerialCommunicationThread extends Thread {
+
+    //TODO split clearly the code that is running in an extra thread from the rest.
 
     private SerialPort serialPort;
     private DataModel dataModel;
@@ -17,7 +19,8 @@ public class SerialCommunicationThread extends Thread {
     private int messageLenth;
     private int idPosition;
     /**
-     * maps message ids to corresponding lists dataSources, which can be found in this message.
+     * Maps message id's to corresponding lists of dataSources, that can be found in this kind of message.
+     * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
      */
     private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
 
@@ -102,12 +105,11 @@ public class SerialCommunicationThread extends Thread {
      */
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
-        //TODO depending on id check for new data for the data sources.
         Integer messageId = Integer.valueOf(msgBuffer[idPosition]);
         if(messageMap.get(messageId)!= null){
             for(DataSource dataSource : messageMap.get(messageId)){
                 System.out.println("got here");
-                dataSource.insert(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getLengthOfValue()));
+                dataSource.insertValue(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getLengthOfValue()));
             }
         }
         //TODO add time information.

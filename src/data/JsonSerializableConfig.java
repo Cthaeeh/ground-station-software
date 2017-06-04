@@ -1,5 +1,8 @@
 package data;
 
+import data.dataSources.DataSource;
+import data.dataSources.SimpleSensor;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +13,7 @@ public class JsonSerializableConfig {
     /**
      * Contains all available Data Sources like a Temperature-Sensor etc.
      */
-    private ArrayList<DataSource> dataSources;
+    private ArrayList<SimpleSensor> simpleSensors;
     /**
      * The start bytes of a message send through Serial Communication.
      */
@@ -38,8 +41,11 @@ public class JsonSerializableConfig {
      */
     private int timeLenth = 0;
 
-
     public ArrayList<DataSource> getDataSources() {
+        ArrayList<DataSource> dataSources = new ArrayList<>();
+        for (SimpleSensor sensor: simpleSensors) {
+            dataSources.add(sensor);
+        }
         return dataSources;
     }
 

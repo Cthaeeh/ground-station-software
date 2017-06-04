@@ -31,33 +31,53 @@ void getMeasurements(byte packet[])
   packet[9] = 0;
 }
 
-double counter = 0.0;
 
-void getMeasurements2(byte packet[]) {
-  int chk  = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int temp = 200*sin(counter); //DHT.temperature;   
-  counter += 0.05;
-  int humd = 10; //DHT.humidity;
+void getPacket1(byte packet[]) {
+  int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
+  int humidity = DHT.humidity;
+
+  packet[0] = 5; //start bytes
+  packet[1] = 10;
+
+  packet[2] = 1;
   
-  packet[0] = 5; //start byte
-  packet[1] = 1; //id
+  packet[3] = highByte(humidity);
+  packet[4] = lowByte(humidity);
 
-  packet[2] = highByte(temp);
-  packet[3] = lowByte(temp);
-
-  packet[4] = highByte(humd);
-  packet[5] = lowByte(humd);
-
-  packet[6] = 0;
-  packet[7] = 0;
-  packet[8] = 0;
-  packet[9] = 0;
-  packet[10] = 0;
-  packet[11] = 0;
-  packet[12] = 0;
-  packet[13] = 0;
-  packet[14] = 0;
+  packet[5] = 0;
 }
+
+void getPacket2(byte packet[]) {
+  int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
+  int temp = DHT.temperature;
+  
+  packet[0] = 5; //start bytes
+  packet[1] = 10;
+
+  packet[2] = 2;
+
+  packet[3] = highByte(temp);
+  packet[4] = lowByte(temp);
+
+  packet[5] = 0;
+}
+
+int counter = 0;
+void getPacket3(byte packet[]) {
+
+  int demoAccel = ((counter ++)%1000); 
+  
+  packet[0] = 5; //start bytes
+  packet[1] = 10;
+
+  packet[2] = 3;
+
+  packet[3] = 3;
+
+  packet[4] = highByte(demoAccel);
+  packet[5] = lowByte(demoAccel);
+}
+
 
 void setup() {
   Serial.begin(38400);
@@ -65,15 +85,24 @@ void setup() {
 
 void loop()
 {
-  byte packet[20];
-  getMeasurements2(packet);
-  Serial.write(packet, 20);
+  byte packet[6];
+  getPacket1(packet);
+  Serial.write(packet, 6);
+  delay(10);
+  getPacket2(packet);
+  Serial.write(packet, 6);
+  delay(10);
+  getPacket3(packet);
+  Serial.write(packet, 6);
+  delay(10);
+
+
+  
 //    int chk  = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
 //  Serial.print("Temperature = ");
 //  Serial.println(DHT.temperature);
 //  Serial.print("Humidity = ");
 //  Serial.println(DHT.humidity);
-  delay(10);
 }
 
 

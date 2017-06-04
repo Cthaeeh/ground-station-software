@@ -1,37 +1,38 @@
 package visualization;
 
-import data.DataSource;
+import data.dataSources.DataSource;
 import data.Point;
-import data.UpdateDataListener;
-import javafx.collections.ObservableList;
+import data.dataSources.SimpleSensorListener;
+import data.dataSources.SimpleSensor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.util.Pair;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A live line chart that displays the data from the dataSources it got in the constructor.
  * I got the inspiration from : http://stackoverflow.com/questions/22089022/line-chart-live-update
  * Created by Kai on 16.05.2017.
  */
-public class LiveLineChart extends LineChart<Number, Number> implements UpdateDataListener {
+public class LiveLineChart extends LineChart<Number, Number> implements SimpleSensorListener {
 
     private final int MAX_DATA_POINTS = 200;
     HashMap<DataSource,Series<Number, Number>> seriesDataSourceMap = new HashMap<>();
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private double maxXVal;
-    private final double xIntervalInSec = 10.0;
+    private final double xIntervalInSec = 60.0;
 
     /**
      *
+     * @param dataSources the dataSources this visualization.LiveLineChart should display.
      * @param xAxis
      * @param yAxis
-     * @param dataSources the dataSources this visualization.LiveLineChart should display.
+     * @param sensors
      */
-    public LiveLineChart(final NumberAxis xAxis, final NumberAxis yAxis, ObservableList<DataSource> dataSources) {
+    public LiveLineChart(final NumberAxis xAxis, final NumberAxis yAxis, List<SimpleSensor> sensors) {
         super(xAxis, yAxis);
         this.xAxis = xAxis;
         initializeX_Axis();
@@ -45,7 +46,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
         this.setAnimated(false);
         this.setHorizontalGridLinesVisible(false);
         this.setVerticalGridLinesVisible(false);
-        createSeries(dataSources);
+        createSeries(sensors);
         this.getData().addAll(seriesDataSourceMap.values());
     }
 
@@ -70,21 +71,21 @@ public class LiveLineChart extends LineChart<Number, Number> implements UpdateDa
      * That enables us to quickly find the corresponding dataSource to a series which,
      * holds the displayed data.
      * @param dataSources
+     * @param sensors
      * @return
      */
-    private void createSeries(ObservableList<DataSource> dataSources) {
-        for(DataSource dataSource:dataSources){
+    private void createSeries(List<SimpleSensor> sensors) {
+        for(SimpleSensor sensor:sensors){
             XYChart.Series<Number, Number> series = new XYChart.Series<>();
-            series.setName(dataSource.getName());
-            seriesDataSourceMap.put(dataSource,series);
-            dataSource.addListener(this);       //TODO update method name or move this elsewhere.
+            series.setName(sensor.getName() + " in " + sensor.getUnit());
+            seriesDataSourceMap.put(sensor,series);
+            sensor.addListener(this);
         }
     }
 
-
     @Override
-    public void onUpdateData(DataSource dataSource, Point point) {
-        Series<Number,Number> series = seriesDataSourceMap.get(dataSource);
+    public void onUpdateData(SimpleSensor sensor, Point<Number> point) {
+        Series<Number,Number> series = seriesDataSourceMap.get(sensor);
         series.getData().add(new XYChart.Data<>(point.x,point.y));
 
         // remove points to keep us at no more than MAX_DATA_POINTS

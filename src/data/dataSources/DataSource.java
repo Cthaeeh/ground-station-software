@@ -1,0 +1,53 @@
+package data.dataSources;
+
+import javafx.beans.property.StringProperty;
+
+/**
+ * A DataSource can be a simple temperature sensor, or a GPS sensor, or a bit flag or whatever.
+ * But every data Source has a Name, Description, a messageId, a length of value, a start of value.
+ * Created by Kai on 27.04.2017.
+ */
+public abstract class DataSource {
+
+    protected StringProperty name;
+    protected StringProperty description;
+
+    //Fields for identifying this data-source (e.g a temp sensor or whatever) in a data package coming from the serial-port.
+    private int messageId = 0;
+    private int startOfValue = 0;
+    private int lengthOfValue = 0;
+
+    public StringProperty  getNameProperty(){
+        return name;
+    }
+
+    public String getName(){return name.getValue();}
+
+    public StringProperty  getDescriptionProperty() {
+        return description;
+    }
+
+    public int getMessageId(){
+        return messageId;
+    }
+
+    public int getStartOfValue(){
+        return startOfValue;
+    }
+
+    public int getLengthOfValue() {
+        return lengthOfValue;
+    }
+
+    public abstract String toString();
+
+    /**
+     * Inserts a new value into this dataSource. Because no time is provided the program up time is used.
+     * The reason it gets the raw bytes is that the dataSource itself will know best how to decode it.
+     * It can apply a proportional constant and an offset.
+     * @param bytes the value encoded as bytes.
+     */
+    public abstract void insertValue(byte[] bytes);
+
+    public abstract void insertTimeValue(byte[] bytes, long time);
+}

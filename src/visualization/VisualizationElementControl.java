@@ -1,7 +1,8 @@
 package visualization;
 
 import data.DataModel;
-import data.DataSource;
+import data.dataSources.DataSource;
+import data.dataSources.SimpleSensor;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -87,15 +90,24 @@ public class VisualizationElementControl {
 
 
     private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
+        //TODO refactor this come on dont be lazy.
         pane.getChildren().clear();
         switch (mode){
             case LINE_CHART:
                 NumberAxis xAxis = new NumberAxis();
                 NumberAxis yAxis = new NumberAxis();
-                pane.getChildren().add(new LiveLineChart(xAxis, yAxis,dataSources));
+                List<SimpleSensor> simpleSensors = new ArrayList<>();
+                for(DataSource dataSource : dataSources){                                               //Add
+                    if(dataSource instanceof SimpleSensor) simpleSensors.add((SimpleSensor)dataSource);
+                }
+                pane.getChildren().add(new LiveLineChart(xAxis, yAxis,simpleSensors));
                 break;
             case TEXTUAL_MODE:
-                pane.getChildren().add(new TextualRepräsentation(dataSources));
+                List<SimpleSensor> simpleSensors2 = new ArrayList<>();
+                for(DataSource dataSource : dataSources){                                               //Add
+                    if(dataSource instanceof SimpleSensor) simpleSensors2.add((SimpleSensor)dataSource);
+                }
+                pane.getChildren().add(new TextualPresentation(simpleSensors2));
                 break;
         }
     }

@@ -1,7 +1,7 @@
 package visualization;
 
 import data.DataModel;
-import data.DataSource;
+import data.dataSources.DataSource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
  */
 public class DataSourceSelectionControl implements Initializable{
 
+    //TODO warn users that not all dataSources can be displayed the same way.
+
     //Member
     private DataModel model ;
     private DataVisualization dataVisualization;
@@ -27,11 +29,15 @@ public class DataSourceSelectionControl implements Initializable{
     @FXML
     private TableColumn<DataSource, String> descriptionColumn;
 
+    /**
+     * There u can select the dataSources u want to visualize / present.
+     */
     @FXML
     private TableView dataSourceSelectionTable;
 
     /**
-     * e.g. LineChart or other Chart or even google maps plugin later.
+     * There u can select how the data is presented.
+     * e.g. LineChart or other Chart or Textual or even google maps plugin later.
      */
     @FXML
     private ChoiceBox presentationMode;
@@ -71,7 +77,6 @@ public class DataSourceSelectionControl implements Initializable{
      * It gets the data from the model.
      */
     private void initializeSelectionTable() {
-        //TODO load available data sources from model that we no have access if initModel was called.
         dataSourceSelectionTable.setItems(model.getDataSources());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
