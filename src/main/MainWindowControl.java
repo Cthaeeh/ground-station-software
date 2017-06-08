@@ -1,3 +1,5 @@
+package main;
+
 import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,8 +40,9 @@ public class MainWindowControl implements Initializable{
     private final int maxNumberOfColumns = 3;
     private final int maxNumberOfRows = 3;
 
-    private static final String CONNECTION_FXML = "gui/connection_window.fxml";
-    private static final String VISUALIZATION_ELEMENT_FXML = "gui/visualization_element.fxml";
+    private static final String CONNECTION_FXML = "../gui/connection_window.fxml";
+    private static final String VISUALIZATION_ELEMENT_FXML = "../gui/visualization_element.fxml";
+    private static final String CONFIG_EDIT_FXML = "../gui/config_edit.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -153,7 +156,7 @@ public class MainWindowControl implements Initializable{
             visualizationElementControl.initModel(model);
             return newNode;
         } catch (IOException e) {
-            Main.logger.log(Level.WARNING,"Failed to load visualization element");
+            Main.programLogger.log(Level.WARNING,"Failed to load visualization element");
             return new Label("Failed to load : " + VISUALIZATION_ELEMENT_FXML);
         }
     }
@@ -183,7 +186,7 @@ public class MainWindowControl implements Initializable{
             connectionStage.show();
 
         }catch (Exception ex){
-            Main.logger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
+            Main.programLogger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
         }
     }
 
@@ -197,6 +200,29 @@ public class MainWindowControl implements Initializable{
             } catch (IOException exc) {
                 //TODO handle exception...
             }
+        }
+    }
+
+    @FXML
+    private void btnCreateConfigClick() {
+        try{
+            final Stage configEditStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
+            Scene scene = new Scene(loader.load(), 600, 600);
+
+            ConfigEditControl configEditControl = loader.getController();
+            scene.getStylesheets().add("gui/darkTheme.css");
+
+            configEditStage.initModality(Modality.NONE);
+            configEditStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
+            configEditStage.setTitle("Configuration Editor");
+            configEditStage.setScene(scene);
+            configEditStage.setMinWidth(600);
+            configEditStage.setMinHeight(600);
+            configEditStage.show();
+
+        }catch (Exception ex){
+            Main.programLogger.log(Level.WARNING, "Failed to load: " + CONFIG_EDIT_FXML);
         }
     }
 }

@@ -1,5 +1,8 @@
+package main;
+
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
+import main.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,17 +46,17 @@ public class SerialPortComm {
     }
 
     private void setupSerialPort(String portName, int baud_rate) {
-        Main.logger.log(Level.INFO,"trying to initialize " + portName +" with baud rate of: " + baud_rate);
+        Main.programLogger.log(Level.INFO,"trying to initialize " + portName +" with baud rate of: " + baud_rate);
         serialPort = SerialPort.getCommPort(portName);
         serialPort.setBaudRate(baud_rate);
         //The newReadTimeout parameter affects (in TIMEOUT_READ_BLOCKING-Mode) how long we will wait for a certain amount of bytes to arrive before we say "Fuck it"
         //Credits: https://github.com/Fazecast/jSerialComm/wiki/Blocking-and-Semiblocking-Reading-Usage-Example
         serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);   //TODO make it a least a final static variable or move it to the config.
         if (serialPort.openPort()) {
-            Main.logger.log(Level.INFO,"Connected to: "+portName);
+            Main.programLogger.log(Level.INFO,"Connected to: "+portName);
             isConnected = true;
         }else {
-            Main.logger.log(Level.INFO,"Failed to connect to: "+portName);
+            Main.programLogger.log(Level.INFO,"Failed to connect to: "+portName);
         }
     }
 

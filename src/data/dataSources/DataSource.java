@@ -1,5 +1,6 @@
 package data.dataSources;
 
+import data.DataLogger;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -11,6 +12,7 @@ public abstract class DataSource {
 
     protected StringProperty name;
     protected StringProperty description;
+    protected static final DataLogger dataLogger = new DataLogger();
 
     //Fields for identifying this data-source (e.g a temp sensor or whatever) in a data package coming from the serial-port.
     private int messageId = 0;
@@ -44,10 +46,14 @@ public abstract class DataSource {
     /**
      * Inserts a new value into this dataSource. Because no time is provided the program up time is used.
      * The reason it gets the raw bytes is that the dataSource itself will know best how to decode it.
-     * It can apply a proportional constant and an offset.
      * @param bytes the value encoded as bytes.
      */
     public abstract void insertValue(byte[] bytes);
 
-    public abstract void insertTimeValue(byte[] bytes, long time);
+    /**
+     * Inserts a new value into this dataSource.
+     * The reason it gets the raw bytes is that the dataSource itself will know best how to decode it.
+     * @param bytes the value encoded as bytes.
+     */
+    public abstract void insertTimedValue(byte[] bytes, long time);
 }

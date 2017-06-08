@@ -1,8 +1,11 @@
 package data;
 
+import main.Main;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
 
 /**
  * Created by Kai on 03.06.2017.
@@ -25,6 +28,7 @@ public class IOUtility {
             content = new String(chars);
             reader.close();
         } catch (IOException e) {
+            Main.programLogger.log(Level.WARNING,"Failed to connect to read file: " + file.getName());
             e.printStackTrace();
         } finally {
             if (reader != null) {

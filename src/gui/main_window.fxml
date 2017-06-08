@@ -7,14 +7,21 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindowControl">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainWindowControl">
    <top>
       <HBox prefHeight="30.0" prefWidth="600.0" spacing="3.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: black; -fx-border-style: solid;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="showConnectionWindowBtn" mnemonicParsing="false" onMouseClicked="#btnShowConnectionWindow" text="COM-Ports" />
-            <Button fx:id="dataInterpretationBtn" mnemonicParsing="false" onMouseClicked="#btnDataInterpretationClick" text="Data-interpretation">
+            <Button fx:id="showConnectionWindowBtn" mnemonicParsing="false" onMouseClicked="#btnShowConnectionWindow" text="COM">
                <tooltip>
-                  <Tooltip text="Select a File where it is determined how incoming data is interpreted. This will determin the available Data-Sources. " />
+                  <Tooltip text="Connect to a COM Port" />
+               </tooltip></Button>
+            <Button fx:id="dataInterpretationBtn" mnemonicParsing="false" onMouseClicked="#btnDataInterpretationClick" text="Load Config">
+               <tooltip>
+                  <Tooltip text="Select a File where it is determined how incoming data is interpreted. This will determine the available Data-Sources. " />
+               </tooltip></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#btnCreateConfigClick" text="Create Config">
+               <tooltip>
+                  <Tooltip text="Create a new configuration file" />
                </tooltip></Button>
             <Button mnemonicParsing="false" text="Help" />
          </children>

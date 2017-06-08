@@ -1,3 +1,5 @@
+package main;
+
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
 import data.dataSources.DataSource;

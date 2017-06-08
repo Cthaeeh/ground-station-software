@@ -2,11 +2,14 @@ package data.dataSources;
 
 import data.Point;
 import javafx.animation.AnimationTimer;
+import main.Main;
+
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
 
 /**
  * Created by Kai on 27.04.2017.
@@ -15,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class SimpleSensor extends DataSource {
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the gui Thread and the main.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Number>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<SimpleSensorListener> listeners = new ArrayList<>();
@@ -98,15 +101,17 @@ public class SimpleSensor extends DataSource {
                 rawValue = ByteBuffer.wrap(bytes).getInt();
                 break;
             default:
-                //TODO log that the byte array is to big.
+                Main.programLogger.log(Level.WARNING,   "Failed to insert raw byte value into Simple Sensor " + getName()  + System.lineSeparator() +
+                                                            ",because the passed byte array was to big to put it into an integer. ");
                 return;
         }
         double value = ((double) rawValue * proportionalFactor) + offset;
         addDataPoint(upTime_sek,value);
+        dataLogger.write("UPTIME_SEC;"+ upTime_sek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }
 
     @Override
-    public void insertTimeValue(byte[] bytes, long time) {
+    public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
         insertValue(bytes);
     }
