@@ -110,7 +110,6 @@ public class SerialCommunicationThread extends Thread {
         Integer messageId = Integer.valueOf(msgBuffer[idPosition]);
         if(messageMap.get(messageId)!= null){
             for(DataSource dataSource : messageMap.get(messageId)){
-                System.out.println("got here");
                 dataSource.insertValue(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getLengthOfValue()));
             }
         }

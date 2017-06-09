@@ -33,7 +33,7 @@ public class DataSourceSelectionControl implements Initializable{
      * There u can select the dataSources u want to visualize / present.
      */
     @FXML
-    private TableView dataSourceSelectionTable;
+    private TableView<DataSource> dataSourceSelectionTable;
 
     /**
      * There u can select how the data is presented.

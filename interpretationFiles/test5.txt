@@ -1,0 +1,54 @@
+{
+	"simpleSensors": [{
+		"name": "Humidity",
+		"description": "h",
+		"unit": "%",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": 1,
+		"startOfValue": 3,
+		"lengthOfValue": 2
+	}, {
+		"name": "Temperature",
+		"description": "are u sweating",
+		"unit": "deg C",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": 2,
+		"startOfValue": 3,
+		"lengthOfValue": 2
+	}, {
+		"name": "Gyro x",
+		"description": "not really there",
+		"unit": "dps",
+		"offset": 25.0,
+		"proportionalFactor": 5.0,
+		"messageId": 3,
+		"startOfValue": 3,
+		"lengthOfValue": 1
+	}, {
+		"name": "accelerometer",
+		"description": "yo",
+		"unit": "g",
+		"offset": 1.0,
+		"proportionalFactor": 5.0,
+		"messageId": 3,
+		"startOfValue": 4,
+		"lengthOfValue": 2
+	}],
+	"teleCommands": [{
+    		"name": "Calibration",
+    		"description": "h",
+            "command": [1, 10]
+    	}, {
+    		"name": "Restart",
+    		"description": "yo",
+            "command": [5, 12]
+    	}],
+	"startBytes": [5, 10],
+	"idPosition": 2,
+	"messageLenth": 6,
+	"isUsingCRC16": false,
+	"timePosition": -1,
+	"timeLenth": 0
+}

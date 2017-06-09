@@ -21,13 +21,15 @@ import java.util.logging.Level;
 public class DataModel {
 
     private JsonSerializableConfig config;
+    private final ObservableList<DataSource> dataSources = FXCollections.observableArrayList();
+    private final ObservableList<TeleCommand> teleCommands = FXCollections.observableArrayList();;
 
     public ObservableList<DataSource> getDataSources() {
-        if(config == null || config.getDataSources() == null){
-            return FXCollections.observableArrayList(new ArrayList<DataSource>());  //return empty list.
-        }
-        ObservableList<DataSource> dataSources = FXCollections.observableArrayList(config.getDataSources());
         return dataSources;
+    }
+
+    public ObservableList<TeleCommand> getTeleCommands() {
+        return teleCommands;
     }
 
     //TODO is this really the right way ?
@@ -41,6 +43,10 @@ public class DataModel {
         gsonBuilder.registerTypeAdapter(StringProperty.class, new StringPropertyAdapter());
         Gson gson = gsonBuilder.create();
         config =  gson.fromJson(IOUtility.readFile(file),JsonSerializableConfig.class);
+        dataSources.clear();
+        dataSources.addAll(config.getDataSources());
+        teleCommands.clear();
+        if(config.getTeleCommands()!=null)teleCommands.addAll(config.getTeleCommands());
         Main.programLogger.log(Level.INFO,"Loaded configuration file: " + file.getName() + " into the DataModel.");
     }
 

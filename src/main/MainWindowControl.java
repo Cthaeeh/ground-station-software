@@ -35,6 +35,12 @@ public class MainWindowControl implements Initializable{
     @FXML
     private GridPane chartsGridPane;
 
+    @FXML
+    private StatusAreaControl statusAreaController;
+
+    @FXML
+    private TeleCommandControl teleCommandController;
+
     private int numOfColumns = 1;
     private int numOfRows = 1;
     private final int maxNumberOfColumns = 3;
@@ -57,6 +63,8 @@ public class MainWindowControl implements Initializable{
         serialPortComm = new SerialPortComm(model);
         //Add one visualization Element
         chartsGridPane.add(createVisualizationElement(),0,0);
+        //give model to sub controllers
+        teleCommandController.initModel(model);
     }
 
     private void initializeContextMenu() {

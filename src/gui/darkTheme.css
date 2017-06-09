@@ -111,3 +111,14 @@
 -fx-background-color: #323232;
 
 }
+
+/*
+        Split Pane
+*/
+
+.split-pane {
+     -fx-background-color: transparent;
+}
+.split-pane-divider {
+  -fx-padding: 0 ;
+}

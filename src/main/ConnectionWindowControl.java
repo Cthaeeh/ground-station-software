@@ -15,6 +15,9 @@ import java.util.function.UnaryOperator;
  */
 public class ConnectionWindowControl
 {
+
+    //TODO so the user can also reopen this window then u should also show the correct information.
+
     @FXML
     private TextField baudRateInput;
     @FXML

@@ -10,6 +10,8 @@ import java.util.ArrayList;
  * This class can hold all the data, that is needed to decode incoming data from the serial Port and how to decode it.
  */
 public class JsonSerializableConfig {
+
+    private ArrayList<TeleCommand> teleCommands;
     /**
      * Contains all available Data Sources like a Temperature-Sensor etc.
      */
@@ -81,5 +83,9 @@ public class JsonSerializableConfig {
 
     public int getIdPosition() {
         return idPosition;
+    }
+
+    public ArrayList<TeleCommand> getTeleCommands() {
+        return teleCommands;
     }
 }

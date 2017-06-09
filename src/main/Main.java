@@ -22,7 +22,7 @@ import java.util.logging.SimpleFormatter;
 public class Main extends Application {
 //priority:
             // Big things that need to be done:
-//     2    // TODO logging of data of raw data.
+//     2    // TODO advanced logging of data of raw data.
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
 //     1    // TODO find a convinient way to edit a config file.
 //     4    // TODO fix the memory leak that occurs if someone removes a column or row or replaces a node inside a visualization element ( the thing is that gbc will not delete shit because they are still subscribed to a dataSource.
@@ -59,7 +59,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available dataSources etc.
      */
-    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test4b.txt";
+    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
 
     public static  void main(String[] args){
         setupLogger();
@@ -95,7 +95,7 @@ public class Main extends Application {
 
         //Load fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_WINDOW_FXML));
-        Scene scene = new Scene(loader.load(), 800, 600);
+        Scene scene = new Scene(loader.load(), 1000, 850);
 
         //Inject model
         MainWindowControl mainWindowControl = loader.getController();
@@ -105,8 +105,8 @@ public class Main extends Application {
         scene.getStylesheets().add(CSS_STYLING);
         primaryStage.setTitle(MAIN_WINDOW_TITLE);
         primaryStage.setScene(scene);
-        primaryStage.setMinWidth(600);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(1000);
+        primaryStage.setMinHeight(850);
         primaryStage.show();
 
         //startDemoDataThread(model);

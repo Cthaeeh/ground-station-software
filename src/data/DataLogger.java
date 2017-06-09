@@ -23,14 +23,14 @@ public class DataLogger {
         try {
             fileWriter = new FileWriter(new File(pathToFile),true);
         }catch (IOException ex){
-            Main.programLogger.log(Level.SEVERE,"Failed to create a FileWriter to write to: " + pathToFile);
+            Main.programLogger.log(Level.SEVERE,"Failed to create a FileWriter to write to: " + pathToFile );
         }
     }
 
     public void write(String message){
         if(fileWriter != null){
             try {
-                fileWriter.write(message);
+                fileWriter.write(message + System.lineSeparator());
             }catch (IOException ex){
                 //TODO log this or not ?
             }

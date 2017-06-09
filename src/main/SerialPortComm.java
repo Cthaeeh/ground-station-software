@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import static com.fazecast.jSerialComm.SerialPort.TIMEOUT_READ_SEMI_BLOCKING;
+import static com.fazecast.jSerialComm.SerialPort.TIMEOUT_WRITE_SEMI_BLOCKING;
+
 /**
  * Created by Kai on 26.01.2017.
  * Handles connection to the serial port.
@@ -51,7 +54,7 @@ public class SerialPortComm {
         serialPort.setBaudRate(baud_rate);
         //The newReadTimeout parameter affects (in TIMEOUT_READ_BLOCKING-Mode) how long we will wait for a certain amount of bytes to arrive before we say "Fuck it"
         //Credits: https://github.com/Fazecast/jSerialComm/wiki/Blocking-and-Semiblocking-Reading-Usage-Example
-        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);   //TODO make it a least a final static variable or move it to the config.
+        serialPort.setComPortTimeouts( TIMEOUT_READ_SEMI_BLOCKING | TIMEOUT_WRITE_SEMI_BLOCKING, 100, 100);   //TODO make it a least a final static variable or move it to the config.
         if (serialPort.openPort()) {
             Main.programLogger.log(Level.INFO,"Connected to: "+portName);
             isConnected = true;

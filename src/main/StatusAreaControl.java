@@ -1,3 +1,5 @@
+package main;
+
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +9,7 @@ import java.util.ResourceBundle;
  * The control class for the status area, where textually
  * the status of the connection to ComPort, Arduino on Rocket, Space seeds etc. is shown
  */
-public class statusAreaControl implements Initializable {
+public class StatusAreaControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
