@@ -1,4 +1,4 @@
-package data.dataSources;
+package data.sources;
 
 import data.Point;
 
@@ -20,7 +20,7 @@ public class State extends DataSource {
     Map<Byte, String> stateMap = new HashMap<>();
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the main.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<String>> dataQueue = new ConcurrentLinkedQueue<>();
 

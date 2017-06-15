@@ -55,8 +55,9 @@ public class Main extends Application {
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
 
 
+
     /**
-     * The default interpretation file that is used, which defines available dataSources etc.
+     * The default interpretation file that is used, which defines available sources etc.
      */
     private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
 

@@ -1,10 +1,13 @@
-package main;
+package serial;
 
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
-import data.dataSources.DataSource;
+import data.sources.DataSource;
+import main.Main;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
 
 /**
  * Created by Kai on 25.05.2017.
@@ -16,12 +19,14 @@ public class SerialCommunicationThread extends Thread {
     private SerialPort serialPort;
     private DataModel dataModel;
 
+    private ConcurrentLinkedQueue<byte[]> commandQueue = new ConcurrentLinkedQueue<>();
+
     //Message configuration
-    private byte startBytes[];
+    private byte[] startBytes;
     private int messageLenth;
     private int idPosition;
     /**
-     * Maps message id's to corresponding lists of dataSources, that can be found in this kind of message.
+     * Maps message id's to corresponding lists of sources, that can be found in this kind of message.
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
      */
     private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
@@ -35,7 +40,12 @@ public class SerialCommunicationThread extends Thread {
         SEARCHING_START, READING_MSG
     }
 
-    public SerialCommunicationThread(DataModel datamodel, SerialPort serialPort){
+    /**
+     * Package visible constructor for a SerialCommunicationThread.
+     * @param datamodel the thread needs to know stuff how to decode the data it receives from the serial port.
+     * @param serialPort the port it should work on (send and receive stuff.)
+     */
+    SerialCommunicationThread(DataModel datamodel, SerialPort serialPort){
         this.serialPort = serialPort;
         this.dataModel = datamodel;
         initialize();
@@ -70,6 +80,13 @@ public class SerialCommunicationThread extends Thread {
                     }
                     break;
             }
+            byte[] command = commandQueue.poll();
+            if(command!=null){
+                serialPort.writeBytes(command,command.length);
+                System.out.println("got here!!!");
+                //TODO check the sucess of the sending.
+            }
+
             //TODO make responsivity of this thread visible to the outside world. GUI thread wants to know if this thread is running smoothly or not.
         }
     }
@@ -85,7 +102,7 @@ public class SerialCommunicationThread extends Thread {
     }
 
     /**
-     * Initializes the MessageMap with all messageId's as keys and lists of corresponding dataSources as lists.
+     * Initializes the MessageMap with all messageId's as keys and lists of corresponding sources as lists.
      */
     private void initMessageMap() {
         for (DataSource datasource:dataModel.getDataSources()) {
@@ -95,10 +112,9 @@ public class SerialCommunicationThread extends Thread {
                 List<DataSource> dataSourceList = new ArrayList<>();
                 dataSourceList.add(datasource);
                 messageMap.put(datasource.getMessageId(),dataSourceList);
-                System.out.println("got here");
             }
         }
-        System.out.println("Message Map :" + messageMap);
+        Main.programLogger.log(Level.INFO,()->"Message Map :" + messageMap);
     }
 
     /**
@@ -115,4 +131,14 @@ public class SerialCommunicationThread extends Thread {
         }
         //TODO add time information.
     }
+
+    /**
+     * Send these Bytes to the Serial Port.
+     * @param command the bytes to send.
+     */
+    public void send(byte[] command) {
+        commandQueue.add(command);
+        Main.programLogger.log(Level.INFO,()->"Commands in Queue: "+commandQueue.size());
+    }
+
 }

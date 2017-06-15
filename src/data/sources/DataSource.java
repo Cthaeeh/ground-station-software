@@ -1,4 +1,4 @@
-package data.dataSources;
+package data.sources;
 
 import data.DataLogger;
 import javafx.beans.property.StringProperty;

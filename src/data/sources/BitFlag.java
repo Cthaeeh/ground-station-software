@@ -1,4 +1,4 @@
-package data.dataSources;
+package data.sources;
 
 import data.Point;
 import javafx.animation.AnimationTimer;
@@ -12,14 +12,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class BitFlag extends DataSource {
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the main.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Boolean>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<BitFlagListener> listeners = new ArrayList<>();
 
     //TODO add bitflag specific stuff.
 
-    private static final long startTime = System.nanoTime();
+    private static final long START_TIME = System.nanoTime();
 
 
     public BitFlag(){

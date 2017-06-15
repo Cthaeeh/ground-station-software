@@ -1,4 +1,4 @@
-package data.dataSources;
+package data.sources;
 
 import data.Point;
 import javafx.animation.AnimationTimer;
@@ -18,7 +18,7 @@ import java.util.logging.Level;
 public class SimpleSensor extends DataSource {
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the main.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Number>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<SimpleSensorListener> listeners = new ArrayList<>();
@@ -33,7 +33,7 @@ public class SimpleSensor extends DataSource {
      */
     private double proportionalFactor = 1.0;
 
-    private static final long startTime = System.nanoTime();
+    private static final long START_TIME = System.nanoTime();
 
     //TODO think about the idea that a dataSource can have more than one messageId + startOfValue , because it could occur in different messages.
 
@@ -86,7 +86,7 @@ public class SimpleSensor extends DataSource {
     @Override
     public void insertValue(byte[] bytes) {
         int rawValue;
-        double upTime_sek = ((double)((System.nanoTime() - startTime)/1000000))/1000;   //simple way to get uptime in sec in the format of X.XXX sek.
+        double upTime_sek = ((double)((System.nanoTime() - START_TIME)/1000000))/1000;   //simple way to get uptime in sec in the format of X.XXX sek.
         switch (bytes.length){
             case 1:
                 rawValue = bytes[0];
@@ -101,7 +101,7 @@ public class SimpleSensor extends DataSource {
                 rawValue = ByteBuffer.wrap(bytes).getInt();
                 break;
             default:
-                Main.programLogger.log(Level.WARNING,   "Failed to insert raw byte value into Simple Sensor " + getName()  + System.lineSeparator() +
+                Main.programLogger.log(Level.WARNING,   ()->"Failed to insert raw byte value into Simple Sensor " + getName()  + System.lineSeparator() +
                                                             ",because the passed byte array was to big to put it into an integer. ");
                 return;
         }

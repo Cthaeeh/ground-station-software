@@ -1,7 +1,7 @@
 package data;
 
 import com.google.gson.*;
-import data.dataSources.DataSource;
+import data.sources.DataSource;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -11,7 +11,6 @@ import main.Main;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**

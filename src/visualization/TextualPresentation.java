@@ -1,9 +1,9 @@
 package visualization;
 
-import data.dataSources.DataSource;
+import data.sources.DataSource;
 import data.Point;
-import data.dataSources.SimpleSensor;
-import data.dataSources.SimpleSensorListener;
+import data.sources.SimpleSensor;
+import data.sources.SimpleSensorListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Simple visualization of one or more dataSources with Text.
+ * Simple visualization of one or more sources with Text.
  * Subscribes to the DataSources it gets in the Constructor.
  * Created by Kai on 03.06.2017.
  */
@@ -23,7 +23,7 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
     //TODO add functionality to also handle bit flags.
 
     /**
-     * Maps the dataSources we want to visualize to the corresponding texts, with which we visualize them.
+     * Maps the sources we want to visualize to the corresponding texts, with which we visualize them.
      */
     HashMap<DataSource,Text> dataSourceStringMap = new HashMap<>();
     /**

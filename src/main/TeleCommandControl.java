@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.GridView;
+import serial.SerialPortComm;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +20,7 @@ import java.util.logging.Level;
 public class TeleCommandControl implements Initializable {
 
     private DataModel model ;
-
+    private SerialPortComm serialPortComm;
     @FXML
     private GridView<TeleCommand> gridView;
 
@@ -50,6 +51,10 @@ public class TeleCommandControl implements Initializable {
         initGridView();
     }
 
+    public void initSerialPortComm(SerialPortComm serialPortComm) {
+        this.serialPortComm = serialPortComm;
+    }
+
     private void initGridView() {
         gridView.cellWidthProperty().set(100);
         gridView.cellHeightProperty().set(50);
@@ -68,14 +73,13 @@ public class TeleCommandControl implements Initializable {
                 sendCommand(command);
                 break;
             default:
-                Main.programLogger.log(Level.WARNING,"Could not send Command"+commandCoiceBox.getSelectionModel().getSelectedItem().name()+" because the Endocing is unsuported.");
+                Main.programLogger.log(Level.WARNING,()->"Could not send Command"+commandCoiceBox.getSelectionModel().getSelectedItem().name()+" because the Endocing is unsuported.");
         }
         //TODO send the message to the SerialCommunicationThread somehow.
     }
 
     private void sendCommand(byte[] command){
-        System.out.println("try to send command "+new String(command));
-
+        serialPortComm.send(command);
     }
 
     private void initChoiceBox(){

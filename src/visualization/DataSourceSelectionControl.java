@@ -1,7 +1,7 @@
 package visualization;
 
 import data.DataModel;
-import data.dataSources.DataSource;
+import data.sources.DataSource;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  */
 public class DataSourceSelectionControl implements Initializable{
 
-    //TODO warn users that not all dataSources can be displayed the same way.
+    //TODO warn users that not all sources can be displayed the same way.
 
     //Member
     private DataModel model ;
@@ -30,7 +30,7 @@ public class DataSourceSelectionControl implements Initializable{
     private TableColumn<DataSource, String> descriptionColumn;
 
     /**
-     * There u can select the dataSources u want to visualize / present.
+     * There u can select the sources u want to visualize / present.
      */
     @FXML
     private TableView<DataSource> dataSourceSelectionTable;
@@ -45,7 +45,6 @@ public class DataSourceSelectionControl implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeChoiceBox();
-        presentationMode.getSelectionModel().selectedItemProperty().addListener(e -> System.out.println(e.toString()));
     }
 
     public void initModel(DataModel model) {

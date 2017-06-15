@@ -1,9 +1,10 @@
 package data;
 
-import data.dataSources.DataSource;
-import data.dataSources.SimpleSensor;
+import data.sources.DataSource;
+import data.sources.SimpleSensor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kai on 25.05.2017.
@@ -43,7 +44,7 @@ public class JsonSerializableConfig {
      */
     private int timeLenth = 0;
 
-    public ArrayList<DataSource> getDataSources() {
+    public List<DataSource> getDataSources() {
         ArrayList<DataSource> dataSources = new ArrayList<>();
         for (SimpleSensor sensor: simpleSensors) {
             dataSources.add(sensor);
@@ -85,7 +86,7 @@ public class JsonSerializableConfig {
         return idPosition;
     }
 
-    public ArrayList<TeleCommand> getTeleCommands() {
+    public List<TeleCommand> getTeleCommands() {
         return teleCommands;
     }
 }

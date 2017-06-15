@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import serial.SerialPortComm;
 import visualization.VisualizationElementControl;
 
 import java.io.File;
@@ -43,8 +44,8 @@ public class MainWindowControl implements Initializable{
 
     private int numOfColumns = 1;
     private int numOfRows = 1;
-    private final int maxNumberOfColumns = 3;
-    private final int maxNumberOfRows = 3;
+    private static final int maxNumberOfColumns = 3;
+    private static final int maxNumberOfRows = 3;
 
     private static final String CONNECTION_FXML = "../gui/connection_window.fxml";
     private static final String VISUALIZATION_ELEMENT_FXML = "../gui/visualization_element.fxml";
@@ -65,6 +66,7 @@ public class MainWindowControl implements Initializable{
         chartsGridPane.add(createVisualizationElement(),0,0);
         //give model to sub controllers
         teleCommandController.initModel(model);
+        teleCommandController.initSerialPortComm(serialPortComm);
     }
 
     private void initializeContextMenu() {

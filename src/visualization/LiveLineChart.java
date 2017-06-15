@@ -1,9 +1,9 @@
 package visualization;
 
-import data.dataSources.DataSource;
+import data.sources.DataSource;
 import data.Point;
-import data.dataSources.SimpleSensorListener;
-import data.dataSources.SimpleSensor;
+import data.sources.SimpleSensorListener;
+import data.sources.SimpleSensor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -12,22 +12,22 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * A live line chart that displays the data from the dataSources it got in the constructor.
+ * A live line chart that displays the data from the sources it got in the constructor.
  * I got the inspiration from : http://stackoverflow.com/questions/22089022/line-chart-live-update
  * Created by Kai on 16.05.2017.
  */
 public class LiveLineChart extends LineChart<Number, Number> implements SimpleSensorListener {
 
-    private final int MAX_DATA_POINTS = 200;
+    private static final int MAX_DATA_POINTS = 200;
     HashMap<DataSource,Series<Number, Number>> seriesDataSourceMap = new HashMap<>();
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private double maxXVal;
-    private final double xIntervalInSec = 60.0;
+    private static final double xIntervalInSec = 60.0;
 
     /**
      *
-     * @param dataSources the dataSources this visualization.LiveLineChart should display.
+     * @param dataSources the sources this visualization.LiveLineChart should display.
      * @param xAxis
      * @param yAxis
      * @param sensors

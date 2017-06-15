@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import main.SerialPortComm;
+import serial.SerialPortComm;
 
 import java.util.function.UnaryOperator;
 
@@ -15,6 +15,7 @@ import java.util.function.UnaryOperator;
  */
 public class ConnectionWindowControl
 {
+    private static final String colorRed = "#c63939";
 
     //TODO so the user can also reopen this window then u should also show the correct information.
 
@@ -63,12 +64,12 @@ public class ConnectionWindowControl
     @FXML
     private void btnConnectClick(){
         //Check for legal baud rate
-        int baud_rate;
+        int baudRate;
         try{
-            baud_rate = Integer.valueOf(baudRateInput.getText());
+            baudRate = Integer.valueOf(baudRateInput.getText());
         }catch (Exception ex){
             connectionStatusLabel.setText("Illegal Baud Rate");
-            connectionStatusLabel.setTextFill(Color.web("#c63939"));
+            connectionStatusLabel.setTextFill(Color.web(colorRed));
             return;
         }
         //Check for legal port name
@@ -77,13 +78,13 @@ public class ConnectionWindowControl
             connectionStatusLabel.setTextFill(Color.web("#c63939"));
             return;
         }
-        serialPortComm.connect(COM_PortChoiceBox.getValue().toString(),baud_rate);
+        serialPortComm.connect(COM_PortChoiceBox.getValue().toString(),baudRate);
         if(serialPortComm.isConnected){
             connectionStatusLabel.setText("CONNECTED");
-            connectionStatusLabel.setTextFill(Color.web("#39c66b"));
+            connectionStatusLabel.setTextFill(Color.web(colorRed));
         }else {
             connectionStatusLabel.setText("Connection failed");
-            connectionStatusLabel.setTextFill(Color.web("#c63939"));
+            connectionStatusLabel.setTextFill(Color.web(colorRed));
         }
     }
 

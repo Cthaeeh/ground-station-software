@@ -1,4 +1,4 @@
-package data;
+package serial;
 
 /**
  * This class is for calculating CRC-16 (X^16 + X^12 + X^5 + 1 CCITT)values for byte arrays.

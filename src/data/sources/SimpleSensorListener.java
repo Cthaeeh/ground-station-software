@@ -1,7 +1,6 @@
-package data.dataSources;
+package data.sources;
 
 import data.Point;
-import data.dataSources.SimpleSensor;
 
 /**
  * A class that implements this Interface promises it can do something with updates from a DataSource, that publishes points from time to time.

@@ -1,8 +1,8 @@
 package visualization;
 
 import data.DataModel;
-import data.dataSources.DataSource;
-import data.dataSources.SimpleSensor;
+import data.sources.DataSource;
+import data.sources.SimpleSensor;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +35,7 @@ public class VisualizationElementControl {
         PresentationMode(String name) {
             this.name = name;
         }
+        @Override
         public String toString() {
             return name;
         }
