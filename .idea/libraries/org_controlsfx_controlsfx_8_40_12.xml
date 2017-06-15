@@ -3,8 +3,10 @@
     <properties maven-id="org.controlsfx:controlsfx:8.40.12" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.12.jar!/" />
     </CLASSES>
     <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.12-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.40.12-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />

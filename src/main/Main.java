@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
 /**
  * Created by Kai on 08.01.2017.
  * The Entry Point of this program.
