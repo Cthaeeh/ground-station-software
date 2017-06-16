@@ -180,7 +180,7 @@ public class MainWindowControl implements Initializable{
         try{
             final Stage connectionStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONNECTION_FXML));
-            Scene scene = new Scene(loader.load(), 600, 600);
+            Scene scene = new Scene(loader.load(), 600, 300);
 
             ConnectionWindowControl connectionWindowControl = loader.getController();
             connectionWindowControl.initCommPortConnection(serialPortComm);
@@ -191,8 +191,7 @@ public class MainWindowControl implements Initializable{
             connectionStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
             connectionStage.setTitle("COM-Port Selection");
             connectionStage.setScene(scene);
-            connectionStage.setMinWidth(600);
-            connectionStage.setMinHeight(600);
+            connectionStage.setResizable(false);
             connectionStage.show();
 
         }catch (Exception ex){

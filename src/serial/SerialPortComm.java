@@ -40,6 +40,7 @@ public class SerialPortComm {
     }
 
     public void connect(String portName, int baudRate){
+        disconnect();
         setupSerialPort(portName,baudRate);
         if(isConnected) {
             //Reading/writing from/to COM-Port in other Thread so other code doesn´t lag.
@@ -49,6 +50,14 @@ public class SerialPortComm {
         }
     }
 
+    /**
+     * kill Threads that might listen.
+     */
+    public void disconnect(){
+        if(isConnected){
+            communicationThread.stopThread();
+        }
+    }
     private void setupSerialPort(String portName, int baudRate) {
         Main.programLogger.log(Level.INFO,()->"trying to initialize " + portName +" with baud rate of: " + baudRate);
         serialPort = SerialPort.getCommPort(portName);

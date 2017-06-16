@@ -40,6 +40,11 @@ public class SerialCommunicationThread extends Thread {
         SEARCHING_START, READING_MSG
     }
 
+    public void stopThread(){
+        isRunning = false;
+        serialPort.closePort();
+    }
+
     /**
      * Package visible constructor for a SerialCommunicationThread.
      * @param datamodel the thread needs to know stuff how to decode the data it receives from the serial port.
@@ -50,6 +55,7 @@ public class SerialCommunicationThread extends Thread {
         this.dataModel = datamodel;
         initialize();
     }
+
 
     @Override public void run() {
         int messagePointer = startBytes.length; // it is unnecessary to read the startBytes AND msgLength is still lentgh of the message including the startBytes.
@@ -89,6 +95,8 @@ public class SerialCommunicationThread extends Thread {
 
             //TODO make responsivity of this thread visible to the outside world. GUI thread wants to know if this thread is running smoothly or not.
         }
+        Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
+        //TODO clean up.
     }
 
     /**

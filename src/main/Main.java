@@ -25,7 +25,8 @@ public class Main extends Application {
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
 //     1    // TODO find a convinient way to edit a config file.
 //     4    // TODO fix the memory leak that occurs if someone removes a column or row or replaces a node inside a visualization element ( the thing is that gbc will not delete shit because they are still subscribed to a dataSource.
-//     3    // TODO add telecommando functionality.
+//     3    // TODO test the telecommand funtionality
+            // TODO add optional params to telecommand functionality.
 //          // TODO visualize bitFlags, enums.
 //          // TODO somewhere make sure 2's complement is mentioned.
 //     5    // TODO implement the status area ( at least basic functionality).
@@ -34,13 +35,10 @@ public class Main extends Application {
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO app logo
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
-//          // TODO let the user also disconnect form a COM-Port.
-            // TODO move main package stuff to different packages.
-
 
             // later maybe
             // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
-            // TODO style everything consistently .
+            // TODO style everything consistently . with base 16 ez ez ez
             // TODO use vim.
             // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
 
