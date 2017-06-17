@@ -38,7 +38,7 @@
       </GridPane>
    </center>
    <right>
-      <fx:include fx:id="statusArea" source="statusArea.fxml" />
+      <fx:include fx:id="statusArea" source="status_area.fxml" />
    </right>
    <bottom>
       <fx:include  fx:id="teleCommand" source="tele_command.fxml" />

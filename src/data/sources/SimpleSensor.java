@@ -49,6 +49,10 @@ public class SimpleSensor extends DataSource {
         listeners.add(listener);
     }
 
+    public void removeListeners(SimpleSensorListener toBeRemoved) {
+        listeners.remove(toBeRemoved);
+    }
+
     /**
      * gets called in the JavaFX Main thread.
      * Iterates over all Listeners and informs them.
@@ -59,7 +63,7 @@ public class SimpleSensor extends DataSource {
             @Override
             public void handle(long now) {
                 while (!dataQueue.isEmpty()) {
-                    Point pt = dataQueue.remove();
+                    Point<Number> pt = dataQueue.remove();
                     for(SimpleSensorListener listener : listeners){
                         listener.onUpdateData(sensor,pt);
                     }
@@ -86,7 +90,7 @@ public class SimpleSensor extends DataSource {
     @Override
     public void insertValue(byte[] bytes) {
         int rawValue;
-        double upTime_sek = ((double)((System.nanoTime() - START_TIME)/1000000))/1000;   //simple way to get uptime in sec in the format of X.XXX sek.
+        double upTimeSek = ((double)((System.nanoTime() - START_TIME)/1000000))/1000;   //simple way to get uptime in sec in the format of X.XXX sek.
         switch (bytes.length){
             case 1:
                 rawValue = bytes[0];
@@ -106,8 +110,8 @@ public class SimpleSensor extends DataSource {
                 return;
         }
         double value = ((double) rawValue * proportionalFactor) + offset;
-        addDataPoint(upTime_sek,value);
-        dataLogger.write("UPTIME_SEC;"+ upTime_sek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
+        addDataPoint(upTimeSek,value);
+        dataLogger.write("UPTIME_SEC;"+ upTimeSek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }
 
     @Override
@@ -115,4 +119,5 @@ public class SimpleSensor extends DataSource {
         //TODO implement
         insertValue(bytes);
     }
+
 }

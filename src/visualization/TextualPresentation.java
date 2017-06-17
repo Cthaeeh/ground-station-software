@@ -18,7 +18,9 @@ import java.util.List;
  * Subscribes to the DataSources it gets in the Constructor.
  * Created by Kai on 03.06.2017.
  */
-public class TextualPresentation extends ListView<Text> implements SimpleSensorListener {
+public class TextualPresentation extends ListView<Text> implements SimpleSensorListener, VisualizationElement {
+
+    private List<SimpleSensor> sensors;
 
     //TODO add functionality to also handle bit flags.
 
@@ -35,6 +37,7 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
         this.setMinSize(10,10);
         this.setPrefSize(600,400);
         this.setItems(texts);
+        this.sensors = sensors;
         populate(sensors);
     }
 
@@ -51,5 +54,12 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
     @Override
     public void onUpdateData(SimpleSensor sensor, Point point) {
         dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit());
+    }
+
+    @Override
+    public void unsubscibeDataSources() {
+        for(SimpleSensor sensor:sensors){
+            sensor.removeListeners(this);
+        }
     }
 }

@@ -35,6 +35,9 @@ public class BitFlag extends DataSource {
         listeners.add(listener);
     }
 
+    public void removeListeners(BitFlagListener toBeRemoved) {
+        listeners.remove(toBeRemoved);
+    }
     /**
      * gets called in the JavaFX Main thread.
      * Iterates over all Listeners and informs them.

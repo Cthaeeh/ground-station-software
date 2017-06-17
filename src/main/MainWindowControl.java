@@ -12,14 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import serial.SerialPortComm;
-import visualization.VisualizationElementControl;
+import visualization.VisualizationControl;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 
 /**
@@ -29,6 +27,11 @@ public class MainWindowControl implements Initializable{
 
     private DataModel model ;
     private SerialPortComm serialPortComm;
+    /**
+     * To keep references to the VisualizationControl .
+     * This way we can tell the corresponding Controller if a Node gets deleted (removed);
+     */
+    private Map<Node,VisualizationControl> visualizationsMap = new HashMap<>();
 
     @FXML
     private Button showConnectionWindowBtn;
@@ -44,11 +47,11 @@ public class MainWindowControl implements Initializable{
 
     private int numOfColumns = 1;
     private int numOfRows = 1;
-    private static final int maxNumberOfColumns = 3;
-    private static final int maxNumberOfRows = 3;
+    private static final int MAX_NUMBER_OF_COLUMNS = 3;
+    private static final int MAX_NUMBER_OF_ROWS = 3;
 
     private static final String CONNECTION_FXML = "../gui/connection_window.fxml";
-    private static final String VISUALIZATION_ELEMENT_FXML = "../gui/visualization_element.fxml";
+    private static final String VISUALIZATION_ELEMENT_FXML = "../gui/visualization.fxml";
     private static final String CONFIG_EDIT_FXML = "../gui/config_edit.fxml";
 
     @Override
@@ -92,7 +95,7 @@ public class MainWindowControl implements Initializable{
     }
 
     private void addRow() {
-        if(numOfRows >= maxNumberOfRows) return;
+        if(numOfRows >= MAX_NUMBER_OF_ROWS) return;
         Node[] newElements = new Node[numOfColumns];
         for (int i = 0; i < numOfColumns; i++) {
             newElements[i] = createVisualizationElement();
@@ -101,15 +104,13 @@ public class MainWindowControl implements Initializable{
     }
 
     private void addCol() {
-        if(numOfColumns >= maxNumberOfColumns) return;
+        if(numOfColumns >= MAX_NUMBER_OF_COLUMNS) return;
         Node[] newElements = new Node[numOfRows];
         for (int i = 0; i < numOfRows; i++) {
             newElements[i] = createVisualizationElement();
         }
         chartsGridPane.addColumn(numOfColumns++,newElements);
     }
-
-    //TODO HUGE PROBLEM, GBC WILL NOT DELETE NODES BECAUSE RIGHT NOW THE DATASOURCES STILL HAVE A REFERENCE TO THE LIVELINECHARTS IN THE VISUALIZATIION ELEMENTS...
 
     /**
      * Removes a row from the chartsGridPane.
@@ -126,6 +127,7 @@ public class MainWindowControl implements Initializable{
 
             if(rowIndex ==  (numOfRows-1)){
                 deleteNodes.add(child);
+                visualizationsMap.get(child).dispose();
             }
         }
         numOfRows--;
@@ -147,6 +149,7 @@ public class MainWindowControl implements Initializable{
 
             if(columnIndex ==  (numOfColumns-1)){
                 deleteNodes.add(child);
+                visualizationsMap.get(child).dispose();
             }
         }
         numOfColumns--;
@@ -162,8 +165,9 @@ public class MainWindowControl implements Initializable{
         try {
             FXMLLoader elementLoader = new FXMLLoader(getClass().getResource(VISUALIZATION_ELEMENT_FXML));
             Node newNode = elementLoader.load();
-            VisualizationElementControl visualizationElementControl = elementLoader.getController();
-            visualizationElementControl.initModel(model);
+            VisualizationControl visualizationControl = elementLoader.getController();
+            visualizationControl.initModel(model);
+            visualizationsMap.put(newNode,visualizationControl);
             return newNode;
         } catch (IOException e) {
             Main.programLogger.log(Level.WARNING,"Failed to load visualization element");

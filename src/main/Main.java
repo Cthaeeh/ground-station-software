@@ -24,8 +24,6 @@ public class Main extends Application {
 //     2    // TODO advanced logging of data of raw data.
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
 //     1    // TODO find a convinient way to edit a config file.
-//     4    // TODO fix the memory leak that occurs if someone removes a column or row or replaces a node inside a visualization element ( the thing is that gbc will not delete shit because they are still subscribed to a dataSource.
-//     3    // TODO test the telecommand funtionality
             // TODO add optional params to telecommand functionality.
 //          // TODO visualize bitFlags, enums.
 //          // TODO somewhere make sure 2's complement is mentioned.
@@ -57,7 +55,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
 
     public static  void main(String[] args){
         setupLogger();

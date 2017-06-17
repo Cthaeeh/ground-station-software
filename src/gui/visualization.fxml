@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200" minWidth="250" prefHeight="400.0" prefWidth="600.0" spacing="3.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualization.VisualizationElementControl">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200" minWidth="250" prefHeight="400.0" prefWidth="600.0" spacing="3.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualization.VisualizationControl">
    <children>
       <Button fx:id="selectDataSourceButton" mnemonicParsing="false" onMouseClicked="#btnSelectDataSourceClick" text="Select data-sources" />
       <StackPane fx:id="pane" prefHeight="460.0" prefWidth="594.0" />

@@ -67,7 +67,7 @@ public class DataSourceSelectionControl implements Initializable{
      * Initializes the ChoiceBox where one can select how data is presented.
      */
     private void initializeChoiceBox() {
-        presentationMode.getItems().setAll(VisualizationElementControl.PresentationMode.values());
+        presentationMode.getItems().setAll(VisualizationControl.PresentationMode.values());
         presentationMode.getSelectionModel().selectFirst(); //Select first item by default.
     }
 
@@ -91,17 +91,17 @@ public class DataSourceSelectionControl implements Initializable{
             //TODO style Alert.
             return;
         }
-        dataVisualization.display((VisualizationElementControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),selectedDataSources);
+        dataVisualization.display((VisualizationControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),selectedDataSources);
         Stage stage = (Stage) presentationMode.getScene().getWindow();
         stage.close();
     }
 }
 
-//TODO think about moving this interface to its own file or to visualization.VisualizationElementControl
+//TODO think about moving this interface to its own file or to visualization.VisualizationControl
 /**
  * To communicate which data is displayed how.
  * Example: Humidity Sensor 1 as Line Graph
  */
 interface DataVisualization {
-    void display(VisualizationElementControl.PresentationMode presentationMode, ObservableList<DataSource> selectedDataSources);
+    void display(VisualizationControl.PresentationMode presentationMode, ObservableList<DataSource> selectedDataSources);
 }
