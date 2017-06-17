@@ -3,6 +3,7 @@ package serial;
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
 import main.Main;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,5 +78,27 @@ public class SerialPortComm {
         if(communicationThread!=null && communicationThread.isAlive()){
             communicationThread.send(command);
         }
+    }
+
+    public int getByteRate() {
+        if(communicationThread!=null){
+            return communicationThread.getByteRate();
+        }
+        return 0;
+    }
+
+    public String getPort() {
+        if(isConnected){
+            return serialPort.getDescriptivePortName();
+        }else {
+            return "no port ";
+        }
+    }
+
+    public boolean isRunningSmooth() {
+        if(communicationThread != null && isConnected){
+            return communicationThread.isRunningSmooth();
+        }
+        return false;
     }
 }

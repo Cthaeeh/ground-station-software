@@ -34,7 +34,7 @@
       </HBox>
    </top>
    <center>
-      <GridPane fx:id="chartsGridPane" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <GridPane fx:id="visualizationsGridPane" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
       </GridPane>
    </center>
    <right>

@@ -25,6 +25,7 @@ import java.util.logging.Level;
  */
 public class MainWindowControl implements Initializable{
 
+    //TODO put this Visualizations managment / visualizationsGridPane stuff elsewhere.
     private DataModel model ;
     private SerialPortComm serialPortComm;
     /**
@@ -37,7 +38,7 @@ public class MainWindowControl implements Initializable{
     private Button showConnectionWindowBtn;
 
     @FXML
-    private GridPane chartsGridPane;
+    private GridPane visualizationsGridPane;
 
     @FXML
     private StatusAreaControl statusAreaController;
@@ -66,10 +67,11 @@ public class MainWindowControl implements Initializable{
         this.model = model ;
         serialPortComm = new SerialPortComm(model);
         //Add one visualization Element
-        chartsGridPane.add(createVisualizationElement(),0,0);
+        visualizationsGridPane.add(createVisualizationElement(),0,0);
         //give model to sub controllers
         teleCommandController.initModel(model);
         teleCommandController.initSerialPortComm(serialPortComm);
+        statusAreaController.initSerialPortComm(serialPortComm);
     }
 
     private void initializeContextMenu() {
@@ -87,9 +89,9 @@ public class MainWindowControl implements Initializable{
 
         contextMenu.getItems().addAll(addRow, addCol, removeRow, removeCol);
 
-        chartsGridPane.setOnMousePressed(event -> {
+        visualizationsGridPane.setOnMousePressed(event -> {
             if (event.isSecondaryButtonDown()) {
-                contextMenu.show(chartsGridPane, event.getScreenX(), event.getScreenY());
+                contextMenu.show(visualizationsGridPane, event.getScreenX(), event.getScreenY());
             }
         });
     }
@@ -100,7 +102,7 @@ public class MainWindowControl implements Initializable{
         for (int i = 0; i < numOfColumns; i++) {
             newElements[i] = createVisualizationElement();
         }
-        chartsGridPane.addRow(numOfRows++,newElements);
+        visualizationsGridPane.addRow(numOfRows++,newElements);
     }
 
     private void addCol() {
@@ -109,11 +111,11 @@ public class MainWindowControl implements Initializable{
         for (int i = 0; i < numOfRows; i++) {
             newElements[i] = createVisualizationElement();
         }
-        chartsGridPane.addColumn(numOfColumns++,newElements);
+        visualizationsGridPane.addColumn(numOfColumns++,newElements);
     }
 
     /**
-     * Removes a row from the chartsGridPane.
+     * Removes a row from the visualizationsGridPane.
      * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
      * This answer could be interesting if you want to remove not the row with the biggest index
      * but instead a specific one.
@@ -121,7 +123,7 @@ public class MainWindowControl implements Initializable{
     private void removeRow() {
         if(numOfRows <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
-        for (Node child : chartsGridPane.getChildren()) {
+        for (Node child : visualizationsGridPane.getChildren()) {
             // get index from child
             int rowIndex = GridPane.getRowIndex(child) == null ? 0 : GridPane.getRowIndex(child);
 
@@ -131,11 +133,11 @@ public class MainWindowControl implements Initializable{
             }
         }
         numOfRows--;
-        chartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
+        visualizationsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
     /**
-     * Removes a column from the chartsGridPane.
+     * Removes a column from the visualizationsGridPane.
      * Credits: http://stackoverflow.com/questions/40516514/remove-a-row-from-a-gridpane
      * This answer could be interesting if you want to remove not the column with the biggest index
      * but instead a specific one.
@@ -143,7 +145,7 @@ public class MainWindowControl implements Initializable{
     private void removeCol() {
         if(numOfColumns <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
-        for (Node child : chartsGridPane.getChildren()) {
+        for (Node child : visualizationsGridPane.getChildren()) {
             // get index from child
             int columnIndex = GridPane.getColumnIndex(child) == null ? 0 : GridPane.getColumnIndex(child);
 
@@ -153,7 +155,7 @@ public class MainWindowControl implements Initializable{
             }
         }
         numOfColumns--;
-        chartsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
+        visualizationsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
     }
 
     /**
@@ -206,7 +208,7 @@ public class MainWindowControl implements Initializable{
     @FXML
     private void btnDataInterpretationClick(){
         FileChooser chooser = new FileChooser();
-        File file = chooser.showOpenDialog(chartsGridPane.getScene().getWindow());
+        File file = chooser.showOpenDialog(visualizationsGridPane.getScene().getWindow());
         if (file != null) {
             try {
                 model.loadConfigData(file);

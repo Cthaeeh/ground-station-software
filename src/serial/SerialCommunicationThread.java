@@ -57,7 +57,8 @@ public class SerialCommunicationThread extends Thread {
     }
 
 
-    @Override public void run() {
+    @Override
+    public void run() {
         int messagePointer = startBytes.length; // it is unnecessary to read the startBytes AND msgLength is still lentgh of the message including the startBytes.
         int startByteCounter = 0;
         byte[] msgBuffer = new byte[messageLenth];
@@ -65,8 +66,9 @@ public class SerialCommunicationThread extends Thread {
         MsgState state = MsgState.SEARCHING_START;
         while(isRunning) {
             byte[] readBuffer = new byte[1];
-            serialPort.readBytes(readBuffer,1); //Read semi blocking 1 byte.
-            switch (state){
+            int numRead = serialPort.readBytes(readBuffer,1); //Read semi blocking 1 byte.
+            if(numRead==1){
+                switch (state){
                 case SEARCHING_START:
                     if(readBuffer[0]==startBytes[startByteCounter]){
                         startByteCounter++;
@@ -85,12 +87,12 @@ public class SerialCommunicationThread extends Thread {
                         decodeMessage(msgBuffer);
                     }
                     break;
+                }
             }
+
             byte[] command = commandQueue.poll();
             if(command!=null){
-                serialPort.writeBytes(command,command.length);
-                System.out.println("got here!!!");
-                //TODO check the sucess of the sending.
+                int numWritten = serialPort.writeBytes(command,command.length);
             }
 
             //TODO make responsivity of this thread visible to the outside world. GUI thread wants to know if this thread is running smoothly or not.
@@ -148,5 +150,16 @@ public class SerialCommunicationThread extends Thread {
         commandQueue.add(command);
         Main.programLogger.log(Level.INFO,()->"Commands in Queue: "+commandQueue.size());
     }
+
+    public int getByteRate() {
+        //TODO implement
+        return  1000000;
+    }
+
+    public boolean isRunningSmooth() {
+        return true;
+        //TODO implement
+    }
+
 
 }

@@ -2,14 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.StatusAreaControl">
+<GridPane maxHeight="-Infinity" maxWidth="200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.StatusAreaControl">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="121.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="69.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="96.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="10.0" prefWidth="94.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -24,10 +25,18 @@
   </rowConstraints>
    <children>
       <Label text="Com-Port:" GridPane.rowIndex="1" />
-      <Label text="Placeholder 1" GridPane.rowIndex="2" />
-      <Label text="PlaceHolder 2" GridPane.rowIndex="3" />
+      <Label text="Byte rate:" GridPane.rowIndex="2">
+         <tooltip>
+            <Tooltip text="downlink" />
+         </tooltip></Label>
+      <Label text="TM/TC Thread:" GridPane.rowIndex="3">
+         <tooltip>
+            <Tooltip text="Is the TM/TC thread running smooth ?" />
+         </tooltip></Label>
       <Label text="Status:" />
-      <Label text="OK" textFill="#21bc36" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="comPortLabel" text="not updated" textFill="#21bc36" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="byteRateLabel" text="not updated" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="threadStatusLabel" text="not updated" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

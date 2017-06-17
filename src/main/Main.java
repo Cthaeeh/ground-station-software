@@ -33,8 +33,10 @@ public class Main extends Application {
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO app logo
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
+            // TODO let the user see last info for each source
 
             // later maybe
+            // TODO I want fancy data Rate in the status area. PLS make fancy AF.
             // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
             // TODO style everything consistently . with base 16 ez ez ez
             // TODO use vim.
