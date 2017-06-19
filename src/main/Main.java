@@ -30,7 +30,6 @@ public class Main extends Application {
 //     7    // TODO add time functionality.
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
-            // TODO send on ENTER
 
             // later maybe
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C

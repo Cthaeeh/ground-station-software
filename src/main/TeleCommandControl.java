@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import org.controlsfx.control.GridView;
 import serial.SerialPortComm;
 
@@ -37,6 +38,15 @@ public class TeleCommandControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initChoiceBox();
+        initInputField();
+    }
+
+    private void initInputField() {
+        inputField.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                btnSendCommand();
+            }
+        });
     }
 
     /**
@@ -86,4 +96,5 @@ public class TeleCommandControl implements Initializable {
          commandCoiceBox.getItems().setAll(ENCODING.values());  //
          commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
     }
+
 }
