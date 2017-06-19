@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
  */
 public class StatusAreaControl implements Initializable {
 
+    //TODO move the color definitions to some other place. So they can be changed at one place ez pz.
     private static final String colorWhite = "#e8e8e8";
     private static final String colorRed = "#c63939";
     private static final String colorGreen = "#1d9141";
@@ -62,6 +63,7 @@ public class StatusAreaControl implements Initializable {
     private void updateStatus() {
         updateByteRateLabel();
         updateComPortLabel();
+        updateThreadStatusLabel();
     }
 
     private void updateThreadStatusLabel(){
@@ -92,20 +94,20 @@ public class StatusAreaControl implements Initializable {
      * Updates the ByteRate Label according to the Information the serialPortComm supplies.
      */
     private void updateByteRateLabel() {
-        int byteRate = serialPortComm.getByteRate();
-        if(byteRate<1000){
-            byteRateLabel.setText(byteRate + " byte/s");
+        double byteRate = serialPortComm.getByteRate();
+        if(byteRate<1000.0){
+            byteRateLabel.setText((int)byteRate + " byte/s");
             return;
         }
-        if(byteRate<1000000){
-            byteRateLabel.setText(byteRate/1000 + " Kilobyte/s");
+        if(byteRate<1000000.0){
+            byteRateLabel.setText((int)byteRate/1000.0 + " Kilobyte/s");
             return;
         }
-        if(byteRate<1000000000){
-            byteRateLabel.setText(byteRate/1000000 + " Megabyte/s");
+        if(byteRate<1000000000.0){
+            byteRateLabel.setText((int)byteRate/1000000.0 + " Megabyte/s");
             return;
         }
-        byteRateLabel.setText(byteRate/1000000000 + " Gigabyte/s");
+        byteRateLabel.setText((int)byteRate/1000000000.0 + " Gigabyte/s");
     }
 
 }

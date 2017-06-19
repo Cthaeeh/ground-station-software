@@ -80,7 +80,7 @@ public class SerialPortComm {
         }
     }
 
-    public int getByteRate() {
+    public double getByteRate() {
         if(communicationThread!=null){
             return communicationThread.getByteRate();
         }

@@ -22,25 +22,23 @@ public class Main extends Application {
 //priority:
             // Big things that need to be done:
 //     2    // TODO advanced logging of data of raw data.
-//          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
 //     1    // TODO find a convinient way to edit a config file.
             // TODO add optional params to telecommand functionality.
 //          // TODO visualize bitFlags, enums.
 //          // TODO somewhere make sure 2's complement is mentioned.
-//     5    // TODO implement the status area ( at least basic functionality).
 //     6    // TODO add CRC 16 functionality.
 //     7    // TODO add time functionality.
 //          // TODO add a way of exchanging. a config file while program is running.
-//          // TODO app logo
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
-            // TODO let the user see last info for each source
+            // TODO send on ENTER
 
             // later maybe
-            // TODO I want fancy data Rate in the status area. PLS make fancy AF.
+//          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
             // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
             // TODO style everything consistently . with base 16 ez ez ez
-            // TODO use vim.
             // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
+//          // TODO app logo
+            // TODO let the user see last info for each source
 
     public static Logger programLogger;
     private static FileHandler fileHandler;     //Needed for logging to file.

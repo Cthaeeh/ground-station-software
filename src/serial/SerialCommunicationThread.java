@@ -15,6 +15,7 @@ import java.util.logging.Level;
 public class SerialCommunicationThread extends Thread {
 
     //TODO split clearly the code that is running in an extra thread from the rest.
+    //TODO make sure that all concurrency stuff is implemented correctly.
 
     private SerialPort serialPort;
     private DataModel dataModel;
@@ -31,8 +32,17 @@ public class SerialCommunicationThread extends Thread {
      */
     private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
 
-    private boolean isRunning = true;
+    private volatile boolean isRunning = true;
+    /**
+     * Tells you the last time this Thread was definitively alive.
+     */
+    private volatile long lastTimeSeen = 0;
+    /**
+     * The byte rate in bytes per second.
+      */
+    private volatile double byteRate;
 
+    private final static long BYTE_RATE_UPDATE_TIME = 100000000;
     /**
      * State-machine for decoding the incoming stream of bytes.
      */
@@ -63,11 +73,15 @@ public class SerialCommunicationThread extends Thread {
         int startByteCounter = 0;
         byte[] msgBuffer = new byte[messageLenth];
 
+        int bytesRead = 0;
+        long timeCounter = System.nanoTime();/* counts up to 100 ms to calc the byte rate.*/
+
         MsgState state = MsgState.SEARCHING_START;
         while(isRunning) {
             byte[] readBuffer = new byte[1];
             int numRead = serialPort.readBytes(readBuffer,1); //Read semi blocking 1 byte.
             if(numRead==1){
+                bytesRead++;
                 switch (state){
                 case SEARCHING_START:
                     if(readBuffer[0]==startBytes[startByteCounter]){
@@ -94,11 +108,15 @@ public class SerialCommunicationThread extends Thread {
             if(command!=null){
                 int numWritten = serialPort.writeBytes(command,command.length);
             }
-
-            //TODO make responsivity of this thread visible to the outside world. GUI thread wants to know if this thread is running smoothly or not.
+            lastTimeSeen = System.currentTimeMillis();
+            if(System.nanoTime() - timeCounter > BYTE_RATE_UPDATE_TIME){ // some time has passed. Time to calculate the byte rate new.
+                byteRate = bytesRead/(((double)(System.nanoTime() - timeCounter))/1000_000_000);
+                bytesRead = 0;
+                timeCounter = System.nanoTime();
+            }
         }
         Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
-        //TODO clean up.
+        //TODO clean up. THIS IS A MESS.
     }
 
     /**
@@ -151,14 +169,15 @@ public class SerialCommunicationThread extends Thread {
         Main.programLogger.log(Level.INFO,()->"Commands in Queue: "+commandQueue.size());
     }
 
-    public int getByteRate() {
-        //TODO implement
-        return  1000000;
+    public double getByteRate() {
+        return byteRate;
     }
 
     public boolean isRunningSmooth() {
+        if(System.currentTimeMillis() - lastTimeSeen > 1000){
+            return false;
+        }
         return true;
-        //TODO implement
     }
 
 
