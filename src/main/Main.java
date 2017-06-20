@@ -30,6 +30,9 @@ public class Main extends Application {
 //     7    // TODO add time functionality.
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
+            // TODO accept IDS of variable length.
+            // TODO let user cahnge byte endianity
+            // TODO accept variable length messages, maybe somewhere decode length in msg.
 
             // later maybe
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
@@ -54,7 +57,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/STM2.txt";
 
     public static  void main(String[] args){
         setupLogger();
