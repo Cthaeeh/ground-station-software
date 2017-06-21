@@ -32,7 +32,6 @@ public class Main extends Application {
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
             // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
             // TODO accept IDS of variable length.
-            // TODO let user cahnge byte endianity
             // TODO accept variable length messages, maybe somewhere decode length in msg.
 
             // later maybe
