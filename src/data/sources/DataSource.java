@@ -15,7 +15,7 @@ public abstract class DataSource {
     protected static final DataLogger dataLogger = new DataLogger();
 
     //Fields for identifying this data-source (e.g a temp sensor or whatever) in a data package coming from the serial-port.
-    private int messageId = 0;
+    private byte[] messageId;
     private int startOfValue = 0;
     private int lengthOfValue = 0;
 
@@ -29,7 +29,7 @@ public abstract class DataSource {
         return description;
     }
 
-    public int getMessageId(){
+    public byte[] getMessageId(){
         return messageId;
     }
 

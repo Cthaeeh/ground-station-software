@@ -34,7 +34,7 @@ void getMeasurements(byte packet[])
 
 void getPacket1(byte packet[]) {
   int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int humidity = DHT.humidity;
+  int humidity = 10; // DHT.humidity;
 
   packet[0] = 5; //start bytes
   packet[1] = 10;
@@ -45,6 +45,10 @@ void getPacket1(byte packet[]) {
   packet[4] = highByte(humidity);
 
   packet[5] = 0;
+  packet[6] = 0;
+
+  packet[7] = 5; //stop bytes
+  packet[8] = 20;
 }
 
 void getPacket2(byte packet[]) {
@@ -60,6 +64,9 @@ void getPacket2(byte packet[]) {
   packet[4] = highByte(temp);
 
   packet[5] = 0;
+
+  packet[6] = 5; //stop bytes
+  packet[7] = 20;
 }
 
 int counter = 0;
@@ -79,6 +86,9 @@ void getPacket3(byte packet[]) {
 
   packet[4] = lowByte(demoAccel);
   packet[5] = highByte(demoAccel);
+
+  packet[6] = 5; //stop bytes
+  packet[7] = 20;
 }
 
 
@@ -88,15 +98,16 @@ void setup() {
 
 void loop()
 {
-  byte packet[6];
-  getPacket1(packet);
-  Serial.write(packet, 6);
+  byte packet[8];
+  byte bigPacket[9];
+  getPacket1(bigPacket);
+  Serial.write(bigPacket, 9);
   delay(10);
   getPacket2(packet);
-  Serial.write(packet, 6);
+  Serial.write(packet, 8);
   delay(10);
   getPacket3(packet);
-  Serial.write(packet, 6);
+  Serial.write(packet, 8);
   delay(10);
 
 

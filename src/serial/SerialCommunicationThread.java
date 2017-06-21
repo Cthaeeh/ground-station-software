@@ -7,6 +7,7 @@ import data.sources.DataSource;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
@@ -29,14 +30,18 @@ public class SerialCommunicationThread extends Thread {
 
     //Message configuration:
     private final byte[] startBytes;
+    private final byte[] stopBytes;
     private final int messageLenth;
+    private final int maxLenth;
     private final int idPosition;
+    private final int idLength;
     private final JsonSerializableConfig.ByteEndianity byteEndianity;
     /**
      * Maps message id's to corresponding lists of sources, that can be found in this kind of message.
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
+     * In order to be able to use byte arrays as keys and still have meaningful comparision I use the Byte Wrapper that implements exactly that.
      */
-    private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
+    private Map<ByteBuffer, List<DataSource>> messageMap = new HashMap<ByteBuffer, List<DataSource>>();
 
     //State of this Thread:
     private volatile boolean isRunning = true;
@@ -59,27 +64,32 @@ public class SerialCommunicationThread extends Thread {
 
     /**
      * Package visible constructor for a SerialCommunicationThread.
-     * @param datamodel the thread needs to know stuff how to decode the data it receives from the serial port.
+     * @param dataModel the thread needs to know stuff how to decode the data it receives from the serial port.
      * @param serialPort the port it should work on (send and receive stuff.)
      */
     SerialCommunicationThread(DataModel dataModel, SerialPort serialPort){
         this.serialPort = serialPort;
         startBytes = dataModel.getConfig().getStartBytes();
-        messageLenth = dataModel.getConfig().getMessageLenth();
+        stopBytes = dataModel.getConfig().getStopBytes();
+        for(byte b:stopBytes) System.out.print("["+b+"]");
+        messageLenth = dataModel.getConfig().getMessageLength();
+        maxLenth = dataModel.getConfig().getMaxMessageLength();
         idPosition = dataModel.getConfig().getIdPosition();
+        idLength = dataModel.getConfig().getIdLength();
         byteEndianity = dataModel.getConfig().getByteEndianity();
         initMessageMap(dataModel);
     }
 
+
     /**
      * This method is, in a way the core of the whole GSS program.
-     *
      */
     @Override
     public void run() {
         int messagePointer = startBytes.length; //start reading after the startBytes. I don't need to safe the StartBytes .
         int startByteCounter = 0;               //How many start bytes did I already find.
-        byte[] msgBuffer = new byte[messageLenth];
+        int stopByteCounter = 0;
+        byte[] msgBuffer = new byte[maxLenth];
 
         int bytesRead = 0;
         long timeCounter = System.nanoTime();/* counts up to 100 ms to calc the byte rate.*/
@@ -98,15 +108,32 @@ public class SerialCommunicationThread extends Thread {
                             state = MsgState.READING_MSG;
                             startByteCounter = 0;
                         }
+                    }else {                                                 //We found no start ;(
+                        startByteCounter = 0;
                     }
                     break;
                 case READING_MSG:
                     msgBuffer[messagePointer]=readBuffer[0];
                     messagePointer++;
-                    if(messagePointer>=messageLenth){
-                        state  = MsgState.SEARCHING_START;
-                        messagePointer = startBytes.length;
-                        decodeMessage(msgBuffer);
+                    if(stopBytes!=null && stopBytes.length > 0){            //stop byte(s) , ofc this could also be done with length dependant on id or msg length somewhere at the start of the message.
+                        if(readBuffer[0]==stopBytes[stopByteCounter]) {
+                            stopByteCounter++;
+                            if (stopByteCounter >= stopBytes.length) {
+                                stopByteCounter = 0;
+                                state = MsgState.SEARCHING_START;
+                                messagePointer = startBytes.length;
+                                decodeMessage(msgBuffer);
+                            }
+                        }
+                        else{                                               //We found no end ;(
+                            stopByteCounter = 0;
+                        }
+                    }else {                                                 //Fixed length message.
+                        if(messagePointer>=messageLenth){
+                            state  = MsgState.SEARCHING_START;
+                            messagePointer = startBytes.length;
+                            decodeMessage(msgBuffer);
+                        }
                     }
                     break;
                 }
@@ -132,12 +159,12 @@ public class SerialCommunicationThread extends Thread {
      */
     private void initMessageMap(DataModel dataModel) {
         for (DataSource datasource:dataModel.getDataSources()) {
-            if(messageMap.containsKey(datasource.getMessageId())){
-                messageMap.get(datasource.getMessageId()).add(datasource);
+            if(messageMap.containsKey(ByteBuffer.wrap(datasource.getMessageId()))){
+                messageMap.get(ByteBuffer.wrap(datasource.getMessageId())).add(datasource);
             }else {     // if the map does not contain the key yet create a new List of datasources, and add it to the map.
                 List<DataSource> dataSourceList = new ArrayList<>();
                 dataSourceList.add(datasource);
-                messageMap.put(datasource.getMessageId(),dataSourceList);
+                messageMap.put(ByteBuffer.wrap(datasource.getMessageId()),dataSourceList);
             }
         }
         Main.programLogger.log(Level.INFO,()->"Message Map :" + messageMap);
@@ -149,12 +176,13 @@ public class SerialCommunicationThread extends Thread {
      */
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
-        Integer messageId = Integer.valueOf(msgBuffer[idPosition]);
+        ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
                 if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
+                System.out.println(source.getName());
             }
         }
         //TODO add time information.

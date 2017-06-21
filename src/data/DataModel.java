@@ -47,6 +47,7 @@ public class DataModel {
         teleCommands.clear();
         if(config.getTeleCommands()!=null)teleCommands.addAll(config.getTeleCommands());
         Main.programLogger.log(Level.INFO,"Loaded configuration file: " + file.getName() + " into the DataModel.");
+        System.out.println("ID_legth" + config.getIdLength());
     }
 
     //TODO implement saving of DataModel

@@ -28,13 +28,13 @@ public class Main extends Application {
 //          // TODO somewhere make sure 2's complement is mentioned.
 //     6    // TODO add CRC 16 functionality.
 //     7    // TODO add time functionality.
-//          // TODO add a way of exchanging. a config file while program is running.
+//          // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
             // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
-            // TODO accept IDS of variable length.
             // TODO accept variable length messages, maybe somewhere decode length in msg.
 
             // later maybe
+            // TODO add support for float and double and unsigned int maybe ??
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
             // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
             // TODO style everything consistently . with base 16 ez ez ez

@@ -26,13 +26,25 @@ public class JsonSerializableConfig {
      */
     private byte[] startBytes;
     /**
-     * where is the position of the id (must be one byte)
+     * The stop bytes of a message send through Serial Port. This will override existing messageLength settings.
+     */
+    private byte[] stopBytes;
+    /**
+     * where is the position of the id.
      */
     private int idPosition;
     /**
+     * The length of the id's in bytes.
+     */
+    private int idLength;
+    /**
      * The length of a single complete message, in bytes.
      */
-    private int messageLenth;
+    private int messageLength;
+    /**
+     * The maximum length of a message including everything.
+     */
+    private int maxMessageLength;
     /**
      * If the program uses CRC64 to decode its data, enables error detection and correction.
      * If CRC64 is used than it is found at the end of the message with 2 bytes.
@@ -46,7 +58,7 @@ public class JsonSerializableConfig {
     /**
      * If time info is send the number of bytes that are used to do that.
      */
-    private int timeLenth = 0;
+    private int timeLength = 0;
 
     /**
      * Applies to the Endianity of the data.
@@ -69,11 +81,28 @@ public class JsonSerializableConfig {
     }
 
     /**
+     *
+     * @return the stop Bytes of the Message we want to receive. This will override the message Length if the stop Bytes are specified.
+     */
+    public byte[] getStopBytes() {
+        return stopBytes;
+    }
+
+    /**
      * All msg must have the same length.
      * @return
      */
-    public int getMessageLenth() {
-        return messageLenth;
+    public int getMessageLength() {
+        return messageLength;
+    }
+
+    /**
+     * Gets the maximum message Length.
+     * If one uses fixed message length, then max = fixed message length.
+     * @return
+     */
+    public int getMaxMessageLength() {
+        return maxMessageLength;
     }
 
     /**
@@ -87,12 +116,16 @@ public class JsonSerializableConfig {
         return timePosition;
     }
 
-    public int getTimeLenth() {
-        return timeLenth;
+    public int getTimeLength() {
+        return timeLength;
     }
 
     public int getIdPosition() {
         return idPosition;
+    }
+
+    public int getIdLength() {
+        return idLength;
     }
 
     public ByteEndianity getByteEndianity(){

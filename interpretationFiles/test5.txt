@@ -5,8 +5,17 @@
 		"unit": "%",
 		"offset": 0.0,
 		"proportionalFactor": 1.0,
-		"messageId": 1,
+		"messageId": [1],
 		"startOfValue": 3,
+		"lengthOfValue": 2
+	}, {
+		"name": "Packet is longer dude",
+		"description": "it really is",
+		"unit": "lol",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1],
+		"startOfValue": 5,
 		"lengthOfValue": 2
 	}, {
 		"name": "Temperature",
@@ -14,7 +23,7 @@
 		"unit": "deg C",
 		"offset": 0.0,
 		"proportionalFactor": 1.0,
-		"messageId": 2,
+		"messageId": [2],
 		"startOfValue": 3,
 		"lengthOfValue": 2
 	}, {
@@ -23,7 +32,7 @@
 		"unit": "dps",
 		"offset": 25.0,
 		"proportionalFactor": 5.0,
-		"messageId": 3,
+		"messageId": [3],
 		"startOfValue": 3,
 		"lengthOfValue": 1
 	}, {
@@ -32,7 +41,7 @@
 		"unit": "g",
 		"offset": 1.0,
 		"proportionalFactor": 5.0,
-		"messageId": 3,
+		"messageId": [3],
 		"startOfValue": 4,
 		"lengthOfValue": 2
 	}],
@@ -46,10 +55,13 @@
             "command": [5, 12]
     	}],
 	"startBytes": [5, 10],
+	"stopBytes": [5, 20],
 	"idPosition": 2,
-	"messageLenth": 6,
+	"idLength": 1,
+	"messageLength": 6,
+	"maxMessageLength": 20,
 	"isUsingCRC16": false,
 	"timePosition": -1,
-	"timeLenth": 0,
+	"timeLength": 0,
 	"byteEndianity":"BIG_ENDIAN"
 }
