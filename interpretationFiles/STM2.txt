@@ -1,0 +1,36 @@
+{
+	"simpleSensors": [{
+		"name": "Telemetry 1",
+		"description": "h",
+		"unit": "egal",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": 8,
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	},{
+		"name": "Telemetry 2",
+		"description": "h",
+		"unit": "egal",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": 96,
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	}],
+	"teleCommands": [{
+    		"name": "Calibration",
+    		"description": "h",
+            "command": [1, 10]
+    	}, {
+    		"name": "Restart",
+    		"description": "yo",
+            "command": [5, 12]
+    	}],
+	"startBytes": [-1,2],
+	"idPosition": 19,
+	"messageLenth": 34,
+	"isUsingCRC16": false,
+	"timePosition": -1,
+	"timeLenth": 0
+}

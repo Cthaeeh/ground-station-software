@@ -31,6 +31,9 @@ public class Main extends Application {
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
             // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
+            // TODO accept IDS of variable length.
+            // TODO let user cahnge byte endianity
+            // TODO accept variable length messages, maybe somewhere decode length in msg.
 
             // later maybe
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
@@ -49,6 +52,8 @@ public class Main extends Application {
     private static final String MAIN_WINDOW_FXML = "../gui/main_window.fxml";
     private static final String CSS_STYLING = "gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
+
+
 
     /**
      * The default interpretation file that is used, which defines available sources etc.
