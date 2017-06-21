@@ -2,36 +2,43 @@ package serial;
 
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
+import data.JsonSerializableConfig;
 import data.sources.DataSource;
 import main.Main;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 
-/**
- * Created by Kai on 25.05.2017.
- */
-public class SerialCommunicationThread extends Thread {
-
     //TODO split clearly the code that is running in an extra thread from the rest.
     //TODO make sure that all concurrency stuff is implemented correctly.
 
-    private SerialPort serialPort;
-    private DataModel dataModel;
 
+/**
+ * Created by Kai on 25.05.2017.
+ * An extra Thread for handling the serial Port Communication.
+ * It can receive and send data.
+ * The received data is inserted into the dataModel, as specified in the config file.
+ * Additionally this Thread makes its "Health" visible to other threads.
+ */
+public class SerialCommunicationThread extends Thread {
+
+    private SerialPort serialPort;
     private ConcurrentLinkedQueue<byte[]> commandQueue = new ConcurrentLinkedQueue<>();
 
-    //Message configuration
-    private byte[] startBytes;
-    private int messageLenth;
-    private int idPosition;
+    //Message configuration:
+    private final byte[] startBytes;
+    private final int messageLenth;
+    private final int idPosition;
+    private final JsonSerializableConfig.ByteEndianity byteEndianity;
     /**
      * Maps message id's to corresponding lists of sources, that can be found in this kind of message.
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
      */
     private Map<Integer,List<DataSource>> messageMap = new HashMap<>();
 
+    //State of this Thread:
     private volatile boolean isRunning = true;
     /**
      * Tells you the last time this Thread was definitively alive.
@@ -41,7 +48,6 @@ public class SerialCommunicationThread extends Thread {
      * The byte rate in bytes per second.
       */
     private volatile double byteRate;
-
     private final static long BYTE_RATE_UPDATE_TIME = 100000000;
     /**
      * State-machine for decoding the incoming stream of bytes.
@@ -50,27 +56,29 @@ public class SerialCommunicationThread extends Thread {
         SEARCHING_START, READING_MSG
     }
 
-    public void stopThread(){
-        isRunning = false;
-        serialPort.closePort();
-    }
 
     /**
      * Package visible constructor for a SerialCommunicationThread.
      * @param datamodel the thread needs to know stuff how to decode the data it receives from the serial port.
      * @param serialPort the port it should work on (send and receive stuff.)
      */
-    SerialCommunicationThread(DataModel datamodel, SerialPort serialPort){
+    SerialCommunicationThread(DataModel dataModel, SerialPort serialPort){
         this.serialPort = serialPort;
-        this.dataModel = datamodel;
-        initialize();
+        startBytes = dataModel.getConfig().getStartBytes();
+        messageLenth = dataModel.getConfig().getMessageLenth();
+        idPosition = dataModel.getConfig().getIdPosition();
+        byteEndianity = dataModel.getConfig().getByteEndianity();
+        initMessageMap(dataModel);
     }
 
-
+    /**
+     * This method is, in a way the core of the whole GSS program.
+     *
+     */
     @Override
     public void run() {
-        int messagePointer = startBytes.length; // it is unnecessary to read the startBytes AND msgLength is still lentgh of the message including the startBytes.
-        int startByteCounter = 0;
+        int messagePointer = startBytes.length; //start reading after the startBytes. I don't need to safe the StartBytes .
+        int startByteCounter = 0;               //How many start bytes did I already find.
         byte[] msgBuffer = new byte[messageLenth];
 
         int bytesRead = 0;
@@ -120,19 +128,9 @@ public class SerialCommunicationThread extends Thread {
     }
 
     /**
-     * Sets everything up so we can start to listen to incoming Messages.
-     */
-    private void initialize(){
-        startBytes = dataModel.getConfig().getStartBytes();
-        messageLenth = dataModel.getConfig().getMessageLenth();
-        idPosition = dataModel.getConfig().getIdPosition();
-        initMessageMap();
-    }
-
-    /**
      * Initializes the MessageMap with all messageId's as keys and lists of corresponding sources as lists.
      */
-    private void initMessageMap() {
+    private void initMessageMap(DataModel dataModel) {
         for (DataSource datasource:dataModel.getDataSources()) {
             if(messageMap.containsKey(datasource.getMessageId())){
                 messageMap.get(datasource.getMessageId()).add(datasource);
@@ -153,8 +151,10 @@ public class SerialCommunicationThread extends Thread {
         //TODO if crc16 is used decode it with CRC16 class.
         Integer messageId = Integer.valueOf(msgBuffer[idPosition]);
         if(messageMap.get(messageId)!= null){
-            for(DataSource dataSource : messageMap.get(messageId)){
-                dataSource.insertValue(Arrays.copyOfRange(msgBuffer, dataSource.getStartOfValue(), dataSource.getStartOfValue()+dataSource.getLengthOfValue()));
+            for(DataSource source : messageMap.get(messageId)){
+                byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
+                if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
+                source.insertValue(value);
             }
         }
         //TODO add time information.
@@ -180,5 +180,9 @@ public class SerialCommunicationThread extends Thread {
         return true;
     }
 
+    public void stopThread(){
+        isRunning = false;
+        serialPort.closePort();
+    }
 
 }

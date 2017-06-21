@@ -50,5 +50,6 @@
 	"messageLenth": 6,
 	"isUsingCRC16": false,
 	"timePosition": -1,
-	"timeLenth": 0
+	"timeLenth": 0,
+	"byteEndianity":"BIG_ENDIAN"
 }

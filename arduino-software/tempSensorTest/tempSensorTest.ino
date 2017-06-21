@@ -41,23 +41,23 @@ void getPacket1(byte packet[]) {
 
   packet[2] = 1;
   
-  packet[3] = highByte(humidity);
-  packet[4] = lowByte(humidity);
+  packet[3] = lowByte(humidity);
+  packet[4] = highByte(humidity);
 
   packet[5] = 0;
 }
 
 void getPacket2(byte packet[]) {
   int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int temp = DHT.temperature;
+  int temp = 55;
   
   packet[0] = 5; //start bytes
   packet[1] = 10;
 
   packet[2] = 2;
 
-  packet[3] = highByte(temp);
-  packet[4] = lowByte(temp);
+  packet[3] = lowByte(temp);
+  packet[4] = highByte(temp);
 
   packet[5] = 0;
 }
@@ -65,7 +65,10 @@ void getPacket2(byte packet[]) {
 int counter = 0;
 void getPacket3(byte packet[]) {
 
-  int demoAccel = ((counter ++)%1000); 
+  int demoAccel = ((counter ++) % 100);
+  if(counter == 1000){
+    counter = 0;
+  }
   
   packet[0] = 5; //start bytes
   packet[1] = 10;
@@ -74,8 +77,8 @@ void getPacket3(byte packet[]) {
 
   packet[3] = 3;
 
-  packet[4] = highByte(demoAccel);
-  packet[5] = lowByte(demoAccel);
+  packet[4] = lowByte(demoAccel);
+  packet[5] = highByte(demoAccel);
 }
 
 

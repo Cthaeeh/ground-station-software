@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class JsonSerializableConfig {
 
+    public enum ByteEndianity{
+        BIG_ENDIAN, LITTLE_ENDIAN
+    }
+
     private ArrayList<TeleCommand> teleCommands;
     /**
      * Contains all available Data Sources like a Temperature-Sensor etc.
@@ -43,6 +47,11 @@ public class JsonSerializableConfig {
      * If time info is send the number of bytes that are used to do that.
      */
     private int timeLenth = 0;
+
+    /**
+     * Applies to the Endianity of the data.
+     */
+    private ByteEndianity byteEndianity = ByteEndianity.LITTLE_ENDIAN;
 
     public List<DataSource> getDataSources() {
         ArrayList<DataSource> dataSources = new ArrayList<>();
@@ -84,6 +93,10 @@ public class JsonSerializableConfig {
 
     public int getIdPosition() {
         return idPosition;
+    }
+
+    public ByteEndianity getByteEndianity(){
+        return byteEndianity;
     }
 
     public List<TeleCommand> getTeleCommands() {

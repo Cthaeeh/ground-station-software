@@ -22,14 +22,15 @@ public class Main extends Application {
 //priority:
             // Big things that need to be done:
 //     2    // TODO advanced logging of data of raw data.
-//     1    // TODO find a convinient way to edit a config file.
-            // TODO add optional params to telecommand functionality.
+//     1    // TODO find a convenient way to edit a config file.
+            // TODO add optional params to tele-command functionality.
 //          // TODO visualize bitFlags, enums.
 //          // TODO somewhere make sure 2's complement is mentioned.
 //     6    // TODO add CRC 16 functionality.
 //     7    // TODO add time functionality.
 //          // TODO add a way of exchanging. a config file while program is running.
 //          // TODO NOTE that an uneven number of bytes for a value is discouraged.
+            // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
 
             // later maybe
 //          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
@@ -48,8 +49,6 @@ public class Main extends Application {
     private static final String MAIN_WINDOW_FXML = "../gui/main_window.fxml";
     private static final String CSS_STYLING = "gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
-
-
 
     /**
      * The default interpretation file that is used, which defines available sources etc.
