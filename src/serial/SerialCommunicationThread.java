@@ -182,7 +182,6 @@ public class SerialCommunicationThread extends Thread {
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
                 if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
-                System.out.println(source.getName());
             }
         }
         //TODO add time information.

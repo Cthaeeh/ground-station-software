@@ -1,0 +1,49 @@
+{
+	"simpleSensors": [{
+		"name": "Gyro X",
+		"description": "",
+		"unit": "milli DPS",
+		"offset": 0.0,
+		"proportionalFactor": 70.0,
+		"messageId": [0,0,0,1],
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	},{
+		"name": "Gyro Y",
+		"description": "",
+		"unit": "milli DPS",
+		"offset": 0.0,
+		"proportionalFactor": 70.0,
+		"messageId": [0,0,0,1],
+		"startOfValue": 32,
+		"lengthOfValue": 4
+	},{
+		"name": "Gyro Z",
+		"description": "",
+		"unit": "milli DPS",
+		"offset": 0.0,
+		"proportionalFactor": 70.0,
+		"messageId": [0,0,0,1],
+		"startOfValue": 36,
+		"lengthOfValue": 4
+	}],
+	"teleCommands": [{
+    		"name": "Calibration",
+    		"description": "h",
+            "command": [1, 10]
+    	}, {
+    		"name": "Restart",
+    		"description": "yo",
+            "command": [5, 12]
+    	}],
+	"startBytes": [-1,2],
+	"stopBytes": [-1,3],
+	"idPosition": 18,
+	"idLength": 4,
+	"messageLenth": 46,
+	"maxMessageLength":46,
+	"isUsingCRC16": false,
+	"timePosition": -1,
+	"timeLength": 0,
+	"byteEndianity":"BIG_ENDIAN"
+}

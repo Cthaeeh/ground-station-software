@@ -4,12 +4,15 @@ import data.DataModel;
 import data.TeleCommand;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import org.controlsfx.control.GridView;
 import serial.SerialPortComm;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
@@ -29,10 +32,13 @@ public class TeleCommandControl implements Initializable {
     private ChoiceBox<ENCODING> commandCoiceBox;
 
     @FXML
+    private CheckBox addStartStopBytesCheckBox;
+
+    @FXML
     private TextField inputField;
 
     enum ENCODING{
-        ASCII
+        ASCII,DECIMAL_DIVIDED_BY_SPACE
     }
 
     @Override
@@ -77,18 +83,25 @@ public class TeleCommandControl implements Initializable {
 
     @FXML
     private void btnSendCommand(){
+        byte[] command;
         switch (commandCoiceBox.getSelectionModel().getSelectedItem()){
             case ASCII:
-                byte[] command = inputField.getText().getBytes(StandardCharsets.US_ASCII);
+                command = inputField.getText().getBytes(StandardCharsets.US_ASCII);
+                sendCommand(command);
+                break;
+            case DECIMAL_DIVIDED_BY_SPACE:
+                command = Encoder.encode(inputField.getText());
                 sendCommand(command);
                 break;
             default:
                 Main.programLogger.log(Level.WARNING,()->"Could not send Command"+commandCoiceBox.getSelectionModel().getSelectedItem().name()+" because the Endocing is unsuported.");
         }
-        //TODO send the message to the SerialCommunicationThread somehow.
     }
 
     private void sendCommand(byte[] command){
+        if(addStartStopBytesCheckBox.isSelected()){
+            command = concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
+        }
         serialPortComm.send(command);
     }
 
@@ -96,5 +109,18 @@ public class TeleCommandControl implements Initializable {
          commandCoiceBox.getItems().setAll(ENCODING.values());  //
          commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
     }
+
+    private byte[] concatenate(byte[] ... arrays) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        for(byte [] array : arrays){
+            try {
+                if(array != null) outputStream.write(array);
+            } catch (IOException e) {
+                Main.programLogger.log(Level.WARNING, ()-> "Failed to concat bytes ");
+            }
+        }
+        return outputStream.toByteArray();
+    }
+
 
 }

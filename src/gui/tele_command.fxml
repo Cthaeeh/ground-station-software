@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -21,6 +22,7 @@
                   <Insets right="80.0" />
                </StackPane.margin></TextField>
             <ChoiceBox fx:id="commandCoiceBox" prefWidth="150.0" StackPane.alignment="TOP_RIGHT" />
+            <CheckBox fx:id="addStartStopBytesCheckBox" mnemonicParsing="false" text="Add Start/Stop Byte ?" StackPane.alignment="TOP_CENTER" />
          </children>
          <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />

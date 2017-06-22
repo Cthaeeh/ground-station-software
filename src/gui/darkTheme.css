@@ -122,3 +122,10 @@
 .split-pane-divider {
   -fx-padding: 0 ;
 }
+
+/*
+        Check Box
+*/
+.check-box {
+    -fx-text-fill: #e8e8e8;
+}

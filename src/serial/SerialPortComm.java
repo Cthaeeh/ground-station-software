@@ -59,6 +59,7 @@ public class SerialPortComm {
             communicationThread.stopThread();
         }
     }
+
     private void setupSerialPort(String portName, int baudRate) {
         Main.programLogger.log(Level.INFO,()->"trying to initialize " + portName +" with baud rate of: " + baudRate);
         serialPort = SerialPort.getCommPort(portName);
@@ -74,6 +75,12 @@ public class SerialPortComm {
         }
     }
 
+    /**
+     * Will send the passed bytes to the Serial Port.
+     * Note that they will not be changed in any way.
+     * Also this will not work if we are not connected to any serial Port.
+     * @param command
+     */
     public void send(byte[] command) {
         if(communicationThread!=null && communicationThread.isAlive()){
             communicationThread.send(command);

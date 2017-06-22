@@ -54,8 +54,8 @@
     		"description": "yo",
             "command": [5, 12]
     	}],
-	"startBytes": [5, 10],
-	"stopBytes": [5, 20],
+	"startBytes": [58, 59],
+	"stopBytes": [58, 59],
 	"idPosition": 2,
 	"idLength": 1,
 	"messageLength": 6,

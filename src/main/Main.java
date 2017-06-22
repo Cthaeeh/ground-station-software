@@ -58,7 +58,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test5.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/STM3.txt";
 
     public static  void main(String[] args){
         setupLogger();
