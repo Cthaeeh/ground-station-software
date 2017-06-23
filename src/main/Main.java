@@ -27,7 +27,7 @@ public class Main extends Application {
 //          // TODO visualize bitFlags, enums.
 //          // TODO somewhere make sure 2's complement is mentioned.
 //     6    // TODO add CRC 16 functionality.
-            // TODO Fix the mess in the SerialCOmmThread.
+            // TODO Fix the mess in the SerialCOmmThread. especially the shit with the ArrayIndexOutOfBoundsException when no stop bytes are found. Since this will be a lot of code it should be moved to its own file.
             // TODO byte stuffing.
 //     7    // TODO add time functionality.
 //          // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
@@ -52,8 +52,6 @@ public class Main extends Application {
     private static final String MAIN_WINDOW_FXML = "../gui/main_window.fxml";
     private static final String CSS_STYLING = "gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
-
-
 
     /**
      * The default interpretation file that is used, which defines available sources etc.

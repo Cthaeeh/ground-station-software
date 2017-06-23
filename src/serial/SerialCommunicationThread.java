@@ -61,7 +61,6 @@ public class SerialCommunicationThread extends Thread {
         SEARCHING_START, READING_MSG
     }
 
-
     /**
      * Package visible constructor for a SerialCommunicationThread.
      * @param dataModel the thread needs to know stuff how to decode the data it receives from the serial port.
@@ -79,7 +78,6 @@ public class SerialCommunicationThread extends Thread {
         byteEndianity = dataModel.getConfig().getByteEndianity();
         initMessageMap(dataModel);
     }
-
 
     /**
      * This method is, in a way the core of the whole GSS program.
@@ -113,7 +111,7 @@ public class SerialCommunicationThread extends Thread {
                     }
                     break;
                 case READING_MSG:
-                    msgBuffer[messagePointer]=readBuffer[0];
+                    msgBuffer[messagePointer] = readBuffer[0];
                     messagePointer++;
                     if(stopBytes!=null && stopBytes.length > 0){            //stop byte(s) , ofc this could also be done with length dependant on id or msg length somewhere at the start of the message.
                         if(readBuffer[0]==stopBytes[stopByteCounter]) {
@@ -177,6 +175,7 @@ public class SerialCommunicationThread extends Thread {
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
+        System.out.println("Got Message ID:" + toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
@@ -186,6 +185,24 @@ public class SerialCommunicationThread extends Thread {
         }
         //TODO add time information.
     }
+
+    private String toString(byte[] msgBuffer) {
+        StringBuilder sb = new StringBuilder();
+        for(byte b: msgBuffer){
+             sb.append("[" + b + "]");
+        }
+        return sb.toString();
+    }
+
+    private String toString(ByteBuffer buffer) {
+        byte [] bytes = buffer.array();
+        StringBuilder sb = new StringBuilder();
+        for(byte b: bytes){
+             sb.append("[" + b + "]");
+        }
+        return sb.toString();
+    }
+
 
     /**
      * Send these Bytes to the Serial Port.

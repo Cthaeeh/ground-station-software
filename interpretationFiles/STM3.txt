@@ -5,7 +5,7 @@
 		"unit": "milli DPS",
 		"offset": 0.0,
 		"proportionalFactor": 70.0,
-		"messageId": [0,0,0,1],
+		"messageId": [1,0,0,0],
 		"startOfValue": 28,
 		"lengthOfValue": 4
 	},{
@@ -14,7 +14,7 @@
 		"unit": "milli DPS",
 		"offset": 0.0,
 		"proportionalFactor": 70.0,
-		"messageId": [0,0,0,1],
+		"messageId": [1,0,0,0],
 		"startOfValue": 32,
 		"lengthOfValue": 4
 	},{
@@ -23,8 +23,98 @@
 		"unit": "milli DPS",
 		"offset": 0.0,
 		"proportionalFactor": 70.0,
-		"messageId": [0,0,0,1],
+		"messageId": [1,0,0,0],
 		"startOfValue": 36,
+		"lengthOfValue": 4
+	},{
+		"name": "Accelerometer X",
+		"description": "",
+		"unit": "g",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,80,0,0],
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	},{
+		"name": "Accelerometer Y",
+		"description": "",
+		"unit": "g",
+		"offset": 0.0,
+		"proportionalFactor": 10.0,
+		"messageId": [1,80,0,0],
+		"startOfValue": 32,
+		"lengthOfValue": 4
+	},{
+		"name": "Accelerometer Z",
+		"description": "",
+		"unit": "g",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,80,0,0],
+		"startOfValue": 36,
+		"lengthOfValue": 4
+	},{
+		"name": "Magnetometer X",
+		"description": "",
+		"unit": "gauss",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,-96,0,0],
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	},{
+		"name": "Magnetometer Y",
+		"description": "",
+		"unit": "gauss",
+		"offset": 0.0,
+		"proportionalFactor": 10.0,
+		"messageId": [1,-96,0,0],
+		"startOfValue": 32,
+		"lengthOfValue": 4
+	},{
+		"name": "Magnetometer Z",
+		"description": "",
+		"unit": "gauss",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,-96,0,0],
+		"startOfValue": 36,
+		"lengthOfValue": 4
+	},{
+		"name": "Pitch",
+		"description": "",
+		"unit": "deg",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,-16,0,0],
+		"startOfValue": 28,
+		"lengthOfValue": 4
+	},{
+		"name": "Roll",
+		"description": "",
+		"unit": "deg",
+		"offset": 0.0,
+		"proportionalFactor": 10.0,
+		"messageId": [1,-16,0,0],
+		"startOfValue": 32,
+		"lengthOfValue": 4
+	},{
+		"name": "Yaw",
+		"description": "",
+		"unit": "deg",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,-16,0,0],
+		"startOfValue": 36,
+		"lengthOfValue": 4
+	},{
+		"name": "Temperature",
+		"description": "",
+		"unit": "grad Celsius",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,-16,0,0],
+		"startOfValue": 40,
 		"lengthOfValue": 4
 	}],
 	"teleCommands": [{
@@ -41,7 +131,7 @@
 	"idPosition": 18,
 	"idLength": 4,
 	"messageLenth": 46,
-	"maxMessageLength":46,
+	"maxMessageLength":60,
 	"isUsingCRC16": false,
 	"timePosition": -1,
 	"timeLength": 0,
