@@ -1,0 +1,41 @@
+{
+	"simpleSensors": [{
+		"name": "Simple Sensor 1",
+		"description": "h",
+		"unit": "%",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,2,3],
+		"startOfValue": 3,
+		"lengthOfValue": 2
+	}, {
+		"name": "Simple Sensor 2",
+		"description": "it really is",
+		"unit": "lol",
+		"offset": 0.0,
+		"proportionalFactor": 1.0,
+		"messageId": [1,2,3],
+		"startOfValue": 5,
+		"lengthOfValue": 2
+	}],
+	"teleCommands": [{
+    		"name": "Calibration",
+    		"description": "h",
+            "command": [1, 10]
+    	}, {
+    		"name": "Restart",
+    		"description": "yo",
+            "command": [5, 12]
+    	}],
+	"startBytes": [12, 13],
+	"stopBytes": [12, 22],
+	"idPosition": 0,
+	"idLength": 3,
+	"messageLength": 7,
+	"maxMessageLength": 7,
+	"isUsingCRC16": false,
+	"timePosition": -1,
+	"timeLength": 0,
+	"byteEndianity": "BIG_ENDIAN",
+	"readMode": "FIXED_MSG_LENGTH"
+}

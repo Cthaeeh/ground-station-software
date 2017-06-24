@@ -21,18 +21,14 @@ import java.util.logging.Level;
  * An extra Thread for handling the serial Port Communication.
  * It can receive and send data.
  * The received data is inserted into the dataModel, as specified in the config file.
- * Additionally this Thread makes its "Health" visible to other threads.
+ * Additionally this Thread makes its "Health" visible to other threads, although there is no Watchdog that would kill it :D (yet !!!)
  */
-public class SerialCommunicationThread extends Thread {
+public class SerialCommunicationThread extends Thread implements MessageListener{
 
-    private SerialPort serialPort;
     private ConcurrentLinkedQueue<byte[]> commandQueue = new ConcurrentLinkedQueue<>();
+    private final SerialEngine serialEngine;
 
     //Message configuration:
-    private final byte[] startBytes;
-    private final byte[] stopBytes;
-    private final int messageLenth;
-    private final int maxLenth;
     private final int idPosition;
     private final int idLength;
     private final JsonSerializableConfig.ByteEndianity byteEndianity;
@@ -53,13 +49,7 @@ public class SerialCommunicationThread extends Thread {
      * The byte rate in bytes per second.
       */
     private volatile double byteRate;
-    private final static long BYTE_RATE_UPDATE_TIME = 100000000;
-    /**
-     * State-machine for decoding the incoming stream of bytes.
-     */
-    private enum MsgState {
-        SEARCHING_START, READING_MSG
-    }
+    private final static long BYTE_RATE_UPDATE_TIME_NS = 100_000_000;
 
     /**
      * Package visible constructor for a SerialCommunicationThread.
@@ -67,16 +57,11 @@ public class SerialCommunicationThread extends Thread {
      * @param serialPort the port it should work on (send and receive stuff.)
      */
     SerialCommunicationThread(DataModel dataModel, SerialPort serialPort){
-        this.serialPort = serialPort;
-        startBytes = dataModel.getConfig().getStartBytes();
-        stopBytes = dataModel.getConfig().getStopBytes();
-        for(byte b:stopBytes) System.out.print("["+b+"]");
-        messageLenth = dataModel.getConfig().getMessageLength();
-        maxLenth = dataModel.getConfig().getMaxMessageLength();
         idPosition = dataModel.getConfig().getIdPosition();
         idLength = dataModel.getConfig().getIdLength();
         byteEndianity = dataModel.getConfig().getByteEndianity();
         initMessageMap(dataModel);
+        serialEngine = new SerialEngine(this,serialPort,dataModel.getConfig());
     }
 
     /**
@@ -84,72 +69,31 @@ public class SerialCommunicationThread extends Thread {
      */
     @Override
     public void run() {
-        int messagePointer = startBytes.length; //start reading after the startBytes. I don't need to safe the StartBytes .
-        int startByteCounter = 0;               //How many start bytes did I already find.
-        int stopByteCounter = 0;
-        byte[] msgBuffer = new byte[maxLenth];
-
-        int bytesRead = 0;
         long timeCounter = System.nanoTime();/* counts up to 100 ms to calc the byte rate.*/
-
-        MsgState state = MsgState.SEARCHING_START;
         while(isRunning) {
-            byte[] readBuffer = new byte[1];
-            int numRead = serialPort.readBytes(readBuffer,1); //Read semi blocking 1 byte.
-            if(numRead==1){
-                bytesRead++;
-                switch (state){
-                case SEARCHING_START:
-                    if(readBuffer[0]==startBytes[startByteCounter]){
-                        startByteCounter++;
-                        if(startByteCounter>=startBytes.length){
-                            state = MsgState.READING_MSG;
-                            startByteCounter = 0;
-                        }
-                    }else {                                                 //We found no start ;(
-                        startByteCounter = 0;
-                    }
-                    break;
-                case READING_MSG:
-                    msgBuffer[messagePointer] = readBuffer[0];
-                    messagePointer++;
-                    if(stopBytes!=null && stopBytes.length > 0){            //stop byte(s) , ofc this could also be done with length dependant on id or msg length somewhere at the start of the message.
-                        if(readBuffer[0]==stopBytes[stopByteCounter]) {
-                            stopByteCounter++;
-                            if (stopByteCounter >= stopBytes.length) {
-                                stopByteCounter = 0;
-                                state = MsgState.SEARCHING_START;
-                                messagePointer = startBytes.length;
-                                decodeMessage(msgBuffer);
-                            }
-                        }
-                        else{                                               //We found no end ;(
-                            stopByteCounter = 0;
-                        }
-                    }else {                                                 //Fixed length message.
-                        if(messagePointer>=messageLenth){
-                            state  = MsgState.SEARCHING_START;
-                            messagePointer = startBytes.length;
-                            decodeMessage(msgBuffer);
-                        }
-                    }
-                    break;
-                }
-            }
-
+            //Read
+            serialEngine.readByte();
+            //Send
             byte[] command = commandQueue.poll();
             if(command!=null){
-                int numWritten = serialPort.writeBytes(command,command.length);
+                boolean success = serialEngine.writeBytes(command);
+                if(!success) Main.programLogger.log(Level.WARNING, () -> "Failed to send the command " + toString(command) + "to the serial Port.");
             }
+            //Update Thread state /health.
             lastTimeSeen = System.currentTimeMillis();
-            if(System.nanoTime() - timeCounter > BYTE_RATE_UPDATE_TIME){ // some time has passed. Time to calculate the byte rate new.
-                byteRate = bytesRead/(((double)(System.nanoTime() - timeCounter))/1000_000_000);
-                bytesRead = 0;
+            if(System.nanoTime() - timeCounter > BYTE_RATE_UPDATE_TIME_NS){ // some time has passed. Time to calculate the byte rate new.
+                byteRate = serialEngine.getBytesRead()/(((double)(System.nanoTime() - timeCounter))/1000_000_000);
+                serialEngine.resetBytesRead();
                 timeCounter = System.nanoTime();
             }
         }
+        serialEngine.stop();
         Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
-        //TODO clean up. THIS IS A MESS.
+    }
+
+    @Override
+    public void processMessage(byte[] message) {
+        decodeMessage(message);
     }
 
     /**
@@ -175,10 +119,10 @@ public class SerialCommunicationThread extends Thread {
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println("Got Message ID:" + toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
+                System.out.println("Start of Value: " + source.getStartOfValue() + "  " + toString(msgBuffer));
                 if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
             }
@@ -203,7 +147,6 @@ public class SerialCommunicationThread extends Thread {
         return sb.toString();
     }
 
-
     /**
      * Send these Bytes to the Serial Port.
      * @param command the bytes to send.
@@ -226,7 +169,5 @@ public class SerialCommunicationThread extends Thread {
 
     public void stopThread(){
         isRunning = false;
-        serialPort.closePort();
     }
-
 }

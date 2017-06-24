@@ -2,6 +2,7 @@ package data;
 
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
+import serial.SerialEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,13 @@ public class JsonSerializableConfig {
 
     public enum ByteEndianity{
         BIG_ENDIAN, LITTLE_ENDIAN
+    }
+
+    /**
+     * The read mode determines how the end of a message is found.
+     */
+    public enum ReadMode {
+        FIXED_MSG_LENGTH, STOP_BYTES, HEADER_INFORMATION;
     }
 
     private ArrayList<TeleCommand> teleCommands;
@@ -30,7 +38,7 @@ public class JsonSerializableConfig {
      */
     private byte[] stopBytes;
     /**
-     * where is the position of the id.
+     * where is the position of the id. The Position is relative to the first msg byte (not including start stop bytes.)
      */
     private int idPosition;
     /**
@@ -38,11 +46,11 @@ public class JsonSerializableConfig {
      */
     private int idLength;
     /**
-     * The length of a single complete message, in bytes.
+     * The length of a single complete message, in bytes. Only used for the FIXED_MSG_LENGTH ReadMode.
      */
     private int messageLength;
     /**
-     * The maximum length of a message including everything.
+     * The maximum length of a message including everything, but start and stop bytes. THis is only used for all ReadMode s.
      */
     private int maxMessageLength;
     /**
@@ -52,6 +60,7 @@ public class JsonSerializableConfig {
     private boolean isUsingCRC16;
     /**
      * the position of the byte(s) that indicate when the measurement was made.
+     * The Position is relative to the first msg byte (not including start stop bytes.)
      * Default -1 -> means that no time info is send.
      */
     private int timePosition = -1;
@@ -64,6 +73,15 @@ public class JsonSerializableConfig {
      * Applies to the Endianity of the data.
      */
     private ByteEndianity byteEndianity = ByteEndianity.LITTLE_ENDIAN;
+
+    /**
+     *  How the End of a message is found:
+     *  FIXED MSG LENGTH: just read a previously set number of bytes after u found a start Byte.
+     *      This is somewhat error prone because what if in between the message is skipped because of bad connection
+     *      So it should be used with CRC - 16 only.
+     *  STOP BYTES: just wait for the stop bytes to appear. But if more bytes are read than in maxMessageLength is specified the message is discarded.
+     */
+    private ReadMode readMode = ReadMode.FIXED_MSG_LENGTH;
 
     public List<DataSource> getDataSources() {
         ArrayList<DataSource> dataSources = new ArrayList<>();
@@ -103,6 +121,10 @@ public class JsonSerializableConfig {
      */
     public int getMaxMessageLength() {
         return maxMessageLength;
+    }
+
+    public ReadMode getReadMode() {
+        return readMode;
     }
 
     /**

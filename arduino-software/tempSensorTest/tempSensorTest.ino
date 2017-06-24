@@ -91,6 +91,23 @@ void getPacket3(byte packet[]) {
   packet[7] = 20;
 }
 
+void getPacket4(byte packet[]) {
+  int a = 2;
+  int b = 5;
+  
+  packet[0] = 12; //start bytes
+  packet[1] = 13;
+
+  packet[2] = 1;
+  packet[3] = 2;
+  packet[4] = 3;
+  
+  packet[5] = lowByte(a);
+  packet[6] = highByte(a);
+  
+  packet[7] = lowByte(b);
+  packet[8] = highByte(b);
+}
 
 void setup() {
   Serial.begin(38400);
@@ -98,18 +115,10 @@ void setup() {
 
 void loop()
 {
-  byte packet[8];
-  byte bigPacket[9];
-  getPacket1(bigPacket);
-  Serial.write(bigPacket, 9);
+  byte packet[9];
   delay(10);
-  getPacket2(packet);
-  Serial.write(packet, 8);
-  delay(10);
-  getPacket3(packet);
-  Serial.write(packet, 8);
-  delay(10);
-
+  getPacket4(packet);
+  Serial.write(packet, 9);
 
   
 //    int chk  = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
