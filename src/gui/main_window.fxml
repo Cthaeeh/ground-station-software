@@ -19,7 +19,7 @@
                <tooltip>
                   <Tooltip text="Select a File where it is determined how incoming data is interpreted. This will determine the available Data-Sources. " />
                </tooltip></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnCreateConfigClick" text="Create Config">
+            <Button mnemonicParsing="false" onMouseClicked="#btnCreateConfigClick" text="Edit Config">
                <tooltip>
                   <Tooltip text="Create a new configuration file" />
                </tooltip></Button>
@@ -41,6 +41,6 @@
       <fx:include fx:id="statusArea" source="status_area.fxml" />
    </right>
    <bottom>
-      <fx:include  fx:id="teleCommand" source="tele_command.fxml" />
+      <fx:include fx:id="teleCommand" source="tele_command.fxml" />
    </bottom>
 </BorderPane>

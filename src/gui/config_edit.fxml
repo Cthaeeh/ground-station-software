@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" />
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane style="-fx-border-width: 0 1 0 0 ; -fx-border-color: black; -fx-border-style: solid;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="165.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="135.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="TOP_LEFT" style="-fx-font-size: 18;" text="General:" underline="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
+            <Label text="Start byte(s):" GridPane.rowIndex="1" />
+            <Label text="Stop byte(s):" GridPane.rowIndex="2" />
+            <Label text="ID position:" GridPane.rowIndex="3" />
+            <Label text="ID length:" GridPane.rowIndex="4" />
+            <Label text="Max message length:" GridPane.rowIndex="6" />
+            <Label text="Message length:" GridPane.rowIndex="5" />
+            <CheckBox mnemonicParsing="false" text="Use CRC16 ?" GridPane.rowIndex="7" />
+            <Label text="Time position:" GridPane.rowIndex="8" />
+            <Label text="Time length:" GridPane.rowIndex="9" />
+            <Label text="Byte endianity:" GridPane.rowIndex="10" />
+            <Label text="Read Mode:" GridPane.rowIndex="11" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </GridPane>
+      <VBox prefHeight="400.0" prefWidth="300.0" spacing="5.0" style="-fx-border-width: 0 1 0 0 ; -fx-border-color: black; -fx-border-style: solid;">
+         <children>
+            <Label style="-fx-font-size: 18;" text="Telecommands:" />
+            <ListView prefHeight="1000.0" prefWidth="290.0" />
+            <Button mnemonicParsing="false" text="Add Command" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></VBox>
+      <VBox prefHeight="400.0" prefWidth="300.0" spacing="5.0" style="-fx-border-width: 0 1 0 0; -fx-border-color: black; -fx-border-style: solid;">
+         <children>
+            <Label style="-fx-font-size: 18;" text="DataSources: " />
+            <ListView prefHeight="1000.0" prefWidth="290.0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add DataSource" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></VBox>
+   </children>
+</HBox>

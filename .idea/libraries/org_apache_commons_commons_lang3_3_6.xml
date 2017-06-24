@@ -3,9 +3,11 @@
     <properties maven-id="org.apache.commons:commons-lang3:3.6" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.6-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.6-sources.jar!/" />
     </SOURCES>
   </library>
