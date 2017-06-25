@@ -32,4 +32,19 @@ public class Encoder {
         }
         return ArrayUtils.toPrimitive(bytes.toArray(new Byte[bytes.size()]));
     }
+
+    /**
+     * TODO comment this
+     * @param bytes
+     * @return
+     */
+    public static String encode(byte[] bytes) {
+        if(bytes == null || bytes.length < 1) return "";
+        StringBuilder sb = new StringBuilder() ;
+
+        for(byte b: bytes){
+            sb.append(String.valueOf(b)+" ");
+        }
+        return sb.toString();
+    }
 }

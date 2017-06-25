@@ -19,29 +19,31 @@ import java.util.logging.SimpleFormatter;
  * Sets up a programLogger and a Main Window.
  */
 public class Main extends Application {
-//priority:
-            // Big things that need to be done:
-//     2    // TODO advanced logging of data of raw data.
-//     1    // TODO find a convenient way to edit a config file.
-            // TODO add optional params to tele-command functionality.
-//          // TODO visualize bitFlags, enums.
-//          // TODO somewhere make sure 2's complement is mentioned.
-//     6    // TODO add CRC 16 functionality.
-            // TODO byte stuffing.
-//     7    // TODO add time functionality.
-//          // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
-//          // TODO NOTE that an uneven number of bytes for a value is discouraged.
-            // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
-            // TODO fix some bug with the LiveLineChart that the line shown is very short.
+//priority: // feature ?
 
-            // later maybe
-            // TODO add support for float and double and unsigned int maybe ??
-//          // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
-            // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
-            // TODO style everything consistently . with base 16 ez ez ez
-            // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
-//          // TODO app logo
-            // TODO let the user see last info for each source
+                     // Big things that need to be done:
+//     2       yes   // TODO advanced logging of data of raw data.
+//     1       yes   // TODO find a convenient way to edit a config file.
+//             yes   // TODO add optional params to tele-command functionality.
+//             yes   // TODO visualize bitFlags, enums.
+//                   // TODO somewhere make sure 2's complement is mentioned.
+//     6       yes   // TODO add CRC 16 functionality.
+//             yes   // TODO byte stuffing.
+//     7       yes   // TODO add time functionality.
+//                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
+                     // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
+                     // TODO fix some bug with the LiveLineChart that the line shown is very short.
+
+
+                 // later maybe
+//               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
+                 // TODO add support for float and double and unsigned int maybe ??
+//               // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
+                 // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
+                 // TODO style everything consistently . with base 16 ez ez ez
+                 // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
+//               // TODO app logo
+                 // TODO let the user see last info for each source
 
     public static Logger programLogger;
     private static FileHandler fileHandler;     //Needed for logging to file.

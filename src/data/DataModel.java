@@ -15,7 +15,7 @@ import java.util.logging.Level;
 
 /**
  * Holds all data needed for the application. The configuration, etc.
- * My Approach to the MVC-Pattern. Maybe this could be implemented as a Singleton ...
+ * My Approach to the MVC-Pattern.
  */
 public class DataModel {
 
@@ -55,6 +55,14 @@ public class DataModel {
         // save contents of model to file ...
     }
 
+    /**
+     * In order to create a new config.
+     */
+    public void loadEmptyConfig() {
+        config = new JsonSerializableConfig();
+        dataSources.clear();
+        teleCommands.clear();
+    }
 }
 
 

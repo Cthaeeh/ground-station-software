@@ -1,5 +1,6 @@
 package main;
 
+import config_edit.ConfigEditControl;
 import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
