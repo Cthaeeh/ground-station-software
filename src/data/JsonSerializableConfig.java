@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class JsonSerializableConfig {
 
+    public int getCrc16positionTM() {
+        return crc16positionTM;
+    }
+
     public enum ByteEndianity{
         BIG_ENDIAN, LITTLE_ENDIAN
     }
@@ -58,6 +62,22 @@ public class JsonSerializableConfig {
      * If CRC64 is used than it is found at the end of the message with 2 bytes.
      */
     private boolean isUsingCRC16;
+    /**
+     * Where the CRC-16 is inserted into the TeleCommand.
+     * 0 means at the beginning (but after start Byte ofc.)
+     * 1 means after first byte of the msg and so on.
+     * If the position is greater than the  msg the CRC will be inserted before the stop bytes.
+     * -1 than this will not be used at all.
+     */
+    private int crc16positionTC = 0;
+    /**
+     * Where the CRC-16 is searched for in incoming messages.
+     * 0 means at the beginning (but after the start Byte ofc.)
+     * 1 means after the first byte and so on.
+     * If the position is greater than the msg the CRC will be searched for at the end of the msg, before the stop bytes.
+     * -1 than this will not be used at all.
+     */
+    private int crc16positionTM = 0;
     /**
      * the position of the byte(s) that indicate when the measurement was made.
      * The Position is relative to the first msg byte (not including start stop bytes.)
@@ -132,6 +152,10 @@ public class JsonSerializableConfig {
      */
     public boolean isUsingCRC16() {
         return isUsingCRC16;
+    }
+
+    public int getCrc16positionTC() {
+        return crc16positionTC;
     }
 
     public int getTimePosition() {

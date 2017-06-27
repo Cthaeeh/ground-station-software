@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import org.controlsfx.control.GridView?>
 
-<SplitPane dividerPositions="0.55" maxHeight="200" maxWidth="-Infinity" minHeight="100" minWidth="500" orientation="VERTICAL" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TeleCommandControl">
+<SplitPane dividerPositions="0.55" maxHeight="200" maxWidth="-Infinity" minHeight="100" minWidth="500" orientation="VERTICAL" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="command.TeleCommandControl">
    <items>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>

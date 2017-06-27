@@ -1,4 +1,4 @@
-package main;
+package command;
 
 import data.DataModel;
 import data.TeleCommand;
@@ -8,11 +8,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import main.Encoder;
+import main.Main;
 import org.controlsfx.control.GridView;
 import serial.SerialPortComm;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
@@ -25,6 +25,7 @@ public class TeleCommandControl implements Initializable {
 
     private DataModel model ;
     private SerialPortComm serialPortComm;
+    private TelecommandUtil telecommandUtil = new TelecommandUtil();
     @FXML
     private GridView<TeleCommand> gridView;
 
@@ -99,9 +100,13 @@ public class TeleCommandControl implements Initializable {
     }
 
     private void sendCommand(byte[] command){
-        if(addStartStopBytesCheckBox.isSelected()){
-            command = concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
+        if(model.getConfig().isUsingCRC16()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
+            TelecommandUtil.insertCRC(command,model.getConfig().getCrc16positionTC());
         }
+        if(addStartStopBytesCheckBox.isSelected()){
+            command = TelecommandUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
+        }
+
         serialPortComm.send(command);
     }
 
@@ -109,18 +114,5 @@ public class TeleCommandControl implements Initializable {
          commandCoiceBox.getItems().setAll(ENCODING.values());  //
          commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
     }
-
-    private byte[] concatenate(byte[] ... arrays) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        for(byte [] array : arrays){
-            try {
-                if(array != null) outputStream.write(array);
-            } catch (IOException e) {
-                Main.programLogger.log(Level.WARNING, ()-> "Failed to concat bytes ");
-            }
-        }
-        return outputStream.toByteArray();
-    }
-
 
 }

@@ -34,6 +34,8 @@
 	"messageLength": 7,
 	"maxMessageLength": 7,
 	"isUsingCRC16": false,
+	"crc16positionTC": -1,
+	"crc16positionTM": -1,
 	"timePosition": -1,
 	"timeLength": 0,
 	"byteEndianity": "BIG_ENDIAN",

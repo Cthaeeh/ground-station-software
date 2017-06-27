@@ -1,4 +1,4 @@
-package main;
+package command;
 
 import data.TeleCommand;
 import javafx.scene.control.Label;
