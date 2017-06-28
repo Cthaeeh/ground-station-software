@@ -2,7 +2,6 @@ package data;
 
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
-import serial.SerialEngine;
 
 import java.util.ArrayList;
 import java.util.List;

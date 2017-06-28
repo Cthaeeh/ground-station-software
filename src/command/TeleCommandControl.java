@@ -25,7 +25,6 @@ public class TeleCommandControl implements Initializable {
 
     private DataModel model ;
     private SerialPortComm serialPortComm;
-    private TelecommandUtil telecommandUtil = new TelecommandUtil();
     @FXML
     private GridView<TeleCommand> gridView;
 
@@ -101,7 +100,7 @@ public class TeleCommandControl implements Initializable {
 
     private void sendCommand(byte[] command){
         if(model.getConfig().isUsingCRC16()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
-            TelecommandUtil.insertCRC(command,model.getConfig().getCrc16positionTC());
+            command = TelecommandUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
         }
         if(addStartStopBytesCheckBox.isSelected()){
             command = TelecommandUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());

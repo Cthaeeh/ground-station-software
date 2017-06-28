@@ -71,7 +71,7 @@ public class SerialEngine {
      * And react appropriate:
      * This means first search for the start Bytes. If they were found read the message.
      */
-    public void readByte() {
+    void readByte() {
         byte[] readBuffer = new byte[1];
         int numRead = serialPort.readBytes(readBuffer, 1);       //Read semi blocking 1 byte.
         if (numRead == 1) {
@@ -85,6 +85,7 @@ public class SerialEngine {
                     break;
             }
         }
+
     }
 
     /**
@@ -93,10 +94,9 @@ public class SerialEngine {
      * @param message the message to write.
      * @return if the method succeeded to send this to the serial port.
      */
-    public boolean writeBytes(byte[] message) {
+    boolean writeBytes(byte[] message) {
         int numWritten = serialPort.writeBytes(message, message.length);
-        if (numWritten == message.length) return true;
-        return false;
+        return numWritten == message.length;
     }
 
     public void stop() {
@@ -107,11 +107,11 @@ public class SerialEngine {
     /**
      * @return the bytes read by this engine since its creation or if you call reset since last reset.
      */
-    public int getBytesRead() {
+    int getBytesRead() {
         return numBytesRead;
     }
 
-    public void resetBytesRead() {
+    void resetBytesRead() {
         numBytesRead = 0;
     }
 

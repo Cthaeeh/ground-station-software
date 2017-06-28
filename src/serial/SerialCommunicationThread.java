@@ -119,10 +119,11 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
+        System.out.println("");
+        System.out.println("Found ID:"+toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
-                System.out.println("Start of Value: " + source.getStartOfValue() + "  " + toString(msgBuffer));
                 if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
             }
@@ -153,7 +154,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     public void send(byte[] command) {
         commandQueue.add(command);
-        Main.programLogger.log(Level.INFO,()->"Commands in Queue: "+commandQueue.size());
+        Main.programLogger.log(Level.INFO,()->"Message: "+toString(command));
     }
 
     public double getByteRate() {

@@ -1,6 +1,8 @@
 package command;
 
+import data.JsonSerializableConfig;
 import main.Main;
+import org.apache.commons.lang3.ArrayUtils;
 import serial.CRC16;
 
 import java.io.ByteArrayOutputStream;
@@ -16,6 +18,8 @@ public class TelecommandUtil {
 
     static CRC16 crc16 = new CRC16();
 
+    private TelecommandUtil(){}
+
     /**
      * Inserts a CRC16 checksum of the message at the specified position into the message
      * if the position is bigger than the length of the message we insert it at the end.
@@ -23,11 +27,12 @@ public class TelecommandUtil {
      * @param position  where to insert the crc16
      * @return the message with the crc inserted.
      */
-    public static byte[] insertCRC(byte[] message, int position) {
+    public static byte[] insertCRC(byte[] message, int position, JsonSerializableConfig.ByteEndianity byteEndianity) {
         crc16.reset();
         crc16.update(message);
         int crc16Int = crc16.getValue();
         byte[] crc16Bytes = {(byte) (crc16Int>>>8),(byte) (crc16Int)};
+        if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(crc16Bytes);
 
         if(position == 0) return concatenate(crc16Bytes,message);
         if(position >= message.length)return concatenate(message,crc16Bytes);

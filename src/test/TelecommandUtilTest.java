@@ -1,6 +1,7 @@
 package test;
 
 import command.TelecommandUtil;
+import data.JsonSerializableConfig;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
  * Created by kai on 6/27/17.
+ * Testing the TeleCommand Util class
  */
 class TelecommandUtilTest {
 
@@ -15,7 +17,7 @@ class TelecommandUtilTest {
     void insertCRC0() {
         byte[] message = {65,66,67};
         byte[] expected = {65,66,67}; //with http://crccalc.com/
-        byte[] actual = TelecommandUtil.insertCRC(message,-1);
+        byte[] actual = TelecommandUtil.insertCRC(message,-1, JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 
@@ -26,7 +28,7 @@ class TelecommandUtilTest {
         byte[] crc16Bytes = DatatypeConverter.parseHexBinary("f508");
         expected[0]=crc16Bytes[0];
         expected[1]=crc16Bytes[1];
-        byte[] actual = TelecommandUtil.insertCRC(message,0);
+        byte[] actual = TelecommandUtil.insertCRC(message,0,JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 
@@ -37,7 +39,7 @@ class TelecommandUtilTest {
         byte[] crc16Bytes = DatatypeConverter.parseHexBinary("f508");
         expected[3]=crc16Bytes[0];
         expected[4]=crc16Bytes[1];
-        byte[] actual = TelecommandUtil.insertCRC(message,22);
+        byte[] actual = TelecommandUtil.insertCRC(message,22,JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 

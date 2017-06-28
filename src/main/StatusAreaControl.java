@@ -18,9 +18,9 @@ import java.util.ResourceBundle;
 public class StatusAreaControl implements Initializable {
 
     //TODO move the color definitions to some other place. So they can be changed at one place ez pz.
-    private static final String colorWhite = "#e8e8e8";
-    private static final String colorRed = "#c63939";
-    private static final String colorGreen = "#1d9141";
+    private static final String COLOR_WHITE = "#e8e8e8";
+    private static final String COLOR_RED = "#c63939";
+    private static final String COLOR_GREEN = "#1d9141";
 
     private SerialPortComm serialPortComm;
 
@@ -83,10 +83,10 @@ public class StatusAreaControl implements Initializable {
     private void updateComPortLabel() {
         if(serialPortComm.isConnected){
             comPortLabel.setText(serialPortComm.getPort());
-            comPortLabel.setTextFill(Color.web(colorWhite));
+            comPortLabel.setTextFill(Color.web(COLOR_WHITE));
         }else {
             comPortLabel.setText("NOT CONNECTED");
-            comPortLabel.setTextFill(Color.web(colorRed));
+            comPortLabel.setTextFill(Color.web(COLOR_RED));
         }
     }
 

@@ -109,7 +109,8 @@ public class SimpleSensor extends DataSource {
                                                             ",because the passed byte array was to big to put it into an integer. ");
                 return;
         }
-        double value = ((double) rawValue * proportionalFactor) + offset;
+        double value = (((double) rawValue )* proportionalFactor) + offset;
+        System.out.println(getName() + " " + value);
         addDataPoint(upTimeSek,value);
         dataLogger.write("UPTIME_SEC;"+ upTimeSek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }

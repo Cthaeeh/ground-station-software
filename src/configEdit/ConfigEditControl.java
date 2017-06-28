@@ -1,4 +1,4 @@
-package config_edit;
+package configEdit;
 
 import data.DataModel;
 import javafx.fxml.FXML;

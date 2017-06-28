@@ -1,7 +1,7 @@
 package main;
 
 import command.TeleCommandControl;
-import config_edit.ConfigEditControl;
+import configEdit.ConfigEditControl;
 import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
