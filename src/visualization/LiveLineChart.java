@@ -23,8 +23,8 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private double maxXVal;
-    private static final double X_INTERVAL_IN_SEC = 60.0;
-    private static final int MAX_DATA_POINTS = 800;
+    private static final double X_INTERVAL_IN_SEC = 5.0;
+    private static final int MAX_DATA_POINTS = 100;
 
     /**
      * Create a new LiveLineChart that will visualize the sensors passed as an parameter.

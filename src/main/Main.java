@@ -32,7 +32,8 @@ public class Main extends Application {
 //     7       yes   // TODO add time functionality.
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
-                     // TODO fix some bug with the LiveLineChart that the line shown is very short.
+                     // TODO add disconnect Button.
+                     // TODO Better Y axis ranging pls
 
 
                  // later maybe
@@ -48,9 +49,6 @@ public class Main extends Application {
     public static Logger programLogger;
     private static FileHandler fileHandler;     //Needed for logging to file.
 
-    /**
-     * The location of the fxml that defines the look of the main window.
-     */
     private static final String MAIN_WINDOW_FXML = "../gui/main_window.fxml";
     private static final String CSS_STYLING = "gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
@@ -108,7 +106,5 @@ public class Main extends Application {
         primaryStage.setMinHeight(850);
         primaryStage.show();
 
-        //startDemoDataThread(model);
     }
-
 }

@@ -110,7 +110,6 @@ public class SimpleSensor extends DataSource {
                 return;
         }
         double value = (((double) rawValue )* proportionalFactor) + offset;
-        System.out.println(getName() + " " + value);
         addDataPoint(upTimeSek,value);
         dataLogger.write("UPTIME_SEC;"+ upTimeSek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }

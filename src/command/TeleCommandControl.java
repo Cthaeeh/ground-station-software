@@ -72,8 +72,8 @@ public class TeleCommandControl implements Initializable {
     }
 
     private void initGridView() {
-        gridView.cellWidthProperty().set(100);
-        gridView.cellHeightProperty().set(50);
+        gridView.cellWidthProperty().set(200);
+        gridView.cellHeightProperty().set(10);
         gridView.setCellFactory(arg0 -> {
             TeleCommandGridCell cell = new TeleCommandGridCell();
             cell.setOnMouseClicked( e -> sendCommand(cell.getCommand().getBytes()));

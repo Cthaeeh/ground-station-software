@@ -119,13 +119,14 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println("");
+        System.out.println(toString(msgBuffer));
         System.out.println("Found ID:"+toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
                 if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
+                System.out.println(source.getName() + "  " + toString(value));
             }
         }
         //TODO add time information.

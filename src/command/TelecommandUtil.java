@@ -16,7 +16,7 @@ import java.util.logging.Level;
  */
 public class TelecommandUtil {
 
-    static CRC16 crc16 = new CRC16();
+    private static CRC16 crc16 = new CRC16();
 
     private TelecommandUtil(){}
 
