@@ -45,6 +45,12 @@ public class SimpleSensor extends DataSource {
         return unit;
     }
 
+    public double getOffset() {
+        return offset;
+    }
+    public double getPropotionalFactor() {
+        return proportionalFactor;
+    }
     public void addListener (SimpleSensorListener listener) {
         listeners.add(listener);
     }

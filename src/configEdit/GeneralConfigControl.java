@@ -1,7 +1,6 @@
 package configEdit;
 
-import data.DataModel;
-import data.JsonSerializableConfig;
+import data.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -16,7 +15,9 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Kai on 25.06.2017.
- * The task of this class is to bind the GUI-Elements to the corresponding fields in the model.
+ *
+ * This class gets an immutable "old" config object. So it can show some initial values in the GUI.
+ * And a mutable ConfigBuilder object that it can change according to the user input.
  */
 public class GeneralConfigControl implements Initializable{
 
@@ -42,21 +43,25 @@ public class GeneralConfigControl implements Initializable{
     private ChoiceBox readModeCheckBox;
     @FXML
     private TextField timeLengthTextField;
+    @FXML
+    public TextField crc16posTcTextfield;
+    @FXML
+    public TextField crc16posTmTextfield;
 
-    private JsonSerializableConfig config;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Cant't do here much because we do not have the model yet.
     }
 
-    public void initModel(DataModel model) {
-        this.config = model.getConfig();
-        initCheckBoxes();
-        initTextFields();
+    public void initModel(Config oldConfig) {
+        initCheckBoxes(oldConfig);
+        initTextFields(oldConfig);
     }
 
-
-    private void initTextFields() {
+    /**
+     * Init the Textfields with values from the config.
+     */
+    private void initTextFields(Config config) {
         timePositionTextField.setText(String.valueOf(config.getTimePosition()));
         maxMessageLengthTextField.setText(String.valueOf(config.getMaxMessageLength()));
         messageLengthTextField.setText(String.valueOf(config.getMessageLength()));
@@ -66,12 +71,17 @@ public class GeneralConfigControl implements Initializable{
         startBytesTextField.setText(Encoder.encode(config.getStartBytes()));
         useCrcCheckbox.selectedProperty().setValue(config.isUsingCRC16());
         timeLengthTextField.setText(String.valueOf(config.getTimeLength()));
+        crc16posTcTextfield.setText(String.valueOf(config.getCrc16positionTC()));
+        crc16posTmTextfield.setText(String.valueOf(config.getCrc16positionTM()));
     }
 
-    private void initCheckBoxes() {
-        byteEndianityCheckBox.getItems().setAll(JsonSerializableConfig.ByteEndianity.values());
+    /**
+     * Init the Checkboxes with values from the config.
+     */
+    private void initCheckBoxes(Config config) {
+        byteEndianityCheckBox.getItems().setAll(Config.ByteEndianity.values());
         byteEndianityCheckBox.getSelectionModel().select(config.getByteEndianity());
-        readModeCheckBox.getItems().setAll(JsonSerializableConfig.ReadMode.values());
+        readModeCheckBox.getItems().setAll(Config.ReadMode.values());
         readModeCheckBox.getSelectionModel().select(config.getReadMode());
     }
 
@@ -108,6 +118,13 @@ public class GeneralConfigControl implements Initializable{
     }
 
     public void timeLengthKeyTyped(KeyEvent keyEvent) {
+
+    }
+
+    public void crc16PosTcKeyTyped(KeyEvent keyEvent) {
+    }
+
+    public void crc16PosTmKeyTyped(KeyEvent keyEvent) {
 
     }
 }

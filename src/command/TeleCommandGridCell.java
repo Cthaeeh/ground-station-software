@@ -11,13 +11,13 @@ import org.controlsfx.control.GridCell;
 public class TeleCommandGridCell extends GridCell<TeleCommand> {
 
     //TODO make this fancy.
+    // TODO do not create new objects when update is called.
 
     private Label label;
     private TeleCommand command;
 
     @Override
     protected void updateItem(TeleCommand item, boolean empty) {
-        // TODO Auto-generated method stub
         super.updateItem(item, empty);
         // create the view;
         HBox box = new HBox();

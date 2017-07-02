@@ -1,7 +1,7 @@
 package test;
 
 import command.TelecommandUtil;
-import data.JsonSerializableConfig;
+import data.Config;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -17,7 +17,7 @@ class TelecommandUtilTest {
     void insertCRC0() {
         byte[] message = {65,66,67};
         byte[] expected = {65,66,67}; //with http://crccalc.com/
-        byte[] actual = TelecommandUtil.insertCRC(message,-1, JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
+        byte[] actual = TelecommandUtil.insertCRC(message,-1, Config.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 
@@ -28,7 +28,7 @@ class TelecommandUtilTest {
         byte[] crc16Bytes = DatatypeConverter.parseHexBinary("f508");
         expected[0]=crc16Bytes[0];
         expected[1]=crc16Bytes[1];
-        byte[] actual = TelecommandUtil.insertCRC(message,0,JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
+        byte[] actual = TelecommandUtil.insertCRC(message,0, Config.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 
@@ -39,7 +39,7 @@ class TelecommandUtilTest {
         byte[] crc16Bytes = DatatypeConverter.parseHexBinary("f508");
         expected[3]=crc16Bytes[0];
         expected[4]=crc16Bytes[1];
-        byte[] actual = TelecommandUtil.insertCRC(message,22,JsonSerializableConfig.ByteEndianity.LITTLE_ENDIAN);
+        byte[] actual = TelecommandUtil.insertCRC(message,22, Config.ByteEndianity.LITTLE_ENDIAN);
         assertArrayEquals(expected,actual);
     }
 

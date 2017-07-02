@@ -1,7 +1,7 @@
 package serial;
 
 import com.fazecast.jSerialComm.SerialPort;
-import data.JsonSerializableConfig;
+import data.Config;
 import main.Main;
 
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class SerialEngine {
     private final SerialPort serialPort;
 
     private ReadState readState;
-    private JsonSerializableConfig.ReadMode readMode;
+    private Config.ReadMode readMode;
     /**
      * Where are we inside the Message ? At the first Byte or where ?
      */
@@ -55,7 +55,7 @@ public class SerialEngine {
      */
     private final byte[] msgBuffer;
 
-    SerialEngine(MessageListener listener, SerialPort serialPort, JsonSerializableConfig config) {
+    SerialEngine(MessageListener listener, SerialPort serialPort, Config config) {
         this.serialPort = serialPort;
         this.msgListener = listener;
         startBytes = config.getStartBytes();

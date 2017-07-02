@@ -1,6 +1,6 @@
 package command;
 
-import data.JsonSerializableConfig;
+import data.Config;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
 import serial.CRC16;
@@ -27,12 +27,12 @@ public class TelecommandUtil {
      * @param position  where to insert the crc16
      * @return the message with the crc inserted.
      */
-    public static byte[] insertCRC(byte[] message, int position, JsonSerializableConfig.ByteEndianity byteEndianity) {
+    public static byte[] insertCRC(byte[] message, int position, Config.ByteEndianity byteEndianity) {
         crc16.reset();
         crc16.update(message);
         int crc16Int = crc16.getValue();
         byte[] crc16Bytes = {(byte) (crc16Int>>>8),(byte) (crc16Int)};
-        if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(crc16Bytes);
+        if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(crc16Bytes);
 
         if(position == 0) return concatenate(crc16Bytes,message);
         if(position >= message.length)return concatenate(message,crc16Bytes);

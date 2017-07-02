@@ -10,6 +10,22 @@ import javafx.beans.property.StringProperty;
  */
 public abstract class DataSource {
 
+    //Types of datasources
+    public enum Type{
+        SIMPLE_SENSOR, STATE, BIT_FLAG;
+
+        /**
+         * Returns an instance of the corresponding class.
+         * @return
+         */
+        public DataSource getInstance() {
+            if(this==SIMPLE_SENSOR) return new SimpleSensor();
+            if(this==STATE) return new State();
+            if(this==BIT_FLAG)return new BitFlag();
+            throw new IllegalStateException("There is no associated class to this enum" + this);
+        }
+    }
+
     protected StringProperty name;
     protected StringProperty description;
     protected static final DataLogger dataLogger = new DataLogger();
@@ -56,4 +72,8 @@ public abstract class DataSource {
      * @param bytes the value encoded as bytes.
      */
     public abstract void insertTimedValue(byte[] bytes, long time);
+
+    public String getDescription() {
+        return description.getValue();
+    }
 }

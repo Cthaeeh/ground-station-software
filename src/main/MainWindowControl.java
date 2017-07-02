@@ -227,14 +227,13 @@ public class MainWindowControl implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
 
-            ConfigEditControl configEditControl = loader.getController();
             scene.getStylesheets().add("gui/darkTheme.css");
 
             configEditStage.initModality(Modality.NONE);
             configEditStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
             configEditStage.setTitle("Configuration Editor");
             configEditStage.setScene(scene);
-            configEditStage.setMinWidth(600);
+            configEditStage.setMinWidth(900);
             configEditStage.setMinHeight(600);
             configEditStage.show();
 

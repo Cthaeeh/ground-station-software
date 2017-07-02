@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import gui.NumberTextField?>
 <GridPane hgap="3.0" style="-fx-border-width: 0 1 0 0 ; -fx-border-color: black; -fx-border-style: solid;" vgap="3.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="configEdit.GeneralConfigControl">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="165.0" />
@@ -25,9 +26,10 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
         <Label alignment="TOP_LEFT" style="-fx-font-size: 18;" text="General:" underline="true">
@@ -44,19 +46,23 @@
         <CheckBox fx:id="useCrcCheckbox" mnemonicParsing="false" onMouseClicked="#useCrcClicked" text="Use CRC16 ?" GridPane.rowIndex="7" />
         <Label text="Time position:" GridPane.rowIndex="8" />
         <Label text="Time length:" GridPane.rowIndex="9" />
-        <Label text="Byte endianity:" GridPane.rowIndex="10" />
-        <Label text="Read Mode:" GridPane.rowIndex="11" />
+        <Label text="Byte endianity:" GridPane.rowIndex="12" />
+        <Label text="Read Mode:" GridPane.rowIndex="13" />
         <TextField fx:id="startBytesTextField" onKeyTyped="#startBytesKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <TextField fx:id="stopBytesTextField" onKeyTyped="#stopBytesKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField fx:id="idPositionTextField" onKeyTyped="#IdPositionKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <TextField fx:id="idLengthTextField" onKeyTyped="#IdLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <TextField fx:id="messageLengthTextField" onKeyTyped="#MessageLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-        <TextField fx:id="maxMessageLengthTextField" onKeyTyped="#MaxMessageLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-        <TextField fx:id="timePositionTextField" editable="false" onKeyTyped="#timePositionKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-        <ChoiceBox fx:id="byteEndianityCheckBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-        <ChoiceBox fx:id="readModeCheckBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-        <TextField fx:id="timeLengthTextField" editable="false" onKeyTyped="#timeLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label fx:id="warningLabel" GridPane.rowIndex="12" />
+        <NumberTextField fx:id="idPositionTextField" onKeyTyped="#IdPositionKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <NumberTextField fx:id="idLengthTextField" onKeyTyped="#IdLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <NumberTextField fx:id="messageLengthTextField" onKeyTyped="#MessageLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <NumberTextField fx:id="maxMessageLengthTextField" onKeyTyped="#MaxMessageLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <NumberTextField fx:id="timePositionTextField" editable="false" onKeyTyped="#timePositionKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <ChoiceBox fx:id="byteEndianityCheckBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+        <ChoiceBox fx:id="readModeCheckBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+        <NumberTextField fx:id="timeLengthTextField" editable="false" onKeyTyped="#timeLengthKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label fx:id="warningLabel" GridPane.rowIndex="10" />
+      <Label text="CRC16 position TC:" GridPane.rowIndex="10" />
+      <Label text="CRC16 position TM:" GridPane.rowIndex="11" />
+      <NumberTextField fx:id="crc16posTcTextfield" onKeyTyped="#crc16PosTcKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <NumberTextField fx:id="crc16posTmTextfield" onKeyTyped="#crc16PosTmKeyTyped" GridPane.columnIndex="1" GridPane.rowIndex="11" />
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

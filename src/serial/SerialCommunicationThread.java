@@ -2,7 +2,7 @@ package serial;
 
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
-import data.JsonSerializableConfig;
+import data.Config;
 import data.sources.DataSource;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
@@ -31,7 +31,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     //Message configuration:
     private final int idPosition;
     private final int idLength;
-    private final JsonSerializableConfig.ByteEndianity byteEndianity;
+    private final Config.ByteEndianity byteEndianity;
     /**
      * Maps message id's to corresponding lists of sources, that can be found in this kind of message.
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
@@ -124,9 +124,8 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
-                if(byteEndianity == JsonSerializableConfig.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
+                if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
                 source.insertValue(value);
-                System.out.println(source.getName() + "  " + toString(value));
             }
         }
         //TODO add time information.

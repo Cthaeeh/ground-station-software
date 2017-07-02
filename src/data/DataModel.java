@@ -19,7 +19,7 @@ import java.util.logging.Level;
  */
 public class DataModel {
 
-    private JsonSerializableConfig config;
+    private Config config;
     private final ObservableList<DataSource> dataSources = FXCollections.observableArrayList();
     private final ObservableList<TeleCommand> teleCommands = FXCollections.observableArrayList();;
 
@@ -32,7 +32,7 @@ public class DataModel {
     }
 
     //TODO is this really the right way ?
-    public JsonSerializableConfig getConfig(){
+    public Config getConfig(){
         return config;
     }
 
@@ -41,7 +41,7 @@ public class DataModel {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(StringProperty.class, new StringPropertyAdapter());
         Gson gson = gsonBuilder.create();
-        config =  gson.fromJson(IOUtility.readFile(file),JsonSerializableConfig.class);
+        config =  gson.fromJson(IOUtility.readFile(file), Config.class);
         dataSources.clear();
         dataSources.addAll(config.getDataSources());
         teleCommands.clear();
@@ -58,7 +58,7 @@ public class DataModel {
      * In order to create a new config.
      */
     public void loadEmptyConfig() {
-        config = new JsonSerializableConfig();
+        config = new Config();
         dataSources.clear();
         teleCommands.clear();
     }

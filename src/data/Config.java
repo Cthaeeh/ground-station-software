@@ -8,15 +8,12 @@ import java.util.List;
 
 /**
  * Created by Kai on 25.05.2017.
+ * Effectively final because no public setters.
  * This class can hold all the data, that is needed to decode incoming data from the serial Port and how to decode it.
  */
-public class JsonSerializableConfig {
+public class Config {
 
-    public int getCrc16positionTM() {
-        return crc16positionTM;
-    }
-
-    public enum ByteEndianity{
+    public enum ByteEndianity {
         BIG_ENDIAN, LITTLE_ENDIAN
     }
 
@@ -27,11 +24,11 @@ public class JsonSerializableConfig {
         FIXED_MSG_LENGTH, STOP_BYTES, HEADER_INFORMATION;
     }
 
-    private ArrayList<TeleCommand> teleCommands;
+    private ArrayList<TeleCommand> teleCommands = new ArrayList<>();
     /**
      * Contains all available Data Sources like a Temperature-Sensor etc.
      */
-    private ArrayList<SimpleSensor> simpleSensors;
+    private ArrayList<SimpleSensor> simpleSensors = new ArrayList<>();
     /**
      * The start bytes of a message send through Serial Communication.
      */
@@ -77,6 +74,7 @@ public class JsonSerializableConfig {
      * -1 than this will not be used at all.
      */
     private int crc16positionTM = 0;
+
     /**
      * the position of the byte(s) that indicate when the measurement was made.
      * The Position is relative to the first msg byte (not including start stop bytes.)
@@ -94,17 +92,17 @@ public class JsonSerializableConfig {
     private ByteEndianity byteEndianity = ByteEndianity.LITTLE_ENDIAN;
 
     /**
-     *  How the End of a message is found:
-     *  FIXED MSG LENGTH: just read a previously set number of bytes after u found a start Byte.
-     *      This is somewhat error prone because what if in between the message is skipped because of bad connection
-     *      So it should be used with CRC - 16 only.
-     *  STOP BYTES: just wait for the stop bytes to appear. But if more bytes are read than in maxMessageLength is specified the message is discarded.
+     * How the End of a message is found:
+     * FIXED MSG LENGTH: just read a previously set number of bytes after u found a start Byte.
+     * This is somewhat error prone because what if in between the message is skipped because of bad connection
+     * So it should be used with CRC - 16 only.
+     * STOP BYTES: just wait for the stop bytes to appear. But if more bytes are read than in maxMessageLength is specified the message is discarded.
      */
     private ReadMode readMode = ReadMode.FIXED_MSG_LENGTH;
 
     public List<DataSource> getDataSources() {
         ArrayList<DataSource> dataSources = new ArrayList<>();
-        for (SimpleSensor sensor: simpleSensors) {
+        for (SimpleSensor sensor : simpleSensors) {
             dataSources.add(sensor);
         }
         return dataSources;
@@ -118,7 +116,6 @@ public class JsonSerializableConfig {
     }
 
     /**
-     *
      * @return the stop Bytes of the Message we want to receive. This will override the message Length if the stop Bytes are specified.
      */
     public byte[] getStopBytes() {
@@ -127,6 +124,7 @@ public class JsonSerializableConfig {
 
     /**
      * All msg must have the same length.
+     *
      * @return
      */
     public int getMessageLength() {
@@ -136,6 +134,7 @@ public class JsonSerializableConfig {
     /**
      * Gets the maximum message Length.
      * If one uses fixed message length, then max = fixed message length.
+     *
      * @return
      */
     public int getMaxMessageLength() {
@@ -157,6 +156,10 @@ public class JsonSerializableConfig {
         return crc16positionTC;
     }
 
+    public int getCrc16positionTM() {
+        return crc16positionTM;
+    }
+
     public int getTimePosition() {
         return timePosition;
     }
@@ -173,11 +176,31 @@ public class JsonSerializableConfig {
         return idLength;
     }
 
-    public ByteEndianity getByteEndianity(){
+    public ByteEndianity getByteEndianity() {
         return byteEndianity;
     }
 
     public List<TeleCommand> getTeleCommands() {
         return teleCommands;
+    }
+
+    public static class ConfigBuilder {
+        private ArrayList<TeleCommand> teleCommands;
+        private ArrayList<SimpleSensor> simpleSensors;
+        private byte[] startBytes;
+        private byte[] stopBytes;
+        private int messageLength;
+        private int maxMessageLength;
+        private boolean isUsingCRC16;
+        private int crc16positionTC = 0;
+        private int crc16positionTM = 0;
+        private int timePosition = -1;
+        private int timeLength = 0;
+        private ByteEndianity byteEndianity = ByteEndianity.LITTLE_ENDIAN;
+        private ReadMode readMode = ReadMode.FIXED_MSG_LENGTH;
+
+        public ConfigBuilder(){
+
+        }
     }
 }
