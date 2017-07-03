@@ -1,6 +1,7 @@
-package visualization;
+package visualization.LiveLineChart;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -41,24 +42,46 @@ public class BoundsDialog extends Dialog<Bounds> {
         dialogPane.getStylesheets().add("gui/darkTheme.css");
         dialogPane.getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
         initTextFields();
+        initValidator();
         initCheckBox();
         dialogPane.setContent(initGrid());
         Platform.runLater(yLowerBoundField::requestFocus);
         this.setResultConverter((ButtonType button) -> {
             if (button == ButtonType.APPLY) {
                 return getInput();
-
             }
             return null;
         });
     }
 
+    /**
+     * Adds Listeners to all Input Fields that looks if they are in a valid state.
+     */
+    private void initValidator() {
+        this.getDialogPane().lookupButton(ButtonType.APPLY).disableProperty().bind(Bindings.when(
+                yAutoRanging.selectedProperty()
+                        .or(yLowerBoundField.textProperty().isNotEqualTo(""))
+                        .and(yUpperBoundField.textProperty().isNotEqualTo(""))
+                        .and(xIntervalField.textProperty().isNotEqualTo("")))
+                .then(false).otherwise(true));
+    }
+
+    /**
+     * Collects the information the user did enter
+     *
+     * @return
+     */
     private Bounds getInput() {
-        //TODO check for "" inputs.
         try {
-            return new Bounds(Double.parseDouble(yLowerBoundField.getText()),
-                    Double.parseDouble(yUpperBoundField.getText()),
-                    Double.parseDouble(xIntervalField.getText()), yAutoRanging.isSelected());
+            if (yAutoRanging.isSelected()) {
+                return new Bounds.Builder(true).build();
+            } else {
+                return new Bounds.Builder(false)
+                        .xTimeIntervalSec(Double.parseDouble(xIntervalField.getText()))
+                        .yUpperBound(Double.parseDouble(yUpperBoundField.getText()))
+                        .yLowerBound(Double.parseDouble(yLowerBoundField.getText()))
+                        .build();
+            }
         } catch (NumberFormatException ex) {
             Main.programLogger.log(Level.WARNING, () -> {
                 return "Could not parse :" + yUpperBoundField.getText() +

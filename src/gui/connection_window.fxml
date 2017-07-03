@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ConnectionWindowControl">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ConnectionWindowControl">
    <children>
       <Button alignment="TOP_CENTER" contentDisplay="CENTER" onMouseClicked="#btnConnectClick" prefHeight="31.0" prefWidth="150.0" text="Connect" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>

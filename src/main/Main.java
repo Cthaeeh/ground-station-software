@@ -26,6 +26,7 @@ public class Main extends Application {
 //     1       yes   // TODO find a convenient way to edit a config file.
 //             yes   // TODO add optional params to tele-command functionality.
 //             yes   // TODO visualize bitFlags, enums.
+//             yes   // TODO add something like a console as a visualization element where plain text is shown in order of appearance.
 //                   // TODO somewhere make sure 2's complement is mentioned.
 //     6       yes   // TODO add CRC 16 functionality. (for TM and TC)
 //             yes   // TODO byte stuffing.
@@ -33,7 +34,6 @@ public class Main extends Application {
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
                      // TODO add disconnect Button.
-                     // TODO Better Y axis ranging pls
                      // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
 
 
@@ -41,7 +41,6 @@ public class Main extends Application {
 //               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
                  // TODO add support for float and double and unsigned int maybe ??
 //               // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
-                 // TODO find a generic as possible way of giving a dataSource a formula on how to translate a raw value to some actual measurement.
                  // TODO style everything consistently . with base 16 ez ez ez
                  // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
 //               // TODO app logo
