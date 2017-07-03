@@ -7,9 +7,11 @@ import data.sources.SimpleSensor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.input.MouseButton;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A live line chart that displays the data from the stuff it got in the constructor.
@@ -23,7 +25,8 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
     final NumberAxis xAxis;
     final NumberAxis yAxis;
     private double maxXVal;
-    private static final double X_INTERVAL_IN_SEC = 5.0;
+    //default bounds.
+    private Bounds bounds = new Bounds(0,10,5,true);
     private static final int MAX_DATA_POINTS = 100;
 
     /**
@@ -48,7 +51,23 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
         this.setVerticalGridLinesVisible(false);
         this.sensors = sensors;
         createSeries(sensors);
+        initCustomRangingDialog();
         this.getData().addAll(seriesDataSourceMap.values());
+    }
+
+    private void initCustomRangingDialog() {
+        // TODO overlapping with the contextMenu tht is shown in the whole visualization area.
+        this.setOnMouseClicked(e->{
+            System.out.println(e.getButton().name());
+            if(e.getButton() == MouseButton.SECONDARY){
+                BoundsDialog dialog = new BoundsDialog();
+                Optional<Bounds> boundsOptional = dialog.showAndWait();
+                boundsOptional.ifPresent((Bounds bounds) -> {
+                     this.bounds = bounds;
+                     initializeYAxis();
+                });
+            }
+        });
     }
 
     private void initializeXAxis() {
@@ -61,7 +80,11 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
 
     private void initializeYAxis() {
         yAxis.setForceZeroInRange(false);
-        yAxis.setAutoRanging(true);
+        yAxis.setAutoRanging(bounds.yAutoRange());
+        if(!bounds.yAutoRange()){
+            yAxis.setLowerBound(bounds.getyLowerBound());
+            yAxis.setUpperBound(bounds.getyUpperBound());
+        }
         yAxis.setTickLabelsVisible(true);
         yAxis.setTickMarkVisible(true);
         yAxis.setMinorTickVisible(false);
@@ -95,10 +118,10 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
 
         if(point.x.doubleValue()>maxXVal){
             maxXVal = point.x.doubleValue();
-            xAxis.setUpperBound(maxXVal + (X_INTERVAL_IN_SEC)/20);
+            xAxis.setUpperBound(maxXVal + (bounds.getxTimeSpanSec())/20);
         }
 
-        xAxis.setLowerBound(maxXVal - X_INTERVAL_IN_SEC);
+        xAxis.setLowerBound(maxXVal - bounds.getxTimeSpanSec());
     }
 
     /**

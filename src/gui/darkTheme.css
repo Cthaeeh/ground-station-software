@@ -130,3 +130,29 @@
     -fx-text-fill: #e8e8e8;
 }
 
+.check-box .box {
+
+-fx-background-color: #3c3c3c;
+-fx-border-radius:1px;
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+-fx-background-color: #3c3c3c;
+}
+
+.dialog-pane {
+    -fx-background-color: #282828;
+    -fx-padding: 0;
+}
+
+.dialog-pane:header .header-panel {
+  -fx-background-color: #282828;
+}

@@ -34,6 +34,7 @@ public class Main extends Application {
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
                      // TODO add disconnect Button.
                      // TODO Better Y axis ranging pls
+                     // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
 
 
                  // later maybe
