@@ -1,7 +1,9 @@
 package data;
 
+import data.sources.BitFlag;
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
+import data.sources.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +28,17 @@ public class Config {
 
     private ArrayList<TeleCommand> teleCommands = new ArrayList<>();
     /**
-     * Contains all available Data Sources like a Temperature-Sensor etc.
+     * Contains all available Simple Sensors like a Temperature-Sensor etc.
      */
     private ArrayList<SimpleSensor> simpleSensors = new ArrayList<>();
+    /**
+     * Contains all available States like for example SENDING-STATE etc.
+     */
+    private ArrayList<State> states = new ArrayList<>();
+    /**
+     * Contains all available BitFlags like for example GO PRO ON ;
+     */
+    private ArrayList<BitFlag> bitFlags = new ArrayList<>();
     /**
      * The start bytes of a message send through Serial Communication.
      */
@@ -104,6 +114,9 @@ public class Config {
         ArrayList<DataSource> dataSources = new ArrayList<>();
         for (SimpleSensor sensor : simpleSensors) {
             dataSources.add(sensor);
+        }
+        for (State state : states){
+            dataSources.add(state);
         }
         return dataSources;
     }

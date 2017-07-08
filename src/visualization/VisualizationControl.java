@@ -150,11 +150,7 @@ public class VisualizationControl {
      * @return the TextualPresentation as an Visualization Element.
      */
     private VisualizationElement createTextualPresentation(ObservableList<DataSource> dataSources){
-        List<SimpleSensor> simpleSensors = new ArrayList<>();
-        for(DataSource dataSource : dataSources){                                               //Add dataSources that can be displayed by this type of visualization Element to a list.
-            if(dataSource instanceof SimpleSensor) simpleSensors.add((SimpleSensor)dataSource);
-        }
-        TextualPresentation newTextual = new TextualPresentation(simpleSensors);
+        TextualPresentation newTextual = new TextualPresentation(dataSources);
         pane.getChildren().add(newTextual);
         return newTextual;
     }

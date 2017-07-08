@@ -3,6 +3,8 @@ package data.sources;
 import data.DataLogger;
 import javafx.beans.property.StringProperty;
 
+import java.util.ArrayList;
+
 /**
  * A DataSource can be a simple temperature sensor, or a GPS sensor, or a bit flag or whatever.
  * But every data Source has a Name, Description, a messageId, a length of value, a start of value.
@@ -30,6 +32,7 @@ public abstract class DataSource {
     protected StringProperty description;
     protected static final DataLogger dataLogger = new DataLogger();
 
+    //TODO split the Json specfific stuff from the rest
     //Fields for identifying this data-source (e.g a temp sensor or whatever) in a data package coming from the serial-port.
     private byte[] messageId;
     private int startOfValue = 0;

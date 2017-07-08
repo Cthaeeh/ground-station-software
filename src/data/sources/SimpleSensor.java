@@ -1,6 +1,7 @@
 package data.sources;
 
 import data.Point;
+import data.TimeUtility;
 import javafx.animation.AnimationTimer;
 import main.Main;
 
@@ -33,8 +34,6 @@ public class SimpleSensor extends DataSource {
      */
     private double proportionalFactor = 1.0;
 
-    private static final long START_TIME = System.nanoTime();
-
     //TODO think about the idea that a dataSource can have more than one messageId + startOfValue , because it could occur in different messages.
 
     public SimpleSensor(){
@@ -48,9 +47,11 @@ public class SimpleSensor extends DataSource {
     public double getOffset() {
         return offset;
     }
+
     public double getPropotionalFactor() {
         return proportionalFactor;
     }
+
     public void addListener (SimpleSensorListener listener) {
         listeners.add(listener);
     }
@@ -96,7 +97,6 @@ public class SimpleSensor extends DataSource {
     @Override
     public void insertValue(byte[] bytes) {
         int rawValue;
-        double upTimeSek = ((double)((System.nanoTime() - START_TIME)/1000000))/1000;   //simple way to get uptime in sec in the format of X.XXX sek.
         switch (bytes.length){
             case 1:
                 rawValue = bytes[0];
@@ -116,13 +116,14 @@ public class SimpleSensor extends DataSource {
                 return;
         }
         double value = (((double) rawValue )* proportionalFactor) + offset;
-        addDataPoint(upTimeSek,value);
-        dataLogger.write("UPTIME_SEC;"+ upTimeSek + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
+        addDataPoint(TimeUtility.getUptimeSec(),value);
+        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }
 
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
+        Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
         insertValue(bytes);
     }
 
