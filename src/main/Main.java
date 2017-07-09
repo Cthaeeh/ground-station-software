@@ -27,7 +27,6 @@ public class Main extends Application {
 //             yes   // TODO add optional params to tele-command functionality.
 //             yes   // TODO add something like a console as a visualization element where plain text is shown in order of appearance.
 //                   // TODO somewhere make sure 2's complement is mentioned.
-//     6       yes   // TODO add CRC 16 functionality. (for TM )
 //     7       yes   // TODO add time functionality.
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.

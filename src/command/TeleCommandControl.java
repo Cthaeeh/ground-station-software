@@ -12,6 +12,7 @@ import main.Encoder;
 import main.Main;
 import org.controlsfx.control.GridView;
 import serial.SerialPortComm;
+import serial.TmTcUtil;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -100,10 +101,10 @@ public class TeleCommandControl implements Initializable {
 
     private void sendCommand(byte[] command){
         if(model.getConfig().isUsingCRC16()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
-            command = TelecommandUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
+            command = TmTcUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
         }
         if(addStartStopBytesCheckBox.isSelected()){
-            command = TelecommandUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
+            command = TmTcUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
         }
 
         serialPortComm.send(command);
