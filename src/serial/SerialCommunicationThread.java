@@ -119,12 +119,11 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private void decodeMessage(byte[] msgBuffer) {
         //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println(toString(msgBuffer));
-        System.out.println("Found ID:"+toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
                 if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
+                System.out.println(source.getName() + " " + toString(value));
                 source.insertValue(value);
             }
         }
@@ -162,10 +161,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     }
 
     public boolean isRunningSmooth() {
-        if(System.currentTimeMillis() - lastTimeSeen > 1000){
-            return false;
-        }
-        return true;
+        return System.currentTimeMillis() - lastTimeSeen <= 1000;
     }
 
     public void stopThread(){

@@ -38,7 +38,6 @@
 /*
         Table-View
 */
-
 .table-view{
    -fx-background-color: #323232;
 }
@@ -148,6 +147,9 @@
 -fx-background-color: #3c3c3c;
 }
 
+/*
+Dialog Pane
+*/
 .dialog-pane {
     -fx-background-color: #282828;
     -fx-padding: 0;

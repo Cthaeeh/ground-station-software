@@ -15,11 +15,9 @@ import java.util.function.UnaryOperator;
  */
 public class ConnectionWindowControl
 {
-    private static final String colorWhite = "#e8e8e8";
     private static final String colorRed = "#c63939";
     private static final String colorGreen = "#1d9141";
     private static final String defaultStatus = "NOT CONNECTED";
-    //TODO so the user can also reopen this window then u should also show the correct information.
 
     @FXML
     private TextField baudRateInput;
@@ -27,6 +25,8 @@ public class ConnectionWindowControl
     private ChoiceBox COM_PortChoiceBox;
     @FXML
     private Label connectionStatusLabel;
+    @FXML
+    private Button disconnectButton;
 
     private SerialPortComm serialPortComm;
 
@@ -42,14 +42,12 @@ public class ConnectionWindowControl
         if(serialPortComm.isConnected){
             connectionStatusLabel.setText("CONNECTED");
             connectionStatusLabel.setTextFill(Color.web(colorGreen));
-            System.out.println("got here!");
             return;
         }else {
             connectionStatusLabel.setText(defaultStatus);
             connectionStatusLabel.setTextFill(Color.web(colorRed));
         }
     }
-
 
     private void initializeCOM_PortChoiceBox() {
         ObservableList<String> obList = FXCollections.observableList(serialPortComm.getAvailablePorts());
@@ -96,6 +94,7 @@ public class ConnectionWindowControl
         serialPortComm.connect(COM_PortChoiceBox.getValue().toString(),baudRate);
         if(serialPortComm.isConnected){
             connectionStatusLabel.setText("CONNECTED");
+
             connectionStatusLabel.setTextFill(Color.web(colorGreen));
         }else {
             connectionStatusLabel.setText("Connection failed");
@@ -107,6 +106,15 @@ public class ConnectionWindowControl
     private void btnShowDataClick(){
         Stage stage = (Stage) COM_PortChoiceBox.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnDisconnectClick(){
+        if(serialPortComm.isConnected){
+            serialPortComm.disconnect();
+            connectionStatusLabel.setText(defaultStatus);
+            connectionStatusLabel.setTextFill(Color.web(colorRed));
+        }
     }
 
     public void initCommPortConnection(SerialPortComm serialPortComm) {

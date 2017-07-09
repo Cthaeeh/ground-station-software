@@ -7,22 +7,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="400" prefWidth="600" minWidth="300" minHeight="200" fx:controller="visualization.DataSourceSelectionControl" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" >
+<StackPane minHeight="200" minWidth="300" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualization.DataSourceSelectionControl">
     <children>
         <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#btnOkayClick" text="Okay" StackPane.alignment="BOTTOM_RIGHT" />
         <Label alignment="TOP_LEFT" text="Choose data source to display, use STRG to select multiple data sources:" StackPane.alignment="TOP_LEFT" />
-        <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="1494.0" StackPane.alignment="CENTER_LEFT">
+        <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="350.0" StackPane.alignment="CENTER_LEFT">
             <columns>
-                <TableColumn prefWidth="150" minWidth="150" text="Data source" fx:id="nameColumn"/>
-                <TableColumn prefWidth="200" minWidth="50" text="Description" fx:id="descriptionColumn"/>
+                <TableColumn fx:id="nameColumn" minWidth="150" prefWidth="150" text="Data source" />
+                <TableColumn fx:id="descriptionColumn" minWidth="50" prefWidth="200" text="Description" />
             </columns>
                <StackPane.margin>
                   <Insets bottom="35.0" top="35.0" />
                </StackPane.margin>
         </TableView>
-        <ChoiceBox prefWidth="150.0" StackPane.alignment="BOTTOM_LEFT" fx:id="presentationMode">
+        <ChoiceBox fx:id="presentationMode" prefWidth="150.0" StackPane.alignment="BOTTOM_LEFT">
             <StackPane.margin>
                 <Insets left="100.0" />
             </StackPane.margin>

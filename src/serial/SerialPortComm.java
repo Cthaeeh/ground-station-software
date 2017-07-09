@@ -3,7 +3,6 @@ package serial;
 import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
 import main.Main;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ import static com.fazecast.jSerialComm.SerialPort.TIMEOUT_WRITE_SEMI_BLOCKING;
  */
 public class SerialPortComm {
 
+    //TODO maybe keep a boolean property for the aliveness of the thread. ??? This is also useful for the rest.
     private SerialPort serialPort;
     private SerialCommunicationThread communicationThread;
     public boolean isConnected = false;
@@ -88,7 +88,7 @@ public class SerialPortComm {
     }
 
     public double getByteRate() {
-        if(communicationThread!=null){
+        if(communicationThread!=null && communicationThread.isAlive()){
             return communicationThread.getByteRate();
         }
         return 0;

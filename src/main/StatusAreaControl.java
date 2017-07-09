@@ -96,18 +96,18 @@ public class StatusAreaControl implements Initializable {
     private void updateByteRateLabel() {
         double byteRate = serialPortComm.getByteRate();
         if(byteRate<1000.0){
-            byteRateLabel.setText((int)byteRate + " byte/s");
+            byteRateLabel.setText((int)byteRate + " B/s");
             return;
         }
         if(byteRate<1000000.0){
-            byteRateLabel.setText((int)byteRate/1000.0 + " Kilobyte/s");
+            byteRateLabel.setText((int)byteRate/1000.0 + " KB/s");
             return;
         }
         if(byteRate<1000000000.0){
-            byteRateLabel.setText((int)byteRate/1000000.0 + " Megabyte/s");
+            byteRateLabel.setText((int)byteRate/1000000.0 + " MB/s");
             return;
         }
-        byteRateLabel.setText((int)byteRate/1000000000.0 + " Gigabyte/s");
+        byteRateLabel.setText((int)byteRate/1000000000.0 + " GB/s");
     }
 
 }

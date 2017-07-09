@@ -1,6 +1,7 @@
 package data.sources;
 
 import data.Point;
+import data.TimeUtility;
 import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Kai on 04.06.2017.
+ * For sending flags as telemetry.
  */
 public class BitFlag extends DataSource {
 
@@ -17,10 +19,10 @@ public class BitFlag extends DataSource {
     private ConcurrentLinkedQueue<Point<Boolean>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<BitFlagListener> listeners = new ArrayList<>();
 
-    //TODO add bitflag specific stuff.
-
-    private static final long START_TIME = System.nanoTime();
-
+    /**
+     * The position of the bit for the flag in the bytes that are speccified in the abstract datasource.
+     */
+    private int bitPosition;
 
     public BitFlag(){
         informListeners();
@@ -38,12 +40,13 @@ public class BitFlag extends DataSource {
     public void removeListeners(BitFlagListener toBeRemoved) {
         listeners.remove(toBeRemoved);
     }
+
     /**
      * gets called in the JavaFX Main thread.
      * Iterates over all Listeners and informs them.
      */
     private void informListeners() {
-        BitFlag bitFlag = this;   //TODO remove this ugliness.
+        BitFlag bitFlag = this;
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -65,7 +68,19 @@ public class BitFlag extends DataSource {
      */
     @Override
     public void insertValue(byte[] bytes) {
-        //TODO implement
+        boolean rawValue = isBitSet(bytes,bitPosition);
+        dataQueue.add(new Point<Boolean>(TimeUtility.getUptimeSec(),rawValue));
+        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + rawValue);
+    }
+
+    /**
+     * @param bytes
+     * @param pos position of the bit we are interested in.
+     * @return the pos at the position as boolean
+     */
+    private static boolean isBitSet(byte[] bytes, int pos)
+    {
+        return (bytes[pos/8] & (1 << pos%8)) != 0;
     }
 
     @Override
