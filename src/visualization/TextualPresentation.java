@@ -45,10 +45,16 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
             text.setFill(Color.web("#e8e8e8"));
             if (source instanceof SimpleSensor) ((SimpleSensor) source).addListener(this);
             if (source instanceof BitFlag) ((BitFlag) source).addListener(this);
-            if (source instanceof State) {
-                ((State) source).addListener(this);
-            }
+            if (source instanceof State) ((State) source).addListener(this);
+        }
+    }
 
+    @Override
+    public void unsubscibeDataSources() {
+        for (DataSource source : dataSources) {
+            if (dataSources instanceof SimpleSensor) ((SimpleSensor) source).removeListeners(this);
+            if (dataSources instanceof BitFlag) ((BitFlag) source).removeListeners(this);
+            if (dataSources instanceof State) ((State) source).removeListeners(this);
         }
     }
 
@@ -64,16 +70,7 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
 
     }
 
-    @Override
-    public void unsubscibeDataSources() {
-        for (DataSource source : dataSources) {
-            if (dataSources instanceof SimpleSensor) ((SimpleSensor) source).removeListeners(this);
-            if (dataSources instanceof BitFlag) ((BitFlag) source).removeListeners(this);
-            if (dataSources instanceof State) ((State) source).removeListeners(this);
-        }
-    }
-
-    @Override
+   @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
         dataSourceStringMap.get(bitFlag).setText(bitFlag.getName() + " : " + (point.y ? "TRUE" : "FALSE"));
     }

@@ -158,3 +158,17 @@ Dialog Pane
 .dialog-pane:header .header-panel {
   -fx-background-color: #282828;
 }
+
+/*
+Text Area
+*/
+
+.text-area {
+    -fx-font-size: 15;
+    -fx-text-fill: #e8e8e8;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color: #282828;
+}
