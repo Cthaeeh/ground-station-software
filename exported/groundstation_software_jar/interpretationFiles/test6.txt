@@ -1,59 +1,20 @@
 {
-	"simpleSensors": [{
+	"testSensor1": [{
 		"name": "Simple Sensor 1",
-		"description": "h",
-		"unit": "%",
+		"description": "a description",
+		"unit": "yolo",
 		"offset": 0.0,
 		"proportionalFactor": 1.0,
-		"messageId": [2],
-		"startOfValue": 1,
-		"lengthOfValue": 2
-	}, {
-		"name": "Simple Sensor 2",
-		"description": "it really is",
-		"unit": "lol",
-		"offset": 0.0,
-		"proportionalFactor": 1.0,
-		"messageId": [3],
-		"startOfValue": 1,
-		"lengthOfValue": 2
-	}],
-	"states": [{
-		"name": "Simple State 1",
-		"description": "lol",
 		"messageId": [1],
-        "stateMap": {
-            "1": "Hallo was geht",
-            "2": "Yolo"
-        },
 		"startOfValue": 1,
-		"lengthOfValue": 1
-	}, {
-		"name": "Simple State 2",
-		"description": "it really is",
-		"messageId": [1],
-        "stateMap": {
-            "1": "LOl",
-            "2": "mhm was laberscht du ?"
-        },
-		"startOfValue": 2,
-		"lengthOfValue": 1
+		"lengthOfValue": 4
 	}],
-	"teleCommands": [{
-    		"name": "Calibration",
-    		"description": "h",
-            "command": [1, 10]
-    	}, {
-    		"name": "Restart",
-    		"description": "yo",
-            "command": [5, 12]
-    	}],
-	"startBytes": [12, 13],
-	"stopBytes": [12, 22],
+	"startBytes": [-1, 3],
+	"stopBytes": [-1, 4],
 	"idPosition": 0,
 	"idLength": 1,
-	"messageLength": 3,
-	"maxMessageLength": 3,
+	"messageLength": 5,
+	"maxMessageLength": 5,
 	"isUsingCRC16": false,
 	"crc16positionTC": -1,
 	"crc16positionTM": -1,

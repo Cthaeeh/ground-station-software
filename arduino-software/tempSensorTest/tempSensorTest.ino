@@ -112,17 +112,22 @@ void setup() {
 
 void loop()
 {
-  byte packet[7];
-  delay(10);
-  getPacket4(packet);
-  Serial.write(packet, 7);
+  byte packet[9];
+  delay(3000);
 
+  packet[0] = -1; //start bytes
+  packet[1] = 3;
+
+  packet[2] = 1; // Id
+  packet[3] = 1; // some values
+  packet[4] = 1; 
+  packet[5] = 1;
+  packet[6] = 1;
   
-//    int chk  = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-//  Serial.print("Temperature = ");
-//  Serial.println(DHT.temperature);
-//  Serial.print("Humidity = ");
-//  Serial.println(DHT.humidity);
+  packet[7] = -1; //stop bytes
+  packet[8] = 4;
+  
+  Serial.write(packet, 9);
 }
 
 
