@@ -45,17 +45,8 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
             text.setFill(Color.web("#e8e8e8"));
             if (source instanceof SimpleSensor) ((SimpleSensor) source).addListener(this);
             if (source instanceof BitFlag) ((BitFlag) source).addListener(this);
-            if (source instanceof State) {
-                ((State) source).addListener(this);
-                System.out.println("Added Listener");
-            }
-
+            if (source instanceof State) ((State) source).addListener(this);
         }
-    }
-
-    @Override
-    public void onUpdateData(SimpleSensor sensor, Point point) {
-        dataSourceStringMap.get(sensor).setText(sensor.getName() + " : " + point.y + " " + sensor.getUnit());
     }
 
     @Override
@@ -68,6 +59,18 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
     }
 
     @Override
+    public void onUpdateData(SimpleSensor sensor, Point point) {
+        if(point.y instanceof Double){
+            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit());
+        }else if(point.y instanceof Integer){
+            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit());
+        }else if(point.y instanceof String){
+            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit());
+        }
+
+    }
+
+   @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
         dataSourceStringMap.get(bitFlag).setText(bitFlag.getName() + " : " + (point.y ? "TRUE" : "FALSE"));
     }

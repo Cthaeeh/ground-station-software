@@ -38,7 +38,6 @@
 /*
         Table-View
 */
-
 .table-view{
    -fx-background-color: #323232;
 }
@@ -148,6 +147,9 @@
 -fx-background-color: #3c3c3c;
 }
 
+/*
+Dialog Pane
+*/
 .dialog-pane {
     -fx-background-color: #282828;
     -fx-padding: 0;
@@ -155,4 +157,18 @@
 
 .dialog-pane:header .header-panel {
   -fx-background-color: #282828;
+}
+
+/*
+Text Area
+*/
+
+.text-area {
+    -fx-font-size: 15;
+    -fx-text-fill: #e8e8e8;
+    -fx-display-caret:true;
+}
+
+.text-area .content {
+    -fx-background-color: #282828;
 }

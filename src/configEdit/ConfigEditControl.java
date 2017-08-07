@@ -124,6 +124,7 @@ public class ConfigEditControl implements Initializable {
         Optional<DataSource.Type> result = dialog.showAndWait();
         result.ifPresent(source -> {
             dataSourcesListView.getItems().add(source.getInstance());
+            //TODO fix Nullpointer exception here.
         });
     }
 }

@@ -12,11 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.Main;
 import visualization.LiveLineChart.LiveLineChart;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 
 /**
@@ -26,23 +28,25 @@ import java.util.List;
  */
 public class VisualizationControl {
 
-    private DataModel model ;
+    private DataModel model;
     /**
      * The current visualization Element that is displayed.
      * Why the interface ?
      * We need a way to tell it to unsubscribe from its dataSources, so that GBC will find it.
      */
     private VisualizationElement visualizationElement;
-    //TODO add more.
+
     public enum PresentationMode {
         LINE_CHART("Line-chart"),
-        TEXTUAL_MODE("Textual");
-
+        TEXTUAL_MODE("Textual"),
+        TERMINAL_MODE("Terminal");
 
         private String name;
+
         PresentationMode(String name) {
             this.name = name;
         }
+
         @Override
         public String toString() {
             return name;
@@ -63,13 +67,14 @@ public class VisualizationControl {
 
     /**
      * Injects the global data Model into this controller.
+     *
      * @param model the model to inject.
      */
     public void initModel(DataModel model) {
         if (this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
-        this.model = model ;
+        this.model = model;
     }
 
     /**
@@ -77,8 +82,8 @@ public class VisualizationControl {
      * This allows us to unsubscribe from dataSources we might listen to.
      * This way GBC will delete us then.
      */
-    public void dispose(){
-        if(visualizationElement != null){
+    public void dispose() {
+        if (visualizationElement != null) {
             visualizationElement.unsubscibeDataSources();
         }
     }
@@ -87,7 +92,7 @@ public class VisualizationControl {
      *
      */
     @FXML
-    private void btnSelectDataSourceClick(){
+    private void btnSelectDataSourceClick() {
         try {
             final Stage dialog = new Stage();
             FXMLLoader dialogLoader = new FXMLLoader(getClass().getResource(DATA_SOURCE_SELECTION_FXML));
@@ -112,33 +117,39 @@ public class VisualizationControl {
     private void displayData(PresentationMode mode, ObservableList<DataSource> dataSources) {
 
         //Clean up eventually existing visualizationElements.
-        if(visualizationElement != null) visualizationElement.unsubscibeDataSources();
+        if (visualizationElement != null) visualizationElement.unsubscibeDataSources();
         pane.getChildren().clear();
 
-        switch (mode){
+        switch (mode) {
             case LINE_CHART:
                 visualizationElement = createLiveLineChart(dataSources);
-               break;
+                break;
             case TEXTUAL_MODE:
                 visualizationElement = createTextualPresentation(dataSources);
                 break;
+            case TERMINAL_MODE:
+                visualizationElement = createTerminalPresentation(dataSources);
+                break;
+            default:
+                Main.programLogger.log(Level.WARNING,()->mode.name + "is not supported yet.");
         }
     }
 
     /**
      * Creates a new LiveLineChart and adds it to the pane.
      * Returns it as an generic Visualization Element.
+     *
      * @param dataSources the dataSources you want to visualize with the LiveLineChart.
      * @return the LiveLineChart as an Visualization Element.
      */
-    private VisualizationElement createLiveLineChart(ObservableList<DataSource> dataSources){
+    private VisualizationElement createLiveLineChart(ObservableList<DataSource> dataSources) {
         NumberAxis xAxis = new NumberAxis();
         NumberAxis yAxis = new NumberAxis();
         List<SimpleSensor> simpleSensors = new ArrayList<>();
-        for(DataSource dataSource : dataSources){                                               //Add dataSources that can be displayed by this type of visualization Element to a list.
-            if(dataSource instanceof SimpleSensor) simpleSensors.add((SimpleSensor)dataSource);
+        for (DataSource dataSource : dataSources) {                                               //Add dataSources that can be displayed by this type of visualization Element to a list.
+            if (dataSource instanceof SimpleSensor) simpleSensors.add((SimpleSensor) dataSource);
         }
-        LiveLineChart newChart = new LiveLineChart(xAxis, yAxis,simpleSensors);
+        LiveLineChart newChart = new LiveLineChart(xAxis, yAxis, simpleSensors);
         pane.getChildren().add(newChart);
         return newChart;
     }
@@ -146,12 +157,26 @@ public class VisualizationControl {
     /**
      * Creates a new TextualPresentation and adds it to the pane.
      * Returns it as an generic Visualization Element.
+     *
      * @param dataSources the dataSources you want to visualize with the TextualPresentation.
      * @return the TextualPresentation as an Visualization Element.
      */
-    private VisualizationElement createTextualPresentation(ObservableList<DataSource> dataSources){
+    private VisualizationElement createTextualPresentation(ObservableList<DataSource> dataSources) {
         TextualPresentation newTextual = new TextualPresentation(dataSources);
         pane.getChildren().add(newTextual);
         return newTextual;
+    }
+
+    /**
+     * Creates a new TerminalPresentation and adds it to the pane.
+     * Returns it as an generic Visualization Element.
+     *
+     * @param dataSources the dataSources you want to visualize with the TerminalPresentation.
+     * @return the TerminalPresentation as an Visualization Element.
+     */
+    private VisualizationElement createTerminalPresentation(ObservableList<DataSource> dataSources) {
+        TerminalPresentation newTerminal = new TerminalPresentation(dataSources);
+        pane.getChildren().add(newTerminal);
+        return newTerminal;
     }
 }

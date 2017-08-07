@@ -32,6 +32,8 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private final int idPosition;
     private final int idLength;
     private final Config.ByteEndianity byteEndianity;
+    private final boolean useCRC16TM ;
+    private final int CRC16PosTM ;
     /**
      * Maps message id's to corresponding lists of sources, that can be found in this kind of message.
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
@@ -60,6 +62,9 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         idPosition = dataModel.getConfig().getIdPosition();
         idLength = dataModel.getConfig().getIdLength();
         byteEndianity = dataModel.getConfig().getByteEndianity();
+        //TODO make this smoother becauuse it is not clear why the pos must be greater 0;
+        useCRC16TM = (dataModel.getConfig().isUsingCRC16() && dataModel.getConfig().getCrc16positionTM() > 0);
+        CRC16PosTM = dataModel.getConfig().getCrc16positionTM();
         initMessageMap(dataModel);
         serialEngine = new SerialEngine(this,serialPort,dataModel.getConfig());
     }
@@ -91,9 +96,21 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
     }
 
+    /**
+     * If CRC 16 is used checks it and if its okay decodes the message.
+     * @param message
+     */
     @Override
     public void processMessage(byte[] message) {
-        decodeMessage(message);
+        if(useCRC16TM){
+            if(TmTcUtil.isCrcValid(message,CRC16PosTM)){
+                decodeMessage(message);
+            }else {
+                Main.programLogger.log(Level.WARNING,()->"Got a corrupted message (CRC not valid)");
+            }
+        }else {
+            decodeMessage(message);
+        }
     }
 
     /**
@@ -117,21 +134,19 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      * @param msgBuffer
      */
     private void decodeMessage(byte[] msgBuffer) {
-        //TODO if crc16 is used decode it with CRC16 class.
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println(toString(msgBuffer));
-        System.out.println("Found ID:"+toString(messageId));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
                 if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
+                System.out.println(source.getName() + " " + toString(value));
                 source.insertValue(value);
             }
         }
         //TODO add time information.
     }
 
-    private String toString(byte[] msgBuffer) {
+    public static String toString(byte[] msgBuffer) {
         StringBuilder sb = new StringBuilder();
         for(byte b: msgBuffer){
              sb.append("[" + b + "]");
@@ -162,10 +177,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     }
 
     public boolean isRunningSmooth() {
-        if(System.currentTimeMillis() - lastTimeSeen > 1000){
-            return false;
-        }
-        return true;
+        return System.currentTimeMillis() - lastTimeSeen <= 1000;
     }
 
     public void stopThread(){

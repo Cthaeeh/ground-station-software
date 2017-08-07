@@ -1,9 +1,8 @@
-package command;
+package serial;
 
 import data.Config;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
-import serial.CRC16;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,11 +13,11 @@ import java.util.logging.Level;
  * Created by kai on 6/27/17.
  * Some Utility for the Telecommand stuff.
  */
-public class TelecommandUtil {
+public class TmTcUtil {
 
     private static CRC16 crc16 = new CRC16();
 
-    private TelecommandUtil(){}
+    private TmTcUtil(){}
 
     /**
      * Inserts a CRC16 checksum of the message at the specified position into the message
@@ -51,4 +50,43 @@ public class TelecommandUtil {
         }
         return outputStream.toByteArray();
     }
+
+    /**
+     * Checks if the CRC 16 is correct for this message.
+     * crc16PosTM 0 means the crc is in the first 2 bytes.
+     *            1 means the crc is in the 1 and 2 byte etc.
+     *            if the position is greater than the message length - 2 the last 2 bytes of the message are used.
+     *
+     * @param message
+     * @param crc16PosTM
+     * @return
+     */
+    public static boolean isCrcValid(byte[] message, int crc16PosTM) {
+        int realPos;
+        if(crc16PosTM > message.length - 2){    //The crc is found at the last 2 bytes.
+            realPos = message.length -2;
+        }else {
+            realPos = crc16PosTM;
+        }
+        crc16.reset();
+        crc16.update(concatenate(Arrays.copyOfRange(message,0,realPos),Arrays.copyOfRange(message,realPos+2,message.length)));
+        int crc16Int = crc16.getValue();                                //Calculate the CRC
+        byte[] crc16Bytes = {(byte) (crc16Int>>>8),(byte) (crc16Int)};
+        return checkCRC(crc16Bytes,realPos,message);
+    }
+
+    /**
+     * Checks if the crc16Bytes equal those in the message at the given position.
+     * @param crc16Bytes
+     * @param pos where the crc16Bytes are found.
+     * @param message
+     * @return
+     */
+    private static boolean checkCRC(byte[] crc16Bytes, int pos , byte[] message){
+        for(int i = 0; i < 2; i++){
+            if(message[i+pos]!=crc16Bytes[i]) return false; // NON valid crc16
+        }
+        return true;    //Valid CRC16.
+    }
+
 }

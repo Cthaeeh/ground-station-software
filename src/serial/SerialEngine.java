@@ -4,6 +4,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import data.Config;
 import main.Main;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 
 /**
@@ -168,8 +169,8 @@ public class SerialEngine {
                 if (stopByteCounter >= stopBytes.length) {
                     stopByteCounter = 0;
                     readState = ReadState.SEARCHING_START;
-                    messagePointer = startBytes.length;
-                    msgListener.processMessage(msgBuffer);
+                    msgListener.processMessage(Arrays.copyOfRange(msgBuffer,0,messagePointer-stopBytes.length));
+                    messagePointer = 0;
                 }
             } else {                                               //We found no end ;(
                 stopByteCounter = 0;
