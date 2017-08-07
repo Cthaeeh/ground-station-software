@@ -1,5 +1,5 @@
 {
-	"testSensor1": [{
+	"simpleSensors": [{
 		"name": "Simple Sensor 1",
 		"description": "a description",
 		"unit": "yolo",
@@ -9,6 +9,8 @@
 		"startOfValue": 1,
 		"lengthOfValue": 4
 	}],
+	"states": [],
+	"teleCommands": [],
 	"startBytes": [-1, 3],
 	"stopBytes": [-1, 4],
 	"idPosition": 0,
