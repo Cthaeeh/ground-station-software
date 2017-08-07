@@ -7,3 +7,5 @@ out/production
 .idea/workspace.xml
 lib/
 logs/
+src/META-INF/
+/out/artifacts/groundstation_software_jar/logs/
