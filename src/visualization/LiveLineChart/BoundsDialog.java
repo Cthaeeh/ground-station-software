@@ -39,7 +39,7 @@ public class BoundsDialog extends Dialog<Bounds> {
         this.setTitle(TITLE);
         this.setHeaderText(HEADER);
         DialogPane dialogPane = this.getDialogPane();
-        dialogPane.getStylesheets().add("gui/darkTheme.css");
+        dialogPane.getStylesheets().add("/gui/darkTheme.css");
         dialogPane.getButtonTypes().addAll(ButtonType.APPLY, ButtonType.CANCEL);
         initTextFields();
         initValidator();

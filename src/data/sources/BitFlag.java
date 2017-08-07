@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class BitFlag extends DataSource {
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Boolean>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<BitFlagListener> listeners = new ArrayList<>();

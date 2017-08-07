@@ -28,7 +28,7 @@ public class State extends DataSource {
     private Map<Byte, String> stateMap = new HashMap<>();
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<String>> dataQueue = new ConcurrentLinkedQueue<>();
 

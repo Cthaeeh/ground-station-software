@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.FileHandler;
@@ -34,7 +36,7 @@ public class Main extends Application {
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
                      // TODO add disconnect Button.
                      // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
-
+                     // TODO Coop with non existing config files.
 
                  // later maybe
 //               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
@@ -48,8 +50,8 @@ public class Main extends Application {
     public static Logger programLogger;
     private static FileHandler fileHandler;     //Needed for logging to file.
 
-    private static final String MAIN_WINDOW_FXML = "../gui/main_window.fxml";
-    private static final String CSS_STYLING = "gui/darkTheme.css";
+    private static final String MAIN_WINDOW_FXML = "/gui/main_window.fxml";
+    private static final String CSS_STYLING = "/gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
 
     /**
@@ -71,6 +73,7 @@ public class Main extends Application {
         programLogger = Logger.getLogger("Data-Logger");
         try {
             // This block configures the programLogger with handler and formatter
+            Files.createDirectories(Paths.get("logs"));     //Create folder if not existent.
             fileHandler = new FileHandler("logs/ProgramLog_"+ timeStamp +".log");
             programLogger.addHandler(fileHandler);
             SimpleFormatter formatter = new SimpleFormatter();

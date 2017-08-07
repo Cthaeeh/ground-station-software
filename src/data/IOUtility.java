@@ -28,7 +28,7 @@ public class IOUtility {
             content = new String(chars);
             reader.close();
         } catch (IOException e) {
-            Main.programLogger.log(Level.WARNING,"Failed to connect to read file: " + file.getName());
+            Main.programLogger.log(Level.WARNING,"Failed to to read file: " + file.getName());
             e.printStackTrace();
         } finally {
             if (reader != null) {

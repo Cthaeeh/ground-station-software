@@ -1,7 +1,6 @@
 package main;
 
 import command.TeleCommandControl;
-import configEdit.ConfigEditControl;
 import data.DataModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,9 +52,9 @@ public class MainWindowControl implements Initializable{
     private static final int MAX_NUMBER_OF_COLUMNS = 3;
     private static final int MAX_NUMBER_OF_ROWS = 3;
 
-    private static final String CONNECTION_FXML = "../gui/connection_window.fxml";
-    private static final String VISUALIZATION_ELEMENT_FXML = "../gui/visualization.fxml";
-    private static final String CONFIG_EDIT_FXML = "../gui/config_edit.fxml";
+    private static final String CONNECTION_FXML = "/gui/connection_window.fxml";
+    private static final String VISUALIZATION_ELEMENT_FXML = "/gui/visualization.fxml";
+    private static final String CONFIG_EDIT_FXML = "/gui/config_edit.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -161,7 +160,7 @@ public class MainWindowControl implements Initializable{
     }
 
     /**
-     * Creates a visualization element, a gui element that lets you choose a data source and then the according data
+     * Creates a visualization element, a ressources element that lets you choose a data source and then the according data
      * as a graph or in another form.
      * @return
      */
@@ -193,7 +192,7 @@ public class MainWindowControl implements Initializable{
             ConnectionWindowControl connectionWindowControl = loader.getController();
             connectionWindowControl.initCommPortConnection(serialPortComm);
 
-            scene.getStylesheets().add("gui/darkTheme.css");
+            scene.getStylesheets().add("/gui/darkTheme.css");
 
             connectionStage.initModality(Modality.APPLICATION_MODAL);
             connectionStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
@@ -227,7 +226,7 @@ public class MainWindowControl implements Initializable{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
 
-            scene.getStylesheets().add("gui/darkTheme.css");
+            scene.getStylesheets().add("/gui/darkTheme.css");
 
             configEditStage.initModality(Modality.NONE);
             configEditStage.initOwner(showConnectionWindowBtn.getScene().getWindow());

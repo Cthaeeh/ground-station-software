@@ -1,4 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
-out/
+out/production
 *.log.lck
 *.log
+.idea/artifacts/
+.idea/dictionaries/
+.idea/workspace.xml
+lib/
+logs/

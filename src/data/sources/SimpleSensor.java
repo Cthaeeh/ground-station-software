@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class SimpleSensor extends DataSource {
 
     /**
-     * This allows for the thread safe data exchange between the gui Thread and the serial.SerialCommunicationThread.
+     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Number>> dataQueue = new ConcurrentLinkedQueue<>();
     private List<SimpleSensorListener> listeners = new ArrayList<>();

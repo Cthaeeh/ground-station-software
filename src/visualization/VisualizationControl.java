@@ -59,7 +59,7 @@ public class VisualizationControl {
     @FXML
     private Button selectDataSourceButton;
 
-    private static final String DATA_SOURCE_SELECTION_FXML = "../gui/data_source_selection_dialog.fxml";
+    private static final String DATA_SOURCE_SELECTION_FXML = "/gui/data_source_selection_dialog.fxml";
 
     /**
      * Injects the global data Model into this controller.
@@ -96,7 +96,7 @@ public class VisualizationControl {
             DataSourceSelectionControl dataSourceSelectionControl = dialogLoader.getController();
             dataSourceSelectionControl.initModel(model);
             dataSourceSelectionControl.register(this::displayData);
-            scene.getStylesheets().add("gui/darkTheme.css");
+            scene.getStylesheets().add("/gui/darkTheme.css");
 
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(selectDataSourceButton.getScene().getWindow());

@@ -87,7 +87,7 @@ public class DataSourceSelectionControl implements Initializable{
         ObservableList<DataSource> selectedDataSources = dataSourceSelectionTable.getSelectionModel().getSelectedItems();
         if(selectedDataSources.size()==0){
             Alert alert = new Alert(Alert.AlertType.WARNING, "No data source selected");
-            alert.getDialogPane().getStylesheets().add("gui/darkTheme.css");
+            alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
             alert.showAndWait();
             //TODO style Alert.
             return;

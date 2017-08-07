@@ -89,7 +89,7 @@ public class ConfigEditControl implements Initializable {
     @FXML
     private void btnSaveClicked(){
         File file = fileChooser.showSaveDialog(null);
-        //TODO check if model is a legit state. everything is consistent with the gui.
+        //TODO check if model is a legit state. everything is consistent with the ressources.
         try {
             model.saveConfigData(file);
         } catch (IOException e) {
