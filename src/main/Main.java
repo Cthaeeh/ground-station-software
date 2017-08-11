@@ -4,9 +4,12 @@ import data.DataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,11 +35,12 @@ public class Main extends Application {
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
                      // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
-                     // TODO Coop with non existing config files.
-//               yes // TODO start stop bytes by config.
+//               yes // TODO Telecommand start stop bytes by config.
+                     // TODO somehow detect invalid configs.
 
 
                  // later maybe
+                 // TODO let the user select a default config if the hardcoded one is not found.
 //               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
                  // TODO add support for float and double and unsigned int maybe ??
 //               // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
@@ -87,8 +91,8 @@ public class Main extends Application {
 
     @Override
     public  void  start(Stage primaryStage) throws Exception{
-        DataModel model = new DataModel();
-        model.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
+
+        DataModel model = loadConfig();
 
         //Load fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_WINDOW_FXML));
@@ -106,5 +110,23 @@ public class Main extends Application {
         primaryStage.setMinHeight(850);
         primaryStage.show();
 
+    }
+
+    /**
+     * Attempts to load the default config.
+     * If the default config is not found gives an error message to the user.
+     * Then an empty config is used.
+     */
+    private DataModel loadConfig() {
+        DataModel model = new DataModel();
+        try {
+            model.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
+        }catch (IOException e) {
+            model.loadEmptyConfig();
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Default Interpretation File: " + DEFAULT_INTERPRETATION_FILE  + " not found.");
+            alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+            alert.showAndWait();
+        }
+        return model;
     }
 }

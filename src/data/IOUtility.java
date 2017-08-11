@@ -16,7 +16,7 @@ public class IOUtility {
      * Reads the text from a file.
      * @param file the file you want to read from.
      * @return the file interpreted as a string.
-     * @throws IOException
+     * @throws IOException if the file could not be read, etc.
      */
     public static String readFile(File file) throws IOException {
         String content = null;
@@ -30,6 +30,10 @@ public class IOUtility {
         } catch (IOException e) {
             Main.programLogger.log(Level.WARNING,"Failed to to read file: " + file.getName());
             e.printStackTrace();
+            if (reader != null) {
+                reader.close();
+            }
+            throw new IOException("Failed to open " + file.getName());
         } finally {
             if (reader != null) {
                 reader.close();

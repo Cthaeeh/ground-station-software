@@ -42,11 +42,11 @@ public class Config {
     /**
      * The start bytes of a message send through Serial Communication.
      */
-    private byte[] startBytes;
+    private byte[] startBytes = new byte[0];
     /**
      * The stop bytes of a message send through Serial Port. This will override existing messageLength settings.
      */
-    private byte[] stopBytes;
+    private byte[] stopBytes = new byte[0];
     /**
      * where is the position of the id. The Position is relative to the first msg byte (not including start stop bytes.)
      */
