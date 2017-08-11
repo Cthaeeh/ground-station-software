@@ -1,4 +1,4 @@
-package ressources;
+package gui_elements;
 
 import javafx.scene.control.TextField;
 

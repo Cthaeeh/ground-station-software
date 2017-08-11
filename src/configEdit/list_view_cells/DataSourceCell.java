@@ -4,7 +4,7 @@ import data.sources.BitFlag;
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
 import data.sources.State;
-import ressources.NumberTextField;
+import gui_elements.NumberTextField;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

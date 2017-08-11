@@ -37,6 +37,7 @@ public class Main extends Application {
                      // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
 //               yes // TODO Telecommand start stop bytes by config.
                      // TODO somehow detect invalid configs.
+                     // TODO Make the whole serial comm stuff a lot more robust. What if the config file is bullshit.
 
 
                  // later maybe

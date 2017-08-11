@@ -1,9 +1,17 @@
 package command;
 
 import data.TeleCommand;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import main.Main;
 import org.controlsfx.control.GridCell;
+
+import java.io.IOException;
+import java.util.logging.Level;
 
 /**
  * Created by Kai on 09.06.2017.
@@ -37,4 +45,7 @@ public class TeleCommandGridCell extends GridCell<TeleCommand> {
     public TeleCommand getCommand(){
         return command;
     }
+
 }
+
+

@@ -3,17 +3,22 @@ package command;
 import data.DataModel;
 import data.TeleCommand;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import main.Encoder;
 import main.Main;
 import org.controlsfx.control.GridView;
 import serial.SerialPortComm;
 import serial.TmTcUtil;
 
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
@@ -37,6 +42,8 @@ public class TeleCommandControl implements Initializable {
 
     @FXML
     private TextField inputField;
+
+    private final String PARAMETERIZATION_FXML = "/gui/parameterization.fxml";
 
     enum ENCODING{
         ASCII,DECIMAL_DIVIDED_BY_SPACE
@@ -77,9 +84,14 @@ public class TeleCommandControl implements Initializable {
         gridView.cellHeightProperty().set(10);
         gridView.setCellFactory(arg0 -> {
             TeleCommandGridCell cell = new TeleCommandGridCell();
-            cell.setOnMouseClicked( e -> sendCommand(cell.getCommand().getBytes()));
+            cell.setOnMouseClicked( e -> sendPredefinedCommand(cell.getCommand()));
             return cell;});
         gridView.setItems(model.getTeleCommands());
+    }
+
+    private void sendPredefinedCommand(TeleCommand command) {
+        if(command.hasParameters()) openParameterization(command);
+        else sendCommand(command.getBytes());
     }
 
     @FXML
@@ -99,6 +111,10 @@ public class TeleCommandControl implements Initializable {
         }
     }
 
+    /**
+     * Adds the CRC16 if needed and the start stop bytes if needed and forwards it to the serialPortCOmm.
+     * @param command
+     */
     private void sendCommand(byte[] command){
         if(model.getConfig().isUsingCRC16()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
             command = TmTcUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
@@ -115,4 +131,25 @@ public class TeleCommandControl implements Initializable {
          commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
     }
 
+    private void openParameterization(TeleCommand command){
+        try {
+            final Stage parameterizationDialog = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(PARAMETERIZATION_FXML));
+            Scene scene = new Scene(loader.load(), 600,600);
+            ParameterizationControl parameterizationControl = loader.getController();
+            parameterizationControl.init(command);
+            parameterizationControl.register(this::sendCommand);
+            scene.getStylesheets().add("/gui/darkTheme.css");
+
+            parameterizationDialog.initModality(Modality.APPLICATION_MODAL);
+            parameterizationDialog.initOwner(inputField.getScene().getWindow());
+
+            parameterizationDialog.setScene(scene);
+            parameterizationDialog.show();
+
+        }catch (IOException e){
+            e.printStackTrace();
+            Main.programLogger.log(Level.WARNING,"Unable to find parameterization fxml.");
+        }
+    }
 }
