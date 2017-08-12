@@ -41,6 +41,9 @@ public class TeleCommandControl implements Initializable {
     private CheckBox addStartStopBytesCheckBox;
 
     @FXML
+    private CheckBox addCrcCheckBox;
+
+    @FXML
     private TextField inputField;
 
     private final String PARAMETERIZATION_FXML = "/gui/parameterization.fxml";
@@ -120,7 +123,7 @@ public class TeleCommandControl implements Initializable {
      * @param command
      */
     private void sendCommand(byte[] command){
-        if(model.getConfig().isUsingCRC16()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
+        if(model.getConfig().isUsingCRC16() || addCrcCheckBox.isSelected()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
             command = TmTcUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
         }
         if(addStartStopBytesCheckBox.isSelected()){

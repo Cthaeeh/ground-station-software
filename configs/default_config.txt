@@ -80,7 +80,7 @@
        	"messageLength": 3,
        	"maxMessageLength": 3,
        	"isUsingCRC16": false,
-       	"crc16positionTC": -1,
+       	"crc16positionTC": 3000,
        	"crc16positionTM": -1,
        	"timePosition": -1,
        	"timeLength": 0,
