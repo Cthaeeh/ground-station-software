@@ -89,4 +89,28 @@ public class TmTcUtil {
         return true;    //Valid CRC16.
     }
 
+    /**
+     * Inserts byte arr2 into byte arr1 at start. with
+     * @param arr1
+     * @param arr2
+     * @param start
+     * @param length
+     */
+    public static void insertBytes(byte[] arr1, byte[] arr2, int start, int length) {   //TODO make this a lot safer.
+        if(start+length > arr1.length || start < 0 || start + length < 0){
+            Main.programLogger.log(Level.WARNING,"unable to insert bytes Length:" +length + "Start: "+ start + " Arr1 length:"+ arr1.length + " Arr2 length:" + arr2.length ); //TODO longer error message how to handle this.
+            return;
+        }
+        if(length>arr2.length){
+            Main.programLogger.log(Level.WARNING,"arr2 smaller than length");
+        }
+
+        int arr2Index = 0;
+        for(int i = start; i < start + length; i++ ){
+            arr1[i] = arr2[arr2Index];
+            arr2Index ++;
+        }
+    }
+
+
 }

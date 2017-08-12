@@ -42,30 +42,35 @@
        	"teleCommands": [{
            		"name": "Calibration",
            		"description": "h",
-                "command": [1, 10],
+                "commandBasis": [1, 2],
+                "length": 10,
                 "parameters":[{
                         "name":"Test Parameter 1",
-                        "start":0,
-                        "length":2,
-                        "type":"FLAG"
+                        "start":2,
+                        "length":4,
+                        "type":"INTEGER"
                         },{
                         "name":"Test Parameter 2",
-                        "start":0,
-                        "length":3,
+                        "start":6,
+                        "length":4,
                         "type":"INTEGER"
                         }]
            	}, {
            		"name": "Restart",
            		"description": "yo",
-                "command": [5, 12],
+                "commandBasis": [1, 2],
+                "length": 5,
                 "parameters":[{
                         "name":"Test Parameter 1",
                         "start":0,
-                        "length":2
+                        "length":2,
+                        "stateMap":{"test":[10,20],"test2":[19,23]},
+                        "type":"STATE"
                         },{
                         "name":"Test Parameter 2",
                         "start":0,
-                        "length":3
+                        "length":1,
+                        "type":"FLAG"
                         }]
            	}],
        	"startBytes": [12, 13],

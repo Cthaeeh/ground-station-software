@@ -1,33 +1,56 @@
 package gui_elements;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import main.Main;
+
+import java.util.logging.Level;
 
 /**
  * Custom TextField for Numbers only.
+ * //TODO add heavy unit tests so that it never fails.
  */
-public class NumberTextField extends TextField
-{
+public class NumberTextField extends TextField {
 
-    @Override
-    public void replaceText(int start, int end, String text)
-    {
-        if (validate(text))
-        {
-            super.replaceText(start, end, text);
+    public NumberTextField() {
+        super();
+
+        addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            if (!isValid(getText())) {
+                event.consume();
+            }
+        });
+
+        textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!isValid(newValue)) {
+                setText(oldValue);
+            }
+        });
+    }
+
+    private boolean isValid(final String value) {
+        if (value.length() == 0 || value.equals("-")) {
+            return true;
+        }
+
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
         }
     }
 
-    @Override
-    public void replaceSelection(String text)
-    {
-        if (validate(text))
-        {
-            super.replaceSelection(text);
+    public int getInteger() {
+        try {
+            return Integer.parseInt(getText());
+        } catch (NumberFormatException e) {
+            Main.programLogger.log(Level.WARNING,()->"Error parsing int (" + getText() + ") from field.");
+            return 0;
         }
     }
 
-    private boolean validate(String text)
-    {
-        return text.matches("[0-9]*");
-    }
 }

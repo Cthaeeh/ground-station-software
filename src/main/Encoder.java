@@ -1,8 +1,11 @@
 package main;
 
 import org.apache.commons.lang3.ArrayUtils;
+import serial.TmTcUtil;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -72,5 +75,27 @@ public class Encoder {
         }
 
         return ArrayUtils.toPrimitive(bytes.toArray(new Byte[bytes.size()]));
+    }
+
+    /**
+     * Turns an integer into a byte array.
+     * @param message
+     * @param length
+     * @return
+     * @throws NumberFormatException
+     */
+    public static byte[] encodeInt(int message, int length) {
+        byte[] intAsBytes = BigInteger.valueOf(message).toByteArray();
+        if(intAsBytes.length > length) throw new NumberFormatException("converting int:" + message + "to byte array will lead to information loss");
+        if(intAsBytes.length == length) return intAsBytes;
+
+        //If length is bigger than the amount of bytes needed to represent the int add just zeros bytes.
+        byte[] bytes = new byte[length];
+        int counter = 0;
+        for(int i = length - intAsBytes.length ; i < length ; i++){
+            bytes[i] = intAsBytes[counter];
+            counter ++;
+        }
+        return bytes;
     }
 }

@@ -22,6 +22,7 @@ public class ParameterizationControl implements Initializable {
     @FXML
     private ListView<Parameter> parameterList;
     private Sender sender;
+    private TeleCommand command;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,6 +30,7 @@ public class ParameterizationControl implements Initializable {
     }
 
     public void init(TeleCommand command){
+        this.command = command;
         initList(command);
     }
 
@@ -48,8 +50,7 @@ public class ParameterizationControl implements Initializable {
 
     public void btnSendClicked(MouseEvent mouseEvent) {
         //TODO assemble the command from params and stuff.
-
-        sender.send(new byte[]{1,2,3});
+        sender.send(command.getBytes());
         Stage stage = (Stage) parameterList.getScene().getWindow();
         stage.close();
     }
