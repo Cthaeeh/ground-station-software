@@ -30,13 +30,12 @@ public class Main extends Application {
 //     2       yes   // TODO advanced logging of data of raw data.
 //     1       yes   // TODO find a convenient way to edit a config file.
 //     7       yes   // TODO add time functionality.
+
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
                      // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
-//               yes // TODO Telecommand start stop bytes by config, for the button sending , but for manual sending still allow the option
                      // TODO somehow detect invalid configs.
                      // TODO Make the whole serial comm stuff a lot more robust. What if the config file is bullshit.
-                     // TODO add CRC in manual command mode
 
 
                  // later maybe
