@@ -46,7 +46,7 @@ public class TeleCommandControl implements Initializable {
     private final String PARAMETERIZATION_FXML = "/gui/parameterization.fxml";
 
     enum ENCODING{
-        ASCII,DECIMAL_DIVIDED_BY_SPACE
+        ASCII,DECIMAL_DIVIDED_BY_SPACE,HEX_DIVIDED_BY_SPACE
     }
 
     @Override
@@ -104,6 +104,10 @@ public class TeleCommandControl implements Initializable {
                 break;
             case DECIMAL_DIVIDED_BY_SPACE:
                 command = Encoder.encode(inputField.getText());
+                sendCommand(command);
+                break;
+            case HEX_DIVIDED_BY_SPACE:
+                command = Encoder.encodeFromHex(inputField.getText());
                 sendCommand(command);
                 break;
             default:

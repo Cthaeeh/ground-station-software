@@ -77,7 +77,7 @@ public class ConfigEditControl implements Initializable {
         fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extentionFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extentionFilter);
-        File f = new File("interpretationFiles");
+        File f = new File("configs");
         if(!f.exists() && !f.isDirectory())
         {
             f.mkdir();                      //Create if not existing.

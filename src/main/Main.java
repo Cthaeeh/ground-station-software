@@ -50,7 +50,7 @@ public class Main extends Application {
 //               // TODO app logo
                  // TODO let the user see last info for each source
 
-    public static Logger programLogger;
+    public static Logger programLogger = Logger.getLogger("Program-Logger");
     private static FileHandler fileHandler;     //Needed for logging to file.
 
     private static final String MAIN_WINDOW_FXML = "/gui/main_window.fxml";
@@ -60,7 +60,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "interpretationFiles/test6.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "configs/default_config.txt";
 
     public static  void main(String[] args){
         setupLogger();
@@ -73,7 +73,6 @@ public class Main extends Application {
      */
     private static void setupLogger() {
         String timeStamp = new SimpleDateFormat("dd.MM.yyyy_HHmmss").format(Calendar.getInstance().getTime());
-        programLogger = Logger.getLogger("Data-Logger");
         try {
             // This block configures the programLogger with handler and formatter
             Files.createDirectories(Paths.get("logs"));     //Create folder if not existent.

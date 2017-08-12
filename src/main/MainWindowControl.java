@@ -7,6 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -15,8 +19,10 @@ import javafx.scene.control.*;
 import serial.SerialPortComm;
 import visualization.VisualizationControl;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
@@ -213,6 +219,7 @@ public class MainWindowControl implements Initializable{
         if (file != null) {
             try {
                 model.loadConfigData(file);
+                //TODO unexpected behavior, either disallow or make sure it works
             } catch (IOException exc) {
                 //TODO handle exception...
             }
@@ -223,6 +230,7 @@ public class MainWindowControl implements Initializable{
     private void btnCreateConfigClick() {
         try{
             final Stage configEditStage = new Stage();
+            System.out.println("got here");
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
 
@@ -238,6 +246,20 @@ public class MainWindowControl implements Initializable{
 
         }catch (Exception ex){
             Main.programLogger.log(Level.WARNING, "Failed to load: " + CONFIG_EDIT_FXML);
+        }
+    }
+
+    /**
+     * Just open the link to the github wiki.
+     * @param mouseEvent
+     */
+    public void btnHelpClicked(MouseEvent mouseEvent) {
+        String test = "https://github.com/Cthaeeh/ground-station-software/wiki";
+        Desktop desktop = Desktop.getDesktop();
+        try {
+            desktop.browse(URI.create(test));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -23,7 +23,7 @@
                <tooltip>
                   <Tooltip text="Create a new configuration file" />
                </tooltip></Button>
-            <Button mnemonicParsing="false" text="Help" />
+            <Button mnemonicParsing="false" onMouseClicked="#btnHelpClicked" text="Help" />
          </children>
          <BorderPane.margin>
             <Insets />
