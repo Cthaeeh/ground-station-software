@@ -1,84 +1,173 @@
        {
        	"simpleSensors": [{
-       		"name": "Simple Sensor 1",
-       		"description": "h",
-       		"unit": "%",
+       		"name": "CRC_ECHO_TM_ID_7 recId",
+       		"description": "n",
+       		"unit": "num",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [2],
+       		"messageId": [7],
        		"startOfValue": 1,
        		"lengthOfValue": 2
-       	}, {
-       		"name": "Simple Sensor 2",
-       		"description": "it really is",
-       		"unit": "lol",
+       	},{
+       		"name": "CRC_ECHO_TM_ID_7 recCrc",
+       		"description": "n",
+       		"unit": "num",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [3],
+       		"messageId": [7],
+       		"startOfValue": 3,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 tcId",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
        		"startOfValue": 1,
        		"lengthOfValue": 2
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 tcCrc",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
+       		"startOfValue": 3,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 paramA",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
+       		"startOfValue": 7,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 paramB",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
+       		"startOfValue": 11,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 paramC",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
+       		"startOfValue": 15,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "SEED_TC_ECHO_TM_ID_8 paramD",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [8],
+       		"startOfValue": 19,
+       		"lengthOfValue": 4
        	}],
        	"states": [{
-       		"name": "Simple State 1",
-       		"description": "lol",
+       		"name": "MSG_INIT_TM_ID 1",
+       		"description": "n",
        		"messageId": [1],
                "stateMap": {
-                   "1": "Hallo was geht",
-                   "2": "Yolo"
+                   "0": "false",
+                   "1": "true"
                },
        		"startOfValue": 1,
        		"lengthOfValue": 1
-       	}, {
-       		"name": "Simple State 2",
-       		"description": "it really is",
-       		"messageId": [1],
+       	},{
+       		"name": "MSG_ON_GROUND_TM_ID_2",
+       		"description": "n",
+       		"messageId": [2],
                "stateMap": {
-                   "1": "LOl",
-                   "2": "mhm was laberscht du ?"
+                   "0": "false",
+                   "1": "true"
                },
-       		"startOfValue": 2,
+       		"startOfValue": 1,
        		"lengthOfValue": 1
+       	},{
+       		"name": "MSG_RISING_TM_ID_3",
+       		"description": "n",
+       		"messageId": [3],
+               "stateMap": {
+                   "0": "false",
+                   "1": "true"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "MSG_PREPARATION_TM_ID_4",
+       		"description": "n",
+       		"messageId": [4],
+               "stateMap": {
+                   "0": "false",
+                   "1": "true"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "MSG_OPERATION_TM_ID_5",
+       		"description": "n",
+       		"messageId": [5],
+               "stateMap": {
+                   "0": "false",
+                   "1": "true"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "MSG_TESTMODE_TM_ID_6",
+       		"description": "n",
+       		"messageId": [6],
+               "stateMap": {
+                   "0": "false",
+                   "1": "true"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	}],
+       	"stringSources": [{
+       	    "name": "DBG_MSG_TM_ID 0",
+       	    "description": "n",
+       	    "messageId": [0],
+       	    "startOfValue": 1,
+       	    "lengthOfValue": 52
        	}],
        	"teleCommands": [{
            		"name": "Calibration",
            		"description": "h",
-                "command": [1, 10],
+                "commandBasis": [1, 2],
+                "length": 10,
                 "parameters":[{
                         "name":"Test Parameter 1",
-                        "start":0,
-                        "length":2,
-                        "type":"FLAG"
-                        },{
-                        "name":"Test Parameter 2",
-                        "start":0,
-                        "length":3,
+                        "start":2,
+                        "length":4,
                         "type":"INTEGER"
-                        }]
-           	}, {
-           		"name": "Restart",
-           		"description": "yo",
-                "command": [5, 12],
-                "parameters":[{
-                        "name":"Test Parameter 1",
-                        "start":0,
-                        "length":2
                         },{
                         "name":"Test Parameter 2",
-                        "start":0,
-                        "length":3
+                        "start":6,
+                        "length":4,
+                        "type":"INTEGER"
                         }]
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
        	"idPosition": 0,
        	"idLength": 1,
-       	"messageLength": 3,
-       	"maxMessageLength": 3,
-       	"isUsingCRC16": false,
-       	"crc16positionTC": -1,
-       	"crc16positionTM": -1,
-       	"timePosition": -1,
-       	"timeLength": 0,
+       	"messageLength": 55,
+       	"maxMessageLength": 55,
+       	"isUsingCRC16": true,
+       	"crc16positionTC": 3000,
+       	"crc16positionTM": 3000,
+       	"timePosition": 1,
+       	"timeLength": 4,
        	"byteEndianity": "BIG_ENDIAN",
        	"readMode": "FIXED_MSG_LENGTH"
        }

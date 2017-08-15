@@ -16,7 +16,7 @@ import java.util.List;
  * Subscribes to the DataSources it gets in the Constructor.
  * Created by Kai on 03.06.2017.
  */
-public class TextualPresentation extends ListView<Text> implements SimpleSensorListener, VisualizationElement, BitFlagListener, StateListener {
+public class TextualPresentation extends ListView<Text> implements SimpleSensorListener, VisualizationElement, BitFlagListener, StateListener, StringSourceListener {
 
     private List<DataSource> dataSources;
 
@@ -46,15 +46,17 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
             if (source instanceof SimpleSensor) ((SimpleSensor) source).addListener(this);
             if (source instanceof BitFlag) ((BitFlag) source).addListener(this);
             if (source instanceof State) ((State) source).addListener(this);
+            if (source instanceof StringSource) ((StringSource) source).addListner(this);
         }
     }
 
     @Override
     public void unsubscibeDataSources() {
         for (DataSource source : dataSources) {
-            if (dataSources instanceof SimpleSensor) ((SimpleSensor) source).removeListeners(this);
-            if (dataSources instanceof BitFlag) ((BitFlag) source).removeListeners(this);
-            if (dataSources instanceof State) ((State) source).removeListeners(this);
+            if (source instanceof SimpleSensor) ((SimpleSensor) source).removeListeners(this);
+            if (source instanceof BitFlag) ((BitFlag) source).removeListeners(this);
+            if (source instanceof State) ((State) source).removeListeners(this);
+            if (source instanceof StringSource) ((StringSource) source).removeListener(this);
         }
     }
 
@@ -78,5 +80,10 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
     @Override
     public void onUpdateData(State state, Point<String> point) {
         dataSourceStringMap.get(state).setText(state.getName() + " : " + point.y);
+    }
+
+    @Override
+    public void onUpdateData(StringSource stringSource, Point<String> point) {
+        dataSourceStringMap.get(stringSource).setText(stringSource.getName() + " : " + point.y);
     }
 }

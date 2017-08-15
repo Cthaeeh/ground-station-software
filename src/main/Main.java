@@ -30,6 +30,10 @@ public class Main extends Application {
 //     2       yes   // TODO advanced logging of data of raw data.
 //     1       yes   // TODO find a convenient way to edit a config file.
 //     7       yes   // TODO add time functionality.
+                     // TODO move this whole listner thing to the abstract class DataSource this is now ULTRA STUPID.
+                     // TODO terminal delete messages after a while.
+                     // TODO fix the bit flag.
+                     // TODO what happens when states are defined with more than one byte.
 
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.

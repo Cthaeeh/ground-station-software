@@ -1,9 +1,6 @@
 package data;
 
-import data.sources.BitFlag;
-import data.sources.DataSource;
-import data.sources.SimpleSensor;
-import data.sources.State;
+import data.sources.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +36,10 @@ public class Config {
      * Contains all available BitFlags like for example GO PRO ON ;
      */
     private ArrayList<BitFlag> bitFlags = new ArrayList<>();
+    /**
+     * Contains all available String Sources, for example ORBC DEBUG MSG 1
+     */
+    private ArrayList<StringSource> stringSources = new ArrayList<>();
     /**
      * The start bytes of a message send through Serial Communication.
      */
@@ -117,6 +118,12 @@ public class Config {
         }
         for (State state : states){
             dataSources.add(state);
+        }
+        for (BitFlag flag : bitFlags){
+            dataSources.add(flag);
+        }
+        for (StringSource string : stringSources){
+            dataSources.add(string);
         }
         return dataSources;
     }

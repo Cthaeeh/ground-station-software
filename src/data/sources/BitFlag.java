@@ -63,7 +63,6 @@ public class BitFlag extends DataSource {
     /**
      * Inserts a new value into this dataSource. Because no time is provided the program up time is used.
      * The reason it gets the raw bytes is that the dataSource itself will know best how to decode it.
-     * It can apply a proportional constant and an offset.
      * @param bytes the value encoded as bytes.
      */
     @Override
@@ -80,6 +79,7 @@ public class BitFlag extends DataSource {
      */
     private static boolean isBitSet(byte[] bytes, int pos)
     {
+        //TODO fix this it is broken.
         return (bytes[pos/8] & (1 << pos%8)) != 0;
     }
 
