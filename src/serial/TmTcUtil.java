@@ -6,6 +6,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.logging.Level;
 
@@ -72,6 +73,7 @@ public class TmTcUtil {
         crc16.update(concatenate(Arrays.copyOfRange(message,0,realPos),Arrays.copyOfRange(message,realPos+2,message.length)));
         int crc16Int = crc16.getValue();                                //Calculate the CRC
         byte[] crc16Bytes = {(byte) (crc16Int>>>8),(byte) (crc16Int)};
+        System.out.println("The CRC should be:" +crc16Int + "as bytes: " + crc16Bytes[0] + "|" + crc16Bytes[1]);
         return checkCRC(crc16Bytes,realPos,message);
     }
 
@@ -83,6 +85,7 @@ public class TmTcUtil {
      * @return
      */
     private static boolean checkCRC(byte[] crc16Bytes, int pos , byte[] message){
+        System.out.println("But was" + new BigInteger(new byte[]{message[pos],message[pos+1]}) + "as bytes" + message[pos] + "|" + message[pos+1]);
         for(int i = 0; i < 2; i++){
             if(message[i+pos]!=crc16Bytes[i]) return false; // NON valid crc16
         }

@@ -3,6 +3,7 @@ package data.sources;
 import data.Point;
 import data.TimeUtility;
 import javafx.animation.AnimationTimer;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;

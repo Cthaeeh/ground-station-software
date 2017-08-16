@@ -4,6 +4,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
 import data.Config;
 import data.sources.DataSource;
+import data.sources.StringSource;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -96,12 +97,20 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
     }
 
+    public static String byteArrayToHex(byte[] a) {
+        StringBuilder sb = new StringBuilder(a.length * 2);
+        for(byte b: a)
+        sb.append(String.format("%02x", b));
+        return sb.toString();
+    }
     /**
      * If CRC 16 is used checks it and if its okay decodes the message.
      * @param message
      */
     @Override
     public void processMessage(byte[] message) {
+        System.out.println("message" + toString(message));
+        System.out.println(byteArrayToHex(message));
         if(useCRC16TM){
             if(TmTcUtil.isCrcValid(message,CRC16PosTM)){
                 decodeMessage(message);
@@ -135,10 +144,11 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     private void decodeMessage(byte[] msgBuffer) {
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
+        System.out.println("Whole message" + toString(msgBuffer));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
-                if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN) ArrayUtils.reverse(value);
+                if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN && !(source instanceof StringSource)) ArrayUtils.reverse(value);
                 System.out.println(source.getName() + " " + toString(value));
                 source.insertValue(value);
             }

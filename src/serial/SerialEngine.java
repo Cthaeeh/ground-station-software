@@ -152,7 +152,8 @@ public class SerialEngine {
         if (messagePointer >= fixedMsgLength) {
             readState = ReadState.SEARCHING_START;
             messagePointer = 0;
-            msgListener.processMessage(msgBuffer);
+            //cut off the last two byte.
+            msgListener.processMessage(Arrays.copyOfRange(msgBuffer,0,(msgBuffer.length-stopBytes.length)));
         }
     }
 
@@ -177,4 +178,5 @@ public class SerialEngine {
             }
         }
     }
+
 }

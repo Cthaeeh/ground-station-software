@@ -33,7 +33,11 @@ public class Main extends Application {
                      // TODO move this whole listner thing to the abstract class DataSource this is now ULTRA STUPID.
                      // TODO terminal delete messages after a while.
                      // TODO fix the bit flag.
+                     // TODO style the terminal (give a first message saying what u are listening to t is a bad abbrevation for time
+                     // TODO more descriptive program log messages.
                      // TODO what happens when states are defined with more than one byte.
+                     // TODO add buttons in the connection window for quick connect
+                     // TODO add zero bytes whe command base is not as long as the length of the command.
 
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
@@ -51,6 +55,7 @@ public class Main extends Application {
                  // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
 //               // TODO app logo
                  // TODO let the user see last info for each source
+                 // TODO Multi Window support.
 
     public static Logger programLogger = Logger.getLogger("Program-Logger");
     private static FileHandler fileHandler;     //Needed for logging to file.
