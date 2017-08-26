@@ -67,7 +67,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
      */
     @Override
     public void onUpdateData(State state, Point<String> point) {
-        String text = state.getName() + " : " + point.y + " " + point.x + " t " + System.lineSeparator();
+        String text = state.getName() + " : " + point.y + " " + point.x + " sec " + System.lineSeparator();
         this.appendText(text);
         this.appendText(System.lineSeparator());
     }
@@ -80,7 +80,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
      */
     @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
-        String text = bitFlag.getName() + " : " + (point.y ? "TRUE" : "FALSE") + " " + point.x + " t " + System.lineSeparator();
+        String text = bitFlag.getName() + " : " + (point.y ? "TRUE" : "FALSE") + " " + point.x + " sec " + System.lineSeparator();
         this.appendText(text);
         this.appendText(System.lineSeparator());
     }
@@ -88,7 +88,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
     @Override
     public void onUpdateData(SimpleSensor sensor, Point<Number> point) {
         if(point.y instanceof Double){
-            this.appendText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit()+ point.x + " t " + System.lineSeparator());
+            this.appendText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit()+ point.x + " sec " + System.lineSeparator());
         }else if(point.y instanceof Integer){
             this.appendText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit()+ point.x + " t " + System.lineSeparator());
         }
