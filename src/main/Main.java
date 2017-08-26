@@ -31,11 +31,9 @@ public class Main extends Application {
 //     1       yes   // TODO find a convenient way to edit a config file.
 //     7       yes   // TODO add time functionality.
                      // TODO move this whole listner thing to the abstract class DataSource this is now ULTRA STUPID.
-                     // TODO terminal delete messages after a while.
                      // TODO fix the bit flag.
                      // TODO more descriptive program log messages.
                      // TODO what happens when states are defined with more than one byte.
-                     // TODO add buttons in the connection window for quick connect
                      // TODO add zero bytes whe command base is not as long as the length of the command.
 
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
@@ -46,6 +44,7 @@ public class Main extends Application {
 
 
                  // later maybe
+                 // TODO terminal delete messages after a while, or add possibility to clear terminal.
                  // TODO let the user select a default config if the hardcoded one is not found.
 //               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
                  // TODO add support for float and double and unsigned int maybe ??
