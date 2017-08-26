@@ -28,7 +28,10 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
     }
 
     private void subscribeTo(List<DataSource> dataSources) {
+        this.appendText("TERMINAL is listening to following data-sources: " + System.lineSeparator());
         for (DataSource source : dataSources) {
+            this.appendText(source.getName() + ","+System.lineSeparator());
+
             if (source instanceof SimpleSensor) {
                 ((SimpleSensor) source).addListener(this);
                 continue;
@@ -47,6 +50,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
             }
             Main.programLogger.log(Level.WARNING, () -> "Datasource:" + source.getName() + " of type: " + source.getClass().getName() + " is not supported by TerminalPresentation");
         }
+        this.appendText("______________________________________________" + System.lineSeparator());
     }
 
     @Override

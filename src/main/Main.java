@@ -33,7 +33,6 @@ public class Main extends Application {
                      // TODO move this whole listner thing to the abstract class DataSource this is now ULTRA STUPID.
                      // TODO terminal delete messages after a while.
                      // TODO fix the bit flag.
-                     // TODO style the terminal (give a first message saying what u are listening to t is a bad abbrevation for time
                      // TODO more descriptive program log messages.
                      // TODO what happens when states are defined with more than one byte.
                      // TODO add buttons in the connection window for quick connect
