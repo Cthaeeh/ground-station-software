@@ -30,11 +30,9 @@ public class Main extends Application {
 //     2       yes   // TODO advanced logging of data of raw data.
 //     1       yes   // TODO find a convenient way to edit a config file.
 //     7       yes   // TODO add time functionality.
-                     // TODO move this whole listner thing to the abstract class DataSource this is now ULTRA STUPID.
+                     // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.
                      // TODO fix the bit flag.
-                     // TODO more descriptive program log messages.
                      // TODO what happens when states are defined with more than one byte.
-                     // TODO add zero bytes whe command base is not as long as the length of the command.
 
 //                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
                      // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
@@ -87,9 +85,7 @@ public class Main extends Application {
             fileHandler.setFormatter(formatter);
             // the following statement is used to log any messages
             programLogger.info("Logger initialized");
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SecurityException | IOException e) {
             e.printStackTrace();
         }
     }

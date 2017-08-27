@@ -110,6 +110,11 @@
            		"description": "h",
                 "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                 "length": 20
+           	},{
+           		"name": "TEST-COMMAND",
+           		"description": "h",
+                "commandBasis": [1,2],
+                "length": 10
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
