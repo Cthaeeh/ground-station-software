@@ -2,12 +2,13 @@ package data;
 
 /**
  * Created by Kai on 08.07.2017.
+ * Utility class for time stuff ( like program up time )
  */
 //TODO in which package does this belong ?
 public class TimeUtility {
 
     /**
-     * Start Time of the program.
+     * Start Time of the program. //TODO FIXME this does not happen at program start up.
      */
     private static final long START_TIME = System.nanoTime();
 

@@ -15,7 +15,7 @@
                <tooltip>
                   <Tooltip text="Connect to a COM Port" />
                </tooltip></Button>
-            <Button fx:id="dataInterpretationBtn" mnemonicParsing="false" onMouseClicked="#btnDataInterpretationClick" text="Load Config">
+            <Button mnemonicParsing="false" onMouseClicked="#btnLoadConfigClick" text="Load Config">
                <tooltip>
                   <Tooltip text="Select a File where it is determined how incoming data is interpreted. This will determine the available Data-Sources. " />
                </tooltip></Button>

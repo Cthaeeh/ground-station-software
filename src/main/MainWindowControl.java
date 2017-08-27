@@ -30,16 +30,16 @@ import java.util.logging.Level;
 /**
  * Created by Kai on 22.04.2017.
  */
-public class MainWindowControl implements Initializable{
+public class MainWindowControl implements Initializable {
 
     //TODO put this Visualizations managment / visualizationsGridPane stuff elsewhere.
-    private DataModel model ;
+    private DataModel model;
     private SerialPortComm serialPortComm;
     /**
      * To keep references to the VisualizationControl .
      * This way we can tell the corresponding Controller if a Node gets deleted (removed);
      */
-    private Map<Node,VisualizationControl> visualizationsMap = new HashMap<>();
+    private Map<Node, VisualizationControl> visualizationsMap = new HashMap<>();
 
     @FXML
     private Button showConnectionWindowBtn;
@@ -71,10 +71,10 @@ public class MainWindowControl implements Initializable{
         if (this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
-        this.model = model ;
+        this.model = model;
         serialPortComm = new SerialPortComm(model);
         //Add one visualization Element
-        visualizationsGridPane.add(createVisualizationElement(),0,0);
+        visualizationsGridPane.add(createVisualizationElement(), 0, 0);
         //give model to sub controllers
         teleCommandController.initModel(model);
         teleCommandController.initSerialPortComm(serialPortComm);
@@ -104,21 +104,21 @@ public class MainWindowControl implements Initializable{
     }
 
     private void addRow() {
-        if(numOfRows >= MAX_NUMBER_OF_ROWS) return;
+        if (numOfRows >= MAX_NUMBER_OF_ROWS) return;
         Node[] newElements = new Node[numOfColumns];
         for (int i = 0; i < numOfColumns; i++) {
             newElements[i] = createVisualizationElement();
         }
-        visualizationsGridPane.addRow(numOfRows++,newElements);
+        visualizationsGridPane.addRow(numOfRows++, newElements);
     }
 
     private void addCol() {
-        if(numOfColumns >= MAX_NUMBER_OF_COLUMNS) return;
+        if (numOfColumns >= MAX_NUMBER_OF_COLUMNS) return;
         Node[] newElements = new Node[numOfRows];
         for (int i = 0; i < numOfRows; i++) {
             newElements[i] = createVisualizationElement();
         }
-        visualizationsGridPane.addColumn(numOfColumns++,newElements);
+        visualizationsGridPane.addColumn(numOfColumns++, newElements);
     }
 
     /**
@@ -128,15 +128,16 @@ public class MainWindowControl implements Initializable{
      * but instead a specific one.
      */
     private void removeRow() {
-        if(numOfRows <= 1) return;                              //Minimum 1 element.
+        if (numOfRows <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
         for (Node child : visualizationsGridPane.getChildren()) {
             // get index from child
             int rowIndex = GridPane.getRowIndex(child) == null ? 0 : GridPane.getRowIndex(child);
 
-            if(rowIndex ==  (numOfRows-1)){
+            if (rowIndex == (numOfRows - 1)) {
                 deleteNodes.add(child);
                 visualizationsMap.get(child).dispose();
+                visualizationsMap.remove(child); //TODO is this really okay ?
             }
         }
         numOfRows--;
@@ -150,24 +151,27 @@ public class MainWindowControl implements Initializable{
      * but instead a specific one.
      */
     private void removeCol() {
-        if(numOfColumns <= 1) return;                              //Minimum 1 element.
+        if (numOfColumns <= 1) return;                              //Minimum 1 element.
         Set<Node> deleteNodes = new HashSet<>();
         for (Node child : visualizationsGridPane.getChildren()) {
             // get index from child
             int columnIndex = GridPane.getColumnIndex(child) == null ? 0 : GridPane.getColumnIndex(child);
 
-            if(columnIndex ==  (numOfColumns-1)){
+            if (columnIndex == (numOfColumns - 1)) {
                 deleteNodes.add(child);
                 visualizationsMap.get(child).dispose();
+                visualizationsMap.remove(child);    //TODO is this really okay ?
             }
         }
         numOfColumns--;
         visualizationsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
+        System.out.println("Test");
     }
 
     /**
      * Creates a visualization element, a ressources element that lets you choose a data source and then the according data
      * as a graph or in another form.
+     *
      * @return
      */
     private Node createVisualizationElement() {
@@ -176,10 +180,10 @@ public class MainWindowControl implements Initializable{
             Node newNode = elementLoader.load();
             VisualizationControl visualizationControl = elementLoader.getController();
             visualizationControl.initModel(model);
-            visualizationsMap.put(newNode,visualizationControl);
+            visualizationsMap.put(newNode, visualizationControl);
             return newNode;
         } catch (IOException e) {
-            Main.programLogger.log(Level.WARNING,"Failed to load visualization element");
+            Main.programLogger.log(Level.WARNING, "Failed to load visualization element");
             return new Label("Failed to load : " + VISUALIZATION_ELEMENT_FXML);
         }
     }
@@ -189,8 +193,8 @@ public class MainWindowControl implements Initializable{
      * Closes this one.
      */
     @FXML
-    private void btnShowConnectionWindow(){
-        try{
+    private void btnShowConnectionWindow() {
+        try {
             final Stage connectionStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONNECTION_FXML));
             Scene scene = new Scene(loader.load(), 600, 300);
@@ -207,28 +211,56 @@ public class MainWindowControl implements Initializable{
             connectionStage.setResizable(false);
             connectionStage.show();
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Main.programLogger.log(Level.WARNING, "Failed to load: " + CONNECTION_FXML);
         }
     }
 
+    //TODO split this up.
     @FXML
-    private void btnDataInterpretationClick(){
+    private void btnLoadConfigClick() {
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(visualizationsGridPane.getScene().getWindow());
         if (file != null) {
             try {
-                model.loadConfigData(file);
-                //TODO unexpected behavior, either disallow or make sure it works
+                //TODO test it.
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will close all visualizations and stop the serial communication", ButtonType.OK, ButtonType.CANCEL);
+                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.OK) {
+                    serialPortComm.disconnect();
+                    emptyAllVisualizations();
+                    model.loadConfigData(file);
+                }
             } catch (IOException exc) {
-                //TODO handle exception...
+                Main.programLogger.log(Level.WARNING, () -> "Unable to load config: " + file.getName() + " Reason unknown");
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, (IOException)");
+                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.showAndWait();
+            } catch (com.google.gson.JsonSyntaxException ex) {
+                Main.programLogger.log(Level.WARNING, () -> "JSON unreadable of: " + file.getName());
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, because of bad json!");
+                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    /**
+     * Because all the visualizations are now outdated (they would not get data anyway), dispose them all.
+     */
+    private void emptyAllVisualizations() {
+        for (Node node : visualizationsGridPane.getChildren()) {
+            VisualizationControl visualization =  visualizationsMap.get(node);
+            if(visualization != null){
+                visualization.dispose();
             }
         }
     }
 
     @FXML
     private void btnCreateConfigClick() {
-        try{
+        try {
             final Stage configEditStage = new Stage();
             System.out.println("got here");
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
@@ -244,7 +276,7 @@ public class MainWindowControl implements Initializable{
             configEditStage.setMinHeight(600);
             configEditStage.show();
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Main.programLogger.log(Level.WARNING, "Failed to load: " + CONFIG_EDIT_FXML);
         }
     }

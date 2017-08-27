@@ -21,7 +21,6 @@ import java.util.logging.Level;
  */
 public class State extends DataSource {
 
-    //TODO think about having more than one byte as key ( but on the other hand who needs an enum with more than 256 entries ?)
     /**
      * assigns every raw bit/byte encoded state a string.
      */

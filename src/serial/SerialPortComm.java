@@ -57,6 +57,7 @@ public class SerialPortComm {
     public void disconnect(){
         if(isConnected){
             communicationThread.stopThread();
+            isConnected = false; //TODO maybe first wait some time and check if we really disconnected.
         }
     }
 
@@ -79,7 +80,7 @@ public class SerialPortComm {
      * Will send the passed bytes to the Serial Port.
      * Note that they will not be changed in any way.
      * Also this will not work if we are not connected to any serial Port.
-     * @param command
+     * @param command bytes to be send.
      */
     public void send(byte[] command) {
         if(communicationThread!=null && communicationThread.isAlive()){
@@ -96,16 +97,13 @@ public class SerialPortComm {
 
     public String getPort() {
         if(isConnected){
-            return serialPort.getDescriptivePortName();
+            return serialPort.getSystemPortName();
         }else {
             return "no port ";
         }
     }
 
     public boolean isRunningSmooth() {
-        if(communicationThread != null && isConnected){
-            return communicationThread.isRunningSmooth();
-        }
-        return false;
+        return communicationThread != null && isConnected && communicationThread.isRunningSmooth();
     }
 }

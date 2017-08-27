@@ -24,34 +24,35 @@ import java.util.logging.SimpleFormatter;
  * Sets up a programLogger and a Main Window.
  */
 public class Main extends Application {
-//priority: // feature ?
 
-                     // Big things that need to be done:
-//     2       yes   // TODO advanced logging of data of raw data.
-//     1       yes   // TODO find a convenient way to edit a config file.
-//     7       yes   // TODO add time functionality.
-                     // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.
-                     // TODO fix the bit flag.
-                     // TODO what happens when states are defined with more than one byte.
+    // Thinks that need to be done, before releasing 0.1:
+    // Features:
 
-//                   // TODO NOTE that an uneven number of bytes for a value is discouraged.
-                     // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
-                     // TODO think about the potential bug that when you open something like the Connection Window, does the other stuff still get updated.
-                     // TODO somehow detect invalid configs.
-                     // TODO Make the whole serial comm stuff a lot more robust. What if the config file is bullshit.
+        // TODO advanced logging of data of raw data.
+        // TODO find a convenient way to edit a config file.
+        // TODO add time functionality. (Watch out for time incontinuitity with the graphs
 
+    //Fixes
 
-                 // later maybe
-                 // TODO terminal delete messages after a while, or add possibility to clear terminal.
-                 // TODO let the user select a default config if the hardcoded one is not found.
-//               // TODO add a way of exchanging. a config file while program is running. very difficult u have to restart the TM/TC thread and kill all the visualizations. Possible but ...
-                 // TODO add support for float and double and unsigned int maybe ??
-//               // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
-                 // TODO style everything consistently . with base 16 ez ez ez
-                 // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
-//               // TODO app logo
-                 // TODO let the user see last info for each source
-                 // TODO Multi Window support.
+        // TODO Check if GBC really does the right thing. (Because I still see DataSourceSelectionDialog Objects even when the corresponding window is closed ???) Maybe the general way how I open and close windows is wrong.
+        // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.
+        // TODO fix the bit flag.
+        // TODO NOTE that an uneven number of bytes for a value is discouraged.
+        // TODO add junit test everywhere. U can even test the serial stuff with linux and virtual ports.
+        // TODO somehow detect invalid configs.
+        // TODO Make the whole serial comm stuff a lot more robust. What if the config file is bullshit.
+
+    // later maybe, after 0.1
+
+        // TODO terminal delete messages after a while, or add possibility to clear terminal.
+        // TODO let the user select a default config if the hardcoded one is not found.
+        // TODO add support for float and double and unsigned int maybe ??
+        // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
+        // TODO style everything consistently . with base 16 ez ez ez
+        // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
+        // TODO app logo
+        // TODO let the user see last info for each source
+        // TODO Multi Window support.
 
     public static Logger programLogger = Logger.getLogger("Program-Logger");
     private static FileHandler fileHandler;     //Needed for logging to file.
@@ -63,7 +64,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "configs/default_config.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "configs/test6.txt";
 
     public static  void main(String[] args){
         setupLogger();

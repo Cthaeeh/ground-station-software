@@ -47,7 +47,7 @@ public class DataSourceSelectionControl implements Initializable{
         initializeChoiceBox();
     }
 
-    public void initModel(DataModel model) {
+    void initModel(DataModel model) {
         if (this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
@@ -57,9 +57,9 @@ public class DataSourceSelectionControl implements Initializable{
 
     /**
      * If you want to get informed about the dataVisualization the user has chosen, pass a lambda with this method.
-     * @param dataVisualization
+     * @param dataVisualization the one who requested which data should be shown in which way.
      */
-    public void register(DataVisualization dataVisualization){
+    void register(DataVisualization dataVisualization){
         this.dataVisualization = dataVisualization;
     }
 
@@ -89,7 +89,6 @@ public class DataSourceSelectionControl implements Initializable{
             Alert alert = new Alert(Alert.AlertType.WARNING, "No data source selected");
             alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
             alert.showAndWait();
-            //TODO style Alert.
             return;
         }
         dataVisualization.display((VisualizationControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),selectedDataSources);

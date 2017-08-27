@@ -112,46 +112,16 @@ void setup() {
 
 void loop()
 {
-  byte packet[31];
+  byte packet[4];
   delay(3000);
 
-  packet[0] = 12; //start bytes
-  packet[1] = 13;
+  packet[0] = 12; //start byte
 
-  packet[2] = 0; // Id
-  packet[3] = 1; // some values
-  packet[4] = 1; 
-  packet[5] = 1;
-  packet[6] = 1;
-
-  packet[7] = 66;
-  packet[8] = 66;
-  packet[9] = 66;
-  packet[10] = 66;
-  packet[11] = 66;
-  packet[12] = 66;
-  packet[13] = 66;
-  packet[14] = 66;
-  packet[15] = 66;
-  packet[16] = 66;
-
-  packet[17] = 66;
-  packet[18] = 66;
-  packet[19] = 66;
-  packet[20] = 66;
-  packet[21] = 66;
-  packet[22] = 66;
-  packet[23] = 66;
-  packet[24] = 66;
-  packet[25] = 66;
-  packet[26] = 66;
-
-//CRC goes here.
+  packet[1] = 0;  // Id
+  packet[2] = 1;  // some value
+  packet[3] = 13; // stop byte
   
-  packet[29] = 12; //stop bytes
-  packet[30] = 22;
-  
-  Serial.write(packet, 31);
+  Serial.write(packet, 4);
 }
 
 

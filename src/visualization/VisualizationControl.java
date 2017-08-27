@@ -85,6 +85,7 @@ public class VisualizationControl {
     public void dispose() {
         if (visualizationElement != null) {
             visualizationElement.unsubscibeDataSources();
+            pane.getChildren().clear();
         }
     }
 

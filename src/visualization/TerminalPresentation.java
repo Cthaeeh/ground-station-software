@@ -19,7 +19,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
 
     private List<DataSource> dataSources;
 
-    public TerminalPresentation(List<DataSource> dataSources) {
+    TerminalPresentation(List<DataSource> dataSources) {
         this.setMinSize(100, 100);
         this.setPrefSize(600, 400);
         this.setEditable(false);
@@ -65,9 +65,8 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
 
     /**
      * Gets called when some state gets new data.
-     *
-     * @param state
-     * @param point
+     * @param state State that is updated.
+     * @param point the new data.
      */
     @Override
     public void onUpdateData(State state, Point<String> point) {
@@ -79,8 +78,8 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
     /**
      * Gets called when some BitFlag gets new data.
      *
-     * @param bitFlag
-     * @param point
+     * @param bitFlag BitFLag that is updated.
+     * @param point new data.
      */
     @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
@@ -92,17 +91,17 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
     @Override
     public void onUpdateData(SimpleSensor sensor, Point<Number> point) {
         if(point.y instanceof Double){
-            this.appendText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit()+ point.x + " sec " + System.lineSeparator());
+            this.appendText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit()+ " " + point.x + " sec " + System.lineSeparator());
         }else if(point.y instanceof Integer){
-            this.appendText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit()+ point.x + " t " + System.lineSeparator());
+            this.appendText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit()+ " " + point.x + " sec " + System.lineSeparator());
         }
         this.appendText(System.lineSeparator());
     }
 
     /**
      * Gets called if a Stringsource we subscribed to  gets new data.
-     * @param stringSource
-     * @param point
+     * @param stringSource The string source that is updated.
+     * @param point the new data.
      */
     @Override
     public void onUpdateData(StringSource stringSource, Point<String> point) {
