@@ -28,10 +28,11 @@ public class Main extends Application {
 
         // TODO advanced logging of data of raw data.
         // TODO find a convenient way to edit a config file.
-        // TODO add time functionality. (Watch out for time incontinuitity with the graphs
+        // TODO add time functionality. (Watch out for time incontinuitity with the graphs)
 
     //Fixes
 
+        // TODO go through all program logs and see that they make sense.
         // TODO fix the data logger.
         // TODO add junit test for telecommands
         // TODO HELP button doesn't work on linux.
