@@ -106,12 +106,12 @@ public class VisualizationControl {
 
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(selectDataSourceButton.getScene().getWindow());
-            dialog.setMinWidth(400);
-            dialog.setMinHeight(400);
+            dialog.setMinWidth(700);
             dialog.setScene(scene);
             dialog.show();
         } catch (IOException e) {
             e.printStackTrace();
+            Main.programLogger.log(Level.WARNING,()->"Failed to load: " +  DATA_SOURCE_SELECTION_FXML);
         }
     }
 

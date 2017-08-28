@@ -7,9 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -34,6 +32,7 @@ public class Main extends Application {
 
     //Fixes
 
+        // TODO add junit test for telecommands
         // TODO Check if GBC really does the right thing. (Because I still see DataSourceSelectionDialog Objects even when the corresponding window is closed ???) Maybe the general way how I open and close windows is wrong.
         // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.
         // TODO fix the bit flag.
@@ -64,7 +63,7 @@ public class Main extends Application {
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "configs/test6.txt";
+    private static final String DEFAULT_INTERPRETATION_FILE = "configs/default_config.txt";
 
     public static  void main(String[] args){
         setupLogger();

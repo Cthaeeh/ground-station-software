@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -94,6 +95,14 @@ public class DataSourceSelectionControl implements Initializable{
         dataVisualization.display((VisualizationControl.PresentationMode) presentationMode.getSelectionModel().getSelectedItem(),selectedDataSources);
         Stage stage = (Stage) presentationMode.getScene().getWindow();
         stage.close();
+    }
+
+    /**
+     * Select all dataSources.
+     * @param mouseEvent
+     */
+    public void selectAll(MouseEvent mouseEvent) {
+        dataSourceSelectionTable.getSelectionModel().selectAll();
     }
 }
 

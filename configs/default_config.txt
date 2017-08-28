@@ -103,18 +103,18 @@
        	"teleCommands": [{
            		"name": "TEST MODE ON",
            		"description": "h",
-                "commandBasis": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 20
+                "commandBasis": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                "length": 18
            	},{
            		"name": "TEST MODE OFF",
            		"description": "h",
-                "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 20
+                "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                "length": 18
            	},{
            		"name": "TEST-COMMAND",
            		"description": "h",
                 "commandBasis": [1,2],
-                "length": 10
+                "length": 18
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
@@ -124,7 +124,7 @@
        	"maxMessageLength": 55,
        	"isUsingCRC16": true,
        	"crc16positionTC": 3000,
-       	"crc16positionTM": -1,
+       	"crc16positionTM": 53,
        	"timePosition": 1,
        	"timeLength": 4,
        	"byteEndianity": "BIG_ENDIAN",
