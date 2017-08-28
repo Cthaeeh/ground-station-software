@@ -115,6 +115,16 @@
            		"description": "h",
                 "commandBasis": [1,2],
                 "length": 18
+           	},{
+           		"name": "TEST-COMMAND ID 22",
+           		"description": "h",
+                "commandBasis": [0,22],
+                "length": 18
+           	},{
+           		"name": "ID 40, PARAM A 1",
+           		"description": "h",
+                "commandBasis": [0,40,0,0,0,1],
+                "length": 18
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
@@ -123,7 +133,7 @@
        	"messageLength": 55,
        	"maxMessageLength": 55,
        	"isUsingCRC16": true,
-       	"crc16positionTC": 3000,
+       	"crc16positionTC": 18,
        	"crc16positionTM": 53,
        	"timePosition": 1,
        	"timeLength": 4,

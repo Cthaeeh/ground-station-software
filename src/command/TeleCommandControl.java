@@ -126,7 +126,7 @@ public class TeleCommandControl implements Initializable {
         if(model.getConfig().isUsingCRC16() || addCrcCheckBox.isSelected()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
             command = TmTcUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
         }
-        if(addStartStopBytesCheckBox.isSelected()){
+        if(addStartStopBytesCheckBox.isSelected()){                             // TODO does this make sense.
             command = TmTcUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
         }
 

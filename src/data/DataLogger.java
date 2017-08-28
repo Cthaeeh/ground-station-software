@@ -28,6 +28,7 @@ public class DataLogger {
     }
 
     public void write(String message){
+        System.out.println("Filewriter:"+ message);
         if(fileWriter != null){
             try {
                 fileWriter.write(message + System.lineSeparator());
