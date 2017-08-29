@@ -4,6 +4,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import data.DataModel;
 import data.Config;
 import data.sources.DataSource;
+import data.sources.SimpleSensor;
 import data.sources.StringSource;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
@@ -144,11 +145,12 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     private void decodeMessage(byte[] msgBuffer) {
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println("Whole message" + toString(msgBuffer));
+        System.out.println("Whole message: " + toString(msgBuffer));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
-                if(byteEndianity == Config.ByteEndianity.BIG_ENDIAN && !(source instanceof StringSource)) ArrayUtils.reverse(value);
+
+                if(byteEndianity == Config.ByteEndianity.LITTLE_ENDIAN && (source instanceof SimpleSensor)) ArrayUtils.reverse(value);
                 System.out.println(source.getName() + " " + toString(value));
                 source.insertValue(value);
             }

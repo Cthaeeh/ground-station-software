@@ -53,6 +53,24 @@
        		"messageId": [8],
        		"startOfValue": 17,
        		"lengthOfValue": 4
+       	},{
+       		"name": "Sinus",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [9],
+       		"startOfValue": 5,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "Accel-Z",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [9],
+       		"startOfValue": 21,
+       		"lengthOfValue": 1
        	}],
        	"states": [{
        		"name": "STATE_CHANGE",
@@ -103,13 +121,33 @@
        	"teleCommands": [{
            		"name": "TEST MODE ON",
            		"description": "h",
-                "commandBasis": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 20
+                "commandBasis": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                "length": 18
            	},{
            		"name": "TEST MODE OFF",
            		"description": "h",
-                "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 20
+                "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                "length": 18
+           	},{
+           		"name": "TEST-COMMAND",
+           		"description": "h",
+                "commandBasis": [1,2],
+                "length": 18
+           	},{
+           		"name": "TEST-COMMAND ID 22",
+           		"description": "h",
+                "commandBasis": [0,22],
+                "length": 18
+           	},{
+           		"name": "ID 40, PARAM A 1",
+           		"description": "h",
+                "commandBasis": [0,40,0,0,0,1],
+                "length": 18
+           	},{
+           		"name": "INVALID CRC",
+           		"description": "generate wrong crc for response",
+                "commandBasis": [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                "length": 18
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
@@ -118,7 +156,7 @@
        	"messageLength": 55,
        	"maxMessageLength": 55,
        	"isUsingCRC16": true,
-       	"crc16positionTC": 3000,
+       	"crc16positionTC": 18,
        	"crc16positionTM": 53,
        	"timePosition": 1,
        	"timeLength": 4,

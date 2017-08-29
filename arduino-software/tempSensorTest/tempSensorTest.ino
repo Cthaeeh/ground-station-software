@@ -112,16 +112,19 @@ void setup() {
 
 void loop()
 {
-  byte packet[4];
+  byte packet[7];
   delay(3000);
 
   packet[0] = 12; //start byte
 
   packet[1] = 0;  // Id
-  packet[2] = 1;  // some value
-  packet[3] = 13; // stop byte
+  packet[2] = 0;  // some value
+  packet[3] = 0;  // some value
+  packet[4] = 1;  // some value
+  packet[5] = 0;  // some value
+  packet[6] = 13; // stop byte
   
-  Serial.write(packet, 4);
+  Serial.write(packet, 7);
 }
 
 
