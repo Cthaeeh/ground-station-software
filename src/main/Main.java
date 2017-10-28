@@ -34,7 +34,6 @@ public class Main extends Application {
 
         // TODO go through all program logs and see that they make sense.
         // TODO fix the data logger.
-        // TODO add junit test for telecommands
         // TODO HELP button doesn't work on linux.
         // TODO Check if GBC really does the right thing. (Because I still see DataSourceSelectionDialog Objects even when the corresponding window is closed ???) Maybe the general way how I open and close windows is wrong.
         // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.

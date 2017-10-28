@@ -19,9 +19,29 @@ import java.util.logging.Level;
 public class Parameter {
 
 
+    public enum Type{
+        INTEGER,STATE,FLAG,UNDEFINED
+    }
+
+    private Type type = Type.UNDEFINED;
+
     private boolean flag;
     private String state;
     private int intValue;
+    private Map<String,byte[]> stateMap = new HashMap<>();
+
+    /**
+     * Name of the parameter, z.B temp for calibration 1
+     */
+    private String name;
+    /**
+     * Where in the Telecommand this parameter is located.
+     */
+    private int start;
+    /**
+     * How long is the Parameter in bytes.
+     */
+    private int length;
 
     public void setFlag(boolean flag) {
         this.flag = flag;
@@ -43,24 +63,6 @@ public class Parameter {
         return length;
     }
 
-    public enum Type{
-        INTEGER,STATE,FLAG,UNDEFINED;
-    }
-
-    private Type type = Type.UNDEFINED;
-
-    private Map<String,byte[]> stateMap = new HashMap<>();
-
-    private String name;
-    /**
-     * Where in the Telecommand this parameter is located.
-     */
-    private int start;
-
-    /**
-     * How long is the Parameter in bytes.
-     */
-    private int length;
 
     public String getName(){
         return name;

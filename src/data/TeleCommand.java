@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Kai on 09.06.2017.
  * The TeleCommand - Class can be viewed as a Template for a real Telecommand.
- * So lets say u want to have a Telecommand where u send some Temperature Calibration.
+ * So lets say you want to have a Telecommand where you send some Temperature Calibration.
  * Then this Command would have for example a Name : "Calibrate Temp Sensor 3000"
  * And one Parameter ( The temperature ) . And since maybe the param would be 4 bytes the commandBasis ( or ID
  * if you want to call it that ) would be 2 bytes the length of the command would be 6 bytes.
