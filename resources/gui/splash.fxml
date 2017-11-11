@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+           prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112">
+   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <Image url="@../pics/thunderstorms-abgedunkelt2.jpg"/>
+   </ImageView>
+   <Label text="groundstation software 0.1" textFill="WHITE" StackPane.alignment="TOP_LEFT">
+      <font>
+         <Font size="24.0"/>
+      </font>
+      <padding>
+         <Insets left="10.0" top="10.0"/>
+      </padding>
+   </Label>
+</StackPane>

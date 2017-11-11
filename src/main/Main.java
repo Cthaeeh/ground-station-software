@@ -1,5 +1,6 @@
 package main;
 
+import com.sun.javafx.application.LauncherImpl;
 import data.DataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +17,11 @@ import java.util.Calendar;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 /**
- * Created by Kai on 08.01.2017.
- * The Entry Point of this program.
- * Sets up a programLogger and a Main Window.
+ * Sets up a logger and shows a splash screen while MyApplication is loading.
  */
-public class Main extends Application {
+public class Main {
 
     // Thinks that need to be done, before releasing 0.1:
     // Features:
@@ -57,18 +57,11 @@ public class Main extends Application {
     public static Logger programLogger = Logger.getLogger("Program-Logger");
     private static FileHandler fileHandler;     //Needed for logging to file.
 
-    private static final String MAIN_WINDOW_FXML = "/gui/main_window.fxml";
-    private static final String CSS_STYLING = "/gui/darkTheme.css";
-    private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
-
-    /**
-     * The default interpretation file that is used, which defines available sources etc.
-     */
-    private static final String DEFAULT_INTERPRETATION_FILE = "configs/default_config.txt";
-
     public static  void main(String[] args){
+        //First setup the logger before everything else, so anything that goes wrong can be logged.
         setupLogger();
-        launch(args);
+        //Show a splash screen while MyApplication gets ready.
+        LauncherImpl.launchApplication(MyApplication.class,MyPreloader.class,args);
     }
 
     /**
@@ -91,44 +84,4 @@ public class Main extends Application {
         }
     }
 
-    @Override
-    public  void  start(Stage primaryStage) throws Exception{
-
-        DataModel model = loadConfig();
-
-        //Load fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(MAIN_WINDOW_FXML));
-        Scene scene = new Scene(loader.load(), 1000, 850);
-
-        //Inject model
-        MainWindowControl mainWindowControl = loader.getController();
-        mainWindowControl.initModel(model);
-
-        //GUI-stuff
-        scene.getStylesheets().add(CSS_STYLING);
-        primaryStage.setTitle(MAIN_WINDOW_TITLE);
-        primaryStage.setScene(scene);
-        primaryStage.setMinWidth(1000);
-        primaryStage.setMinHeight(850);
-        primaryStage.show();
-
-    }
-
-    /**
-     * Attempts to load the default config.
-     * If the default config is not found gives an error message to the user.
-     * Then an empty config is used.
-     */
-    private DataModel loadConfig() {
-        DataModel model = new DataModel();
-        try {
-            model.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
-        }catch (IOException e) {
-            model.loadEmptyConfig();
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Default Interpretation File: " + DEFAULT_INTERPRETATION_FILE  + " not found.");
-            alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
-            alert.showAndWait();
-        }
-        return model;
-    }
 }
