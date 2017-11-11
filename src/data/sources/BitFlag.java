@@ -24,7 +24,7 @@ public class BitFlag extends DataSource {
      */
     private int bitPosition;
 
-    public BitFlag(){
+    BitFlag(){
         informListeners();
     }
 
@@ -79,8 +79,8 @@ public class BitFlag extends DataSource {
      */
     private static boolean isBitSet(byte[] bytes, int pos)
     {
-        //TODO fix this it is broken.
-        return (bytes[pos/8] & (1 << pos%8)) != 0;
+        byte b = (byte) (((byte) 1) << 7-(pos%8));
+        return (bytes[pos/8] & b) != 0;
     }
 
     @Override
@@ -88,4 +88,13 @@ public class BitFlag extends DataSource {
         //TODO implement
         insertValue(bytes);
     }
+
+    /**
+     * For testing
+     * @return
+     */
+    public Point<Boolean> pollLastValue(){
+        return dataQueue.poll();
+    }
+
 }
