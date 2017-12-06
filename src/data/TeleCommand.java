@@ -62,6 +62,10 @@ public class TeleCommand {
         return name;
     }
 
+    public String getDescription(){
+        return description;
+    }
+
     public ArrayList<Parameter> getParameters(){
         return parameters;
     }

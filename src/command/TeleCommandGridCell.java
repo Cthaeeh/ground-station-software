@@ -4,6 +4,7 @@ import data.TeleCommand;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class TeleCommandGridCell extends GridCell<TeleCommand> {
         } else {
             command = item;
             label.setText(item.getName());
+            label.setTooltip(new Tooltip(item.getDescription()));
         }
         box.getChildren().addAll(label);
         label.setStyle("-fx-border-color: white;");
