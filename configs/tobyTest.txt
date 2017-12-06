@@ -1,0 +1,25 @@
+       {
+       	"simpleSensors": [{
+       		"name": "TC_ECHO received ID ",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [1],
+       		"startOfValue": 1,
+       		"lengthOfValue": 4
+       	}],
+       	"startBytes": [1],
+       	"stopBytes": [1],
+       	"idPosition": 0,
+       	"idLength": 1,
+       	"messageLength": 5,
+       	"maxMessageLength": 5,
+       	"isUsingCRC16": false,
+       	"crc16positionTC": -1,
+       	"crc16positionTM": -1,
+       	"timePosition": -1,
+       	"timeLength": 0,
+       	"byteEndianity": "BIG_ENDIAN",
+       	"readMode": "FIXED_MSG_LENGTH"
+       }

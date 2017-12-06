@@ -75,6 +75,7 @@ public class SerialEngine {
     void readByte() {
         byte[] readBuffer = new byte[1];
         int numRead = serialPort.readBytes(readBuffer, 1);       //Read semi blocking 1 byte.
+        System.out.println(readBuffer[0]);
         if (numRead == 1) {
             numBytesRead++;
             switch (readState) {

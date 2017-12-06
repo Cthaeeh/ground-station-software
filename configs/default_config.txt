@@ -119,35 +119,123 @@
        	    "lengthOfValue": 52
        	}],
        	"teleCommands": [{
-           		"name": "TEST MODE ON",
-           		"description": "h",
-                "commandBasis": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 18
+           		"name": "SET TEST MODE SEEDS",
+           		"description": "set seed test mode",
+                "commandBasis": [0,40],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "1": [1],
+                        "2": [2],
+                        "3": [3],
+                        "All": [4]
+                    }
+                },{
+                    "name": "STATE:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "ON": [12],
+                        "OFF": [13]
+                    }
+                }]
            	},{
-           		"name": "TEST MODE OFF",
-           		"description": "h",
-                "commandBasis": [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 18
+           		"name": "GET TEST MODE SEEDS",
+           		"description": "get seed test mode",
+                "commandBasis": [0,45],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "1": [1],
+                        "2": [2],
+                        "3": [3],
+                        "All": [4]
+                    }
+                }]
            	},{
-           		"name": "TEST-COMMAND",
-           		"description": "h",
-                "commandBasis": [1,2],
-                "length": 18
+           		"name": "CHANGE SEED STATE",
+           		"description": "flight rising, flight tx are the only ones working outside test mode.",
+                "commandBasis": [0,30],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "1": [1],
+                        "2": [2],
+                        "3": [3],
+                        "All": [4]
+                    }
+                },{
+                    "name": "STATE:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "READY FOR TAKEOFF": [82],
+                        "FLIGHT RISING": [70],
+                        "FLIGHT TX": [66],
+                        "EAGLE LANDED": [76],
+                        "POWERSAFE ": [80]
+                    }
+                }]
            	},{
-           		"name": "TEST-COMMAND ID 22",
-           		"description": "h",
-                "commandBasis": [0,22],
-                "length": 18
+           		"name": "GET SEED STATE",
+           		"description": " in which state is the seed in, or all ?",
+                "commandBasis": [0,35],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "1": [1],
+                        "2": [2],
+                        "3": [3],
+                        "All": [4]
+                    }
+                }]
            	},{
-           		"name": "ID 40, PARAM A 1",
-           		"description": "h",
-                "commandBasis": [0,40,0,0,0,1],
-                "length": 18
-           	},{
-           		"name": "INVALID CRC",
-           		"description": "generate wrong crc for response",
-                "commandBasis": [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                "length": 18
+           		"name": "GET SEED SENSOR",
+           		"description": "get a specific seed sensor",
+                "commandBasis": [0,50],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "1": [1],
+                        "2": [2],
+                        "3": [3],
+                        "All": [4]
+                    }
+                },{
+                    "name": "Sensor:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "Pressure": [82],
+                        "Accel.": [70],
+                        "Mag.": [66],
+                        "Gyro.": [76],
+                        "Temperature": [80]
+                    }
+                }]
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],

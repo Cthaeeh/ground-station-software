@@ -67,6 +67,7 @@ public class ParameterCell extends ListCell<Parameter> {
             choiceBox.getSelectionModel()
                      .selectedItemProperty()
                      .addListener( (ObservableValue<? extends String> observable,String oldValue, String newValue) -> param.setState(newValue));
+            param.setState(choiceBox.getSelectionModel().getSelectedItem());
             box.getChildren().add(choiceBox);
         }
     }
