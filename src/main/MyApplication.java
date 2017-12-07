@@ -8,7 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 
 /**
@@ -27,12 +26,17 @@ public class MyApplication extends Application{
     private static final String CSS_STYLING = "/gui/darkTheme.css";
     private static final String MAIN_WINDOW_TITLE = "ground station software 0.1";
     private DataModel model;
+    private boolean configLoadFail = false;
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         model = loadConfig();
         //Fake some loading time
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e){
+            // I don't care
+        }
     }
 
     @Override
@@ -53,24 +57,32 @@ public class MyApplication extends Application{
         primaryStage.setMinHeight(850);
         primaryStage.show();
 
+        if(configLoadFail) emptyConfigWarning();
     }
 
     /**
      * Attempts to load the default config.
-     * If the default config is not found gives an error message to the user.
+     * If the default config is not found sets a flag.
      * Then an empty config is used.
      */
     private DataModel loadConfig() {
-        DataModel model = new DataModel();
+        DataModel newModel = new DataModel();
         try {
             Main.programLogger.log(Level.INFO,()->"Try to load default config from: " + DEFAULT_INTERPRETATION_FILE);
-            model.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
-        }catch (IOException e) {
-            model.loadEmptyConfig();
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Default config: " + DEFAULT_INTERPRETATION_FILE  + " not found. Empty config is used.");
-            alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
-            alert.showAndWait();
+            newModel.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
+        } catch (Exception e) { // Why can I not catch an IOException here , goes beyond me ...
+            Main.programLogger.log(Level.WARNING, () -> "Default config failed to load, will use default config.");
+            configLoadFail = true;
+            newModel.loadEmptyConfig();
         }
-        return model;
+        return newModel;
     }
+
+    private void emptyConfigWarning(){
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Empty config is used");
+        alert.setHeaderText("Failed to load: " + DEFAULT_INTERPRETATION_FILE);
+        alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+        alert.showAndWait();
+    }
+
 }
