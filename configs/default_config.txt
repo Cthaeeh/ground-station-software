@@ -8,74 +8,11 @@
        		"messageId": [8],
        		"startOfValue": 1,
        		"lengthOfValue": 2
-       	},{
-       		"name": "TC_ECHO received Crc",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [8],
-       		"startOfValue": 3,
-       		"lengthOfValue": 2
-       	},{
-       		"name": "Parameter A",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [8],
-       		"startOfValue": 5,
-       		"lengthOfValue": 4
-       	},{
-       		"name": "Parameter B",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [8],
-       		"startOfValue": 9,
-       		"lengthOfValue": 4
-       	},{
-       		"name": "Parameter C",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [8],
-       		"startOfValue": 13,
-       		"lengthOfValue": 4
-       	},{
-       		"name": "Parameter D",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [8],
-       		"startOfValue": 17,
-       		"lengthOfValue": 4
-       	},{
-       		"name": "Sinus",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [9],
-       		"startOfValue": 5,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Accel-Z",
-       		"description": "n",
-       		"unit": "num",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
-       		"messageId": [9],
-       		"startOfValue": 21,
-       		"lengthOfValue": 1
        	}],
        	"states": [{
-       		"name": "STATE_CHANGE",
+       		"name": "Test Mode Activated",
        		"description": "n",
-       		"messageId": [10],
+       		"messageId": [0],
                "stateMap": {
                    "0": "ENTER ON_GROUND",
                    "1": "LEAVE ON_GROUND",
@@ -88,29 +25,7 @@
                },
        		"startOfValue": 1,
        		"lengthOfValue": 1
-       	},{
-       		"name": "SIGNAL AKNOLEDGEMENT",
-       		"description": "n",
-       		"messageId": [2],
-               "stateMap": {
-                   "0": "POWER ON",
-                   "1": "LIFT OFF",
-                   "2": "START OF EXPERIMENT",
-                   "3": "START OF DATA STORAGE"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "MSG_TESTMODE_ON_OFF:",
-       		"description": "n",
-       		"messageId": [6],
-               "stateMap": {
-                   "0": "OFF",
-                   "1": "ON"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	}],
+       	},],
        	"stringSources": [{
        	    "name": "DEBUG_MSG",
        	    "description": "n",
@@ -236,6 +151,46 @@
                         "Temperature": [80]
                     }
                 }]
+           	},{
+           		"name": "ENTER TEST MODE ORBC",
+           		"description": "enable the test mode of the on rocket computer",
+                "commandBasis": [0,0],
+                "length": 18
+           	},{
+           		"name": "LEAVE TEST MODE ORBC",
+           		"description": "disable the test mode of the on rocket computer",
+                "commandBasis": [0,1],
+                "length": 18
+           	},{
+           		"name": "SEEDS ON",
+           		"description": "send SEEDS ON TC to ORBC",
+                "commandBasis": [0,2],
+                "length": 18
+           	},{
+           		"name": "SEEDS OFF",
+           		"description": "send SEEDS OF TC to ORBC",
+                "commandBasis": [0,3],
+                "length": 18
+           	},{
+           		"name": "TRIGGER CAM",
+           		"description": "trigger cam",
+                "commandBasis": [0,4],
+                "length": 18
+           	},{
+           		"name": "SAVE ORBC STATE",
+           		"description": " ??? ",
+                "commandBasis": [0,5],
+                "length": 18
+           	},{
+           		"name": "RESET ORBC STATE",
+           		"description": " ??? ",
+                "commandBasis": [0,6],
+                "length": 18
+           	},{
+           		"name": "RESET SIGNALS",
+           		"description": " ??? ",
+                "commandBasis": [0,7],
+                "length": 18
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
