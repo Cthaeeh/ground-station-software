@@ -5,7 +5,6 @@ import data.DataModel;
 import data.Config;
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
-import data.sources.StringSource;
 import main.Main;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -84,7 +83,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
             byte[] command = commandQueue.poll();
             if(command!=null){
                 boolean success = serialEngine.writeBytes(command);
-                if(!success) Main.programLogger.log(Level.WARNING, () -> "Failed to send the command " + toString(command) + "to the serial Port.");
+                if(!success) Main.programLogger.log(Level.WARNING, () -> "Failed to send the command " + toStringUnsigned(command) + "to the serial Port.");
             }
             //Update Thread state /health.
             lastTimeSeen = System.currentTimeMillis();
@@ -98,7 +97,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         Main.programLogger.log(Level.INFO,"stopped a SerialCommunicationThread");
     }
 
-    public static String byteArrayToHex(byte[] a) {
+    private static String byteArrayToHex(byte[] a) {
         StringBuilder sb = new StringBuilder(a.length * 2);
         for(byte b: a)
         sb.append(String.format("%02x", b));
@@ -110,7 +109,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     @Override
     public void processMessage(byte[] message) {
-        System.out.println("message" + toString(message));
+        System.out.println("message" + toStringUnsigned(message));
         System.out.println(byteArrayToHex(message));
         if(useCRC16TM){
             if(TmTcUtil.isCrcValid(message,CRC16PosTM)){
@@ -145,13 +144,11 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     private void decodeMessage(byte[] msgBuffer) {
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
-        System.out.println("Whole message: " + toString(msgBuffer));
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
 
                 if(byteEndianity == Config.ByteEndianity.LITTLE_ENDIAN && (source instanceof SimpleSensor)) ArrayUtils.reverse(value);
-                System.out.println(source.getName() + " " + toString(value));
                 source.insertValue(value);
             }
         }
@@ -162,6 +159,14 @@ public class SerialCommunicationThread extends Thread implements MessageListener
         StringBuilder sb = new StringBuilder();
         for(byte b: msgBuffer){
              sb.append("[" + b + "]");
+        }
+        return sb.toString();
+    }
+
+    private static String toStringUnsigned(byte[] msgBuffer) {
+        StringBuilder sb = new StringBuilder();
+        for(byte b: msgBuffer){
+             sb.append("[" + Byte.toUnsignedInt(b) + "]");
         }
         return sb.toString();
     }
@@ -181,7 +186,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     public void send(byte[] command) {
         commandQueue.add(command);
-        Main.programLogger.log(Level.INFO,()->"Message: "+toString(command));
+        Main.programLogger.log(Level.INFO,()->"Put Message into Queue: "+toStringUnsigned(command));
     }
 
     public double getByteRate() {
