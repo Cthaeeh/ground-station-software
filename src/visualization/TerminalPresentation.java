@@ -17,6 +17,7 @@ import java.util.logging.Level;
  */
 public class TerminalPresentation extends TextArea implements VisualizationElement, StateListener, BitFlagListener, SimpleSensorListener, StringSourceListener {
 
+    //TODO delete text after a while
     private List<DataSource> dataSources;
 
     TerminalPresentation(List<DataSource> dataSources) {

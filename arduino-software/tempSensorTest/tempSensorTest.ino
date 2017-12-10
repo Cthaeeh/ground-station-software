@@ -1,131 +1,57 @@
-#include <dht.h>
-
-dht DHT;
-
-#define DHT11_PIN 7
-
-//returns one telemetry package
-void getMeasurements(byte packet[])
-{
-  int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int temp1 = DHT.temperature;      // For simulation purpose use temp twice.
-  int temp2 = DHT.temperature;
-  int humd1 = DHT.humidity;
-  int humd2 = DHT.humidity;
-
-  //Lets asume we want to send 64 bits
-
-  packet[0] = highByte(temp1);
-  packet[1] = lowByte(temp1);
-
-  packet[2] = highByte(temp2);
-  packet[3] = lowByte(temp2);
-
-  packet[4] = highByte(humd1);
-  packet[5] = lowByte(humd1);
-
-  packet[6] = highByte(humd2);
-  packet[7] = lowByte(humd2);
-
-  packet[8] = 42;
-  packet[9] = 0;
-}
-
-
-void getPacket1(byte packet[]) {
-  int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int humidity = 10; // DHT.humidity;
-
-  packet[0] = 5; //start bytes
-  packet[1] = 10;
-
-  packet[2] = 1;
-  
-  packet[3] = lowByte(humidity);
-  packet[4] = highByte(humidity);
-
-  packet[5] = 0;
-  packet[6] = 0;
-
-  packet[7] = 5; //stop bytes
-  packet[8] = 20;
-}
-
-void getPacket2(byte packet[]) {
-  int chk = DHT.read11(DHT11_PIN);  // Read temp and humidy from DHT11 sensor;
-  int temp = 55;
-  
-  packet[0] = 5; //start bytes
-  packet[1] = 10;
-
-  packet[2] = 2;
-
-  packet[3] = lowByte(temp);
-  packet[4] = highByte(temp);
-
-  packet[5] = 0;
-
-  packet[6] = 5; //stop bytes
-  packet[7] = 20;
-}
-
-int counter = 0;
-void getPacket3(byte packet[]) {
-
-  int demoAccel = ((counter ++) % 100);
-  if(counter == 1000){
-    counter = 0;
-  }
-  
-  packet[0] = 5; //start bytes
-  packet[1] = 10;
-
-  packet[2] = 3;
-
-  packet[3] = 3;
-
-  packet[4] = lowByte(demoAccel);
-  packet[5] = highByte(demoAccel);
-
-  packet[6] = 5; //stop bytes
-  packet[7] = 20;
-}
-
-void getPacket4(byte packet[]) {
-  int a = 2;
-  int b = 5;
-  
-  packet[0] = 12; //start bytes
-  packet[1] = 13;
-
-  packet[2] = 1;
-  packet[3] = 1;
-  packet[4] = 1;
-  
-  packet[5] = 12;
-  packet[6] = 22;
-}
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(115200);
 }
 
 void loop()
 {
-  byte packet[7];
-  delay(3000);
+  byte packet[40];
+  delay(10);
 
   packet[0] = 12; //start byte
-
-  packet[1] = 0;  // Id
-  packet[2] = 0;  // some value
-  packet[3] = 0;  // some value
-  packet[4] = 1;  // some value
-  packet[5] = 0;  // some value
-  packet[6] = 13; // stop byte
+  packet[1] = 13; //start byte
   
-  Serial.write(packet, 7);
+  packet[2] = 0;  // Id
+  packet[3] = 0;  // some value
+  packet[4] = 0;  // some value
+  packet[5] = 0;  // some value
+  packet[6] = 68;  // some value
+  packet[7] = 68;  // some value
+  packet[8] = 68;  // some value
+  packet[9] = 68;  // some value
+  packet[10] = 68;  // some value
+  packet[12] = 68;  // some value
+  packet[13] = 68;  // some value
+  packet[14] = 68;  // some value
+  packet[15] = 68;  // some value
+  packet[16] = 68;  // some value
+  packet[17] = 68;  // some value
+  packet[18] = 68;  // some value
+  packet[19] = 68;  // some value
+  packet[20] = 68;  // some value
+  packet[21] = 68;  // some value
+  packet[22] = 68;  // some value
+  packet[23] = 68;  // some value
+  packet[24] = 68;  // some value
+  packet[25] = 68;  // some value
+  packet[26] = 68;  // some value
+  packet[27] = 68;  // some value
+  packet[28] = 68;  // some value
+  packet[29] = 68;  // some value
+  packet[30] = 68;  // some value
+  packet[31] = 68;  // some value
+  packet[32] = 68;  // some value
+  packet[33] = 68;  // some value
+  packet[34] = 68;  // some value
+  packet[35] = 68;  // some value
+  packet[36] = 68;  // some value
+  packet[37] = 68;  // some value
+  packet[38] = 12; // stop byte
+  packet[39] = 22; // stop byte
+  
+  Serial.write(packet, 40);
 }
+
 
 
 
