@@ -1,5 +1,6 @@
        {
-       	"simpleSensors": [{
+       	"simpleSensors": [
+			{
        		"name": "TC_ECHO received ID",
        		"description": "n",
        		"unit": "num",
@@ -8,7 +9,8 @@
        		"messageId": [8],
        		"startOfValue": 1,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccZ Seed 1",
        		"description": "z-Axis of Accelerator (Seed 1)",
        		"unit": "g",
@@ -17,7 +19,8 @@
        		"messageId": [79],
        		"startOfValue": 11,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccZ Seed 2",
        		"description": "z-Axis of Accelerator (Seed 2)",
        		"unit": "g",
@@ -26,7 +29,8 @@
        		"messageId": [-113],
        		"startOfValue": 11,
        		"lengthOfValue": 2
-       	},{
+       	},
+			{
        		"name": "AccZ Seed 3",
        		"description": "z-Axis of Accelerator (Seed 3)",
        		"unit": "g",
@@ -35,7 +39,8 @@
        		"messageId": [-49],
        		"startOfValue": 11,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccY Seed 1",
        		"description": "y-Axis of Accelerator (Seed 1)",
        		"unit": "g",
@@ -44,7 +49,8 @@
        		"messageId": [79],
        		"startOfValue": 9,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccY Seed 2",
        		"description": "y-Axis of Accelerator (Seed 2)",
        		"unit": "g",
@@ -53,7 +59,8 @@
        		"messageId": [-113],
        		"startOfValue": 9,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccY Seed 3",
        		"description": "y-Axis of Accelerator (Seed 3)",
        		"unit": "g",
@@ -62,7 +69,8 @@
        		"messageId": [-49],
        		"startOfValue": 9,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccX Seed 1",
        		"description": "x-Axis of Accelerator (Seed 1)",
        		"unit": "g",
@@ -71,7 +79,8 @@
        		"messageId": [79],
        		"startOfValue": 7,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccX Seed 2",
        		"description": "x-Axis of Accelerator (Seed 2)",
        		"unit": "g",
@@ -80,7 +89,8 @@
        		"messageId": [-113],
        		"startOfValue": 7,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "AccX Seed 3",
        		"description": "x-Axis of Accelerator (Seed 3)",
        		"unit": "g",
@@ -89,7 +99,8 @@
        		"messageId": [-49],
        		"startOfValue": 7,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroX Seed 1",
        		"description": "x-Axis of Gyroscope (Seed 1)",
        		"unit": "deg/s",
@@ -98,7 +109,8 @@
        		"messageId": [79],
        		"startOfValue": 15,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroX Seed 2",
        		"description": "x-Axis of Gyroscope (Seed 2)",
        		"unit": "deg/s",
@@ -107,7 +119,8 @@
        		"messageId": [-113],
        		"startOfValue": 15,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroX Seed 3",
        		"description": "x-Axis of Gyroscope (Seed 3)",
        		"unit": "deg/s",
@@ -116,7 +129,8 @@
        		"messageId": [-49],
        		"startOfValue": 15,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroY Seed 1",
        		"description": "y-Axis of Gyroscope (Seed 1)",
        		"unit": "deg/s",
@@ -125,7 +139,8 @@
        		"messageId": [79],
        		"startOfValue": 17,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroY Seed 2",
        		"description": "y-Axis of Gyroscope (Seed 2)",
        		"unit": "deg/s",
@@ -134,7 +149,8 @@
        		"messageId": [-113],
        		"startOfValue": 17,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroY Seed 3",
        		"description": "y-Axis of Gyroscope (Seed 3)",
        		"unit": "deg/s",
@@ -143,7 +159,8 @@
        		"messageId": [-49],
        		"startOfValue": 17,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroZ Seed 1",
        		"description": "z-Axis of Gyroscope (Seed 1)",
        		"unit": "deg/s",
@@ -152,7 +169,8 @@
        		"messageId": [79],
        		"startOfValue": 19,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroZ Seed 2",
        		"description": "z-Axis of Gyroscope (Seed 2)",
        		"unit": "deg/s",
@@ -161,7 +179,8 @@
        		"messageId": [-113],
        		"startOfValue": 19,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "GyroZ Seed 3",
        		"description": "z-Axis of Gyroscope (Seed 3)",
        		"unit": "deg/s",
@@ -170,7 +189,8 @@
        		"messageId": [-49],
        		"startOfValue": 19,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagX Seed 1",
        		"description": "x-Axis of Magnetometer (Seed 1)",
        		"unit": "gaus ??",
@@ -179,7 +199,8 @@
        		"messageId": [79],
        		"startOfValue": 23,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagX Seed 2",
        		"description": "x-Axis of Magnetometer (Seed 2)",
        		"unit": "gaus ??",
@@ -188,7 +209,8 @@
        		"messageId": [-113],
        		"startOfValue": 23,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagX Seed 3",
        		"description": "x-Axis of Magnetometer (Seed 3)",
        		"unit": "gaus ??",
@@ -197,7 +219,8 @@
        		"messageId": [-49],
        		"startOfValue": 23,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagY Seed 1",
        		"description": "y-Axis of Magnetometer (Seed 1)",
        		"unit": "gaus ??",
@@ -206,7 +229,8 @@
        		"messageId": [79],
        		"startOfValue": 25,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagY Seed 2",
        		"description": "y-Axis of Magnetometer (Seed 2)",
        		"unit": "gaus ??",
@@ -215,7 +239,8 @@
        		"messageId": [-113],
        		"startOfValue": 25,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagY Seed 3",
        		"description": "y-Axis of Magnetometer (Seed 3)",
        		"unit": "gaus ??",
@@ -224,7 +249,8 @@
        		"messageId": [-49],
        		"startOfValue": 25,
        		"lengthOfValue": 2
-       	},{
+       	},
+			{
        		"name": "MagZ Seed 1",
        		"description": "z-Axis of Magnetometer (Seed 1)",
        		"unit": "gaus ??",
@@ -233,7 +259,8 @@
        		"messageId": [79],
        		"startOfValue": 27,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagZ Seed 2",
        		"description": "z-Axis of Magnetometer (Seed 2)",
        		"unit": "gaus ??",
@@ -242,7 +269,8 @@
        		"messageId": [-113],
        		"startOfValue": 27,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "MagZ Seed 3",
        		"description": "z-Axis of Magnetometer (Seed 3)",
        		"unit": "gaus ??",
@@ -251,7 +279,8 @@
        		"messageId": [-49],
        		"startOfValue": 27,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "Pressure Seed 1",
        		"description": "Pressure (Seed 1)",
        		"unit": "bar",
@@ -260,7 +289,8 @@
        		"messageId": [79],
        		"startOfValue": 31,
        		"lengthOfValue": 4
-       	},{
+       		},
+			{
        		"name": "Pressure Seed 2",
        		"description": "Pressure (Seed 2)",
        		"unit": "bar",
@@ -269,7 +299,8 @@
        		"messageId": [-113],
        		"startOfValue": 31,
        		"lengthOfValue": 4
-       	},{
+       		},
+			{
        		"name": "Pressure Seed 3",
        		"description": "Pressure (Seed 3)",
        		"unit": "bar",
@@ -278,7 +309,8 @@
        		"messageId": [-49],
        		"startOfValue": 31,
        		"lengthOfValue": 4
-       	},{
+       		},
+			{
        		"name": "Board Temp Seed 1",
        		"description": "Board Temp (Seed 1)",
        		"unit": "celsius",
@@ -287,7 +319,8 @@
        		"messageId": [79],
        		"startOfValue": 39,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "Board Temp Seed 2",
        		"description": "Board Temp (Seed 2)",
        		"unit": "celsius",
@@ -296,7 +329,8 @@
        		"messageId": [-113],
        		"startOfValue": 39,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "Board Temp Seed 3",
        		"description": "Board Temp (Seed 3)",
        		"unit": "celsius",
@@ -305,7 +339,8 @@
        		"messageId": [-49],
        		"startOfValue": 39,
        		"lengthOfValue": 2
-       	},{
+       	},
+			{
        		"name": "Gyro Temp Seed 1",
        		"description": "Board Temp (Seed 1)",
        		"unit": "celsius",
@@ -314,7 +349,8 @@
        		"messageId": [79],
        		"startOfValue": 43,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "Gyro Temp Seed 2",
        		"description": "Board Temp (Seed 2)",
        		"unit": "celsius",
@@ -323,7 +359,8 @@
        		"messageId": [-113],
        		"startOfValue": 43,
        		"lengthOfValue": 2
-       	},{
+       		},
+			{
        		"name": "Gyro Temp Seed 3",
        		"description": "Board Temp (Seed 3)",
        		"unit": "celsius",
@@ -332,6 +369,306 @@
        		"messageId": [-49],
        		"startOfValue": 43,
        		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 1",
+       		"description": "Voltage of battery (Seed 1)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 1",
+       		"description": "Voltage of Cell (Seed 1)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 1",
+       		"description": "Current of battery (Seed 1)",
+       		"unit": "mA",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 1",
+       		"description": "Temperature of battery (Seed 1)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 2",
+       		"description": "Voltage of battery (Seed 2)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 2",
+       		"description": "Voltage of Cell (Seed 2)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 2",
+       		"description": "Current of battery (Seed 2)",
+       		"unit": "mA",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 2",
+       		"description": "Temperature of battery (Seed 2)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 3",
+       		"description": "Voltage of battery (Seed 3)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 3",
+       		"description": "Voltage of Cell (Seed 3)",
+       		"unit": "mV",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 3",
+       		"description": "Current of battery (Seed 3)",
+       		"unit": "mA",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 3",
+       		"description": "Temperature of battery (Seed 3)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GNSS Latitude Seed 1",
+       		"description": "GNSS Latitude (Seed 1)",
+       		"unit": "Degree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 1",
+       		"description": "GNSS Longitude (Seed 1)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 1",
+       		"description": "GNSS Height (Seed 1)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 1",
+       		"description": "GNSS Time (Seed 1)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 1",
+       		"description": "GNSS Fiy Quality (Seed 1)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Satellites Seed 1",
+       		"description": "GNSS Satellites (Seed 1)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Latitude Seed 2",
+       		"description": "GNSS Latitude (Seed 2)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 2",
+       		"description": "GNSS Longitude (Seed 2)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 2",
+       		"description": "GNSS Height (Seed 2)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 2",
+       		"description": "GNSS Time (Seed 2)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 2",
+       		"description": "GNSS Fiy Quality (Seed 2)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+			},
+			{
+       		"name": "GNSS Satellites Seed 2",
+       		"description": "GNSS Satellites (Seed 2)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Latitude Seed 3",
+       		"description": "GNSS Latitude (Seed 3)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 3",
+       		"description": "GNSS Longitude (Seed 3)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 3",
+       		"description": "GNSS Height (Seed 3)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 3",
+       		"description": "GNSS Time (Seed 3)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 3",
+       		"description": "GNSS Fiy Quality (Seed 3)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Satellites Seed 3",
+       		"description": "GNSS Satellites (Seed 3)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
        	}],
        	"states": [{
        		"name": "Change TestMode SEED 1",
