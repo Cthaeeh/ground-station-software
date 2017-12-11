@@ -12,7 +12,7 @@
     <children>
         <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#btnOkayClick" text="Okay" StackPane.alignment="BOTTOM_RIGHT" />
         <Label alignment="TOP_LEFT" text="Choose data source to display, use STRG to select multiple data sources:" StackPane.alignment="TOP_LEFT" />
-        <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="350.0" StackPane.alignment="CENTER_LEFT">
+        <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="350.0" style="-fx-font-size: 12;" StackPane.alignment="CENTER_LEFT">
             <columns>
                 <TableColumn fx:id="nameColumn" minWidth="150" prefWidth="350.0" text="Data source" />
                 <TableColumn fx:id="descriptionColumn" minWidth="49.0" prefWidth="350.0" text="Description" />
