@@ -17,6 +17,321 @@
        		"messageId": [79],
        		"startOfValue": 11,
        		"lengthOfValue": 2
+       	},{
+       		"name": "AccZ Seed 2",
+       		"description": "z-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccZ Seed 3",
+       		"description": "z-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccY Seed 1",
+       		"description": "y-Axis of Accelerator (Seed 1)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccY Seed 2",
+       		"description": "y-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccY Seed 3",
+       		"description": "y-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccX Seed 1",
+       		"description": "x-Axis of Accelerator (Seed 1)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccX Seed 2",
+       		"description": "x-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "AccX Seed 3",
+       		"description": "x-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroX Seed 1",
+       		"description": "x-Axis of Gyroscope (Seed 1)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroX Seed 2",
+       		"description": "x-Axis of Gyroscope (Seed 2)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroX Seed 3",
+       		"description": "x-Axis of Gyroscope (Seed 3)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroY Seed 1",
+       		"description": "y-Axis of Gyroscope (Seed 1)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroY Seed 2",
+       		"description": "y-Axis of Gyroscope (Seed 2)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroY Seed 3",
+       		"description": "y-Axis of Gyroscope (Seed 3)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroZ Seed 1",
+       		"description": "z-Axis of Gyroscope (Seed 1)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroZ Seed 2",
+       		"description": "z-Axis of Gyroscope (Seed 2)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "GyroZ Seed 3",
+       		"description": "z-Axis of Gyroscope (Seed 3)",
+       		"unit": "deg/s",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagX Seed 1",
+       		"description": "x-Axis of Magnetometer (Seed 1)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagX Seed 2",
+       		"description": "x-Axis of Magnetometer (Seed 2)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagX Seed 3",
+       		"description": "x-Axis of Magnetometer (Seed 3)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagY Seed 1",
+       		"description": "y-Axis of Magnetometer (Seed 1)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagY Seed 2",
+       		"description": "y-Axis of Magnetometer (Seed 2)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagY Seed 3",
+       		"description": "y-Axis of Magnetometer (Seed 3)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagZ Seed 1",
+       		"description": "z-Axis of Magnetometer (Seed 1)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagZ Seed 2",
+       		"description": "z-Axis of Magnetometer (Seed 2)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "MagZ Seed 3",
+       		"description": "z-Axis of Magnetometer (Seed 3)",
+       		"unit": "gaus ??",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Pressure Seed 1",
+       		"description": "Pressure (Seed 1)",
+       		"unit": "bar",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "Pressure Seed 2",
+       		"description": "Pressure (Seed 2)",
+       		"unit": "bar",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "Pressure Seed 3",
+       		"description": "Pressure (Seed 3)",
+       		"unit": "bar",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       	},{
+       		"name": "Board Temp Seed 1",
+       		"description": "Board Temp (Seed 1)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Board Temp Seed 2",
+       		"description": "Board Temp (Seed 2)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Board Temp Seed 3",
+       		"description": "Board Temp (Seed 3)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Gyro Temp Seed 1",
+       		"description": "Board Temp (Seed 1)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [79],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Gyro Temp Seed 2",
+       		"description": "Board Temp (Seed 2)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-113],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
+       	},{
+       		"name": "Gyro Temp Seed 3",
+       		"description": "Board Temp (Seed 3)",
+       		"unit": "celsius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-49],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
        	}],
        	"states": [{
        		"name": "Change TestMode SEED 1",
@@ -603,7 +918,7 @@
                     }
                 }]
            	},{
-           		"name": "SET SEED FUNK",
+           		"name": "GET SEED FUNK",
            		"description": "set seed test mode",
                 "commandBasis": [0,65],
                 "length": 18,
