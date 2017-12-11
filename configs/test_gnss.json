@@ -1,0 +1,41 @@
+{
+  "gnssSources": [
+    {
+      "name": "TEST GNSS SEED 1",
+      "description" : " lol",
+      "messageId" : [0],
+      "startOfValue" : 1,
+      "lengthOfValue" : 4,
+      "latitude" : {
+        "name": "Latitude ",
+        "description": "GNSS Latitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 0,
+        "lengthOfValue": 2
+      },"longitude" : {
+        "name": "Longitude ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 2,
+        "lengthOfValue": 2
+      }
+    }
+  ],
+  "startBytes": [12, 13],
+  "stopBytes": [12, 22],
+  "idPosition": 0,
+  "idLength": 1,
+  "messageLength": 5,
+  "maxMessageLength": 5,
+  "isUsingCRC16": false,
+  "crc16positionTC": -1,
+  "crc16positionTM": -1,
+  "timePosition": -1,
+  "timeLength": 0,
+  "byteEndianity": "BIG_ENDIAN",
+  "readMode": "FIXED_MSG_LENGTH"
+}

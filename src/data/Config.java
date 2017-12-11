@@ -41,6 +41,10 @@ public class Config {
      */
     private ArrayList<StringSource> stringSources = new ArrayList<>();
     /**
+     * Contains all available gnss.
+     */
+    private ArrayList<Gnss> gnssSources = new ArrayList<>();
+    /**
      * The start bytes of a message send through Serial Communication.
      */
     private byte[] startBytes = new byte[0];
@@ -124,6 +128,9 @@ public class Config {
         }
         for (StringSource string : stringSources){
             dataSources.add(string);
+        }
+        for (Gnss gnss : gnssSources){
+            dataSources.add(gnss);
         }
         return dataSources;
     }

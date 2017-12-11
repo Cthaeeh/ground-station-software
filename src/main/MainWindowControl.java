@@ -165,7 +165,6 @@ public class MainWindowControl implements Initializable {
         }
         numOfColumns--;
         visualizationsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
-        System.out.println("Test");
     }
 
     /**
@@ -230,6 +229,7 @@ public class MainWindowControl implements Initializable {
                 if (alert.getResult() == ButtonType.OK) {
                     serialPortComm.disconnect();
                     emptyAllVisualizations();
+                    //TODO sorround with try catch
                     model.loadConfigData(file);
                 }
             } catch (IOException exc) {
@@ -262,7 +262,6 @@ public class MainWindowControl implements Initializable {
     private void btnCreateConfigClick() {
         try {
             final Stage configEditStage = new Stage();
-            System.out.println("got here");
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
 

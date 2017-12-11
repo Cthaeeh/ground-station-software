@@ -16,7 +16,7 @@ import java.util.List;
  * Subscribes to the DataSources it gets in the Constructor.
  * Created by Kai on 03.06.2017.
  */
-public class TextualPresentation extends ListView<Text> implements SimpleSensorListener, VisualizationElement, BitFlagListener, StateListener, StringSourceListener {
+public class TextualPresentation extends ListView<Text> implements GnssListener, SimpleSensorListener, VisualizationElement, BitFlagListener, StateListener, StringSourceListener {
 
     private List<DataSource> dataSources;
 
@@ -47,6 +47,7 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
             if (source instanceof BitFlag) ((BitFlag) source).addListener(this);
             if (source instanceof State) ((State) source).addListener(this);
             if (source instanceof StringSource) ((StringSource) source).addListner(this);
+            if (source instanceof Gnss) ((Gnss) source).addListener(this);
         }
     }
 
@@ -57,6 +58,7 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
             if (source instanceof BitFlag) ((BitFlag) source).removeListeners(this);
             if (source instanceof State) ((State) source).removeListeners(this);
             if (source instanceof StringSource) ((StringSource) source).removeListener(this);
+            if (source instanceof Gnss) ((Gnss) source).removeListeners(this);
         }
     }
 
@@ -86,4 +88,13 @@ public class TextualPresentation extends ListView<Text> implements SimpleSensorL
     public void onUpdateData(StringSource stringSource, Point<String> point) {
         dataSourceStringMap.get(stringSource).setText(stringSource.getName() + " : " + point.y);
     }
+
+    @Override
+    public void onUpdateData(Gnss gnssSource, Point<GnssFrame> point) {
+        //TODO implement
+        dataSourceStringMap.get(gnssSource).setText(gnssSource.getName() + " : "
+                + " Lat: " + point.y.getLatitude()
+                + " Lon: " + point.y.getLongitude());
+    }
+
 }
