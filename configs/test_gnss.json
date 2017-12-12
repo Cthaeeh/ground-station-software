@@ -55,6 +55,118 @@
         "startOfValue": 6,
         "lengthOfValue": 1
       }
+    },
+    {
+      "name": "TEST GNSS SEED 2",
+      "description" : " lel",
+      "messageId" : [1],
+      "startOfValue" : 1,
+      "lengthOfValue" : 8,
+      "latitude" : {
+        "name": "Latitude ",
+        "description": "GNSS Latitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 0,
+        "lengthOfValue": 2
+      },"longitude" : {
+        "name": "Longitude ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 2,
+        "lengthOfValue": 2
+      },"height" : {
+        "name": "height",
+        "description": "GNSS Height (Seed 1)",
+        "unit": "m",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 4,
+        "lengthOfValue": 1
+      },"gnssTime" : {
+        "name": "time ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 7,
+        "lengthOfValue": 1
+      },"satellites" : {
+        "name": "sats ",
+        "description": "GNSS sats (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 5,
+        "lengthOfValue": 1
+      },"fixQuality" : {
+        "name": "fix quality ",
+        "description": "fix quality",
+        "unit": "",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 6,
+        "lengthOfValue": 1
+      }
+    },
+    {
+      "name": "TEST GNSS SEED 3",
+      "description" : " lel",
+      "messageId" : [2],
+      "startOfValue" : 1,
+      "lengthOfValue" : 8,
+      "latitude" : {
+        "name": "Latitude ",
+        "description": "GNSS Latitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 0,
+        "lengthOfValue": 2
+      },"longitude" : {
+        "name": "Longitude ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 2,
+        "lengthOfValue": 2
+      },"height" : {
+        "name": "height",
+        "description": "GNSS Height (Seed 1)",
+        "unit": "m",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 4,
+        "lengthOfValue": 1
+      },"gnssTime" : {
+        "name": "time ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 7,
+        "lengthOfValue": 1
+      },"satellites" : {
+        "name": "sats ",
+        "description": "GNSS sats (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 5,
+        "lengthOfValue": 1
+      },"fixQuality" : {
+        "name": "fix quality ",
+        "description": "fix quality",
+        "unit": "",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 6,
+        "lengthOfValue": 1
+      }
     }
   ],
   "startBytes": [12, 13],

@@ -87,17 +87,19 @@ public class Gnss extends DataSource{
      * @param receiveTime the gnssTime the telemetry was received ( in difference to the gnssTime (time from GPS sat));
      */
     private void addGnssFrame(double receiveTime) {
+        //TODO create a DataSources for int values.
         GnssFrame gnssFrame = new GnssFrame();
         gnssFrame.setLongitude(longitude != null ? longitude.getLastValue() : 0);
         gnssFrame.setLatitude(latitude != null ? latitude.getLastValue() : 0);
-        //TODO create a DATASource for int values.
-        // TODO log exceptions maybe before (if lat long are null)
         gnssFrame.setNumOfSatellites(satellites != null ? (int)satellites.getLastValue() : 0);
         gnssFrame.setFixQuality(fixQuality != null ? (int)fixQuality.getLastValue() : -1);
         gnssFrame.setTime(gnssTime != null ? (int) gnssTime.getLastValue(): -1);
         gnssFrame.setHeight(height != null ? height.getLastValue() : -1);
 
-        //TODO log this to DataLogger
+        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + gnssFrame.getLongitude() + ";"
+                + gnssFrame.getLatitude() + ";" + gnssFrame.getNumOfSatellites() + ";" + gnssFrame.getFixQuality()
+                + gnssFrame.getHeight() + gnssFrame.getTime());
+
         if(! listeners.isEmpty()) dataQueue.add(new Point(receiveTime,gnssFrame));
     }
 

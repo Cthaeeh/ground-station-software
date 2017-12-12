@@ -52,6 +52,7 @@ public class DataModel {
     //TODO implement saving of DataModel
     public void saveConfigData(File file) throws IOException {
         // save contents of model to file ...
+        Main.programLogger.log(Level.SEVERE, ()-> "Save config not implemented yet.");
     }
 
     /**

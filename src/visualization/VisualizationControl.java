@@ -44,7 +44,7 @@ public class VisualizationControl {
         LINE_CHART("Line-chart"),
         TEXTUAL_MODE("Textual"),
         TERMINAL_MODE("Terminal"),
-        GNSS_MODE("GNSS (Map");
+        GNSS_MODE("GNSS (Map)");
 
         private String name;
 

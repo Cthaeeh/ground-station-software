@@ -21,7 +21,7 @@
                   <Insets bottom="35.0" top="35.0" />
                </StackPane.margin>
         </TableView>
-        <ChoiceBox fx:id="presentationMode" prefWidth="150.0" StackPane.alignment="BOTTOM_LEFT">
+        <ChoiceBox fx:id="presentationMode" prefWidth="200.0" StackPane.alignment="BOTTOM_LEFT">
             <StackPane.margin>
                 <Insets left="100.0" />
             </StackPane.margin>

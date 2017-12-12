@@ -52,7 +52,7 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
                 .rotateControl(false)
                 .scaleControl(true)
                 .zoomControl(true)
-                .zoom(2);
+                .zoom(1);
         map = mapView.createMap(mapOptions);
         processGnssList();
     }
