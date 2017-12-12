@@ -2,6 +2,7 @@ package visualization.GnssPresentation;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import data.Point;
 import data.sources.Gnss;
@@ -9,6 +10,7 @@ import data.sources.GnssFrame;
 import data.sources.GnssListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import netscape.javascript.JSObject;
 import visualization.VisualizationElement;
 
 import java.net.URL;
@@ -26,7 +28,8 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
 
     private GoogleMap map;
     private List<Gnss> gnssList;
-    private HashMap<Gnss, Marker> gnssDataSourceMap = new HashMap<>();
+    private HashMap<Gnss, Marker> gnssMarkerMap = new HashMap<>();
+    private HashMap<Gnss, InfoWindow> gnssInfoWindowMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,10 +41,10 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
         //TODO carefully select Map options.
         MapOptions mapOptions = new MapOptions();
         mapOptions.mapType(MapTypeIdEnum.TERRAIN)
-                .center(new LatLong(50,10))
+                .center(new LatLong(0,0))
                 .overviewMapControl(false)
                 .panControl(false)
-                .rotateControl(true)
+                .rotateControl(false)
                 .scaleControl(true)
                 .zoomControl(true)
                 .zoom(2);
@@ -62,24 +65,32 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
 
     private void processGnssList() {
         unsubscibeDataSources();
-        map.removeMarkers(gnssDataSourceMap.values());
-        gnssDataSourceMap.clear();
+        map.removeMarkers(gnssMarkerMap.values());
+        gnssMarkerMap.clear();
         for (Gnss gnss : gnssList) {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.label(gnss.getName());
             markerOptions.visible(false);
             Marker marker = new Marker(markerOptions);
+            InfoWindow infoWindow = new InfoWindow();
             map.addMarker(marker);
-            gnssDataSourceMap.put(gnss, marker);
+            gnssMarkerMap.put(gnss, marker);
+            gnssInfoWindowMap.put(gnss, infoWindow);
             gnss.addListener(this);
+            map.addUIEventHandler(marker, UIEventType.click, (JSObject obj) -> {
+                //Open a Info Window at marker location.
+                infoWindow.open(map,marker);
+            });
         }
     }
     @Override
     public void onUpdateData(Gnss dataSource, Point<GnssFrame> point) {
-        Marker marker = gnssDataSourceMap.get(dataSource);
+        Marker marker = gnssMarkerMap.get(dataSource);
+        InfoWindow infoWindow = gnssInfoWindowMap.get(dataSource);
         marker.setPosition(new LatLong(point.y.getLatitude(),point.y.getLatitude()));
+        infoWindow.setContent("Satellites: " + point.y.getNumOfSatellites() + System.lineSeparator() +
+                              "Fix Quality:" + point.y.getFixQuality());
         marker.setVisible(true);
-        //TODO somehow use numOfSatellites etc.
     }
 
 }
