@@ -230,6 +230,7 @@ public class MainWindowControl implements Initializable {
                 if (alert.getResult() == ButtonType.OK) {
                     serialPortComm.disconnect();
                     emptyAllVisualizations();
+                    //TODO sorround with try catch
                     model.loadConfigData(file);
                 }
             } catch (IOException exc) {

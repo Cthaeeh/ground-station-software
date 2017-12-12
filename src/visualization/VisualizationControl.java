@@ -2,10 +2,12 @@ package visualization;
 
 import data.DataModel;
 import data.sources.DataSource;
+import data.sources.Gnss;
 import data.sources.SimpleSensor;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
@@ -13,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
+import visualization.GnssPresentation.GnssControl;
 import visualization.LiveLineChart.LiveLineChart;
 
 import java.io.IOException;
@@ -28,6 +31,7 @@ import java.util.logging.Level;
  */
 public class VisualizationControl {
 
+
     private DataModel model;
     /**
      * The current visualization Element that is displayed.
@@ -39,7 +43,8 @@ public class VisualizationControl {
     public enum PresentationMode {
         LINE_CHART("Line-chart"),
         TEXTUAL_MODE("Textual"),
-        TERMINAL_MODE("Terminal");
+        TERMINAL_MODE("Terminal"),
+        GNSS_MODE("GNSS (Map)");
 
         private String name;
 
@@ -64,6 +69,8 @@ public class VisualizationControl {
     private Button selectDataSourceButton;
 
     private static final String DATA_SOURCE_SELECTION_FXML = "/gui/data_source_selection_dialog.fxml";
+
+    private static final String GNSS_PRESENTATION_FXML = "/gui/gnss_presentation.fxml";
 
     /**
      * Injects the global data Model into this controller.
@@ -131,8 +138,37 @@ public class VisualizationControl {
             case TERMINAL_MODE:
                 visualizationElement = createTerminalPresentation(dataSources);
                 break;
+            case GNSS_MODE:
+                visualizationElement = createGnssPresentation(dataSources);
+                break;
             default:
                 Main.programLogger.log(Level.WARNING,()->mode.name + "is not supported yet.");
+        }
+    }
+
+    /**
+     * Creates a new GnssControl and adds it to the pane.
+     * Returns it as generic Visualization Element
+     * @param dataSources the dataSources you want to visualize with the GnssControl.
+     * @return the GnssControl as Visualizaiton Element.
+     */
+    private VisualizationElement createGnssPresentation(ObservableList<DataSource> dataSources) {
+        //Filter dataSources, only Gnss allowed for GnssPresentation
+        List<Gnss> gnssList = new ArrayList<>();
+        for (DataSource dataSource : dataSources) {                                               //Add dataSources that can be displayed by this type of visualization Element to a list.
+            if (dataSource instanceof Gnss) gnssList.add((Gnss) dataSource);
+            else Main.programLogger.log(Level.WARNING, ()-> "Data Source: " + dataSource.getName() + " not and Instance of Gnss , so it can not be displayed on a GNSS-Presentation");
+        }
+        try {
+            FXMLLoader elementLoader = new FXMLLoader(getClass().getResource(GNSS_PRESENTATION_FXML));
+            Node newNode = elementLoader.load();
+            GnssControl gnssContol = elementLoader.getController();
+            gnssContol.setGnssList(gnssList);
+            pane.getChildren().add(newNode);
+            return gnssContol;
+        } catch (IOException e) {
+            Main.programLogger.log(Level.WARNING, "Failed to load visualization element");
+            return null;
         }
     }
 
@@ -149,6 +185,11 @@ public class VisualizationControl {
         List<SimpleSensor> simpleSensors = new ArrayList<>();
         for (DataSource dataSource : dataSources) {                                               //Add dataSources that can be displayed by this type of visualization Element to a list.
             if (dataSource instanceof SimpleSensor) simpleSensors.add((SimpleSensor) dataSource);
+            else {
+                Main.programLogger.log(Level.WARNING, () -> "Data Source: " +
+                        dataSource.getName() + " not and Instance of SimpleSensor ," +
+                        " so it can not be displayed on a Live Line Chart");
+            }
         }
         LiveLineChart newChart = new LiveLineChart(xAxis, yAxis, simpleSensors);
         pane.getChildren().add(newChart);

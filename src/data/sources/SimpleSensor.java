@@ -22,6 +22,9 @@ public class SimpleSensor extends DataSource {
      * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
      */
     private ConcurrentLinkedQueue<Point<Number>> dataQueue = new ConcurrentLinkedQueue<>();
+    /** Most up to date value the dataSource has to offer **/
+    private double lastValue;
+
     private List<SimpleSensorListener> listeners = new ArrayList<>();
 
     private String unit;
@@ -33,8 +36,6 @@ public class SimpleSensor extends DataSource {
      *  A proportional constatnt the raw value is multiplied with to get the correct value ( in SI-Units, CGS or whatever )
      */
     private double proportionalFactor = 1.0;
-
-    //TODO think about the idea that a dataSource can have more than one messageId + startOfValue , because it could occur in different messages.
 
     public SimpleSensor(){
         informListeners();
@@ -50,6 +51,10 @@ public class SimpleSensor extends DataSource {
 
     public double getPropotionalFactor() {
         return proportionalFactor;
+    }
+
+    public double getLastValue(){
+        return lastValue;
     }
 
     public void addListener (SimpleSensorListener listener) {
@@ -79,8 +84,10 @@ public class SimpleSensor extends DataSource {
         }.start();
     }
 
-    private void addDataPoint(Number x, Number y){
-        dataQueue.add(new Point(x,y));
+    private void addDataPoint(Number x, double y){
+        //TODO also do this in other dataSource, that is why this code belongs to the DataSource abstract class ... but whatever.
+        if(! listeners.isEmpty()) dataQueue.add(new Point(x,y));
+        lastValue = y;
     }
 
     @Override
