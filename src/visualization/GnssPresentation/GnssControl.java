@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 /**
  * Created by kai on 12/11/17.
+ * Controller for a GoogleMapView.
+ * Can subscribe to multiple Gnss (- dataSources ) and display them as markers on a Map.
  */
 public class GnssControl implements Initializable, MapComponentInitializedListener, VisualizationElement, GnssListener{
 
@@ -36,6 +38,9 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
         mapView.addMapInializedListener(this);
     }
 
+    /**
+     * Initializes a basic map.
+     */
     @Override
     public void mapInitialized() {
         //TODO carefully select Map options.
@@ -52,21 +57,28 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
         processGnssList();
     }
 
+    /**
+     * Unsubscribe from all gnss.
+     */
     @Override
     public void unsubscibeDataSources() {
         for(Gnss sensor : gnssList){
             sensor.removeListeners(this);
         }
+        map.removeMarkers(gnssMarkerMap.values());
+        gnssInfoWindowMap.clear();
+        gnssMarkerMap.clear();
     }
 
     public void setGnssList(List<Gnss> gnssList) {
         this.gnssList = gnssList;
     }
 
+    /**
+     * Create Markers and InforWindows for the gnss.
+     */
     private void processGnssList() {
         unsubscibeDataSources();
-        map.removeMarkers(gnssMarkerMap.values());
-        gnssMarkerMap.clear();
         for (Gnss gnss : gnssList) {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.label(gnss.getName());
@@ -83,11 +95,12 @@ public class GnssControl implements Initializable, MapComponentInitializedListen
             });
         }
     }
+
     @Override
     public void onUpdateData(Gnss dataSource, Point<GnssFrame> point) {
         Marker marker = gnssMarkerMap.get(dataSource);
         InfoWindow infoWindow = gnssInfoWindowMap.get(dataSource);
-        marker.setPosition(new LatLong(point.y.getLatitude(),point.y.getLatitude()));
+        marker.setPosition(new LatLong(point.y.getLatitude(),point.y.getLongitude()));
         infoWindow.setContent("Satellites: " + point.y.getNumOfSatellites() + System.lineSeparator() +
                               "Fix Quality:" + point.y.getFixQuality());
         marker.setVisible(true);

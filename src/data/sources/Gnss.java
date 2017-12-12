@@ -70,7 +70,7 @@ public class Gnss extends DataSource{
     @Override
     public void insertValue(byte[] bytes) {
         //TODO do this with post serialization
-        SimpleSensor[] sensors = {longitude,latitude};
+        SimpleSensor[] sensors = {longitude,latitude,height,gnssTime,satellites,fixQuality};
         for(SimpleSensor sensor : sensors) {
             if (sensor != null) {
                 byte[] value = Arrays.copyOfRange(bytes, sensor.getStartOfValue(), sensor.getStartOfValue() + sensor.getLengthOfValue());

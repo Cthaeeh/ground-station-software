@@ -15,10 +15,9 @@ import java.util.logging.Level;
  * So maybe some remote device only sends it State of its statemachine if a telecommand
  * ecourages it to do so a TextualPresentation is overkill. Then you can use this.
  */
-public class TerminalPresentation extends TextArea implements VisualizationElement, StateListener, BitFlagListener, SimpleSensorListener, StringSourceListener {
+public class TerminalPresentation extends TextArea implements VisualizationElement, GnssListener, StateListener, BitFlagListener, SimpleSensorListener, StringSourceListener {
 
     //TODO delete text after a while
-    //TODO add the Gnss
     private List<DataSource> dataSources;
 
     TerminalPresentation(List<DataSource> dataSources) {
@@ -32,25 +31,21 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
     private void subscribeTo(List<DataSource> dataSources) {
         this.appendText("TERMINAL is listening to following data-sources: " + System.lineSeparator());
         for (DataSource source : dataSources) {
-            this.appendText(source.getName() + ","+System.lineSeparator());
-
+            this.appendText(source.getName() + "," + System.lineSeparator());
             if (source instanceof SimpleSensor) {
                 ((SimpleSensor) source).addListener(this);
-                continue;
-            }
-            if (source instanceof BitFlag) {
+            } else if (source instanceof BitFlag) {
                 ((BitFlag) source).addListener(this);
-                continue;
-            }
-            if (source instanceof State) {
+            } else if (source instanceof State) {
                 ((State) source).addListener(this);
-                continue;
-            }
-            if (source instanceof StringSource) {
+            } else if (source instanceof StringSource) {
                 ((StringSource) source).addListner(this);
-                continue;
+            } else if (source instanceof Gnss) {
+                ((Gnss) source).addListener(this);
+            } else {
+                Main.programLogger.log(Level.WARNING, () -> "Datasource:" + source.getName()
+                        + " of type: " + source.getClass().getName() + " is not supported by TerminalPresentation");
             }
-            Main.programLogger.log(Level.WARNING, () -> "Datasource:" + source.getName() + " of type: " + source.getClass().getName() + " is not supported by TerminalPresentation");
         }
         this.appendText("______________________________________________" + System.lineSeparator());
     }
@@ -67,6 +62,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
 
     /**
      * Gets called when some state gets new data.
+     *
      * @param state State that is updated.
      * @param point the new data.
      */
@@ -81,7 +77,7 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
      * Gets called when some BitFlag gets new data.
      *
      * @param bitFlag BitFLag that is updated.
-     * @param point new data.
+     * @param point   new data.
      */
     @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
@@ -92,22 +88,29 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
 
     @Override
     public void onUpdateData(SimpleSensor sensor, Point<Number> point) {
-        if(point.y instanceof Double){
-            this.appendText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit()+ " " + point.x + " sec " + System.lineSeparator());
-        }else if(point.y instanceof Integer){
-            this.appendText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit()+ " " + point.x + " sec " + System.lineSeparator());
+        if (point.y instanceof Double) {
+            this.appendText(sensor.getName() + " : " + String.format("%.2f", (Double) point.y) + " " + sensor.getUnit() + " " + point.x + " sec " + System.lineSeparator());
+        } else if (point.y instanceof Integer) {
+            this.appendText(sensor.getName() + " : " + point.y + " " + sensor.getUnit() + " " + point.x + " sec " + System.lineSeparator());
         }
         this.appendText(System.lineSeparator());
     }
 
     /**
      * Gets called if a Stringsource we subscribed to  gets new data.
+     *
      * @param stringSource The string source that is updated.
-     * @param point the new data.
+     * @param point        the new data.
      */
     @Override
     public void onUpdateData(StringSource stringSource, Point<String> point) {
         this.appendText(stringSource.getName() + " : " + point.y);
+        this.appendText(System.lineSeparator());
+    }
+
+    @Override
+    public void onUpdateData(Gnss gnssSource, Point<GnssFrame> point) {
+        this.appendText(gnssSource.getName() + " : " + point.y.toString());
         this.appendText(System.lineSeparator());
     }
 }

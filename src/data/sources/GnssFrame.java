@@ -60,4 +60,9 @@ public class GnssFrame {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString(){
+        return "Lat: " + latitude + "° Lon: " + longitude + "° Sats: " + numOfSatellites + " Quality: " + fixQuality;
+    }
 }

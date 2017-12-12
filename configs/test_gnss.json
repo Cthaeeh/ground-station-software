@@ -5,7 +5,7 @@
       "description" : " lol",
       "messageId" : [0],
       "startOfValue" : 1,
-      "lengthOfValue" : 4,
+      "lengthOfValue" : 8,
       "latitude" : {
         "name": "Latitude ",
         "description": "GNSS Latitude (Seed 1)",
@@ -22,6 +22,38 @@
         "proportionalFactor": 1.0,
         "startOfValue": 2,
         "lengthOfValue": 2
+      },"height" : {
+        "name": "height",
+        "description": "GNSS Height (Seed 1)",
+        "unit": "m",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 4,
+        "lengthOfValue": 1
+      },"gnssTime" : {
+        "name": "time ",
+        "description": "GNSS Longitude (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 7,
+        "lengthOfValue": 1
+      },"satellites" : {
+        "name": "sats ",
+        "description": "GNSS sats (Seed 1)",
+        "unit": "Degree",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 5,
+        "lengthOfValue": 1
+      },"fixQuality" : {
+        "name": "fix quality ",
+        "description": "fix quality",
+        "unit": "",
+        "offset": 0.0,
+        "proportionalFactor": 1.0,
+        "startOfValue": 6,
+        "lengthOfValue": 1
       }
     }
   ],
@@ -29,8 +61,8 @@
   "stopBytes": [12, 22],
   "idPosition": 0,
   "idLength": 1,
-  "messageLength": 5,
-  "maxMessageLength": 5,
+  "messageLength": 9,
+  "maxMessageLength": 9,
   "isUsingCRC16": false,
   "crc16positionTC": -1,
   "crc16positionTM": -1,
