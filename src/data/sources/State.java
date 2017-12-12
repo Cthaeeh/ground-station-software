@@ -5,7 +5,6 @@ import data.TimeUtility;
 import javafx.animation.AnimationTimer;
 import main.Main;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +89,6 @@ public class State extends DataSource {
                 while (!dataQueue.isEmpty()) {
                     Point<String> pt = dataQueue.remove();
                     for(StateListener listener : listeners){
-                        System.out.println("UPDATE");
                         listener.onUpdateData(state,pt);
                     }
                 }

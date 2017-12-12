@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,7 +30,7 @@ import java.util.logging.Level;
  */
 public class TeleCommandControl implements Initializable {
 
-    private DataModel model ;
+    private DataModel model;
     private SerialPortComm serialPortComm;
     @FXML
     private GridView<TeleCommand> gridView;
@@ -46,21 +47,29 @@ public class TeleCommandControl implements Initializable {
     @FXML
     private TextField inputField;
 
-    private final String PARAMETERIZATION_FXML = "/gui/parameterization.fxml";
+    private static final String PARAMETERIZATION_FXML = "/gui/parameterization.fxml";
 
-    enum ENCODING{
-        ASCII,DECIMAL_DIVIDED_BY_SPACE,HEX_DIVIDED_BY_SPACE
+    enum ENCODING {
+        ASCII, DECIMAL_DIVIDED_BY_SPACE, HEX_DIVIDED_BY_SPACE
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initChoiceBox();
         initInputField();
+        initCheckBoxes();
+    }
+
+    private void initCheckBoxes() {
+        addStartStopBytesCheckBox.setTooltip(new Tooltip(
+                "Add Start/Stop Bytes from the Config to the Command, this will only affect typed commands."));
+        addCrcCheckBox.setTooltip(new Tooltip(
+                "Add CRC Bytes to the Command, this will only affect typed commands."));
     }
 
     private void initInputField() {
         inputField.setOnKeyReleased(event -> {
-            if (event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER) {
                 btnSendCommand();
             }
         });
@@ -68,13 +77,14 @@ public class TeleCommandControl implements Initializable {
 
     /**
      * Injects the global data Model into this controller.
+     *
      * @param model
      */
     public void initModel(DataModel model) {
         if (this.model != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
-        this.model = model ;
+        this.model = model;
         initGridView();
     }
 
@@ -87,65 +97,74 @@ public class TeleCommandControl implements Initializable {
         gridView.cellHeightProperty().set(10);
         gridView.setCellFactory(arg0 -> {
             TeleCommandGridCell cell = new TeleCommandGridCell();
-            cell.setOnMouseClicked( e -> sendPredefinedCommand(cell.getCommand()));
-            return cell;});
+            cell.setOnMouseClicked(e -> sendPredefinedCommand(cell.getCommand()));
+            return cell;
+        });
         gridView.setItems(model.getTeleCommands());
     }
 
     private void sendPredefinedCommand(TeleCommand command) {
-        if(command.hasParameters()) openParameterization(command);
-        else sendCommand(command.getBytes());
+        if (command.hasParameters()) openParameterization(command);
+        else sendPredefinedCommand(command.getBytes());
     }
 
     @FXML
-    private void btnSendCommand(){
+    private void btnSendCommand() {
         byte[] command;
-        switch (commandCoiceBox.getSelectionModel().getSelectedItem()){
+        switch (commandCoiceBox.getSelectionModel().getSelectedItem()) {
             case ASCII:
                 command = inputField.getText().getBytes(StandardCharsets.US_ASCII);
-                sendCommand(command);
+                sendTypedCommand(command);
                 break;
             case DECIMAL_DIVIDED_BY_SPACE:
                 command = Encoder.encode(inputField.getText());
-                sendCommand(command);
+                sendTypedCommand(command);
                 break;
             case HEX_DIVIDED_BY_SPACE:
                 command = Encoder.encodeFromHex(inputField.getText());
-                sendCommand(command);
+                sendTypedCommand(command);
                 break;
             default:
-                Main.programLogger.log(Level.WARNING,()->"Could not send Command"+commandCoiceBox.getSelectionModel().getSelectedItem().name()+" because the Endocing is unsuported.");
+                Main.programLogger.log(Level.WARNING, () -> "Could not send Command" + commandCoiceBox.getSelectionModel().getSelectedItem().name() + " because the Endocing is unsuported.");
         }
     }
 
     /**
      * Adds the CRC16 if needed and the start stop bytes if needed and forwards it to the serialPortCOmm.
+     *
      * @param command
      */
-    private void sendCommand(byte[] command){
-        if(model.getConfig().isUsingCRC16() || addCrcCheckBox.isSelected()){   //TODO think about if CRC 16 usage should idenpently be chosen for TM and TC.
-            command = TmTcUtil.insertCRC(command,model.getConfig().getCrc16positionTC(),model.getConfig().getByteEndianity());
+    private void sendPredefinedCommand(byte[] command) {
+        if (model.getConfig().isUsingCRC16()) {
+            command = TmTcUtil.insertCRC(command, model.getConfig().getCrc16positionTC(), model.getConfig().getByteEndianity());
         }
-        if(addStartStopBytesCheckBox.isSelected()){                             // TODO does this make sense.
-            command = TmTcUtil.concatenate(model.getConfig().getStartBytes(),command,model.getConfig().getStopBytes());
-        }
-
+        command = TmTcUtil.concatenate(model.getConfig().getStartBytes(), command, model.getConfig().getStopBytes());
         serialPortComm.send(command);
     }
 
-    private void initChoiceBox(){
-         commandCoiceBox.getItems().setAll(ENCODING.values());  //
-         commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
+    private void sendTypedCommand(byte[] command) {
+        if (addCrcCheckBox.isSelected()) {
+            command = TmTcUtil.insertCRC(command, model.getConfig().getCrc16positionTC(), model.getConfig().getByteEndianity());
+        }
+        if (addStartStopBytesCheckBox.isSelected()) {
+            command = TmTcUtil.concatenate(model.getConfig().getStartBytes(), command, model.getConfig().getStopBytes());
+        }
+        serialPortComm.send(command);
     }
 
-    private void openParameterization(TeleCommand command){
+    private void initChoiceBox() {
+        commandCoiceBox.getItems().setAll(ENCODING.values());  //
+        commandCoiceBox.getSelectionModel().selectFirst(); //Select first item by default.
+    }
+
+    private void openParameterization(TeleCommand command) {
         try {
             final Stage parameterizationDialog = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(PARAMETERIZATION_FXML));
-            Scene scene = new Scene(loader.load(), 600,600);
+            Scene scene = new Scene(loader.load(), 600, 600);
             ParameterizationControl parameterizationControl = loader.getController();
             parameterizationControl.init(command);
-            parameterizationControl.register(this::sendCommand);
+            parameterizationControl.register(this::sendPredefinedCommand);
             scene.getStylesheets().add("/gui/darkTheme.css");
 
             parameterizationDialog.initModality(Modality.APPLICATION_MODAL);
@@ -154,9 +173,8 @@ public class TeleCommandControl implements Initializable {
             parameterizationDialog.setScene(scene);
             parameterizationDialog.show();
 
-        }catch (IOException e){
-            e.printStackTrace();
-            Main.programLogger.log(Level.WARNING,"Unable to find parameterization fxml.");
+        } catch (IOException e) {
+            Main.programLogger.log(Level.WARNING,()-> "Unable to find parameterization fxml. " + e.getMessage());
         }
     }
 }

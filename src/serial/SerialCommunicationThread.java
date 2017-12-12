@@ -40,7 +40,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      * For example messages with the id 1 always contain temp 1 gyro x,y,z and temp2.
      * In order to be able to use byte arrays as keys and still have meaningful comparision I use the Byte Wrapper that implements exactly that.
      */
-    private Map<ByteBuffer, List<DataSource>> messageMap = new HashMap<ByteBuffer, List<DataSource>>();
+    private Map<ByteBuffer, List<DataSource>> messageMap = new HashMap<>();
 
     //State of this Thread:
     private volatile boolean isRunning = true;
@@ -100,7 +100,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private static String byteArrayToHex(byte[] a) {
         StringBuilder sb = new StringBuilder(a.length * 2);
         for(byte b: a)
-        sb.append(String.format("%02x", b));
+        sb.append("[" + String.format("%02x", b) + "]");
         return sb.toString();
     }
     /**
@@ -109,8 +109,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     @Override
     public void processMessage(byte[] message) {
-        System.out.println("message" + toStringUnsigned(message));
-        System.out.println(byteArrayToHex(message));
+        Main.programLogger.log(Level.INFO, ()->"Got message: [unsigned dec] :" + toStringUnsigned(message));
         if(useCRC16TM){
             if(TmTcUtil.isCrcValid(message,CRC16PosTM)){
                 decodeMessage(message);

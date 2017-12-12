@@ -61,6 +61,7 @@ public class MainWindowControl implements Initializable {
     private static final String CONNECTION_FXML = "/gui/connection_window.fxml";
     private static final String VISUALIZATION_ELEMENT_FXML = "/gui/visualization.fxml";
     private static final String CONFIG_EDIT_FXML = "/gui/config_edit.fxml";
+    private static final String DARK_THEME_CSS = "/gui/darkTheme.css";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -165,7 +166,6 @@ public class MainWindowControl implements Initializable {
         }
         numOfColumns--;
         visualizationsGridPane.getChildren().removeAll(deleteNodes);    // remove nodes from row
-        System.out.println("Test");
     }
 
     /**
@@ -202,7 +202,7 @@ public class MainWindowControl implements Initializable {
             ConnectionWindowControl connectionWindowControl = loader.getController();
             connectionWindowControl.initCommPortConnection(serialPortComm);
 
-            scene.getStylesheets().add("/gui/darkTheme.css");
+            scene.getStylesheets().add(DARK_THEME_CSS);
 
             connectionStage.initModality(Modality.APPLICATION_MODAL);
             connectionStage.initOwner(showConnectionWindowBtn.getScene().getWindow());
@@ -225,7 +225,7 @@ public class MainWindowControl implements Initializable {
             try {
                 //TODO test it.
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will close all visualizations and stop the serial communication", ButtonType.OK, ButtonType.CANCEL);
-                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.getDialogPane().getStylesheets().add(DARK_THEME_CSS);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.OK) {
                     serialPortComm.disconnect();
@@ -235,12 +235,12 @@ public class MainWindowControl implements Initializable {
             } catch (IOException exc) {
                 Main.programLogger.log(Level.WARNING, () -> "Unable to load config: " + file.getName() + " Reason unknown");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, (IOException)");
-                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.getDialogPane().getStylesheets().add(DARK_THEME_CSS);
                 alert.showAndWait();
             } catch (com.google.gson.JsonSyntaxException ex) {
                 Main.programLogger.log(Level.WARNING, () -> "JSON unreadable of: " + file.getName());
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, because of bad json!");
-                alert.getDialogPane().getStylesheets().add("/gui/darkTheme.css");
+                alert.getDialogPane().getStylesheets().add(DARK_THEME_CSS);
                 alert.showAndWait();
             }
         }
@@ -262,11 +262,10 @@ public class MainWindowControl implements Initializable {
     private void btnCreateConfigClick() {
         try {
             final Stage configEditStage = new Stage();
-            System.out.println("got here");
             FXMLLoader loader = new FXMLLoader(getClass().getResource(CONFIG_EDIT_FXML));
             Scene scene = new Scene(loader.load(), 600, 600);
 
-            scene.getStylesheets().add("/gui/darkTheme.css");
+            scene.getStylesheets().add(DARK_THEME_CSS);
 
             configEditStage.initModality(Modality.NONE);
             configEditStage.initOwner(showConnectionWindowBtn.getScene().getWindow());

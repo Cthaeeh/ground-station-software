@@ -49,8 +49,6 @@ public class TeleCommand {
     private byte[] assembleCommand() {
         byte[] command = new byte[length];
         for(Parameter param : parameters){
-            System.out.println(param.getName());
-            System.out.println("Param true length" + param.getBytes().length);
             TmTcUtil.insertBytes(command,param.getBytes(),param.getStart(),param.getLength());
         }
 
