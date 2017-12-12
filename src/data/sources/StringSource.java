@@ -15,44 +15,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class StringSource extends DataSource{
 
-    private ConcurrentLinkedQueue<Point<String>> dataQueue = new ConcurrentLinkedQueue<>();
-
-    private List<StringSourceListener> listeners = new ArrayList<>();
-
-    public StringSource(){
-        informListeners();
-    }
-
-    private void informListeners() {
-        StringSource stringSource = this;
-        new AnimationTimer(){
-            @Override
-            public void handle(long now){
-                while(!dataQueue.isEmpty()) {
-                    Point pt = dataQueue.remove();
-                    for(StringSourceListener listener : listeners){
-                        listener.onUpdateData(stringSource,pt);
-                    }
-                }
-            }
-        }.start();
-    }
-
     @Override
     public String toString() {
         return "STRING: " + name.getValue();
     }
 
-    public void addListner(StringSourceListener listener){
-        listeners.add(listener);
-    }
-
-    public void removeListener(StringSourceListener toBeRemoved) {
-        listeners.remove(toBeRemoved);
-    }
-
     /**
-     *
      * @param bytes the value encoded as bytes.
      */
     @Override
@@ -64,7 +32,7 @@ public class StringSource extends DataSource{
             e.printStackTrace();
             value = "FAILED TO DECODE BYTES TO STRING";
         }
-        dataQueue.add(new Point<>(TimeUtility.getUptimeSec(),value));
+        addDataPoint(new Point<>(TimeUtility.getUptimeSec(),value));
         dataLogger.write("UPTIME_SEC;"+TimeUtility.getUptimeSec() + ";" + getName() + value);
 
     }

@@ -26,19 +26,9 @@ public class State extends DataSource {
     private Map<Byte, String> stateMap = new HashMap<>();
 
     /**
-     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
-     */
-    private ConcurrentLinkedQueue<Point<String>> dataQueue = new ConcurrentLinkedQueue<>();
-
-    private List<StateListener> listeners = new ArrayList<>();
-
-    /**
      * Added to the queque if the byte is not known to this class that i receives.
      */
     private final static String DEFAULT_STATE ="UNDEFINED";
-    public State(){
-        informListeners();
-    }
 
     @Override
     public String toString(){
@@ -56,10 +46,10 @@ public class State extends DataSource {
         Byte rawValue = bytes[0];
         if(stateMap.containsKey(rawValue)){
             String stateString = stateMap.get(rawValue);
-            dataQueue.add(new Point<String>(TimeUtility.getUptimeSec(),stateString));
+            addDataPoint(new Point<>(TimeUtility.getUptimeSec(),stateString));
             dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + stateString);
         }else {
-            dataQueue.add(new Point<String>(TimeUtility.getUptimeSec(),DEFAULT_STATE));
+            addDataPoint(new Point<>(TimeUtility.getUptimeSec(),DEFAULT_STATE));
             Main.programLogger.log(Level.WARNING,()->"Unable to decode byte :" +  rawValue + "to a State.");
         }
     }
@@ -70,30 +60,6 @@ public class State extends DataSource {
         //TODO implement
         insertValue(bytes);
         Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
-    }
-
-    public void addListener(StateListener listener) {
-        listeners.add(listener);
-    }
-
-
-    public void removeListeners(StateListener listener) {
-        listeners.remove(listener);
-    }
-
-    private void informListeners() {
-        State state = this;
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                while (!dataQueue.isEmpty()) {
-                    Point<String> pt = dataQueue.remove();
-                    for(StateListener listener : listeners){
-                        listener.onUpdateData(state,pt);
-                    }
-                }
-            }
-        }.start();
     }
 
 }

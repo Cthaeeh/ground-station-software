@@ -11,53 +11,16 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Created by Kai on 04.06.2017.
  * For sending flags as telemetry.
  */
-public class BitFlag extends DataSource {
-
-    /**
-     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
-     */
-    private ConcurrentLinkedQueue<Point<Boolean>> dataQueue = new ConcurrentLinkedQueue<>();
-    private List<BitFlagListener> listeners = new ArrayList<>();
+public class BitFlag extends DataSource<Point<Boolean>> {
 
     /**
      * The position of the bit for the flag in the bytes that are speccified in the abstract datasource.
      */
     private int bitPosition;
 
-    BitFlag(){
-        informListeners();
-    }
-
     @Override
     public String toString(){
         return "FLAG: " + name.getValue();
-    }
-
-    public void addListener (BitFlagListener listener) {
-        listeners.add(listener);
-    }
-
-    public void removeListeners(BitFlagListener toBeRemoved) {
-        listeners.remove(toBeRemoved);
-    }
-
-    /**
-     * gets called in the JavaFX Main thread.
-     * Iterates over all Listeners and informs them.
-     */
-    private void informListeners() {
-        BitFlag bitFlag = this;
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                while (!dataQueue.isEmpty()) {
-                    Point pt = dataQueue.remove();
-                    for(BitFlagListener listener : listeners){
-                        listener.onUpdateData(bitFlag,pt);
-                    }
-                }
-            }
-        }.start();
     }
 
     /**
@@ -68,7 +31,7 @@ public class BitFlag extends DataSource {
     @Override
     public void insertValue(byte[] bytes) {
         boolean rawValue = isBitSet(bytes,bitPosition);
-        dataQueue.add(new Point<Boolean>(TimeUtility.getUptimeSec(),rawValue));
+        addDataPoint(new Point<>(TimeUtility.getUptimeSec(),rawValue));
         dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + rawValue);
     }
 
@@ -87,14 +50,6 @@ public class BitFlag extends DataSource {
     public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
         insertValue(bytes);
-    }
-
-    /**
-     * For testing
-     * @return
-     */
-    public Point<Boolean> pollLastValue(){
-        return dataQueue.poll();
     }
 
 }

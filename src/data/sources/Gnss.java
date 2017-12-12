@@ -18,9 +18,6 @@ import java.util.logging.Level;
  */
 public class Gnss extends DataSource{
 
-    private ConcurrentLinkedQueue<Point<GnssFrame>> dataQueue = new ConcurrentLinkedQueue<>();
-    private List<GnssListener> listeners = new ArrayList<>();
-
     private SimpleSensor latitude;
     private SimpleSensor longitude;
     private SimpleSensor height;
@@ -30,37 +27,6 @@ public class Gnss extends DataSource{
 
     //TODO get this form the config.
     private static final Config.ByteEndianity BYTE_ENDIANITY = Config.ByteEndianity.BIG_ENDIAN;
-
-    public Gnss(){
-        informListeners();
-    }
-
-    public void addListener (GnssListener listener) {
-        listeners.add(listener);
-    }
-
-    public void removeListeners(GnssListener toBeRemoved) {
-        listeners.remove(toBeRemoved);
-    }
-
-    /**
-     * gets called in the JavaFX Main thread.
-     * Iterates over all Listeners and informs them.
-     */
-    private void informListeners() {
-        Gnss gnss = this;   //TODO remove this ugliness.
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                while (!dataQueue.isEmpty()) {
-                    Point<GnssFrame> pt = dataQueue.remove();
-                    for(GnssListener listener : listeners){
-                        listener.onUpdateData(gnss,pt);
-                    }
-                }
-            }
-        }.start();
-    }
 
     @Override
     public String toString() {
@@ -100,7 +66,7 @@ public class Gnss extends DataSource{
                 + gnssFrame.getLatitude() + ";" + gnssFrame.getNumOfSatellites() + ";" + gnssFrame.getFixQuality()
                 + gnssFrame.getHeight() + gnssFrame.getTime());
 
-        if(! listeners.isEmpty()) dataQueue.add(new Point(receiveTime,gnssFrame));
+        addDataPoint(new Point(receiveTime,gnssFrame));
     }
 
     @Override

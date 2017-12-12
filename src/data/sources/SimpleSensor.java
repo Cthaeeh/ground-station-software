@@ -2,30 +2,20 @@ package data.sources;
 
 import data.Point;
 import data.TimeUtility;
-import javafx.animation.AnimationTimer;
 import main.Main;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 
 /**
  * Created by Kai on 27.04.2017.
  * A simple Sensor, represents for example a temperature sensor or gyroscope etc.
  */
-public class SimpleSensor extends DataSource {
+public class SimpleSensor extends DataSource<Point<Number>> {
 
-    /**
-     * This allows for the thread safe data exchange between the ressources Thread and the serial.SerialCommunicationThread.
-     */
-    private ConcurrentLinkedQueue<Point<Number>> dataQueue = new ConcurrentLinkedQueue<>();
     /** Most up to date value the dataSource has to offer **/
     private double lastValue;
-
-    private List<SimpleSensorListener> listeners = new ArrayList<>();
 
     private String unit;
     /**
@@ -36,10 +26,6 @@ public class SimpleSensor extends DataSource {
      *  A proportional constatnt the raw value is multiplied with to get the correct value ( in SI-Units, CGS or whatever )
      */
     private double proportionalFactor = 1.0;
-
-    public SimpleSensor(){
-        informListeners();
-    }
 
     public String getUnit(){
         return unit;
@@ -55,39 +41,6 @@ public class SimpleSensor extends DataSource {
 
     public double getLastValue(){
         return lastValue;
-    }
-
-    public void addListener (SimpleSensorListener listener) {
-        listeners.add(listener);
-    }
-
-    public void removeListeners(SimpleSensorListener toBeRemoved) {
-        listeners.remove(toBeRemoved);
-    }
-
-    /**
-     * gets called in the JavaFX Main thread.
-     * Iterates over all Listeners and informs them.
-     */
-    private void informListeners() {
-        SimpleSensor sensor = this;   //TODO remove this ugliness.
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                while (!dataQueue.isEmpty()) {
-                    Point<Number> pt = dataQueue.remove();
-                    for(SimpleSensorListener listener : listeners){
-                        listener.onUpdateData(sensor,pt);
-                    }
-                }
-            }
-        }.start();
-    }
-
-    private void addDataPoint(Number x, double y){
-        //TODO also do this in other dataSource, that is why this code belongs to the DataSource abstract class ... but whatever.
-        if(! listeners.isEmpty()) dataQueue.add(new Point(x,y));
-        lastValue = y;
     }
 
     @Override
@@ -123,7 +76,8 @@ public class SimpleSensor extends DataSource {
                 return;
         }
         double value = (((double) rawValue )* proportionalFactor) + offset;
-        addDataPoint(TimeUtility.getUptimeSec(),value);
+        lastValue = value;
+        addDataPoint(new Point<>(TimeUtility.getUptimeSec(),value));
         dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
     }
 

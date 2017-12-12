@@ -16,7 +16,13 @@ import java.util.List;
  * Subscribes to the DataSources it gets in the Constructor.
  * Created by Kai on 03.06.2017.
  */
-public class TextualPresentation extends ListView<Text> implements GnssListener, SimpleSensorListener, VisualizationElement, BitFlagListener, StateListener, StringSourceListener {
+public class TextualPresentation extends ListView<Text> implements
+        DataSourceListener<GnssFrame>,
+        DataSourceListener<SimpleSensor>,
+        DataSourceListener<BitFlag>,
+        DataSourceListener<State>,
+        DataSourceListener<StringSource>,
+        VisualizationElement {
 
     private List<DataSource> dataSources;
 
@@ -54,27 +60,23 @@ public class TextualPresentation extends ListView<Text> implements GnssListener,
     @Override
     public void unsubscibeDataSources() {
         for (DataSource source : dataSources) {
-            if (source instanceof SimpleSensor) ((SimpleSensor) source).removeListeners(this);
-            if (source instanceof BitFlag) ((BitFlag) source).removeListeners(this);
-            if (source instanceof State) ((State) source).removeListeners(this);
-            if (source instanceof StringSource) ((StringSource) source).removeListener(this);
-            if (source instanceof Gnss) ((Gnss) source).removeListeners(this);
+            source.removeListeners(this);
         }
     }
 
     @Override
     public void onUpdateData(SimpleSensor sensor, Point point) {
-        if(point.y instanceof Double){
-            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + String.format("%.2f",(Double)point.y) + " " +sensor.getUnit());
-        }else if(point.y instanceof Integer){
-            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit());
-        }else if(point.y instanceof String){
-            dataSourceStringMap.get(sensor).setText(sensor.getName()+ " : " + point.y + " " +sensor.getUnit());
+        if (point.y instanceof Double) {
+            dataSourceStringMap.get(sensor).setText(sensor.getName() + " : " + String.format("%.2f", (Double) point.y) + " " + sensor.getUnit());
+        } else if (point.y instanceof Integer) {
+            dataSourceStringMap.get(sensor).setText(sensor.getName() + " : " + point.y + " " + sensor.getUnit());
+        } else if (point.y instanceof String) {
+            dataSourceStringMap.get(sensor).setText(sensor.getName() + " : " + point.y + " " + sensor.getUnit());
         }
 
     }
 
-   @Override
+    @Override
     public void onUpdateData(BitFlag bitFlag, Point<Boolean> point) {
         dataSourceStringMap.get(bitFlag).setText(bitFlag.getName() + " : " + (point.y ? "TRUE" : "FALSE"));
     }
@@ -97,4 +99,8 @@ public class TextualPresentation extends ListView<Text> implements GnssListener,
                 + " Lon: " + point.y.getLongitude());
     }
 
+    @Override
+    public void onUpdateData(DataSource<GnssFrame> dataSource, GnssFrame point) {
+
+    }
 }

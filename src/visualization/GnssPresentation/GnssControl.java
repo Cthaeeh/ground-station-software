@@ -7,7 +7,6 @@ import com.lynden.gmapsfx.javascript.object.*;
 import data.Point;
 import data.sources.Gnss;
 import data.sources.GnssFrame;
-import data.sources.GnssListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import netscape.javascript.JSObject;

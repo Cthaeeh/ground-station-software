@@ -2,7 +2,6 @@ package visualization.LiveLineChart;
 
 import data.sources.DataSource;
 import data.Point;
-import data.sources.SimpleSensorListener;
 import data.sources.SimpleSensor;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
