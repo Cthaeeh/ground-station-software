@@ -7,13 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import com.lynden.gmapsfx.GoogleMapView?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="visualization.GnssPresentation.GnssControl"
-            minHeight="10"
-            minWidth="10"
-            prefHeight="400.0" prefWidth="600.0">
-    <children>
-         <GoogleMapView fx:id="mapView" prefHeight="400.0" prefWidth="600.0" />
-    </children>
-</AnchorPane>
+
+<GoogleMapView xmlns="http://javafx.com/javafx"
+               xmlns:fx="http://javafx.com/fxml" fx:controller="visualization.GnssPresentation.GnssControl"
+               fx:id="mapView" minHeight="10" minWidth="10" prefHeight="400.0" prefWidth="600.0"/>
