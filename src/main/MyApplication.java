@@ -20,7 +20,7 @@ public class MyApplication extends Application{
     /**
      * The default interpretation file that is used, which defines available sources etc.
      */
-    private static final String DEFAULT_INTERPRETATION_FILE = "configs/test_gnss.json";
+    private static final String DEFAULT_INTERPRETATION_FILE = "configs/default_config_toby.json";
 
     private static final String MAIN_WINDOW_FXML = "/gui/main_window.fxml";
     private static final String CSS_STYLING = "/gui/darkTheme.css";
