@@ -2,11 +2,14 @@ package command;
 
 import data.params.Parameter;
 import gui_elements.NumberTextField;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.VBox;
 
 /**
@@ -17,23 +20,24 @@ public class ParameterCell extends ListCell<Parameter> {
     private Label name = new Label();
     private VBox box = new VBox();
     private CheckBox checkBox;
-    private ChoiceBox<String>choiceBox;
+    private ChoiceBox<String> choiceBox;
     private NumberTextField numberTextField;
 
 
-    public ParameterCell(){
+    public ParameterCell() {
         box.getChildren().addAll(name);
         name.setStyle("-fx-font-size:18;");
+        this.setFocusTraversable(false);
     }
 
     @Override
-    protected void updateItem(Parameter param, boolean empty){
-        super.updateItem(param,empty);
-        if(empty || param == null){
+    protected void updateItem(Parameter param, boolean empty) {
+        super.updateItem(param, empty);
+        if (empty || param == null) {
             //TODO set all UI elements null
-        }else{
+        } else {
             name.setText(param.getName());
-            switch (param.getType()){
+            switch (param.getType()) {
                 case FLAG:
                     displayFlagParam(param);
                     break;
@@ -46,38 +50,55 @@ public class ParameterCell extends ListCell<Parameter> {
                 default:
                     box.getChildren().add(new Label("unknown param type"));
             }
-
+            this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+                if (newPropertyValue) {
+                    box.setStyle("-fx-border-color: blue ");
+                } else {
+                    box.setStyle("");
+                }
+            });
         }
         setGraphic(box);
     }
 
     private void displayFlagParam(Parameter param) {
-        if(checkBox == null){
+        if (checkBox == null) {
             checkBox = new CheckBox("ON or OFF");
-            checkBox.selectedProperty().addListener(e-> param.setFlag(checkBox.isSelected()));
+            checkBox.selectedProperty().addListener(e -> param.setFlag(checkBox.isSelected()));
             box.getChildren().add(checkBox);
         }
     }
 
     private void displayStateParam(Parameter param) {
-        if(choiceBox == null){
+        if (choiceBox == null) {
             choiceBox = new ChoiceBox<>();
             choiceBox.getItems().setAll(param.getStateMap().keySet());
             choiceBox.getSelectionModel().selectFirst();
             choiceBox.getSelectionModel()
-                     .selectedItemProperty()
-                     .addListener( (ObservableValue<? extends String> observable,String oldValue, String newValue) -> param.setState(newValue));
+                    .selectedItemProperty()
+                    .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> param.setState(newValue));
             param.setState(choiceBox.getSelectionModel().getSelectedItem());
+
+            //Show it full size when we get focus.
+            this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+                if (newPropertyValue) {
+                    choiceBox.show();
+                } else {
+                    choiceBox.hide();
+                }
+            });
+
             box.getChildren().add(choiceBox);
         }
     }
 
     private void displayIntegerParam(Parameter param) {
-        if(numberTextField == null){
+        if (numberTextField == null) {
             numberTextField = new NumberTextField();
-            numberTextField.textProperty().addListener(e-> param.setInteger(numberTextField.getInteger()));
+            numberTextField.textProperty().addListener(e -> param.setInteger(numberTextField.getInteger()));
             box.getChildren().add(numberTextField);
         }
     }
+
 
 }
