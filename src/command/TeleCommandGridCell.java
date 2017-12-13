@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
@@ -38,9 +41,9 @@ public class TeleCommandGridCell extends GridCell<TeleCommand> {
             command = item;
             label.setText(item.getName());
             label.setTooltip(new Tooltip(item.getDescription()));
+            label.setStyle("-fx-border-color: " + command.getColorString() +"; -fx-text-fill: " + command.getColorString() +";");
         }
         box.getChildren().addAll(label);
-        label.setStyle("-fx-border-color: white;");
         setGraphic(box);
     }
 

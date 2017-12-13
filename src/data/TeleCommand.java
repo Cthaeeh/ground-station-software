@@ -21,6 +21,7 @@ public class TeleCommand {
     private int length = 0;
     private String name;
     private String description;
+    private String colorString;
     private ArrayList<Parameter> parameters = new ArrayList<>();
 
     /**
@@ -70,5 +71,10 @@ public class TeleCommand {
 
     public boolean hasParameters() {
         return !parameters.isEmpty();
+    }
+
+    public String getColorString() {
+        if(colorString == null) return "white";
+        else return colorString;
     }
 }

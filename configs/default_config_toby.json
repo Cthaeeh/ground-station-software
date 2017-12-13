@@ -1135,8 +1135,10 @@
                         "ON": [12],
                         "OFF": [13]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "GET TEST MODE SEEDS",
            		"description": "get seed test mode",
                 "commandBasis": [0,45],
@@ -1152,8 +1154,11 @@
                         "3": [3],
                         "All": [4]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+
+           	},
+			{
            		"name": "CHANGE SEED STATE",
            		"description": "flight rising, flight tx are the only ones working outside test mode.",
                 "commandBasis": [0,30],
@@ -1181,8 +1186,10 @@
                         "EAGLE LANDED": [76],
                         "POWERSAFE ": [80]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "GET SEED STATE",
            		"description": " in which state is the seed in, or all ?",
                 "commandBasis": [0,35],
@@ -1198,8 +1205,10 @@
                         "3": [3],
                         "All": [4]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "GET SEED SENSOR",
            		"description": "get a specific seed sensor block",
                 "commandBasis": [0,50],
@@ -1227,8 +1236,10 @@
                         "Block4": [71],
                         "Block5": [84]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "SET SEED FUNK",
            		"description": "set seed test mode",
                 "commandBasis": [0,60],
@@ -1253,8 +1264,10 @@
                         "ON": [42],
                         "OFF": [24]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "GET SEED FUNK",
            		"description": "set seed test mode",
                 "commandBasis": [0,65],
@@ -1270,8 +1283,10 @@
                         "3": [3],
                         "All": [4]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "SEED SEND DATA",
            		"description": "toggle the sending of sensor data",
                 "commandBasis": [0,55],
@@ -1296,47 +1311,64 @@
                         "ON": [42],
                         "OFF": [24]
                     }
-                }]
-           	},{
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
            		"name": "ENTER TEST MODE ORBC",
            		"description": "enable the test mode of the on rocket computer",
                 "commandBasis": [0,0],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "LEAVE TEST MODE ORBC",
            		"description": "disable the test mode of the on rocket computer",
                 "commandBasis": [0,1],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "SEEDS ON",
            		"description": "send SEEDS ON TC to ORBC",
                 "commandBasis": [0,2],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "SEEDS OFF",
            		"description": "send SEEDS OF TC to ORBC",
                 "commandBasis": [0,3],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "TRIGGER CAM",
            		"description": "trigger cam",
                 "commandBasis": [0,4],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "SAVE ORBC STATE",
-           		"description": " ??? ",
+           		"description": " save current state on sd card and resume from it if restart. ",
                 "commandBasis": [0,5],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "RESET ORBC STATE",
-           		"description": " ??? ",
+           		"description": " start ORBC with first state if restarted ",
                 "commandBasis": [0,6],
-                "length": 18
-           	},{
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
            		"name": "RESET SIGNALS",
-           		"description": " ??? ",
+           		"description": " reset flags for LO,SOE,SODS ",
                 "commandBasis": [0,7],
-                "length": 18
+                "length": 18,
+				"colorString" : "olivedrab"
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
