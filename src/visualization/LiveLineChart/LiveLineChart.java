@@ -73,7 +73,6 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
     private void initCustomRangingDialog() {
         // TODO overlapping with the contextMenu tht is shown in the whole visualization area.
         this.setOnMouseClicked(e->{
-            System.out.println(e.getButton().name());
             if(e.getButton() == MouseButton.SECONDARY){
                 BoundsDialog dialog = new BoundsDialog();
                 Optional<Bounds> boundsOptional = dialog.showAndWait();

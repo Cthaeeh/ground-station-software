@@ -59,10 +59,10 @@ public class BoundsDialog extends Dialog<Bounds> {
      */
     private void initValidator() {
         this.getDialogPane().lookupButton(ButtonType.APPLY).disableProperty().bind(Bindings.when(
-                yAutoRanging.selectedProperty()
-                        .or(yLowerBoundField.textProperty().isNotEqualTo(""))
-                        .and(yUpperBoundField.textProperty().isNotEqualTo(""))
-                        .and(xIntervalField.textProperty().isNotEqualTo("")))
+                (yAutoRanging.selectedProperty()
+                        .or((yLowerBoundField.textProperty().isNotEqualTo(""))
+                        .and(yUpperBoundField.textProperty().isNotEqualTo(""))))
+                .and(xIntervalField.textProperty().isNotEqualTo("")))
                 .then(false).otherwise(true));
     }
 
@@ -83,11 +83,9 @@ public class BoundsDialog extends Dialog<Bounds> {
                         .build();
             }
         } catch (NumberFormatException ex) {
-            Main.programLogger.log(Level.WARNING, () -> {
-                return "Could not parse :" + yUpperBoundField.getText() +
-                        " and: " + yLowerBoundField.getText() +
-                        " and: " + xIntervalField.getText() + " to doubles";
-            });
+            Main.programLogger.log(Level.WARNING, () -> "Could not parse :" + yUpperBoundField.getText() +
+                    " and: " + yLowerBoundField.getText() +
+                    " and: " + xIntervalField.getText() + " to doubles");
             return null;
         }
     }
