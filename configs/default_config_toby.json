@@ -5,7 +5,7 @@
        		"description": "n",
        		"unit": "num",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [8],
        		"startOfValue": 1,
        		"lengthOfValue": 2
@@ -15,7 +15,7 @@
        		"description": "z-Axis of Accelerator (Seed 1)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [79],
        		"startOfValue": 11,
        		"lengthOfValue": 2
@@ -25,7 +25,7 @@
        		"description": "z-Axis of Accelerator (Seed 2)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-113],
        		"startOfValue": 11,
        		"lengthOfValue": 2
@@ -35,7 +35,7 @@
        		"description": "z-Axis of Accelerator (Seed 3)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-49],
        		"startOfValue": 11,
        		"lengthOfValue": 2
@@ -45,7 +45,7 @@
        		"description": "y-Axis of Accelerator (Seed 1)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [79],
        		"startOfValue": 9,
        		"lengthOfValue": 2
@@ -55,7 +55,7 @@
        		"description": "y-Axis of Accelerator (Seed 2)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-113],
        		"startOfValue": 9,
        		"lengthOfValue": 2
@@ -65,7 +65,7 @@
        		"description": "y-Axis of Accelerator (Seed 3)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-49],
        		"startOfValue": 9,
        		"lengthOfValue": 2
@@ -75,7 +75,7 @@
        		"description": "x-Axis of Accelerator (Seed 1)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [79],
        		"startOfValue": 7,
        		"lengthOfValue": 2
@@ -85,7 +85,7 @@
        		"description": "x-Axis of Accelerator (Seed 2)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-113],
        		"startOfValue": 7,
        		"lengthOfValue": 2
@@ -95,7 +95,7 @@
        		"description": "x-Axis of Accelerator (Seed 3)",
        		"unit": "g",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00048828125,
        		"messageId": [-49],
        		"startOfValue": 7,
        		"lengthOfValue": 2
@@ -103,9 +103,9 @@
 			{
        		"name": "GyroX Seed 1",
        		"description": "x-Axis of Gyroscope (Seed 1)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [79],
        		"startOfValue": 15,
        		"lengthOfValue": 2
@@ -113,9 +113,9 @@
 			{
        		"name": "GyroX Seed 2",
        		"description": "x-Axis of Gyroscope (Seed 2)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-113],
        		"startOfValue": 15,
        		"lengthOfValue": 2
@@ -123,9 +123,9 @@
 			{
        		"name": "GyroX Seed 3",
        		"description": "x-Axis of Gyroscope (Seed 3)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-49],
        		"startOfValue": 15,
        		"lengthOfValue": 2
@@ -133,9 +133,9 @@
 			{
        		"name": "GyroY Seed 1",
        		"description": "y-Axis of Gyroscope (Seed 1)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [79],
        		"startOfValue": 17,
        		"lengthOfValue": 2
@@ -143,9 +143,9 @@
 			{
        		"name": "GyroY Seed 2",
        		"description": "y-Axis of Gyroscope (Seed 2)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-113],
        		"startOfValue": 17,
        		"lengthOfValue": 2
@@ -153,9 +153,9 @@
 			{
        		"name": "GyroY Seed 3",
        		"description": "y-Axis of Gyroscope (Seed 3)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-49],
        		"startOfValue": 17,
        		"lengthOfValue": 2
@@ -163,9 +163,9 @@
 			{
        		"name": "GyroZ Seed 1",
        		"description": "z-Axis of Gyroscope (Seed 1)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [79],
        		"startOfValue": 19,
        		"lengthOfValue": 2
@@ -173,9 +173,9 @@
 			{
        		"name": "GyroZ Seed 2",
        		"description": "z-Axis of Gyroscope (Seed 2)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-113],
        		"startOfValue": 19,
        		"lengthOfValue": 2
@@ -183,9 +183,9 @@
 			{
        		"name": "GyroZ Seed 3",
        		"description": "z-Axis of Gyroscope (Seed 3)",
-       		"unit": "deg/s",
+       		"unit": "dps",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.06097560975,
        		"messageId": [-49],
        		"startOfValue": 19,
        		"lengthOfValue": 2
@@ -193,9 +193,9 @@
 			{
        		"name": "MagX Seed 1",
        		"description": "x-Axis of Magnetometer (Seed 1)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [79],
        		"startOfValue": 23,
        		"lengthOfValue": 2
@@ -203,9 +203,9 @@
 			{
        		"name": "MagX Seed 2",
        		"description": "x-Axis of Magnetometer (Seed 2)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-113],
        		"startOfValue": 23,
        		"lengthOfValue": 2
@@ -213,9 +213,9 @@
 			{
        		"name": "MagX Seed 3",
        		"description": "x-Axis of Magnetometer (Seed 3)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-49],
        		"startOfValue": 23,
        		"lengthOfValue": 2
@@ -223,9 +223,9 @@
 			{
        		"name": "MagY Seed 1",
        		"description": "y-Axis of Magnetometer (Seed 1)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [79],
        		"startOfValue": 25,
        		"lengthOfValue": 2
@@ -233,9 +233,9 @@
 			{
        		"name": "MagY Seed 2",
        		"description": "y-Axis of Magnetometer (Seed 2)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-113],
        		"startOfValue": 25,
        		"lengthOfValue": 2
@@ -243,9 +243,9 @@
 			{
        		"name": "MagY Seed 3",
        		"description": "y-Axis of Magnetometer (Seed 3)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-49],
        		"startOfValue": 25,
        		"lengthOfValue": 2
@@ -253,9 +253,9 @@
 			{
        		"name": "MagZ Seed 1",
        		"description": "z-Axis of Magnetometer (Seed 1)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [79],
        		"startOfValue": 27,
        		"lengthOfValue": 2
@@ -263,9 +263,9 @@
 			{
        		"name": "MagZ Seed 2",
        		"description": "z-Axis of Magnetometer (Seed 2)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-113],
        		"startOfValue": 27,
        		"lengthOfValue": 2
@@ -273,9 +273,9 @@
 			{
        		"name": "MagZ Seed 3",
        		"description": "z-Axis of Magnetometer (Seed 3)",
-       		"unit": "gaus ??",
+       		"unit": "uTesla",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.6,
        		"messageId": [-49],
        		"startOfValue": 27,
        		"lengthOfValue": 2
@@ -671,436 +671,330 @@
        		"lengthOfValue": 1
        	}],
        	"states": [{
-       		"name": "Change TestMode SEED 1",
-       		"description": "ON acknowledgment",
+       		"name": "ORBC Testmode",
+       		"description": "ORBC testmode changed",
+       		"messageId": [6],
+               "stateMap": {
+                   "0": "disabled",
+                   "1": "enabled"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "ORBC Signal",
+       		"description": "ORBC signal received",
+       		"messageId": [9],
+               "stateMap": {
+                   "0": "Init (state = 0)",
+                   "1": "LO",
+                   "2": "SOE",
+                   "3": "SODS"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "ORBC State change",
+       		"description": "ORBC state changed",
+       		"messageId": [10],
+               "stateMap": {
+                   "0": "enter ground (1)",
+                   "1": "leave ground (1)",
+                   "2": "enter rise (2)",
+                   "3": "leave rise (2)",
+                   "4": "enter preparation (3)",
+                   "5": "leave preparation (3)",
+                   "6": "enter operation (4)",
+                   "7": "leave operation (4)"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "SEED Bootup",
+       		"description": "Seed is back",
+       		"messageId": [14],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED Wire Connection Lost",
+       		"description": "Seed is disconnected",
+       		"messageId": [17],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED XBee Connection Test successful",
+       		"description": "Seeds XBee is functional",
+       		"messageId": [19],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Change TestMode",
+       		"description": "acknowledgment",
        		"messageId": [75],
                "stateMap": {
-                   "0": "activated"
+                   "0": "deactivated",
+                   "1": "activated"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "Change TestMode SEED 2",
-       		"description": "ON acknowledgment",
+       		"name": "SEED 2 Change TestMode",
+       		"description": "acknowledgment",
        		"messageId": [-117],
                "stateMap": {
-                   "0": "activated"
+                   "0": "deactivated",
+                   "1": "activated"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "Change TestMode SEED 3",
-       		"description": "ON acknowledgment",
+       		"name": "SEED 3 Change TestMode",
+       		"description": "acknowledgment",
        		"messageId": [-53],
                "stateMap": {
-                   "0": "activated"
+                   "0": "deactivated",
+                   "1": "activated"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "Change TestMode SEED 1",
-       		"description": "OFF acknowledgment",
-       		"messageId": [76],
-               "stateMap": {
-                   "0": "deactivated"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Change TestMode SEED 2",
-       		"description": "OFF acknowledgment",
-       		"messageId": [-116],
-               "stateMap": {
-                   "0": "deactivated"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Change TestMode SEED 3",
-       		"description": "OFF acknowledgment",
-       		"messageId": [-52],
-               "stateMap": {
-                   "0": "deactivated"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "TestMode SEED 1",
-       		"description": "is ON",
+       		"name": "SEED 1 TestMode",
+       		"description": "check activation",
        		"messageId": [77],
                "stateMap": {
-                   "0": "ON"
+                   "0": "OFF",
+                   "1": "ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "TestMode SEED 2",
-       		"description": "is ON",
+       		"name": "SEED 2 TestMode",
+       		"description": "check activation",
        		"messageId": [-115],
                "stateMap": {
-                   "0": "ON"
+                   "0": "OFF",
+                   "1": "ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "TestMode SEED 3",
-       		"description": "is ON",
+       		"name": "SEED 3 TestMode",
+       		"description": "check activation",
        		"messageId": [-51],
                "stateMap": {
-                   "0": "ON"
+                   "0": "OFF",
+                   "1": "ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "TestMode SEED 1",
-       		"description": "is OFF",
-       		"messageId": [78],
-               "stateMap": {
-                   "0": "OFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "TestMode SEED 2",
-       		"description": "is OFF",
-       		"messageId": [-114],
-               "stateMap": {
-                   "0": "OFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "TestMode SEED 3",
-       		"description": "is OFF",
-       		"messageId": [-50],
-               "stateMap": {
-                   "0": "OFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 1",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [65],
-               "stateMap": {
-                   "0": "to READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 2",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [-127],
-               "stateMap": {
-                   "0": "to READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 3",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [-63],
-               "stateMap": {
-                   "0": "to READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 1",
-       		"description": "FLIGHT RISING",
-       		"messageId": [66],
-               "stateMap": {
-                   "0": "to FLIGHT RISING"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 2",
-       		"description": "FLIGHT RISING",
-       		"messageId": [-126],
-               "stateMap": {
-                   "0": "to FLIGHT RISING"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 3",
-       		"description": "FLIGHT RISING",
-       		"messageId": [-62],
-               "stateMap": {
-                   "0": "to FLIGHT RISING"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 1",
-       		"description": "FLIGHT TX",
-       		"messageId": [67],
-               "stateMap": {
-                   "0": "to FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 2",
-       		"description": "FLIGHT TX",
-       		"messageId": [-125],
-               "stateMap": {
-                   "0": "to FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 3",
-       		"description": "FLIGHT TX",
-       		"messageId": [-61],
-               "stateMap": {
-                   "0": "to FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 1",
-       		"description": "EAGLE LANDED",
-       		"messageId": [68],
-               "stateMap": {
-                   "0": "to EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 2",
-       		"description": "EAGLE LANDED",
-       		"messageId": [-124],
-               "stateMap": {
-                   "0": "to EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 3",
-       		"description": "EAGLE LANDED",
-       		"messageId": [-60],
-               "stateMap": {
-                   "0": "to EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "ChangeState SEED 1",
-       		"description": "POWER SAFE",
+       		"name": "SEED 1 ChangeState",
+       		"description": "State Changed",
        		"messageId": [69],
                "stateMap": {
-                   "0": "to POWER SAFE"
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "ChangeState SEED 2",
-       		"description": "POWER SAFE",
+       		"name": "SEED 2 ChangeState",
+       		"description": "State Changed",
        		"messageId": [-123],
                "stateMap": {
-                   "0": "to POWER SAFE"
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "ChangeState SEED 3",
-       		"description": "POWER SAFE",
+       		"name": "SEED 3 ChangeState",
+       		"description": "State Changed",
        		"messageId": [-59],
                "stateMap": {
-                   "0": "to POWER SAFE"
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "State SEED 1",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [70],
-               "stateMap": {
-                   "0": "is READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 2",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [-122],
-               "stateMap": {
-                   "0": "is READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 3",
-       		"description": "READY FOR TAKEOFF",
-       		"messageId": [-58],
-               "stateMap": {
-                   "0": "is READY FOR TAKEOFF"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 1",
-       		"description": "FLIGHT RISING",
+       		"name": "SEED 1 Current State",
+       		"description": "Current State",
        		"messageId": [71],
                "stateMap": {
-                   "0": "is FLIGHT RISING"
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "State SEED 2",
-       		"description": "FLIGHT RISING",
+       		"name": "SEED 2 Current State",
+       		"description": "Current State",
        		"messageId": [-121],
                "stateMap": {
-                   "0": "is FLIGHT RISING"
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "State SEED 3",
-       		"description": "FLIGHT RISING",
+       		"name": "SEED 3 Current State",
+       		"description": "Current State",
        		"messageId": [-57],
                "stateMap": {
-                   "0": "is FLIGHT RISING"
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "State SEED 1",
-       		"description": "FLIGHT TX",
-       		"messageId": [72],
-               "stateMap": {
-                   "0": "is FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 2",
-       		"description": "FLIGHT TX",
-       		"messageId": [-120],
-               "stateMap": {
-                   "0": "is FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 3",
-       		"description": "FLIGHT TX",
-       		"messageId": [-56],
-               "stateMap": {
-                   "0": "is FLIGHT TX"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 1",
-       		"description": "EAGLE LANDED",
-       		"messageId": [73],
-               "stateMap": {
-                   "0": "is EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 2",
-       		"description": "EAGLE LANDED",
-       		"messageId": [-119],
-               "stateMap": {
-                   "0": "is EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 3",
-       		"description": "EAGLE LANDED",
-       		"messageId": [-55],
-               "stateMap": {
-                   "0": "is EAGLE LANDED"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 1",
-       		"description": "POWER SAFE",
-       		"messageId": [74],
-               "stateMap": {
-                   "0": "is POWER SAFE"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 2",
-       		"description": "POWER SAFE",
-       		"messageId": [-118],
-               "stateMap": {
-                   "0": "is POWER SAFE"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "State SEED 3",
-       		"description": "POWER SAFE",
-       		"messageId": [-54],
-               "stateMap": {
-                   "0": "is POWER SAFE"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Funk SEED 1",
-       		"description": "Funk activated",
-       		"messageId": [86],
-               "stateMap": {
-                   "0": "has Funk ON"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Funk SEED 1",
-       		"description": "Funk deactivated",
+       		"name": "SEED 1 is Funk",
+       		"description": "Funk activation",
        		"messageId": [87],
                "stateMap": {
-                   "0": "has Funk OFF"
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "Funk SEED 2",
-       		"description": "Funk activated",
-       		"messageId": [-106],
-               "stateMap": {
-                   "0": "has Funk ON"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Funk SEED 2",
-       		"description": "Funk deactivated",
+       		"name": "SEED 2 is Funk",
+       		"description": "Funk activation",
        		"messageId": [-105],
                "stateMap": {
-                   "0": "has Funk OFF"
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "Funk SEED 3",
-       		"description": "Funk activated",
-       		"messageId": [-42],
-               "stateMap": {
-                   "0": "has Funk ON"
-               },
-       		"startOfValue": 1,
-       		"lengthOfValue": 1
-       	},{
-       		"name": "Funk SEED 3",
-       		"description": "Funk deactivated",
+       		"name": "SEED 3 is Funk",
+       		"description": "Funk activation",
        		"messageId": [-41],
                "stateMap": {
-                   "0": "has Funk OFF"
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
                },
-       		"startOfValue": 1,
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [84],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [-108],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [-44],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [91],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [-101],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [-37],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [97],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [-95],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [-31],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
        		"lengthOfValue": 1
        	}],
        	"stringSources": [{
@@ -1329,16 +1223,9 @@
 				"colorString" : "olivedrab"
            	},
 			{
-           		"name": "SEEDS ON",
+           		"name": "SEEDS WAKE UP",
            		"description": "send SEEDS ON TC to ORBC",
                 "commandBasis": [0,2],
-                "length": 18,
-				"colorString" : "olivedrab"
-           	},
-			{
-           		"name": "SEEDS OFF",
-           		"description": "send SEEDS OF TC to ORBC",
-                "commandBasis": [0,3],
                 "length": 18,
 				"colorString" : "olivedrab"
            	},
@@ -1350,10 +1237,23 @@
 				"colorString" : "olivedrab"
            	},
 			{
-           		"name": "SAVE ORBC STATE",
-           		"description": " save current state on sd card and resume from it if restart. ",
+           		"name": "SET ORBC STATE",
+           		"description": "save state on sd card and resume from it if restart.",
                 "commandBasis": [0,5],
                 "length": 18,
+                "parameters": [{
+                    "name": "State:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "Reset (0)": [0],
+                        "ON_GROUND (1)": [1],
+                        "RISING (2)": [2],
+                        "PREPARATION (3)": [3],
+                        "OPERATION (4)": [4]
+                    }
+                }],
 				"colorString" : "olivedrab"
            	},
 			{
@@ -1369,6 +1269,22 @@
                 "commandBasis": [0,7],
                 "length": 18,
 				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "GET ORBC SIGNALS",
+           		"description": "get if signals are activated",
+                "commandBasis": [0,8],
+                "length": 18,
+				"colorString" : "olivedrab"
+
+           	},
+			{
+           		"name": "GET ORBC SD STATS",
+           		"description": "get statistics of SD card",
+                "commandBasis": [0,9],
+                "length": 18,
+				"colorString" : "olivedrab"
+
            	}],
        	"startBytes": [12, 13],
        	"stopBytes": [12, 22],
