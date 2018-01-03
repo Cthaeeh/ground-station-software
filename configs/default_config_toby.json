@@ -315,7 +315,7 @@
        		"description": "Board Temp (Seed 1)",
        		"unit": "celsius",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00390625,
        		"messageId": [79],
        		"startOfValue": 39,
        		"lengthOfValue": 2
@@ -325,7 +325,7 @@
        		"description": "Board Temp (Seed 2)",
        		"unit": "celsius",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00390625,
        		"messageId": [-113],
        		"startOfValue": 39,
        		"lengthOfValue": 2
@@ -335,7 +335,7 @@
        		"description": "Board Temp (Seed 3)",
        		"unit": "celsius",
        		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"proportionalFactor": 0.00390625,
        		"messageId": [-49],
        		"startOfValue": 39,
        		"lengthOfValue": 2
@@ -344,8 +344,8 @@
        		"name": "Gyro Temp Seed 1",
        		"description": "Board Temp (Seed 1)",
        		"unit": "celsius",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"offset": -40.0,
+       		"proportionalFactor": -1.0,
        		"messageId": [79],
        		"startOfValue": 43,
        		"lengthOfValue": 2
@@ -354,8 +354,8 @@
        		"name": "Gyro Temp Seed 2",
        		"description": "Board Temp (Seed 2)",
        		"unit": "celsius",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"offset": -40.0,
+       		"proportionalFactor": -1.0,
        		"messageId": [-113],
        		"startOfValue": 43,
        		"lengthOfValue": 2
@@ -364,8 +364,8 @@
        		"name": "Gyro Temp Seed 3",
        		"description": "Board Temp (Seed 3)",
        		"unit": "celsius",
-       		"offset": 0.0,
-       		"proportionalFactor": 1.0,
+       		"offset": -40.0,
+       		"proportionalFactor": -1.0,
        		"messageId": [-49],
        		"startOfValue": 43,
        		"lengthOfValue": 2
