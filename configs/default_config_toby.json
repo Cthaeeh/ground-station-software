@@ -1015,10 +1015,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 },{
                     "name": "STATE:",
@@ -1043,10 +1043,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 }],
 				"colorString" : "cadetblue"
@@ -1063,10 +1063,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 },{
                     "name": "STATE:",
@@ -1094,10 +1094,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 }],
 				"colorString" : "cadetblue"
@@ -1113,10 +1113,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 },{
                     "name": "Sensors:",
@@ -1144,10 +1144,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 },{
                     "name": "Active:",
@@ -1172,10 +1172,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 }],
 				"colorString" : "cadetblue"
@@ -1191,10 +1191,10 @@
                     "length": 1,
                     "type": "STATE",
                     "stateMap": {
+                        "All": [4],
                         "1": [1],
                         "2": [2],
-                        "3": [3],
-                        "All": [4]
+                        "3": [3]
                     }
                 },{
                     "name": "Active:",
