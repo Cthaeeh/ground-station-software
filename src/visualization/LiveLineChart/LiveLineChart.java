@@ -67,7 +67,6 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
         this.sensors = sensors;
         createSeries(sensors);
         initCustomRangingDialog();
-        this.getData().addAll(seriesDataSourceMap.values());
     }
 
     private void initCustomRangingDialog() {
@@ -117,6 +116,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
             series.setName(sensor.getName() + " in " + sensor.getUnit());
             seriesDataSourceMap.put(sensor,series);
             sensor.addListener(this);
+            this.getData().add(series);
         }
     }
 
