@@ -1109,6 +1109,191 @@
        	    "startOfValue": 1,
        	    "lengthOfValue": 52
        	}],
+        "gnssSources": [
+			{
+			"name": "GNSS SEED 1",
+			"description" : "gnss seed 1",
+			"messageId" : [81],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 1",
+       		    "description": "GNSS Latitude (Seed 1)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 1",
+       			"description": "GNSS Longitude (Seed 1)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 1",
+       		    "description": "GNSS Height (Seed 1)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 1",
+       			"description": "GNSS Time (Seed 1)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 1",
+       			"description": "GNSS Fiy Quality (Seed 1)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 1",
+       			"description": "GNSS Satellites (Seed 1)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		},
+			{
+			"name": "GNSS SEED 2",
+			"description" : "gnss seed 2",
+			"messageId" : [-111],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 2",
+       		    "description": "GNSS Latitude (Seed 2)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 2",
+       			"description": "GNSS Longitude (Seed 2)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 2",
+       		    "description": "GNSS Height (Seed 2)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 2",
+       			"description": "GNSS Time (Seed 2)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 2",
+       			"description": "GNSS Fiy Quality (Seed 2)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 2",
+       			"description": "GNSS Satellites (Seed 2)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		},
+			{
+			"name": "GNSS SEED 3",
+			"description" : "gnss seed 3",
+			"messageId" : [-47],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 3",
+       		    "description": "GNSS Latitude (Seed 3)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 3",
+       			"description": "GNSS Longitude (Seed 3)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 3",
+       		    "description": "GNSS Height (Seed 3)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 3",
+       			"description": "GNSS Time (Seed 3)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 3",
+       			"description": "GNSS Fiy Quality (Seed 3)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 3",
+       			"description": "GNSS Satellites (Seed 3)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		}
+		],
        	"teleCommands": [{
            		"name": "SET TEST MODE SEEDS",
            		"description": "set seed test mode",
