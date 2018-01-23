@@ -42,7 +42,10 @@ public class TeleCommandControl implements Initializable {
     private CheckBox addStartStopBytesCheckBox;
 
     @FXML
-    private CheckBox addCrcCheckBox;
+    private CheckBox crcManual;
+
+    @FXML
+    private CheckBox crcPredefined;
 
     @FXML
     private TextField inputField;
@@ -63,8 +66,12 @@ public class TeleCommandControl implements Initializable {
     private void initCheckBoxes() {
         addStartStopBytesCheckBox.setTooltip(new Tooltip(
                 "Add Start/Stop Bytes from the Config to the Command, this will only affect typed commands."));
-        addCrcCheckBox.setTooltip(new Tooltip(
+        crcManual.setTooltip(new Tooltip(
                 "Add CRC Bytes to the Command, this will only affect typed commands."));
+        crcPredefined.setTooltip(new Tooltip(
+                "Add CRC Bytes to the predefined Commands ?"
+        ));
+        crcPredefined.setSelected(true);
     }
 
     private void initInputField() {
@@ -137,7 +144,7 @@ public class TeleCommandControl implements Initializable {
      * @param command
      */
     private void sendPredefinedCommand(byte[] command) {
-        if (model.getConfig().isUsingCRC16()) {
+        if (model.getConfig().isUsingCRC16() && crcPredefined.isSelected()) {
             command = TmTcUtil.insertCRC(command, model.getConfig().getCrc16positionTC(), model.getConfig().getByteEndianity());
         }
         command = TmTcUtil.concatenate(model.getConfig().getStartBytes(), command, model.getConfig().getStopBytes());
@@ -145,7 +152,7 @@ public class TeleCommandControl implements Initializable {
     }
 
     private void sendTypedCommand(byte[] command) {
-        if (addCrcCheckBox.isSelected()) {
+        if (crcManual.isSelected()) {
             command = TmTcUtil.insertCRC(command, model.getConfig().getCrc16positionTC(), model.getConfig().getByteEndianity());
         }
         if (addStartStopBytesCheckBox.isSelected()) {

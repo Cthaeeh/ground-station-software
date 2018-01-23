@@ -185,7 +185,7 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     public void send(byte[] command) {
         commandQueue.add(command);
-        Main.programLogger.log(Level.INFO,()->"Put Message into Queue: "+toStringUnsigned(command));
+        Main.programLogger.log(Level.INFO,()->"Put Message into Queue: "+toStringUnsigned(command) + " length: " + command.length);
     }
 
     public double getByteRate() {
