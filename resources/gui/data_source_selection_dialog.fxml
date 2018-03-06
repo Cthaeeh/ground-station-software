@@ -6,12 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane minHeight="200" minWidth="650" prefHeight="400" prefWidth="700" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualization.DataSourceSelectionControl">
     <children>
         <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#btnOkayClick" text="Okay" StackPane.alignment="BOTTOM_RIGHT" />
-        <Label alignment="TOP_LEFT" text="Choose data source to display, use STRG to select multiple data sources:" StackPane.alignment="TOP_LEFT" />
         <TableView fx:id="dataSourceSelectionTable" prefHeight="300.0" prefWidth="350.0" style="-fx-font-size: 12;" StackPane.alignment="CENTER_LEFT">
             <columns>
                 <TableColumn fx:id="nameColumn" minWidth="150" prefWidth="350.0" text="Data source" />
@@ -28,6 +28,12 @@
         </ChoiceBox>
         <Label text="As:" StackPane.alignment="BOTTOM_LEFT" />
       <Button mnemonicParsing="false" onMouseClicked="#selectAll" text="Select All" StackPane.alignment="TOP_RIGHT" />
+      <TextField fx:id="filteredText" maxWidth="300.0" StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="100.0" />
+         </StackPane.margin>
+      </TextField>
+      <Label text="Search:" textAlignment="CENTER" StackPane.alignment="TOP_LEFT" />
     </children>
     <padding>
             <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />

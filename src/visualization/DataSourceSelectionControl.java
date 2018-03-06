@@ -3,6 +3,7 @@ package visualization;
 import data.DataModel;
 import data.sources.DataSource;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -35,6 +37,9 @@ public class DataSourceSelectionControl implements Initializable{
      */
     @FXML
     private TableView<DataSource> dataSourceSelectionTable;
+
+    @FXML
+    private TextField filteredText;
 
     /**
      * There u can select how the data is presented.
@@ -77,10 +82,33 @@ public class DataSourceSelectionControl implements Initializable{
      * It gets the data from the model.
      */
     private void initializeSelectionTable() {
-        dataSourceSelectionTable.setItems(model.getDataSources());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
+
+        FilteredList<DataSource> filteredSources =
+                new FilteredList<>(model.getDataSources(), p -> true);
+
+        filteredText.textProperty().addListener((observable,oldValue,newValue)-> {
+            dataSourceSelectionTable.getSelectionModel().clearSelection();
+            filteredSources.setPredicate( dataSource -> {
+                //Show everything if filteredText is empty
+                if(newValue == null|| newValue.isEmpty()){
+                    return true;
+                }
+                if(dataSource.getName().toLowerCase().contains(newValue.toLowerCase())){
+                    return true;
+                }
+                //Do not let already selected stuff disappear.
+                return false;
+            });
+        }
+        );
+
+
+        dataSourceSelectionTable.setItems(filteredSources);
         dataSourceSelectionTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        filteredText.requestFocus();
     }
 
     @FXML
