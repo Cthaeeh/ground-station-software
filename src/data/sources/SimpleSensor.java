@@ -124,13 +124,13 @@ public class SimpleSensor extends DataSource {
         }
         double value = (((double) rawValue )* proportionalFactor) + offset;
         addDataPoint(TimeUtility.getUptimeSec(),value);
-        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + value + ";"+ unit + ";" + rawValue + ";");
+        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";SOURCE;" + getName() + ";VALUE;" + value + ";UNIT;"+ unit + ";RAW;" + rawValue + ";");
     }
 
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
-        Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
+        dataLogger.append("MISSION_TIME;" + time);
         insertValue(bytes);
     }
 

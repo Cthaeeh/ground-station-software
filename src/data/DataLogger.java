@@ -37,4 +37,15 @@ public class DataLogger {
             }
         }
     }
+
+    public void append(String message){
+        System.out.println("Filewriter:"+ message);
+        if(fileWriter != null){
+            try {
+                fileWriter.write(message);
+            }catch (IOException ex){
+                //TODO log this or not ?
+            }
+        }
+    }
 }

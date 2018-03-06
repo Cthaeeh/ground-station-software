@@ -65,13 +65,14 @@ public class StringSource extends DataSource{
             value = "FAILED TO DECODE BYTES TO STRING";
         }
         dataQueue.add(new Point<>(TimeUtility.getUptimeSec(),value));
-        dataLogger.write("UPTIME_SEC;"+TimeUtility.getUptimeSec() + ";" + getName() + value);
+        dataLogger.write("UPTIME_SEC;"+TimeUtility.getUptimeSec() + ";SOURCE;" + getName() +";STRING;"+ value);
 
     }
 
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
+        dataLogger.append("MISSION_TIME;"+time);
         insertValue(bytes);
     }
 }

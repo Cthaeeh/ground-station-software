@@ -57,7 +57,7 @@ public class State extends DataSource {
         if(stateMap.containsKey(rawValue)){
             String stateString = stateMap.get(rawValue);
             dataQueue.add(new Point<String>(TimeUtility.getUptimeSec(),stateString));
-            dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + stateString);
+            dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";SOURCE;" + getName() + ";STATE;" + stateString);
         }else {
             dataQueue.add(new Point<String>(TimeUtility.getUptimeSec(),DEFAULT_STATE));
             Main.programLogger.log(Level.WARNING,()->"Unable to decode byte :" +  rawValue + "to a State.");
@@ -68,8 +68,8 @@ public class State extends DataSource {
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         //TODO implement
+        dataLogger.append("MISSION_TIME;" + time);
         insertValue(bytes);
-        Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
     }
 
     public void addListener(StateListener listener) {

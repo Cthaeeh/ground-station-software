@@ -96,9 +96,9 @@ public class Gnss extends DataSource{
         gnssFrame.setTime(gnssTime != null ? (int) gnssTime.getLastValue(): -1);
         gnssFrame.setHeight(height != null ? height.getLastValue() : -1);
 
-        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";" + getName() + ";" + gnssFrame.getLongitude() + ";"
-                + gnssFrame.getLatitude() + ";" + gnssFrame.getNumOfSatellites() + ";" + gnssFrame.getFixQuality()
-                + gnssFrame.getHeight() + gnssFrame.getTime());
+        dataLogger.write("UPTIME_SEC;"+ TimeUtility.getUptimeSec() + ";SOURCE;" + getName() + ";LONGITUDE;" + gnssFrame.getLongitude() +
+                ";LATITUDE;" + gnssFrame.getLatitude() + ";SATS;" + gnssFrame.getNumOfSatellites() + ";QUALITY;" + gnssFrame.getFixQuality()
+                +";HEIGHT;"+ gnssFrame.getHeight() + ";GNSS TIME;" + gnssFrame.getTime());
 
         if(! listeners.isEmpty()) dataQueue.add(new Point(receiveTime,gnssFrame));
     }
@@ -106,6 +106,7 @@ public class Gnss extends DataSource{
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
+        dataLogger.append("MISSION_TIME;" + time);
         insertValue(bytes);
     }
 }
