@@ -106,6 +106,7 @@ public class Gnss extends DataSource{
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
         Main.programLogger.log(Level.SEVERE,"INSERT TIMED VALUE NOT IMPLEMENTED YET");
+        //Write mission time to log file
         dataLogger.append("MISSION_TIME;" + time);
         insertValue(bytes);
     }

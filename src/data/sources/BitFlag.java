@@ -85,6 +85,7 @@ public class BitFlag extends DataSource {
 
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
+        //Write mission time to log file
         dataLogger.append("MISSION_TIME;"+time);
         insertValue(bytes);
     }

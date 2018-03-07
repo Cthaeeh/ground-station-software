@@ -4,6 +4,7 @@ import configEdit.list_view_cells.DataSourceCell;
 import configEdit.list_view_cells.TelecommandCell;
 import data.Config;
 import data.DataModel;
+import data.InvalidConfig;
 import data.TeleCommand;
 import data.sources.DataSource;
 import data.sources.SimpleSensor;
@@ -107,7 +108,9 @@ public class ConfigEditControl implements Initializable {
             initTcList(model.getConfig());
             initTmList(model.getConfig());
         } catch (IOException e) {
-            Main.programLogger.log(Level.WARNING, () -> "Failed to load data Model from json file :" + System.lineSeparator() + e.getMessage());
+            Main.programLogger.log(Level.WARNING, () -> "Failed to load config from json file :" + System.lineSeparator() + e.getMessage());
+        } catch (InvalidConfig e){
+            Main.programLogger.log(Level.WARNING, () -> "Failed to load config:" + System.lineSeparator() + e.getMessage());
         }
     }
 

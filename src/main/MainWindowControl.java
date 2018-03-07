@@ -2,6 +2,7 @@ package main;
 
 import command.TeleCommandControl;
 import data.DataModel;
+import data.InvalidConfig;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -241,6 +242,11 @@ public class MainWindowControl implements Initializable {
             } catch (com.google.gson.JsonSyntaxException ex) {
                 Main.programLogger.log(Level.WARNING, () -> "JSON unreadable of: " + file.getName());
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, because of bad json!");
+                alert.getDialogPane().getStylesheets().add(DARK_THEME_CSS);
+                alert.showAndWait();
+            } catch (InvalidConfig ex){
+                Main.programLogger.log(Level.WARNING, () -> "Invalid Config " + file.getName());
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Failed to load config, because of :!"  + ex);
                 alert.getDialogPane().getStylesheets().add(DARK_THEME_CSS);
                 alert.showAndWait();
             }

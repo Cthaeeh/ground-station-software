@@ -32,6 +32,8 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     //Message configuration:
     private final int idPosition;
     private final int idLength;
+    private final int timePosition;
+    private final int timeLength;
     private final Config.ByteEndianity byteEndianity;
     private final boolean useCRC16TM ;
     private final int CRC16PosTM ;
@@ -62,6 +64,10 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     SerialCommunicationThread(DataModel dataModel, SerialPort serialPort){
         idPosition = dataModel.getConfig().getIdPosition();
         idLength = dataModel.getConfig().getIdLength();
+
+        timeLength = dataModel.getConfig().getTimeLength();
+        timePosition = dataModel.getConfig().getTimePosition();
+
         byteEndianity = dataModel.getConfig().getByteEndianity();
         //TODO make this smoother becauuse it is not clear why the pos must be greater 0;
         useCRC16TM = (dataModel.getConfig().isUsingCRC16() && dataModel.getConfig().getCrc16positionTM() > 0);
@@ -143,15 +149,26 @@ public class SerialCommunicationThread extends Thread implements MessageListener
      */
     private void decodeMessage(byte[] msgBuffer) {
         ByteBuffer messageId = ByteBuffer.wrap(Arrays.copyOfRange(msgBuffer, idPosition, idPosition+idLength));
+        long time = parseTime(msgBuffer);
         if(messageMap.get(messageId)!= null){
             for(DataSource source : messageMap.get(messageId)){
                 byte[] value = Arrays.copyOfRange(msgBuffer, source.getStartOfValue(), source.getStartOfValue()+source.getLengthOfValue());
 
                 if(byteEndianity == Config.ByteEndianity.LITTLE_ENDIAN && (source instanceof SimpleSensor)) ArrayUtils.reverse(value);
-                source.insertValue(value);
+                if(time != -1) source.insertTimedValue(value,time);
+                else source.insertValue(value);
             }
         }
-        //TODO add time information.
+    }
+
+    private long parseTime(byte[] msgBuffer) {
+        if(timeLength > 0 && timePosition >= 0){
+            byte[] bytes = Arrays.copyOfRange(msgBuffer, timePosition, timePosition+timeLength);
+            long time = ByteBuffer.wrap(bytes).getLong();
+            return time;
+        }
+        // Unable to parse time then.
+        return -1;
     }
 
     public static String toString(byte[] msgBuffer) {

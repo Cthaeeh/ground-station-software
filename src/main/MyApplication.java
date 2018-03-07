@@ -71,7 +71,7 @@ public class MyApplication extends Application{
             Main.programLogger.log(Level.INFO,()->"Try to load default config from: " + DEFAULT_INTERPRETATION_FILE);
             newModel.loadConfigData(new File(DEFAULT_INTERPRETATION_FILE));
         } catch (Exception e) { // Why can I not catch an IOException here , goes beyond me ...
-            Main.programLogger.log(Level.WARNING, () -> "Default config failed to load, will use default config.");
+            Main.programLogger.log(Level.WARNING, () -> "Default config failed to load");
             configLoadFail = true;
             newModel.loadEmptyConfig();
         }

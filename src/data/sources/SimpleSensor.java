@@ -129,7 +129,7 @@ public class SimpleSensor extends DataSource {
 
     @Override
     public void insertTimedValue(byte[] bytes, long time) {
-        //TODO implement
+        //Write mission time to log file
         dataLogger.append("MISSION_TIME;" + time);
         insertValue(bytes);
     }

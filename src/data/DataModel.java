@@ -2,7 +2,6 @@ package data;
 
 import com.google.gson.*;
 import data.sources.DataSource;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +9,6 @@ import main.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.logging.Level;
 
 /**
@@ -36,12 +34,13 @@ public class DataModel {
         return config;
     }
 
-    public void loadConfigData(File file) throws IOException {
+    public void loadConfigData(File file) throws IOException, InvalidConfig {
         //http://www.java-forum.org/thema/gson-propleme-bei-stringproperty.174049/
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(StringProperty.class, new StringPropertyAdapter());
         Gson gson = gsonBuilder.create();
         config =  gson.fromJson(IOUtility.readFile(file), Config.class);
+        ConfigChecker.verification(config);
         dataSources.clear();
         dataSources.addAll(config.getDataSources());
         teleCommands.clear();
