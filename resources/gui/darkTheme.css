@@ -172,3 +172,33 @@ Text Area
 .text-area .content {
     -fx-background-color: #282828;
 }
+
+.styled-text-area {
+    -fx-font-size: 12;
+    -fx-background-color: #282828;
+}
+#codeArea .text {
+    -fx-fill: white;
+}
+#codeArea .highlight {
+    -fx-fill: red;
+    -fx-font-weight: bold;
+}
+
+/*Toolbar*/
+.tool-bar {
+    -fx-background-color: #282828;
+    -fx-font-size: 12pt;
+}
+
+/*Vertical scroll bar*/
+ .scroll-bar {
+    -fx-background-radius: 0 2 2 0;
+    -fx-background-color: #282828;
+	-fx-font-size: 8px;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: white;
+	-fx-background-radius: 0.7em;
+}

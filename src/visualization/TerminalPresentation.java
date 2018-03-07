@@ -2,21 +2,26 @@ package visualization;
 
 import data.Point;
 import data.sources.*;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.application.Platform;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import main.Main;
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.CodeArea;
+import org.fxmisc.richtext.model.StyleSpans;
+import org.fxmisc.richtext.model.StyleSpansBuilder;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -29,27 +34,27 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
 
     //TODO delete text after a while
     private List<DataSource> dataSources;
-    private final TextArea textArea;
+    // Use Code Area because of monospace font.
+    private final CodeArea textArea;
     private final SearchBarControl searchBar;
 
-    final KeyCombination searchKeyCombo = new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_ANY);
+    final KeyCombination searchKeyCombo = new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN);
     final KeyCombination Esc = new KeyCodeCombination(KeyCode.ESCAPE);
 
     TerminalPresentation(List<DataSource> dataSources) {
         this.setMinSize(100, 100);
         this.setPrefSize(600, 400);
-        textArea = new TextArea();
+        textArea = new CodeArea();
+        VirtualizedScrollPane v = new VirtualizedScrollPane(textArea);
         textArea.setEditable(false);
         textArea.setPrefHeight(3000);
-        this.getChildren().add(textArea);
+        this.getChildren().add(v);
 
         searchBar = new SearchBarControl();
-
         this.dataSources = dataSources;
 
         addContextMenu();
         addSearch();
-
         subscribeTo(dataSources);
     }
 
@@ -58,17 +63,38 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
             if (searchKeyCombo.match(event)) {
                 if(!this.getChildren().contains(searchBar)){
                     this.getChildren().add(searchBar);
-                    searchBar.show();
+                    Platform.runLater(()->searchBar.getSearchField().requestFocus());
                 }
             }
             if (Esc.match(event)) {
                 this.getChildren().remove(searchBar);
+                for(int i = 0 ; i< 100; i++)
+                Platform.runLater(()->this.requestFocus());
             }
         });
         searchBar.getSearchField().textProperty().addListener((observableValue,oldValue,newValue)->{
-
+            textArea.setStyleSpans(0, highlight(newValue));
         });
+        textArea.setId("codeArea");
+    }
 
+    private StyleSpans<Collection<String>> highlight(String string) {
+        String text = textArea.getText();
+        Pattern pattern = Pattern.compile(string, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(text);
+
+        StyleSpansBuilder<Collection<String>> spansBuilder
+                = new StyleSpansBuilder<>();
+
+        // End of the last occurrence of the string we try to highlight.
+        int lastEnd = 0;
+        while(matcher.find()) {
+            spansBuilder.add(Collections.emptyList(), matcher.start() - lastEnd);
+            spansBuilder.add(Collections.singleton("highlight"), matcher.end() - matcher.start());
+            lastEnd = matcher.end();
+        }
+            spansBuilder.add(Collections.emptyList(), text.length()-lastEnd);
+        return spansBuilder.create();
     }
 
     private void addContextMenu() {

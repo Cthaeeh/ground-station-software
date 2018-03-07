@@ -33,5 +33,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.lynden:GMapsFX:2.12.0" level="project" />
+    <orderEntry type="library" name="org.fxmisc.richtext:richtextfx:0.8.2" level="project" />
+    <orderEntry type="library" name="de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2" level="project" />
   </component>
 </module>

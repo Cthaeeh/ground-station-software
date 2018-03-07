@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import gui_elements.NumberTextField?>
-<GridPane hgap="3.0" style="-fx-border-width: 0 1 0 0 ; -fx-border-color: black; -fx-border-style: solid;" vgap="3.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="configEdit.GeneralConfigControl">
+<GridPane hgap="3.0" style="-fx-border-width: 0 1 0 0 ; -fx-border-color: black; -fx-border-style: solid;" vgap="3.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="configEdit.GeneralConfigControl">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="165.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="135.0" />
