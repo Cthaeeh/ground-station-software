@@ -164,7 +164,18 @@ public class SerialCommunicationThread extends Thread implements MessageListener
     private long parseTime(byte[] msgBuffer) {
         if(timeLength > 0 && timePosition >= 0){
             byte[] bytes = Arrays.copyOfRange(msgBuffer, timePosition, timePosition+timeLength);
-            long time = ByteBuffer.wrap(bytes).getLong();
+            long time;
+            switch (bytes.length){
+                case 8:
+                    time = ByteBuffer.wrap(bytes).getLong();
+                    break;
+                case 4:
+                    time = ByteBuffer.wrap(bytes).getInt();
+                    break;
+                default:
+                    Main.programLogger.log(Level.WARNING,()->"Unable to parse time from TM because it were a werid amount of time bytes");
+                    time = -1;
+            }
             return time;
         }
         // Unable to parse time then.
