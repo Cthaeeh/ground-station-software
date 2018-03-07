@@ -2,6 +2,8 @@ package visualization;
 
 import data.Point;
 import data.sources.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import main.Main;
 
@@ -25,7 +27,17 @@ public class TerminalPresentation extends TextArea implements VisualizationEleme
         this.setPrefSize(600, 400);
         this.setEditable(false);
         this.dataSources = dataSources;
+        addContextMenu();
+
         subscribeTo(dataSources);
+    }
+
+    private void addContextMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem clear = new MenuItem("clear");
+        contextMenu.getItems().add(clear);
+        clear.setOnAction(e-> this.clear());
+        this.setContextMenu(contextMenu);
     }
 
     private void subscribeTo(List<DataSource> dataSources) {
