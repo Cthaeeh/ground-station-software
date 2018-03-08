@@ -48,6 +48,7 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
         VirtualizedScrollPane v = new VirtualizedScrollPane(textArea);
         textArea.setEditable(false);
         textArea.setPrefHeight(3000);
+        textArea.setMinSize(100, 60);
         this.getChildren().add(v);
 
         //Always scroll to bottom if new text is added
@@ -63,31 +64,37 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
         subscribeTo(dataSources);
     }
 
-
     private void addSearch() {
         this.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (searchKeyCombo.match(event)) {
-                if(!this.getChildren().contains(searchBar)){
-                    this.getChildren().add(searchBar);
-                    for(int i = 0 ; i< 10; i++)
-                    Platform.runLater(()->searchBar.getSearchField().requestFocus());
-                }
+                showSearchBar();
+                event.consume();
             }
             if (Esc.match(event)) {
                 this.getChildren().remove(searchBar);
-                Platform.runLater(()->this.requestFocus());
+                Platform.runLater(() -> this.requestFocus());
             }
         });
         searchBar.getSearchField().textProperty().addListener(
-                (observableValue,oldValue,newValue)->{
-            textArea.setStyleSpans(0, highlight(newValue));
-        });
-        textArea.textProperty().addListener((observableValue,oldValue,newValue)->{
-            if(this.getChildren().contains(searchBar)) {
+                (observableValue, oldValue, newValue) -> {
+                    textArea.setStyleSpans(0, highlight(newValue));
+                });
+        textArea.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (this.getChildren().contains(searchBar)) {
                 textArea.setStyleSpans(0, highlight(searchBar.getSearchField().getText()));
             }
         });
         textArea.setId("codeArea");
+    }
+
+    private void showSearchBar() {
+        if (!this.getChildren().contains(searchBar)) {
+            this.getChildren().add(searchBar);
+            //TODO THIS DOES NOT WORK ( SETTING FOCUS ON SEARCH FIELD ...)
+            for (int i = 0; i < 10; i++)
+                Platform.runLater(() -> searchBar.getSearchField().requestFocus());
+        }
+
     }
 
     private StyleSpans<Collection<String>> highlight(String string) {
@@ -100,21 +107,31 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
 
         // End of the last occurrence of the string we try to highlight.
         int lastEnd = 0;
-        while(matcher.find()) {
+        while (matcher.find()) {
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastEnd);
             spansBuilder.add(Collections.singleton("highlight"), matcher.end() - matcher.start());
             lastEnd = matcher.end();
         }
-            spansBuilder.add(Collections.emptyList(), text.length()-lastEnd);
+        spansBuilder.add(Collections.emptyList(), text.length() - lastEnd);
         return spansBuilder.create();
     }
 
     private void addContextMenu() {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem clear = new MenuItem("clear");
+        MenuItem search = new MenuItem("show search-bar");
         contextMenu.getItems().add(clear);
-        clear.setOnAction(e-> textArea.clear());
-        textArea.setContextMenu(contextMenu);
+        contextMenu.getItems().add(search);
+        clear.setOnAction(e -> textArea.clear());
+        search.setOnAction(e -> showSearchBar());
+
+        this.setOnMousePressed(event -> {
+            if (event.isSecondaryButtonDown()) {
+                contextMenu.show(this, event.getScreenX(), event.getScreenY());
+                //Important so the ContextMenu of any higher node does not get triggered.
+                event.consume();
+            }
+        });
     }
 
     private void subscribeTo(List<DataSource> dataSources) {

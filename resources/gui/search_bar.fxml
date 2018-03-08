@@ -4,8 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 
-<fx:root prefHeight="50.0" prefWidth="600.0" type="javafx.scene.control.ToolBar"
-         xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="SEARCH:"/>
-    <TextField fx:id="searchField"/>
+<fx:root prefHeight="50.0" prefWidth="400.0" type="javafx.scene.control.ToolBar" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="SEARCH:" />
+    <TextField fx:id="searchField" minWidth="40.0" />
 </fx:root>
