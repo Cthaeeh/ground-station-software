@@ -78,6 +78,7 @@ public class ParameterCell extends ListCell<Parameter> {
             param.setState(choiceBox.getSelectionModel().getSelectedItem());
             box.getChildren().add(choiceBox);
         }
+
         //Show it full size when we get focus.
         this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
             if (newPropertyValue) {
@@ -86,7 +87,6 @@ public class ParameterCell extends ListCell<Parameter> {
                 choiceBox.hide();
             }
         });
-
     }
 
     private void displayIntegerParam(Parameter param) {
