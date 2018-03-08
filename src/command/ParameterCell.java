@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 /**
@@ -24,7 +25,6 @@ public class ParameterCell extends ListCell<Parameter> {
     public ParameterCell() {
         box.getChildren().addAll(name);
         name.setStyle("-fx-font-size:18;");
-        this.setFocusTraversable(false);
     }
 
     @Override
@@ -48,6 +48,7 @@ public class ParameterCell extends ListCell<Parameter> {
                     box.getChildren().add(new Label("unknown param type"));
             }
             this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+                System.out.println(param.getName() + "Focus property changed for param cell:" + "to" + newPropertyValue);
                 if (newPropertyValue) {
                     box.setStyle("-fx-border-color: blue ");
                 } else {
@@ -75,20 +76,17 @@ public class ParameterCell extends ListCell<Parameter> {
                     .selectedItemProperty()
                     .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> param.setState(newValue));
             param.setState(choiceBox.getSelectionModel().getSelectedItem());
-
-            /*
-            //Show it full size when we get focus.
-            this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
-                if (newPropertyValue) {
-                    choiceBox.show();
-                } else {
-                    choiceBox.hide();
-                }
-            });
-            */
-
             box.getChildren().add(choiceBox);
         }
+        //Show it full size when we get focus.
+        this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+            if (newPropertyValue) {
+                choiceBox.show();
+            } else {
+                choiceBox.hide();
+            }
+        });
+
     }
 
     private void displayIntegerParam(Parameter param) {

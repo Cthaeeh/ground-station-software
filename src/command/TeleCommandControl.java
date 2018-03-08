@@ -173,6 +173,7 @@ public class TeleCommandControl implements Initializable {
             parameterizationDialog.initOwner(inputField.getScene().getWindow());
 
             parameterizationDialog.setScene(scene);
+            parameterizationDialog.setTitle(command.getName());
             parameterizationDialog.show();
 
         } catch (IOException e) {
