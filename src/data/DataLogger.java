@@ -33,7 +33,7 @@ public class DataLogger {
             try {
                 fileWriter.write(message + System.lineSeparator());
             }catch (IOException ex){
-                //TODO log this or not ?
+                Main.programLogger.log(Level.SEVERE,()->"Failed to write to data log" + ex);
             }
         }
     }
@@ -44,7 +44,7 @@ public class DataLogger {
             try {
                 fileWriter.write(message);
             }catch (IOException ex){
-                //TODO log this or not ?
+                Main.programLogger.log(Level.SEVERE,()->"Failed to write to data log" + ex);
             }
         }
     }

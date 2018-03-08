@@ -9,7 +9,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseButton;
 import visualization.VisualizationElement;
 
 import java.util.HashMap;
@@ -36,7 +35,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
     private double maxXVal;
 
     //default bounds.
-    private Bounds bounds = new Bounds.Builder(true).xTimeIntervalSec(5).build();
+    private Bounds bounds = new Bounds.Builder(true).xTimeIntervalSec(60).build();
 
     /**
      * Maximum datapoints the graph holds for each series ( variable it tracks ).
