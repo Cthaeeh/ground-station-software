@@ -58,6 +58,7 @@ public class BoundsDialog extends Dialog<Bounds> {
      * Adds Listeners to all Input Fields that looks if they are in a valid state.
      */
     private void initValidator() {
+        //TODO "just a - is an invalid input
         this.getDialogPane().lookupButton(ButtonType.APPLY).disableProperty().bind(Bindings.when(
                 (yAutoRanging.selectedProperty()
                         .or((yLowerBoundField.textProperty().isNotEqualTo(""))
@@ -74,7 +75,9 @@ public class BoundsDialog extends Dialog<Bounds> {
     private Bounds getInput() {
         try {
             if (yAutoRanging.isSelected()) {
-                return new Bounds.Builder(true).build();
+                return new Bounds.Builder(true)
+                        .xTimeIntervalSec(Double.parseDouble(xIntervalField.getText()))
+                        .build();
             } else {
                 return new Bounds.Builder(false)
                         .xTimeIntervalSec(Double.parseDouble(xIntervalField.getText()))
@@ -121,7 +124,7 @@ public class BoundsDialog extends Dialog<Bounds> {
      */
     private void initTextFields() {
         //TODO make this beautiful. But how ?
-        Pattern pattern = Pattern.compile("\\d*|\\d+\\,\\d*");
+        Pattern pattern = Pattern.compile("[-]?(\\d*|\\d+[.]\\d*)");
         TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
             return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
