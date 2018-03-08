@@ -124,19 +124,20 @@ public class BoundsDialog extends Dialog<Bounds> {
      */
     private void initTextFields() {
         //TODO make this beautiful. But how ?
-        Pattern pattern = Pattern.compile("[-]?(\\d*|\\d+[.]\\d*)");
+        Pattern patternWithMinus = Pattern.compile("[-]?(\\d*|\\d+[.]\\d*)");
+        Pattern pattern = Pattern.compile("\\d*|\\d+[.]\\d*");
+        TextFormatter formatterWithMinus1 = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
+            return patternWithMinus.matcher(change.getControlNewText()).matches() ? change : null;
+        });
+        TextFormatter formatterWithMinus2 = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
+            return patternWithMinus.matcher(change.getControlNewText()).matches() ? change : null;
+        });
         TextFormatter formatter = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
             return pattern.matcher(change.getControlNewText()).matches() ? change : null;
         });
-        TextFormatter formatter1 = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
-            return pattern.matcher(change.getControlNewText()).matches() ? change : null;
-        });
-        TextFormatter formatter2 = new TextFormatter((UnaryOperator<TextFormatter.Change>) change -> {
-            return pattern.matcher(change.getControlNewText()).matches() ? change : null;
-        });
-        yLowerBoundField.setTextFormatter(formatter);
-        yUpperBoundField.setTextFormatter(formatter1);
-        xIntervalField.setTextFormatter(formatter2);
+        yLowerBoundField.setTextFormatter(formatterWithMinus1);
+        yUpperBoundField.setTextFormatter(formatterWithMinus2);
+        xIntervalField.setTextFormatter(formatter);
     }
 
 }

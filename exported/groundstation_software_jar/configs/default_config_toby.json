@@ -1,0 +1,1619 @@
+       {
+       	"simpleSensors": [
+			{
+       		"name": "TC_ECHO received ID",
+       		"description": "n",
+       		"unit": "num",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [8],
+       		"startOfValue": 1,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccZ Seed 1",
+       		"description": "z-Axis of Accelerator (Seed 1)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [79],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccZ Seed 2",
+       		"description": "z-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-113],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       	},
+			{
+       		"name": "AccZ Seed 3",
+       		"description": "z-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-49],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccY Seed 1",
+       		"description": "y-Axis of Accelerator (Seed 1)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [79],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccY Seed 2",
+       		"description": "y-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-113],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccY Seed 3",
+       		"description": "y-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-49],
+       		"startOfValue": 9,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccX Seed 1",
+       		"description": "x-Axis of Accelerator (Seed 1)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [79],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccX Seed 2",
+       		"description": "x-Axis of Accelerator (Seed 2)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-113],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "AccX Seed 3",
+       		"description": "x-Axis of Accelerator (Seed 3)",
+       		"unit": "g",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00048828125,
+       		"messageId": [-49],
+       		"startOfValue": 7,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroX Seed 1",
+       		"description": "x-Axis of Gyroscope (Seed 1)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [79],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroX Seed 2",
+       		"description": "x-Axis of Gyroscope (Seed 2)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-113],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroX Seed 3",
+       		"description": "x-Axis of Gyroscope (Seed 3)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-49],
+       		"startOfValue": 15,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroY Seed 1",
+       		"description": "y-Axis of Gyroscope (Seed 1)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [79],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroY Seed 2",
+       		"description": "y-Axis of Gyroscope (Seed 2)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-113],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroY Seed 3",
+       		"description": "y-Axis of Gyroscope (Seed 3)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-49],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroZ Seed 1",
+       		"description": "z-Axis of Gyroscope (Seed 1)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [79],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroZ Seed 2",
+       		"description": "z-Axis of Gyroscope (Seed 2)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-113],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GyroZ Seed 3",
+       		"description": "z-Axis of Gyroscope (Seed 3)",
+       		"unit": "dps",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.06097560975,
+       		"messageId": [-49],
+       		"startOfValue": 19,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagX Seed 1",
+       		"description": "x-Axis of Magnetometer (Seed 1)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [79],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagX Seed 2",
+       		"description": "x-Axis of Magnetometer (Seed 2)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-113],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagX Seed 3",
+       		"description": "x-Axis of Magnetometer (Seed 3)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-49],
+       		"startOfValue": 23,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagY Seed 1",
+       		"description": "y-Axis of Magnetometer (Seed 1)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [79],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagY Seed 2",
+       		"description": "y-Axis of Magnetometer (Seed 2)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-113],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagY Seed 3",
+       		"description": "y-Axis of Magnetometer (Seed 3)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-49],
+       		"startOfValue": 25,
+       		"lengthOfValue": 2
+       	},
+			{
+       		"name": "MagZ Seed 1",
+       		"description": "z-Axis of Magnetometer (Seed 1)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [79],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagZ Seed 2",
+       		"description": "z-Axis of Magnetometer (Seed 2)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-113],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "MagZ Seed 3",
+       		"description": "z-Axis of Magnetometer (Seed 3)",
+       		"unit": "uTesla",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.6,
+       		"messageId": [-49],
+       		"startOfValue": 27,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Pressure Seed 1",
+       		"description": "Pressure (Seed 1)",
+       		"unit": "mBar",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [79],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Pressure Seed 2",
+       		"description": "Pressure (Seed 2)",
+       		"unit": "mBar",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [-113],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Pressure Seed 3",
+       		"description": "Pressure (Seed 3)",
+       		"unit": "mBar",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [-49],
+       		"startOfValue": 31,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Baro Height Seed 1",
+       		"description": "Baro Height (Seed 1)",
+       		"unit": "m",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [79],
+       		"startOfValue": 47,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Baro Height Seed 2",
+       		"description": "Baro Height (Seed 2)",
+       		"unit": "m",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [-113],
+       		"startOfValue": 47,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Baro Height Seed 3",
+       		"description": "Baro Height (Seed 3)",
+       		"unit": "m",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.001,
+       		"messageId": [-49],
+       		"startOfValue": 47,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "Board Temp Seed 1",
+       		"description": "Board Temp (Seed 1)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00390625,
+       		"messageId": [79],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Board Temp Seed 2",
+       		"description": "Board Temp (Seed 2)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00390625,
+       		"messageId": [-113],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Board Temp Seed 3",
+       		"description": "Board Temp (Seed 3)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.00390625,
+       		"messageId": [-49],
+       		"startOfValue": 39,
+       		"lengthOfValue": 2
+       	},
+			{
+       		"name": "Gyro Temp Seed 1",
+       		"description": "Board Temp (Seed 1)",
+       		"unit": "Celcius",
+       		"offset": 38.1205882,
+       		"proportionalFactor": 0.00294118,
+       		"messageId": [79],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Gyro Temp Seed 2",
+       		"description": "Board Temp (Seed 2)",
+       		"unit": "Celcius",
+       		"offset": 38.1205882,
+       		"proportionalFactor": 0.00294118,
+       		"messageId": [-113],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Gyro Temp Seed 3",
+       		"description": "Board Temp (Seed 3)",
+       		"unit": "Celcius",
+       		"offset": 38.1205882,
+       		"proportionalFactor": 0.00294118,
+       		"messageId": [-49],
+       		"startOfValue": 43,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 1",
+       		"description": "Voltage of battery (Seed 1)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.01953125,
+       		"messageId": [80],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 1",
+       		"description": "Voltage of Cell (Seed 1)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 1",
+       		"description": "Current of battery (Seed 1)",
+       		"unit": "Ampere",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.007816316,
+       		"messageId": [80],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 1",
+       		"description": "Temperature of battery (Seed 1)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [80],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 2",
+       		"description": "Voltage of battery (Seed 2)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.01953125,
+       		"messageId": [-112],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 2",
+       		"description": "Voltage of Cell (Seed 2)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 2",
+       		"description": "Current of battery (Seed 2)",
+       		"unit": "Ampere",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.007816316,
+       		"messageId": [-112],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 2",
+       		"description": "Temperature of battery (Seed 2)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-112],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Voltage Seed 3",
+       		"description": "Voltage of battery (Seed 3)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.01953125,
+       		"messageId": [-48],
+       		"startOfValue": 8,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Cell Voltage Seed 3",
+       		"description": "Voltage of Cell (Seed 3)",
+       		"unit": "Volt",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 11,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Current Seed 3",
+       		"description": "Current of battery (Seed 3)",
+       		"unit": "Ampere",
+       		"offset": 0.0,
+       		"proportionalFactor": 0.007816316,
+       		"messageId": [-48],
+       		"startOfValue": 14,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "Battery Temperature Seed 3",
+       		"description": "Temperature of battery (Seed 3)",
+       		"unit": "Celcius",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-48],
+       		"startOfValue": 17,
+       		"lengthOfValue": 2
+       		},
+			{
+       		"name": "GNSS Latitude Seed 1",
+       		"description": "GNSS Latitude (Seed 1)",
+       		"unit": "Degree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 1",
+       		"description": "GNSS Longitude (Seed 1)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 1",
+       		"description": "GNSS Height (Seed 1)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 1",
+       		"description": "GNSS Time (Seed 1)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 1",
+       		"description": "GNSS Fiy Quality (Seed 1)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Satellites Seed 1",
+       		"description": "GNSS Satellites (Seed 1)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [81],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Latitude Seed 2",
+       		"description": "GNSS Latitude (Seed 2)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 2",
+       		"description": "GNSS Longitude (Seed 2)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 2",
+       		"description": "GNSS Height (Seed 2)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 2",
+       		"description": "GNSS Time (Seed 2)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 2",
+       		"description": "GNSS Fiy Quality (Seed 2)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+			},
+			{
+       		"name": "GNSS Satellites Seed 2",
+       		"description": "GNSS Satellites (Seed 2)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-111],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Latitude Seed 3",
+       		"description": "GNSS Latitude (Seed 3)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 8,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Longitude Seed 3",
+       		"description": "GNSS Longitude (Seed 3)",
+       		"unit": "Deggree",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 13,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Height Seed 3",
+       		"description": "GNSS Height (Seed 3)",
+       		"unit": "Meters",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 18,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Time Seed 3",
+       		"description": "GNSS Time (Seed 3)",
+       		"unit": "Seconds",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 23,
+       		"lengthOfValue": 4
+       		},
+			{
+       		"name": "GNSS Fix Quality Seed 3",
+       		"description": "GNSS Fiy Quality (Seed 3)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 27,
+       		"lengthOfValue": 1
+       		},
+			{
+       		"name": "GNSS Satellites Seed 3",
+       		"description": "GNSS Satellites (Seed 3)",
+       		"unit": "",
+       		"offset": 0.0,
+       		"proportionalFactor": 1.0,
+       		"messageId": [-47],
+       		"startOfValue": 28,
+       		"lengthOfValue": 1
+       	}],
+       	"states": [{
+       		"name": "ORBC Testmode",
+       		"description": "ORBC testmode changed",
+       		"messageId": [6],
+               "stateMap": {
+                   "0": "disabled",
+                   "1": "enabled"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "ORBC Signal",
+       		"description": "ORBC signal received",
+       		"messageId": [9],
+               "stateMap": {
+                   "0": "Init (state = 0)",
+                   "1": "LO",
+                   "2": "SOE",
+                   "3": "SODS"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "ORBC State change",
+       		"description": "ORBC state changed",
+       		"messageId": [10],
+               "stateMap": {
+                   "0": "enter ground (1)",
+                   "1": "leave ground (1)",
+                   "2": "enter rise (2)",
+                   "3": "leave rise (2)",
+                   "4": "enter preparation (3)",
+                   "5": "leave preparation (3)",
+                   "6": "enter operation (4)",
+                   "7": "leave operation (4)"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+		},{
+       		"name": "ORBC Flash Erase",
+       		"description": "Flash Erase status",
+       		"messageId": [21],
+               "stateMap": {
+                   "0": "Send again (for security)",
+                   "1": "Erasing started",
+                   "2": "Erasing successful",
+                   "3": "Erasing failed"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED Bootup",
+       		"description": "Seed is back",
+       		"messageId": [14],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED Wire Connection Lost",
+       		"description": "Seed is disconnected",
+       		"messageId": [17],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED XBee Connection Test successful",
+       		"description": "Seeds XBee is functional",
+       		"messageId": [19],
+               "stateMap": {
+                   "1": "Seed 1",
+                   "2": "Seed 2",
+                   "3": "Seed 3"
+               },
+       		"startOfValue": 1,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Change TestMode",
+       		"description": "acknowledgment",
+       		"messageId": [75],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Change TestMode",
+       		"description": "acknowledgment",
+       		"messageId": [-117],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Change TestMode",
+       		"description": "acknowledgment",
+       		"messageId": [-53],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 TestMode",
+       		"description": "check activation",
+       		"messageId": [77],
+               "stateMap": {
+                   "0": "OFF",
+                   "1": "ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 TestMode",
+       		"description": "check activation",
+       		"messageId": [-115],
+               "stateMap": {
+                   "0": "OFF",
+                   "1": "ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 TestMode",
+       		"description": "check activation",
+       		"messageId": [-51],
+               "stateMap": {
+                   "0": "OFF",
+                   "1": "ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 ChangeState",
+       		"description": "State Changed",
+       		"messageId": [69],
+               "stateMap": {
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 ChangeState",
+       		"description": "State Changed",
+       		"messageId": [-123],
+               "stateMap": {
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 ChangeState",
+       		"description": "State Changed",
+       		"messageId": [-59],
+               "stateMap": {
+                   "0": "to READY FOR TAKEOFF",
+                   "1": "to FLIGHT RISING",
+                   "2": "to FLIGHT TX",
+                   "3": "to EAGLE LANDED",
+                   "4": "to POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Current State",
+       		"description": "Current State",
+       		"messageId": [71],
+               "stateMap": {
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Current State",
+       		"description": "Current State",
+       		"messageId": [-121],
+               "stateMap": {
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Current State",
+       		"description": "Current State",
+       		"messageId": [-57],
+               "stateMap": {
+                   "0": "READY FOR TAKEOFF",
+                   "1": "FLIGHT RISING",
+                   "2": "FLIGHT TX",
+                   "3": "EAGLE LANDED",
+                   "4": "POWER SAFE"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 is Funk",
+       		"description": "Funk activation",
+       		"messageId": [87],
+               "stateMap": {
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 is Funk",
+       		"description": "Funk activation",
+       		"messageId": [-105],
+               "stateMap": {
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 is Funk",
+       		"description": "Funk activation",
+       		"messageId": [-41],
+               "stateMap": {
+                   "0": "has Funk OFF",
+                   "1": "has Funk ON"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [84],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [-108],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Funk changed",
+       		"description": "Funk changed",
+       		"messageId": [-44],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [91],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [-101],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Send SensorData",
+       		"description": "Send SensorData changed",
+       		"messageId": [-37],
+               "stateMap": {
+                   "0": "deactivated",
+                   "1": "activated"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [97],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [-95],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Invalid TC",
+       		"description": "TC ID not recognized",
+       		"messageId": [-31],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Flash Erase",
+       		"description": "Flash Erase status",
+       		"messageId": [89],
+               "stateMap": {
+                   "0": "Send again (for security)",
+                   "1": "Erasing started",
+                   "2": "Erasing successful",
+                   "3": "Erasing failed"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Flash Erase",
+       		"description": "Flash Erase status",
+       		"messageId": [-103],
+               "stateMap": {
+                   "0": "Send again (for security)",
+                   "1": "Erasing started",
+                   "2": "Erasing successful",
+                   "3": "Erasing failed"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 3 Flash Erase",
+       		"description": "Flash Erase status",
+       		"messageId": [-39],
+               "stateMap": {
+                   "0": "Send again (for security)",
+                   "1": "Erasing started",
+                   "2": "Erasing successful",
+                   "3": "Erasing failed"
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 1 Startup Failure",
+       		"description": "shows E at 7seg display",
+       		"messageId": [101],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Startup Failure",
+       		"description": "shows E at 7seg display",
+       		"messageId": [-91],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	},{
+       		"name": "SEED 2 Startup Failure",
+       		"description": "shows E at 7seg display",
+       		"messageId": [-27],
+               "stateMap": {
+                   "0": " "
+               },
+       		"startOfValue": 20,
+       		"lengthOfValue": 1
+       	}],
+       	"stringSources": [{
+       	    "name": "DEBUG_MSG",
+       	    "description": "Debug msg from the ORBC",
+       	    "messageId": [0],
+       	    "startOfValue": 1,
+       	    "lengthOfValue": 52
+       	}],
+        "gnssSources": [
+			{
+			"name": "GNSS SEED 1",
+			"description" : "gnss seed 1",
+			"messageId" : [81],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 1",
+       		    "description": "GNSS Latitude (Seed 1)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 1",
+       			"description": "GNSS Longitude (Seed 1)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 1",
+       		    "description": "GNSS Height (Seed 1)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 1",
+       			"description": "GNSS Time (Seed 1)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 1",
+       			"description": "GNSS Fiy Quality (Seed 1)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 1",
+       			"description": "GNSS Satellites (Seed 1)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		},
+			{
+			"name": "GNSS SEED 2",
+			"description" : "gnss seed 2",
+			"messageId" : [-111],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 2",
+       		    "description": "GNSS Latitude (Seed 2)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 2",
+       			"description": "GNSS Longitude (Seed 2)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 2",
+       		    "description": "GNSS Height (Seed 2)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 2",
+       			"description": "GNSS Time (Seed 2)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 2",
+       			"description": "GNSS Fiy Quality (Seed 2)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 2",
+       			"description": "GNSS Satellites (Seed 2)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		},
+			{
+			"name": "GNSS SEED 3",
+			"description" : "gnss seed 3",
+			"messageId" : [-47],
+			"startOfValue" : 8,
+			"lengthOfValue" : 21,
+			"latitude" : {
+       			"name": "Latitude Seed 3",
+       		    "description": "GNSS Latitude (Seed 3)",
+       		    "unit": "Degree",
+       		    "offset": 0.0,
+       		    "proportionalFactor": 0.000001,
+       		    "startOfValue": 0,
+       		    "lengthOfValue": 4
+       		},
+			"longitude" : {
+       			"name": "GNSS Longitude Seed 3",
+       			"description": "GNSS Longitude (Seed 3)",
+       			"unit": "Deggree",
+       			"offset": 0.0,
+       			"proportionalFactor": 0.000001,
+       			"startOfValue": 5,
+       			"lengthOfValue": 4
+       		},
+			"height" : {
+       			"name": "GNSS Height Seed 3",
+       		    "description": "GNSS Height (Seed 3)",
+       			"unit": "Meters",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 10,
+       			"lengthOfValue": 4
+       		},
+			"time" : {
+       			"name": "GNSS Time Seed 3",
+       			"description": "GNSS Time (Seed 3)",
+       			"unit": "Seconds",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 15,
+       			"lengthOfValue": 4
+       		},
+			"fixQuality" : {
+       			"name": "GNSS Fix Quality Seed 3",
+       			"description": "GNSS Fiy Quality (Seed 3)",
+       			"unit": "",
+       			"offset": 0.0,
+       			"proportionalFactor": 1.0,
+       			"startOfValue": 19,
+       			"lengthOfValue": 1
+       		},
+			"satellites" : {
+       			"name": "GNSS Satellites Seed 3",
+       			"description": "GNSS Satellites (Seed 3)",
+       			"unit": "",
+       			"offset": 0.0,
+				"proportionalFactor": 1.0,
+       			"startOfValue": 20,
+       			"lengthOfValue": 1
+       		}
+		}
+		],
+       	"teleCommands": [{
+           		"name": "SET TEST MODE SEEDS",
+           		"description": "set seed test mode",
+                "commandBasis": [0,40],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                },{
+                    "name": "STATE:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "ON": [12],
+                        "OFF": [13]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "GET TEST MODE SEEDS",
+           		"description": "get seed test mode",
+                "commandBasis": [0,45],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                }],
+				"colorString" : "cadetblue"
+
+           	},
+			{
+           		"name": "CHANGE SEED STATE",
+           		"description": "flight rising, flight tx are the only ones working outside test mode.",
+                "commandBasis": [0,30],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                },{
+                    "name": "STATE:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "READY FOR TAKEOFF": [82],
+                        "FLIGHT RISING": [70],
+                        "FLIGHT TX": [66],
+                        "EAGLE LANDED": [76],
+                        "POWERSAFE ": [80]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "GET SEED STATE",
+           		"description": " in which state is the seed in, or all ?",
+                "commandBasis": [0,35],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "GET SEED SENSOR",
+           		"description": "get a specific seed sensor block",
+                "commandBasis": [0,50],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                },{
+                    "name": "Sensors:",
+                    "start": 9,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "General": [80],
+                        "Battery": [65],
+                        "GNSS": [77],
+                        "Block4": [71],
+                        "Block5": [84]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "SET SEED FUNK",
+           		"description": "set seed test mode",
+                "commandBasis": [0,60],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                },{
+                    "name": "Active:",
+                    "start": 13,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "ON": [42],
+                        "OFF": [24]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "GET SEED FUNK",
+           		"description": "set seed test mode",
+                "commandBasis": [0,65],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "SEED SEND DATA",
+           		"description": "toggle the sending of sensor data",
+                "commandBasis": [0,55],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                },{
+                    "name": "Active:",
+                    "start": 13,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "ON": [42],
+                        "OFF": [24]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "SEED ERASE FLASH",
+           		"description": "can take up to 2 mins",
+                "commandBasis": [0,75],
+                "length": 18,
+                "parameters": [{
+                    "name": "Seed:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "All": [4],
+                        "1": [1],
+                        "2": [2],
+                        "3": [3]
+                    }
+                }],
+				"colorString" : "cadetblue"
+           	},
+			{
+           		"name": "ENTER TEST MODE ORBC",
+           		"description": "enable the test mode of the on rocket computer",
+                "commandBasis": [0,0],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "LEAVE TEST MODE ORBC",
+           		"description": "disable the test mode of the on rocket computer",
+                "commandBasis": [0,1],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "SEEDS WAKE UP",
+           		"description": "send SEEDS ON TC to ORBC",
+                "commandBasis": [0,2],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "TRIGGER CAM",
+           		"description": "trigger cam",
+                "commandBasis": [0,4],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "SET ORBC STATE",
+           		"description": "save state on sd card and resume from it if restart.",
+                "commandBasis": [0,5],
+                "length": 18,
+                "parameters": [{
+                    "name": "State:",
+                    "start": 5,
+                    "length": 1,
+                    "type": "STATE",
+                    "stateMap": {
+                        "Reset (0)": [0],
+                        "ON_GROUND (1)": [1],
+                        "RISING (2)": [2],
+                        "PREPARATION (3)": [3],
+                        "OPERATION (4)": [4]
+                    }
+                }],
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "RESET ORBC STATE",
+           		"description": " start ORBC with first state if restarted ",
+                "commandBasis": [0,6],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "RESET SIGNALS",
+           		"description": " reset flags for LO,SOE,SODS ",
+                "commandBasis": [0,7],
+                "length": 18,
+				"colorString" : "olivedrab"
+           	},
+			{
+           		"name": "GET ORBC SIGNALS",
+           		"description": "get if signals are activated",
+                "commandBasis": [0,8],
+                "length": 18,
+				"colorString" : "olivedrab"
+
+           	},
+			{
+           		"name": "GET ORBC SD STATS",
+           		"description": "get statistics of SD card",
+                "commandBasis": [0,9],
+                "length": 18,
+				"colorString" : "olivedrab"
+
+           	},
+			{
+           		"name": "ORBC ERASE FLASH",
+           		"description": "only resets headers",
+                "commandBasis": [0,10],
+                "length": 18,
+				"colorString" : "olivedrab"
+
+           	}],
+       	"startBytes": [12, 13],
+       	"stopBytes": [12, 22],
+       	"idPosition": 0,
+       	"idLength": 1,
+       	"messageLength": 55,
+       	"maxMessageLength": 55,
+       	"isUsingCRC16": true,
+       	"crc16positionTC": 18,
+       	"crc16positionTM": 53,
+       	"timePosition": 1,
+       	"timeLength": 4,
+       	"byteEndianity": "BIG_ENDIAN",
+       	"readMode": "FIXED_MSG_LENGTH"
+       }
