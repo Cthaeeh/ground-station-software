@@ -55,9 +55,18 @@ public class ParameterizationControl implements Initializable {
                     focusIndex++;
                 }
             }
-            System.out.println(focusIndex);
-        });
 
+            if(t.getCode() == KeyCode.ESCAPE){
+                Stage stage = (Stage) parameterList.getScene().getWindow();
+                stage.close();
+            }
+            if(t.getCode().isArrowKey()){
+                t.consume();
+                System.out.println("test");
+            }
+            System.out.println("Focus param" + focusIndex);
+
+        });
     }
 
     public void init(TeleCommand command) {

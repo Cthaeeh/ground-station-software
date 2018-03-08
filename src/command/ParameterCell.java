@@ -2,14 +2,11 @@ package command;
 
 import data.params.Parameter;
 import gui_elements.NumberTextField;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.VBox;
 
 /**
@@ -79,6 +76,7 @@ public class ParameterCell extends ListCell<Parameter> {
                     .addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> param.setState(newValue));
             param.setState(choiceBox.getSelectionModel().getSelectedItem());
 
+            /*
             //Show it full size when we get focus.
             this.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
                 if (newPropertyValue) {
@@ -87,6 +85,7 @@ public class ParameterCell extends ListCell<Parameter> {
                     choiceBox.hide();
                 }
             });
+            */
 
             box.getChildren().add(choiceBox);
         }
