@@ -50,6 +50,11 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
         textArea.setPrefHeight(3000);
         this.getChildren().add(v);
 
+        //Always scroll to bottom if new text is added
+        textArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            //TODO not do this when user scrolls up
+            textArea.scrollYBy(Double.MAX_VALUE); //this will scroll to the bottom
+        });
         searchBar = new SearchBarControl();
         this.dataSources = dataSources;
 
@@ -58,22 +63,29 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
         subscribeTo(dataSources);
     }
 
+
     private void addSearch() {
         this.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (searchKeyCombo.match(event)) {
                 if(!this.getChildren().contains(searchBar)){
                     this.getChildren().add(searchBar);
+                    for(int i = 0 ; i< 10; i++)
                     Platform.runLater(()->searchBar.getSearchField().requestFocus());
                 }
             }
             if (Esc.match(event)) {
                 this.getChildren().remove(searchBar);
-                for(int i = 0 ; i< 100; i++)
                 Platform.runLater(()->this.requestFocus());
             }
         });
-        searchBar.getSearchField().textProperty().addListener((observableValue,oldValue,newValue)->{
+        searchBar.getSearchField().textProperty().addListener(
+                (observableValue,oldValue,newValue)->{
             textArea.setStyleSpans(0, highlight(newValue));
+        });
+        textArea.textProperty().addListener((observableValue,oldValue,newValue)->{
+            if(this.getChildren().contains(searchBar)) {
+                textArea.setStyleSpans(0, highlight(searchBar.getSearchField().getText()));
+            }
         });
         textArea.setId("codeArea");
     }
@@ -191,4 +203,5 @@ public class TerminalPresentation extends VBox implements VisualizationElement, 
         textArea.appendText(System.lineSeparator());
     }
 }
+
 
