@@ -8,9 +8,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="command.ParameterizationControl">
    <children>
-      <Label text="Available Parameters:" />
+      <Label text="Available Parameters: (ENTER to send, TAB to go through params)" />
       <ListView fx:id="parameterList" prefHeight="319.0" prefWidth="590.0" />
-      <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#btnSendClicked" text="Send" textAlignment="JUSTIFY">
+      <Button fx:id="sendBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onMouseClicked="#btnSendClicked" text="Send" textAlignment="JUSTIFY">
          <VBox.margin>
             <Insets left="500.0" />
          </VBox.margin>

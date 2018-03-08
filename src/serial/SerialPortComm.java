@@ -85,7 +85,10 @@ public class SerialPortComm {
     public void send(byte[] command) {
         if(communicationThread!=null && communicationThread.isAlive()){
             communicationThread.send(command);
+        } else {
+            Main.programLogger.log(Level.WARNING,()->"Can not send command because SerialCommunication Thread is not alive.");
         }
+
     }
 
     public double getByteRate() {
