@@ -526,8 +526,8 @@
        		"unit": "Degree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 8,
+       		"messageId": [80],
+       		"startOfValue": 24,
        		"lengthOfValue": 4
        		},
 			{
@@ -536,8 +536,8 @@
        		"unit": "Deggree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 13,
+       		"messageId": [80],
+       		"startOfValue": 29,
        		"lengthOfValue": 4
        		},
 			{
@@ -546,8 +546,8 @@
        		"unit": "Meters",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 18,
+       		"messageId": [80],
+       		"startOfValue": 34,
        		"lengthOfValue": 4
        		},
 			{
@@ -556,8 +556,8 @@
        		"unit": "Seconds",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 23,
+       		"messageId": [80],
+       		"startOfValue": 39,
        		"lengthOfValue": 4
        		},
 			{
@@ -566,8 +566,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 27,
+       		"messageId": [80],
+       		"startOfValue": 43,
        		"lengthOfValue": 1
        		},
 			{
@@ -576,8 +576,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [81],
-       		"startOfValue": 28,
+       		"messageId": [80],
+       		"startOfValue": 44,
        		"lengthOfValue": 1
        		},
 			{
@@ -586,8 +586,8 @@
        		"unit": "Deggree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 8,
+       		"messageId": [-112],
+       		"startOfValue": 24,
        		"lengthOfValue": 4
        		},
 			{
@@ -596,8 +596,8 @@
        		"unit": "Deggree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 13,
+       		"messageId": [-112],
+       		"startOfValue": 29,
        		"lengthOfValue": 4
        		},
 			{
@@ -606,8 +606,8 @@
        		"unit": "Meters",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 18,
+       		"messageId": [-112],
+       		"startOfValue": 34,
        		"lengthOfValue": 4
        		},
 			{
@@ -616,8 +616,8 @@
        		"unit": "Seconds",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 23,
+       		"messageId": [-112],
+       		"startOfValue": 39,
        		"lengthOfValue": 4
        		},
 			{
@@ -626,8 +626,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 27,
+       		"messageId": [-112],
+       		"startOfValue": 43,
        		"lengthOfValue": 1
 			},
 			{
@@ -636,8 +636,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-111],
-       		"startOfValue": 28,
+       		"messageId": [-112],
+       		"startOfValue": 44,
        		"lengthOfValue": 1
        		},
 			{
@@ -646,8 +646,8 @@
        		"unit": "Deggree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 8,
+       		"messageId": [-48],
+       		"startOfValue": 24,
        		"lengthOfValue": 4
        		},
 			{
@@ -656,8 +656,8 @@
        		"unit": "Deggree",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 13,
+       		"messageId": [-48],
+       		"startOfValue": 29,
        		"lengthOfValue": 4
        		},
 			{
@@ -666,8 +666,8 @@
        		"unit": "Meters",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 18,
+       		"messageId": [-48],
+       		"startOfValue": 34,
        		"lengthOfValue": 4
        		},
 			{
@@ -676,8 +676,8 @@
        		"unit": "Seconds",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 23,
+       		"messageId": [-48],
+       		"startOfValue": 39,
        		"lengthOfValue": 4
        		},
 			{
@@ -686,8 +686,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 27,
+       		"messageId": [-48],
+       		"startOfValue": 43,
        		"lengthOfValue": 1
        		},
 			{
@@ -696,8 +696,8 @@
        		"unit": "",
        		"offset": 0.0,
        		"proportionalFactor": 1.0,
-       		"messageId": [-47],
-       		"startOfValue": 28,
+       		"messageId": [-48],
+       		"startOfValue": 44,
        		"lengthOfValue": 1
        	}],
        	"states": [{
@@ -1093,7 +1093,7 @@
        		"startOfValue": 20,
        		"lengthOfValue": 1
        	},{
-       		"name": "SEED 2 Startup Failure",
+       		"name": "SEED 3 Startup Failure",
        		"description": "shows E at 7seg display",
        		"messageId": [-27],
                "stateMap": {
@@ -1108,13 +1108,31 @@
        	    "messageId": [0],
        	    "startOfValue": 1,
        	    "lengthOfValue": 52
+       	},{
+       	    "name": "DEBUG_MSG",
+       	    "description": "Debug msg from the SEED 1",
+       	    "messageId": [64],
+       	    "startOfValue": 1,
+       	    "lengthOfValue": 52
+       	},{
+       	    "name": "DEBUG_MSG",
+       	    "description": "Debug msg from the SEED 2",
+       	    "messageId": [-128],
+       	    "startOfValue": 1,
+       	    "lengthOfValue": 52
+       	},{
+       	    "name": "DEBUG_MSG",
+       	    "description": "Debug msg from the SEED 3",
+       	    "messageId": [-64],
+       	    "startOfValue": 1,
+       	    "lengthOfValue": 52
        	}],
         "gnssSources": [
 			{
 			"name": "GNSS SEED 1",
 			"description" : "gnss seed 1",
-			"messageId" : [81],
-			"startOfValue" : 8,
+			"messageId" : [80],
+			"startOfValue" : 24,
 			"lengthOfValue" : 21,
 			"latitude" : {
        			"name": "Latitude Seed 1",
@@ -1174,8 +1192,8 @@
 			{
 			"name": "GNSS SEED 2",
 			"description" : "gnss seed 2",
-			"messageId" : [-111],
-			"startOfValue" : 8,
+			"messageId" : [-112],
+			"startOfValue" : 24,
 			"lengthOfValue" : 21,
 			"latitude" : {
        			"name": "Latitude Seed 2",
@@ -1235,8 +1253,8 @@
 			{
 			"name": "GNSS SEED 3",
 			"description" : "gnss seed 3",
-			"messageId" : [-47],
-			"startOfValue" : 8,
+			"messageId" : [-48],
+			"startOfValue" : 24,
 			"lengthOfValue" : 21,
 			"latitude" : {
        			"name": "Latitude Seed 3",
@@ -1415,8 +1433,8 @@
                     "type": "STATE",
                     "stateMap": {
                         "General": [80],
-                        "Battery": [65],
-                        "GNSS": [77],
+                        "Battery+GNSS": [65],
+                        "Block3": [77],
                         "Block4": [71],
                         "Block5": [84]
                     }
