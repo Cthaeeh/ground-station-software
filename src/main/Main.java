@@ -1,14 +1,7 @@
 package main;
 
 import com.sun.javafx.application.LauncherImpl;
-import data.DataModel;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,17 +16,8 @@ import java.util.logging.SimpleFormatter;
  */
 public class Main {
 
-    // Thinks that need to be done, before releasing 0.1:
-    // Features:
+    //Fix that
 
-        // TODO advanced logging of data of raw data.
-        // TODO find a convenient way to edit a config file.
-        // TODO add time functionality. (Watch out for time incontinuitity with the graphs)
-
-    //Fixes
-
-        // TODO go through all program logs and see that they make sense.
-        // TODO fix the data logger.
         // TODO HELP button doesn't work on linux.
         // TODO Check if GBC really does the right thing. (Because I still see DataSourceSelectionDialog Objects even when the corresponding window is closed ???) Maybe the general way how I open and close windows is wrong.
         // TODO move this whole listener thing to the abstract class DataSource this is now ULTRA STUPID.
@@ -42,16 +26,14 @@ public class Main {
         // TODO somehow detect invalid configs.
         // TODO Make the whole serial comm stuff a lot more robust. What if the config file is bullshit.
 
-    // later maybe, after 0.1
+    // version > 0.1
 
-        // TODO terminal delete messages after a while, or add possibility to clear terminal.
-        // TODO let the user select a default config if the hardcoded one is not found.
+        // TODO find a convenient way to edit a config file.
+        // TODO make sure that the terminalpresentation does not overflow ( it cant handle to much text)
         // TODO add support for float and double and unsigned int maybe ??
         // TODO add an acceptable range of values to a dataSource. For example : A temperature should not exceed 100°C
-        // TODO style everything consistently . with base 16 ez ez ez
         // TODO Add a way better management of visualization elements! Maybe someone wants the LineCHart to be 10 x bigger than a fucking bit flag.
         // TODO app logo
-        // TODO let the user see last info for each source
         // TODO Multi Window support.
 
     public static Logger programLogger = Logger.getLogger("Program-Logger");

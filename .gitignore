@@ -5,6 +5,7 @@ out/production
 .idea/artifacts/
 .idea/dictionaries/
 .idea/workspace.xml
+arduino-software/
 lib/
 logs/
 src/META-INF/
