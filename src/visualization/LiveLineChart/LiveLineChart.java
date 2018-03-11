@@ -64,7 +64,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
 
         this.setCreateSymbols(false);
         this.setAnimated(false);
-        this.setHorizontalGridLinesVisible(false);
+        this.setHorizontalGridLinesVisible(true);
         this.setVerticalGridLinesVisible(false);
         this.sensors = sensors;
         createSeries(sensors);
@@ -107,6 +107,7 @@ public class LiveLineChart extends LineChart<Number, Number> implements SimpleSe
         if (!bounds.yAutoRange()) {
             yAxis.setLowerBound(bounds.getyLowerBound());
             yAxis.setUpperBound(bounds.getyUpperBound());
+            yAxis.setTickUnit((bounds.getyUpperBound()-bounds.getyLowerBound())/5);
         }
         yAxis.setTickLabelsVisible(true);
         yAxis.setTickMarkVisible(true);

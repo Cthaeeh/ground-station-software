@@ -99,6 +99,9 @@
 .default-color1.chart-line-symbol { -fx-background-color: #7587a6, white; }
 .default-color2.chart-line-symbol { -fx-background-color: #f9ee98, white; }
 
+.chart-horizontal-grid-lines {
+    -fx-stroke: #424242;
+}
 /*
         ListView
 */
